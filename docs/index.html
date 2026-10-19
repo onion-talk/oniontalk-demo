@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OnionTalk — Mensageiro Privado na Rede Tor v3 &amp; Política de Privacidade</title>
   <meta name="description" content="Mensageiro E2EE Zero-Knowledge nativo sobre Serviços Ocultos Tor v3 (.onion). Sem número de telefone, sem e-mail, sem servidores centrais e com queima bilateral anti-forense." />
+  <link rel="icon" type="image/png" href="icon-512.png" />
+  <link rel="apple-touch-icon" href="icon-512.png" />
+  <meta property="og:image" content="https://eriktonon.alwaysdata.net/icon-512.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -79,20 +82,78 @@
       text-decoration: none;
       color: var(--text-primary);
       font-weight: 800;
-      font-size: 20px;
+      font-size: 21px;
       letter-spacing: -0.03em;
     }
 
     .brand-mark {
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(6, 182, 212, 0.15));
-      border: 1px solid var(--border-strong);
+      width: 42px;
+      height: 42px;
+      border-radius: 11px;
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.14);
+      flex-shrink: 0;
+    }
+
+    .brand-mark img, .brand-mark svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .hero-app-showcase {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      background: rgba(17, 26, 46, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 10px 18px 10px 10px;
+      border-radius: 20px;
+      margin-bottom: 22px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+    }
+
+    .hero-app-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 15px;
+      overflow: hidden;
+      flex-shrink: 0;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.18);
+    }
+
+    .hero-app-icon img, .hero-app-icon svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .hero-app-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .hero-app-meta strong {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-app-meta span {
+      font-size: 12px;
       color: var(--brand-emerald);
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 500;
     }
 
     .nav-links {
@@ -688,10 +749,7 @@
     <div class="nav-container">
       <a href="#top" class="brand-logo">
         <div class="brand-mark">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-          </svg>
+          <img src="icon-512.png" alt="OnionTalk Official Icon" />
         </div>
         OnionTalk
       </a>
@@ -724,9 +782,20 @@
   <main id="top">
     <section class="hero">
       <div>
-        <div class="status-pill">
-          <span class="status-dot"></span>
-          <span data-i18n="hero_badge">MALHA TOR V3 ATIVA · 7 NÓS FEDERADOS · ANDROID API 36</span>
+        <div class="hero-app-showcase">
+          <div class="hero-app-icon">
+            <img src="icon-512.png" alt="Ícone Oficial do OnionTalk" />
+          </div>
+          <div class="hero-app-meta">
+            <strong>OnionTalk: Private Tor Chat</strong>
+            <span>org.oniontalk.messenger · v1.1.2 (Android API 36)</span>
+          </div>
+        </div>
+        <div>
+          <div class="status-pill">
+            <span class="status-dot"></span>
+            <span data-i18n="hero_badge">MALHA TOR V3 ATIVA · 7 NÓS FEDERADOS · ANDROID API 36</span>
+          </div>
         </div>
         <h1 data-i18n="hero_title">
           Simples como o WhatsApp.<br/>
@@ -768,7 +837,7 @@
         <div class="phone-screen">
           <div class="chat-header">
             <div class="chat-peer">
-              <img class="peer-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=160&q=80" alt="Contato Verificado" />
+              <img class="peer-avatar" src="icon-512.png" alt="OnionTalk Peer Verified" />
               <div class="peer-meta">
                 <h4>Helena V. (Tor v3 Verified)</h4>
                 <p>@11afe7a2...77tqd.onion</p>
@@ -893,7 +962,12 @@
           <thead>
             <tr>
               <th>Critério de Privacidade &amp; Arquitetura</th>
-              <th class="highlight-col" style="color: var(--brand-emerald);">OnionTalk (Tor v3)</th>
+              <th class="highlight-col" style="color: var(--brand-emerald);">
+                <span style="display: inline-flex; align-items: center; gap: 8px;">
+                  <img src="icon-512.png" alt="OnionTalk" style="width: 22px; height: 22px; border-radius: 6px; vertical-align: middle;" />
+                  OnionTalk (Tor v3)
+                </span>
+              </th>
               <th>WhatsApp</th>
               <th>Telegram</th>
               <th>Signal</th>
@@ -944,12 +1018,15 @@
     <section class="section" id="privacy">
       <div class="privacy-container">
         <div class="privacy-toolbar">
-          <div>
-            <span class="section-eyebrow">Documento Oficial de Conformidade · Google Play Store</span>
-            <h2 style="font-size: 28px; font-weight: 800; letter-spacing: -0.02em;">Política de Privacidade — OnionTalk (`org.oniontalk.messenger`)</h2>
-            <p style="color: var(--text-secondary); font-size: 13.5px; margin-top: 4px;">
-              Última atualização: <span class="mono">19 de outubro de 2026</span> · Aplicável ao pacote Android <code class="mono" style="color: var(--brand-emerald);">org.oniontalk.messenger</code>
-            </p>
+          <div style="display: flex; align-items: center; gap: 16px;">
+            <img src="icon-512.png" alt="OnionTalk Icon" style="width: 52px; height: 52px; border-radius: 13px; box-shadow: 0 6px 16px rgba(0,0,0,0.45); flex-shrink: 0;" />
+            <div>
+              <span class="section-eyebrow">Documento Oficial de Conformidade · Google Play Store</span>
+              <h2 style="font-size: 28px; font-weight: 800; letter-spacing: -0.02em;">Política de Privacidade — OnionTalk (`org.oniontalk.messenger`)</h2>
+              <p style="color: var(--text-secondary); font-size: 13.5px; margin-top: 4px;">
+                Última atualização: <span class="mono">19 de outubro de 2026</span> · Aplicável ao pacote Android <code class="mono" style="color: var(--brand-emerald);">org.oniontalk.messenger</code>
+              </p>
+            </div>
           </div>
           <div class="search-box">
             <input type="text" id="policy-search" class="search-input" placeholder="Filtrar cláusulas (ex: câmera, microfone, exclusão, SQLCipher)..." oninput="filterPolicyClauses(this.value)" />
@@ -1017,6 +1094,10 @@
   </main>
 
   <footer>
+    <div style="display: inline-flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+      <img src="icon-512.png" alt="OnionTalk" style="width: 28px; height: 28px; border-radius: 7px;" />
+      <strong style="color: var(--text-primary); font-size: 15px;">OnionTalk: Private Tor Chat</strong>
+    </div>
     <p>OnionTalk Sovereign Privacy Project · Pacote Android <code>org.oniontalk.messenger</code> · Licenciado sob MIT (Protocol &amp; Relay)</p>
   </footer>
 
