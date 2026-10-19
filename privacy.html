@@ -1,114 +1,1100 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Política de Privacidade — OnionTalk: Private Tor Chat</title>
+  <title>OnionTalk — Mensageiro Privado na Rede Tor v3 &amp; Política de Privacidade</title>
+  <meta name="description" content="Mensageiro E2EE Zero-Knowledge nativo sobre Serviços Ocultos Tor v3 (.onion). Sem número de telefone, sem e-mail, sem servidores centrais e com queima bilateral anti-forense." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #070B14;
-      --card: #0F172A;
-      --border: #1E293B;
-      --text: #E2E8F0;
-      --muted: #94A3B8;
-      --accent: #00E5FF;
-      --emerald: #10B981;
+      --bg-base: #060911;
+      --bg-surface: #0C1220;
+      --bg-elevated: #111A2E;
+      --bg-glass: rgba(12, 18, 32, 0.82);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(16, 185, 129, 0.32);
+      --text-primary: #F8FAFC;
+      --text-secondary: #94A3B8;
+      --text-muted: #64748B;
+      --brand-emerald: #10B981;
+      --brand-emerald-dark: #059669;
+      --brand-cyan: #06B6D4;
+      --brand-amber: #F59E0B;
+      --brand-danger: #EF4444;
     }
-    * { box-sizing: border-box; }
-    body {
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      padding: 40px 20px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.65;
+      padding: 0;
     }
-    .container {
-      max-width: 840px;
+
+    body {
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    code, pre, .mono {
+      font-family: 'JetBrains Mono', monospace;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Sticky Top Navigation (WhatsApp / Signal style clean header) */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .nav-container {
+      max-width: 1240px;
       margin: 0 auto;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 36px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      padding: 0 24px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
     }
-    .badge {
-      display: inline-block;
-      background: rgba(0, 229, 255, 0.12);
-      color: var(--accent);
-      border: 1px solid rgba(0, 229, 255, 0.3);
-      padding: 4px 12px;
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-primary);
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(6, 182, 212, 0.15));
+      border: 1px solid var(--border-strong);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--brand-emerald);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.15s ease;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--text-primary);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .lang-switch {
+      display: inline-flex;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 3px;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .lang-btn.active {
+      background: var(--bg-elevated);
+      color: var(--text-primary);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--brand-emerald);
+      color: #04130D;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.15s ease, background-color 0.15s ease;
+    }
+
+    .btn-primary:hover {
+      background: #34D399;
+      transform: translateY(-1px);
+    }
+
+    .btn-primary:active {
+      transform: scale(0.98);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-surface);
+      color: var(--text-primary);
+      font-weight: 600;
+      font-size: 14px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      border: 1px solid var(--border-subtle);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255, 255, 255, 0.24);
+      background: var(--bg-elevated);
+    }
+
+    /* Hero Section — Split Editorial Layout */
+    .hero {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 72px 24px 88px;
+      display: grid;
+      grid-template-columns: 1.12fr 0.88fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid var(--border-strong);
+      color: var(--brand-emerald);
+      padding: 6px 14px;
       border-radius: 999px;
       font-size: 12px;
       font-weight: 600;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.02em;
+      margin-bottom: 24px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--brand-emerald);
+      box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 4.6vw, 58px);
+      font-weight: 800;
+      line-height: 1.07;
+      letter-spacing: -0.035em;
+      color: var(--text-primary);
+      margin-bottom: 22px;
+    }
+
+    .hero h1 span {
+      color: var(--brand-emerald);
+    }
+
+    .hero-lead {
+      font-size: 18px;
+      color: var(--text-secondary);
+      max-width: 58ch;
+      margin-bottom: 32px;
+      line-height: 1.65;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 36px;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .metric-item strong {
+      display: block;
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .metric-item span {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    /* Interactive Phone Mockup (WhatsApp / Telegram dark chat simulation) */
+    .phone-frame {
+      background: var(--bg-surface);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 28px;
+      padding: 18px;
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.65);
+      position: relative;
+    }
+
+    .phone-screen {
+      background: #080D18;
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .chat-header {
+      background: #0D1526;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .chat-peer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .peer-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid var(--brand-emerald);
+    }
+
+    .peer-meta h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .peer-meta p {
+      font-size: 11px;
+      color: var(--brand-emerald);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .burn-btn-demo {
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      color: #F87171;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .burn-btn-demo:hover {
+      background: rgba(239, 68, 68, 0.22);
+    }
+
+    .chat-messages {
+      padding: 18px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 295px;
+    }
+
+    .cipher-banner {
+      background: rgba(16, 185, 129, 0.07);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      border-radius: 10px;
+      padding: 8px 12px;
+      font-size: 11px;
+      color: var(--text-secondary);
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .msg-bubble {
+      max-width: 82%;
+      padding: 10px 14px;
+      border-radius: 14px;
+      font-size: 13.5px;
+      line-height: 1.45;
+      transition: all 0.25s ease;
+    }
+
+    .msg-in {
+      align-self: flex-start;
+      background: #131D33;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      border-bottom-left-radius: 4px;
+    }
+
+    .msg-out {
+      align-self: flex-end;
+      background: #064E3B;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #ECFDF5;
+      border-bottom-right-radius: 4px;
+    }
+
+    .msg-meta {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.55);
+      margin-top: 4px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .tor-Footer-bar {
+      background: #0B111E;
+      border-top: 1px solid var(--border-subtle);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text-secondary);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Section Containers */
+    .section {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 84px 24px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .section-header {
+      max-width: 680px;
+      margin-bottom: 48px;
+    }
+
+    .section-eyebrow {
+      font-size: 12px;
+      font-weight: 700;
       text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--brand-emerald);
+      margin-bottom: 10px;
+      display: block;
     }
-    h1 {
-      margin: 14px 0 6px;
-      font-size: 28px;
-      color: #FFFFFF;
+
+    .section-header h2 {
+      font-size: clamp(26px, 3.2vw, 38px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 14px;
     }
-    h2 {
-      margin-top: 28px;
-      font-size: 19px;
-      color: var(--accent);
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 8px;
+
+    .section-header p {
+      color: var(--text-secondary);
+      font-size: 16px;
     }
-    p, li { color: var(--text); font-size: 15px; }
-    .meta { color: var(--muted); font-size: 13px; margin-bottom: 24px; }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    hr { border: 0; border-top: 1px solid var(--border); margin: 36px 0; }
+
+    /* Asymmetric Bento Grid */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
+    }
+
+    .bento-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.15s ease;
+    }
+
+    .bento-card:hover {
+      border-color: rgba(16, 185, 129, 0.35);
+    }
+
+    .span-7 { grid-column: span 7; }
+    .span-5 { grid-column: span 5; }
+    .span-4 { grid-column: span 4; }
+    .span-8 { grid-column: span 8; }
+
+    .bento-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--brand-emerald);
+      margin-bottom: 20px;
+    }
+
+    .bento-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+      color: var(--text-primary);
+    }
+
+    .bento-card p {
+      color: var(--text-secondary);
+      font-size: 14.5px;
+      line-height: 1.6;
+    }
+
+    .code-snippet {
+      margin-top: 20px;
+      background: #060911;
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-size: 12px;
+      color: #A7F3D0;
+      overflow-x: auto;
+    }
+
+    /* Comparison Table (OnionTalk vs WhatsApp vs Telegram vs Signal) */
+    .table-wrap {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-variant-numeric: tabular-nums;
+    }
+
+    th, td {
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 14px;
+    }
+
+    th {
+      background: #090E1A;
+      color: var(--text-secondary);
+      font-weight: 600;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    th.highlight-col, td.highlight-col {
+      background: rgba(16, 185, 129, 0.06);
+      border-left: 1px solid rgba(16, 185, 129, 0.2);
+      border-right: 1px solid rgba(16, 185, 129, 0.2);
+    }
+
+    .badge-yes {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(16, 185, 129, 0.14);
+      color: #34D399;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .badge-no {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(239, 68, 68, 0.12);
+      color: #F87171;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .badge-warn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(245, 158, 11, 0.14);
+      color: #FBBF24;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* Official Privacy Policy Section (Google Play Console Compliant) */
+    .privacy-container {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: 24px;
+      padding: 40px;
+    }
+
+    .privacy-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding-bottom: 24px;
+      margin-bottom: 28px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 260px;
+      max-width: 420px;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      background: #060911;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      padding: 11px 16px;
+      border-radius: 10px;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .search-input:focus {
+      border-color: var(--brand-emerald);
+    }
+
+    .policy-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .policy-clause {
+      background: #080D18;
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .policy-clause h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .policy-clause p, .policy-clause li {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    .policy-clause ul {
+      padding-left: 18px;
+      margin-top: 8px;
+    }
+
+    .policy-clause li {
+      margin-bottom: 6px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 48px 24px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 960px) {
+      .hero { grid-template-columns: 1fr; padding: 44px 20px; }
+      .span-7, .span-5, .span-4, .span-8 { grid-column: span 12; }
+      .policy-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <span class="badge">Zero-Knowledge · Tor v3 E2EE</span>
-    <h1>Política de Privacidade — OnionTalk: Private Tor Chat</h1>
-    <div class="meta">Pacote Android: <code>org.oniontalk.messenger</code> · Última atualização: 19 de outubro de 2026</div>
 
-    <p>O <strong>OnionTalk: Private Tor Chat</strong> (<code>org.oniontalk.messenger</code>) é um aplicativo de mensagens criptografadas ponta-a-ponta (E2EE) construído sob os princípios de <strong>Zero-Knowledge (Conhecimento Zero)</strong>, <strong>Soberania Digital</strong> e <strong>Privacidade por Design</strong>.</p>
+  <!-- Top Navigation -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#top" class="brand-logo">
+        <div class="brand-mark">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+        </div>
+        OnionTalk
+      </a>
 
-    <h2>1. Coleta de Dados Pessoais (Zero PII)</h2>
-    <p>O OnionTalk <strong>não solicita, não coleta, não armazena, não vende e não compartilha</strong> nenhum dado de identificação pessoal (PII) ou telemetria:</p>
-    <ul>
-      <li><strong>Sem cadastro tradicional:</strong> Nenhum número de telefone, endereço de e-mail, nome civil ou documento é exigido para criar ou utilizar uma conta.</li>
-      <li><strong>Sem leitura de agenda:</strong> A lista de contatos do seu dispositivo nunca é acessada ou enviada para servidores externos.</li>
-      <li><strong>Sem rastreadores ou anúncios:</strong> O aplicativo não contém SDKs de publicidade, Google Analytics, Firebase Analytics ou rastreadores de terceiros.</li>
-      <li><strong>Sem registro de IP ou localização:</strong> Toda a comunicação de rede ocorre exclusivamente através de Serviços Ocultos da rede Tor v3 (<code>.onion</code>), ocultando o endereço IP de origem e destino.</li>
-    </ul>
+      <nav class="nav-links">
+        <a href="#arquitetura" data-i18n="nav_arch">Arquitetura Tor v3</a>
+        <a href="#comparativo" data-i18n="nav_comp">OnionTalk vs. WhatsApp &amp; Telegram</a>
+        <a href="#privacy" class="active" data-i18n="nav_priv">Política de Privacidade (Google Play)</a>
+        <a href="https://github.com/onion-talk/oniontalk-protocol" target="_blank" rel="noopener">GitHub</a>
+      </nav>
 
-    <h2>2. Criptografia e Armazenamento Local</h2>
-    <ul>
-      <li>Todas as mensagens, chaves privadas (Ed25519 / X25519), contatos e configurações ficam armazenados <strong>exclusivamente no próprio dispositivo do usuário</strong>, dentro de um banco de dados criptografado com <strong>SQLCipher (AES-256)</strong> derivado via <strong>PBKDF2-HMAC-SHA256</strong> a partir da senha local definida pelo usuário.</li>
-      <li>Todas as mensagens em trânsito são seladas ponta-a-ponta com <strong>X25519 ECDH + HKDF-SHA256 + ChaCha20-Poly1305 AEAD + Assinatura Ed25519</strong>.</li>
-    </ul>
+      <div class="nav-actions">
+        <div class="lang-switch" role="group" aria-label="Seletor de idioma">
+          <button type="button" class="lang-btn active" id="btn-pt" onclick="setLanguage('pt')">PT-BR</button>
+          <button type="button" class="lang-btn" id="btn-en" onclick="setLanguage('en')">EN</button>
+        </div>
+        <a href="https://github.com/onion-talk/oniontalk-demo/raw/main/OnionTalk-Demo.apk" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          <span data-i18n="cta_download">Baixar APK v1.1.2</span>
+        </a>
+      </div>
+    </div>
+  </header>
 
-    <h2>3. Permissões do Dispositivo</h2>
-    <ul>
-      <li><strong>Câmera (<code>android.permission.CAMERA</code>):</strong> Utilizada exclusivamente no dispositivo, mediante ação explícita do usuário, para escanear códigos QR de identificadores criptográficos (<code>@hash</code>) ou capturar fotos criptografadas ponta-a-ponta (com remoção automática de metadados EXIF/GPS).</li>
-      <li><strong>Microfone (<code>android.permission.RECORD_AUDIO</code>):</strong> Utilizado exclusivamente quando o usuário grava uma mensagem de voz criptografada ponta-a-ponta.</li>
-      <li><strong>Notificações (<code>android.permission.POST_NOTIFICATIONS</code>):</strong> Utilizada apenas para alertas locais no dispositivo quando novos pacotes criptografados chegam via rede Tor.</li>
-      <li><strong>Internet (<code>android.permission.INTERNET</code>):</strong> Utilizada exclusivamente pelo daemon Tor embutido (<code>libtor.so</code>) para conexão à malha <code>.onion</code>.</li>
-    </ul>
+  <!-- Hero Section -->
+  <main id="top">
+    <section class="hero">
+      <div>
+        <div class="status-pill">
+          <span class="status-dot"></span>
+          <span data-i18n="hero_badge">MALHA TOR V3 ATIVA · 7 NÓS FEDERADOS · ANDROID API 36</span>
+        </div>
+        <h1 data-i18n="hero_title">
+          Simples como o WhatsApp.<br/>
+          <span>Privado de verdade na rede Tor.</span>
+        </h1>
+        <p class="hero-lead" data-i18n="hero_lead">
+          Enquanto mensageiros tradicionais exigem seu número de telefone, armazenam seu grafo social em servidores centrais e expõem seu endereço IP, o OnionTalk roteia cada mensagem por Serviços Ocultos Tor v3 (.onion) com criptografia Zero-Knowledge X25519 + ChaCha20-Poly1305.
+        </p>
+        <div class="hero-cta-row">
+          <a href="https://github.com/onion-talk/oniontalk-demo/raw/main/OnionTalk-Demo.apk" class="btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+            <span data-i18n="hero_btn_apk">Download Direto APK (v1.1.2)</span>
+          </a>
+          <a href="#privacy" class="btn-secondary">
+            <span data-i18n="hero_btn_policy">Ler Política de Privacidade Oficial</span>
+          </a>
+        </div>
 
-    <h2>4. Retenção e Exclusão de Dados</h2>
-    <ul>
-      <li><strong>Em trânsito (Relays):</strong> Os envelopes criptografados permanecem apenas em memória RAM volátil até a confirmação criptográfica de entrega (<code>ACK</code>) ou expiração automática (TTL de 24h), sendo imediatamente descartados.</li>
-      <li><strong>Exclusão Total pelo Usuário:</strong> O usuário pode destruir permanentemente sua conta, chaves e mensagens a qualquer momento dentro do aplicativo em <strong>Configurações &rarr; Excluir Conta e Destruir Dados</strong>, através do botão de <strong>Queima Bilateral (🔥)</strong> no chat, ou via <strong>Senha de Coação (Duress Password)</strong>.</li>
-    </ul>
+        <div class="hero-metrics">
+          <div class="metric-item">
+            <strong class="tabular">0 bytes</strong>
+            <span data-i18n="metric_1">Dados pessoais, telefone ou e-mail coletados</span>
+          </div>
+          <div class="metric-item">
+            <strong class="tabular">&lt; 400 ms</strong>
+            <span data-i18n="metric_2">Entrega via Long-Poll Rendezvous Tor v3</span>
+          </div>
+          <div class="metric-item">
+            <strong class="tabular">256-bit</strong>
+            <span data-i18n="metric_3">X25519 ECDH + ChaCha20-Poly1305 + SQLCipher</span>
+          </div>
+        </div>
+      </div>
 
-    <h2>5. Contato</h2>
-    <p>Para dúvidas relacionadas a esta Política de Privacidade ou segurança do aplicativo:<br/>
-    Repositório Oficial: <a href="https://github.com/onion-talk/oniontalk-protocol">https://github.com/onion-talk/oniontalk-protocol</a><br/>
-    E-mail de suporte: <a href="mailto:eriktonon@gmail.com">eriktonon@gmail.com</a></p>
+      <!-- Interactive Live Chat & Bilateral Burn Simulator -->
+      <div class="phone-frame">
+        <div class="phone-screen">
+          <div class="chat-header">
+            <div class="chat-peer">
+              <img class="peer-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=160&q=80" alt="Contato Verificado" />
+              <div class="peer-meta">
+                <h4>Helena V. (Tor v3 Verified)</h4>
+                <p>@11afe7a2...77tqd.onion</p>
+              </div>
+            </div>
+            <button type="button" class="burn-btn-demo" onclick="triggerDemoBurn()" id="burn-demo-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path>
+              </svg>
+              <span id="burn-btn-label">Testar Burn Bilateral</span>
+            </button>
+          </div>
 
-    <hr />
+          <div class="chat-messages" id="demo-chat-box">
+            <div class="cipher-banner">
+              X25519 ECDH · ChaCha20-Poly1305 AEAD · Ed25519 Signed
+            </div>
+            <div class="msg-bubble msg-in" id="msg-1">
+              <span class="msg-text">Acabei de conectar pelo nó Master PVE2 sem precisar colocar chip ou número de telefone.</span>
+              <div class="msg-meta">16:14 · Tor Circuit #402</div>
+            </div>
+            <div class="msg-bubble msg-out" id="msg-2">
+              <span class="msg-text">Zero metadados! O envelope vai assinado com Ed25519 e expira da RAM no instante do ACK.</span>
+              <div class="msg-meta">16:14 · ACK Preimage Verified</div>
+            </div>
+            <div class="msg-bubble msg-in" id="msg-3">
+              <span class="msg-text">Clique em "Testar Burn Bilateral" no topo para ver a sobrescrita anti-forense em ação.</span>
+              <div class="msg-meta">16:15 · SQLCipher AES-256</div>
+            </div>
+          </div>
 
-    <h1>Privacy Policy (English)</h1>
-    <p><strong>OnionTalk: Private Tor Chat</strong> (<code>org.oniontalk.messenger</code>) does <strong>not</strong> collect, store, sell, or share any personally identifiable information (PII). No phone number, email address, or contact list is ever requested or transmitted. All local data is encrypted at rest using <strong>SQLCipher AES-256</strong>, and all network traffic is end-to-end encrypted (<strong>X25519 + ChaCha20-Poly1305 + Ed25519</strong>) over <strong>Tor v3 Hidden Services (<code>.onion</code>)</strong>. Users can permanently shred all local data and cryptographic keys at any time via <strong>Settings &rarr; Delete Account &amp; Destroy Data</strong> or via <strong>Bilateral Burn (🔥)</strong>.</p>
-  </div>
+          <div class="tor-Footer-bar">
+            <span>SOCKS5h 127.0.0.1:9050 (libtor.so)</span>
+            <span style="color: var(--brand-emerald);">● 7 Relays Online</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Architecture Bento Grid -->
+    <section class="section" id="arquitetura">
+      <div class="section-header">
+        <span class="section-eyebrow" data-i18n="arch_eyebrow">Engenharia Criptográfica Soberana</span>
+        <h2 data-i18n="arch_title">Projetado para quem não aceita backdoors nem coleta invisível.</h2>
+        <p data-i18n="arch_desc">Cada camada do OnionTalk elimina um ponto central de falha presente nos mensageiros comerciais.</p>
+      </div>
+
+      <div class="bento-grid">
+        <div class="bento-card span-7">
+          <div>
+            <div class="bento-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+            </div>
+            <h3 data-i18n="bento_1_title">Motor Tor v3 Embutido (Zero Configuração Externa)</h3>
+            <p data-i18n="bento_1_desc">O daemon oficial Tor (libtor.so JNI) roda nativamente dentro do processo isolado do aplicativo. Não exige instalar Orbot nem configurar proxy manualmente. Todas as conexões usam resolução remota SOCKS5h para Serviços Ocultos de 56 caracteres (.onion).</p>
+          </div>
+          <div class="code-snippet mono">
+            Master Rendezvous: onion4zr3bsdeaelksemwokl5qmxd5o7jyblf46vc2mfl6cozgw77tqd.onion
+          </div>
+        </div>
+
+        <div class="bento-card span-5">
+          <div>
+            <div class="bento-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path>
+              </svg>
+            </div>
+            <h3 data-i18n="bento_2_title">Identidade Criptográfica Pura (Sem Chip/SIM)</h3>
+            <p data-i18n="bento_2_desc">Seu endereço no OnionTalk é a sua própria chave pública Ed25519 de 256 bits (@hash). Nenhum SMS, e-mail ou identificador de hardware (IMEI/SSAID) é vinculado à sua conta.</p>
+          </div>
+          <div class="code-snippet mono">
+            ID: @7e02d3ec4b9a81f0...c2mfl6cozgw77tqd.onion
+          </div>
+        </div>
+
+        <div class="bento-card span-4">
+          <div>
+            <div class="bento-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+              </svg>
+            </div>
+            <h3 data-i18n="bento_3_title">Cofre Local SQLCipher AES-256 + Senha de Coação</h3>
+            <p data-i18n="bento_3_desc">Banco local criptografado com PBKDF2-HMAC-SHA256 (100.000 iterações). Inclui Senha de Coação (Duress Password) que destrói as chaves em milissegundos caso você seja forçado a desbloquear o aparelho.</p>
+          </div>
+        </div>
+
+        <div class="bento-card span-8">
+          <div>
+            <div class="bento-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+            </div>
+            <h3 data-i18n="bento_4_title">Envelopes Wire V2 com Forward Secrecy &amp; ACK Preimage Lock</h3>
+            <p data-i18n="bento_4_desc">Cada mensagem gera um par efêmero X25519 combinando ECDH Efêmero-Estático + Estático-Estático, derivado com HKDF-SHA256 e autenticado via ChaCha20-Poly1305 AEAD. Os relays guardam envelopes apenas em RAM volátil e só apagam mediante prova criptográfica SHA-256(ack_token) == ack_lock.</p>
+          </div>
+          <div class="code-snippet mono">
+            __ENC_X25519_CHACHA20_V2__:&lt;ephPubHex&gt;:&lt;nonceB64&gt;:&lt;ctB64&gt;:&lt;ed25519SigHex&gt;
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Comparison Table -->
+    <section class="section" id="comparativo">
+      <div class="section-header">
+        <span class="section-eyebrow" data-i18n="comp_eyebrow">Comparativo Técnico Transparente</span>
+        <h2 data-i18n="comp_title">OnionTalk vs. WhatsApp, Telegram e Signal</h2>
+        <p data-i18n="comp_desc">Por que a criptografia de conteúdo não basta quando os metadados continuam expostos.</p>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Critério de Privacidade &amp; Arquitetura</th>
+              <th class="highlight-col" style="color: var(--brand-emerald);">OnionTalk (Tor v3)</th>
+              <th>WhatsApp</th>
+              <th>Telegram</th>
+              <th>Signal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Exige Número de Telefone (SIM Card / KYC)?</strong></td>
+              <td class="highlight-col"><span class="badge-yes">Zero Telefone / Zero E-mail</span></td>
+              <td><span class="badge-no">Obrigatório</span></td>
+              <td><span class="badge-no">Obrigatório</span></td>
+              <td><span class="badge-no">Obrigatório</span></td>
+            </tr>
+            <tr>
+              <td><strong>Oculta seu Endereço IP por padrão (Roteamento Onion)?</strong></td>
+              <td class="highlight-col"><span class="badge-yes">Tor v3 Nativo Embutido</span></td>
+              <td><span class="badge-no">Expõe IP à Meta</span></td>
+              <td><span class="badge-no">Expõe IP ao Servidor</span></td>
+              <td><span class="badge-warn">Apenas Proxy Opcional</span></td>
+            </tr>
+            <tr>
+              <td><strong>Criptografia Ponta-a-Ponta (E2EE) em 100% das conversas?</strong></td>
+              <td class="highlight-col"><span class="badge-yes">Sempre Ativa (X25519 + ChaCha20)</span></td>
+              <td><span class="badge-yes">Sim (Metadados abertos)</span></td>
+              <td><span class="badge-no">Desativada por padrão (Cloud)</span></td>
+              <td><span class="badge-yes">Sempre Ativa</span></td>
+            </tr>
+            <tr>
+              <td><strong>Infraestrutura de Servidores</strong></td>
+              <td class="highlight-col"><span class="badge-yes">Malha P2P Federada .onion (RAM)</span></td>
+              <td><span class="badge-no">Centralizado (Meta Inc.)</span></td>
+              <td><span class="badge-no">Centralizado (Telegram FZ-LLC)</span></td>
+              <td><span class="badge-warn">Centralizado (AWS / Signal)</span></td>
+            </tr>
+            <tr>
+              <td><strong>Queima Bilateral Anti-Forense + Senha de Coação?</strong></td>
+              <td class="highlight-col"><span class="badge-yes">Nativo (Shredding SQLCipher)</span></td>
+              <td><span class="badge-no">Não possui</span></td>
+              <td><span class="badge-warn">Exclusão sem coação</span></td>
+              <td><span class="badge-no">Não possui</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Official Google Play Privacy Policy Section -->
+    <section class="section" id="privacy">
+      <div class="privacy-container">
+        <div class="privacy-toolbar">
+          <div>
+            <span class="section-eyebrow">Documento Oficial de Conformidade · Google Play Store</span>
+            <h2 style="font-size: 28px; font-weight: 800; letter-spacing: -0.02em;">Política de Privacidade — OnionTalk (`org.oniontalk.messenger`)</h2>
+            <p style="color: var(--text-secondary); font-size: 13.5px; margin-top: 4px;">
+              Última atualização: <span class="mono">19 de outubro de 2026</span> · Aplicável ao pacote Android <code class="mono" style="color: var(--brand-emerald);">org.oniontalk.messenger</code>
+            </p>
+          </div>
+          <div class="search-box">
+            <input type="text" id="policy-search" class="search-input" placeholder="Filtrar cláusulas (ex: câmera, microfone, exclusão, SQLCipher)..." oninput="filterPolicyClauses(this.value)" />
+          </div>
+        </div>
+
+        <div class="policy-grid" id="policy-clauses-grid">
+          <div class="policy-clause" data-keywords="coleta dados pessoais pii telefone email agenda gps zero knowledge">
+            <h3>1. Coleta Zero de Dados Pessoais (Zero PII)</h3>
+            <p>O <strong>OnionTalk: Private Tor Chat</strong> (<code>org.oniontalk.messenger</code>) foi construído sob o princípio estrito de <strong>Zero-Knowledge (Conhecimento Zero)</strong>. O aplicativo <strong>não solicita, não coleta, não armazena, não vende e não compartilha</strong> nenhum dado pessoal ou sensível do usuário:</p>
+            <ul>
+              <li><strong>Sem cadastro pessoal:</strong> Nenhum número de telefone, endereço de e-mail, nome civil ou documento é solicitado.</li>
+              <li><strong>Sem acesso à agenda:</strong> Os contatos do dispositivo nunca são lidos ou sincronizados.</li>
+              <li><strong>Sem anúncios ou telemetria:</strong> Zero SDKs de publicidade, zero Google/Firebase Analytics e zero rastreadores.</li>
+              <li><strong>Sem coleta de IP ou localização:</strong> Todo o tráfego passa exclusivamente por Serviços Ocultos Tor v3 (<code>.onion</code>).</li>
+            </ul>
+          </div>
+
+          <div class="policy-clause" data-keywords="armazenamento criptografia local sqlcipher aes-256 x25519 chacha20">
+            <h3>2. Criptografia e Armazenamento Local</h3>
+            <p>Todos os dados gerados pelo usuário permanecem exclusivamente sob posse do próprio usuário no seu dispositivo:</p>
+            <ul>
+              <li><strong>Em repouso (No aparelho):</strong> Mensagens, chaves privadas (Ed25519 / X25519) e contatos são guardados exclusivamente em banco local criptografado com <strong>SQLCipher (AES-256)</strong> derivado via <strong>PBKDF2-HMAC-SHA256</strong> (100.000 iterações).</li>
+              <li><strong>Em trânsito (Na rede Tor):</strong> Envelopes selados ponta-a-ponta com <strong>X25519 ECDH + HKDF-SHA256 + ChaCha20-Poly1305 AEAD + Assinatura Ed25519</strong>. Os nós de retransmissão jamais têm acesso ao texto em claro.</li>
+            </ul>
+          </div>
+
+          <div class="policy-clause" data-keywords="permissoes camera microfone audio notificacoes internet qr code exif">
+            <h3>3. Permissões do Dispositivo (Permissions Disclosure)</h3>
+            <p>O OnionTalk solicita apenas permissões estritamente necessárias para ações iniciadas pelo próprio usuário:</p>
+            <ul>
+              <li><strong>Câmera (<code>android.permission.CAMERA</code>):</strong> Usada exclusivamente no aparelho quando o usuário escaneia um QR Code de contato (<code>@hash</code>) ou tira uma foto criptografada (com remoção automática de metadados EXIF/GPS antes da criptografia).</li>
+              <li><strong>Microfone (<code>android.permission.RECORD_AUDIO</code>):</strong> Usado exclusivamente quando o usuário grava uma nota de voz criptografada ponta-a-ponta.</li>
+              <li><strong>Notificações (<code>android.permission.POST_NOTIFICATIONS</code>):</strong> Usada apenas para alertas locais no aparelho quando chegam novos pacotes criptografados.</li>
+              <li><strong>Internet (<code>android.permission.INTERNET</code>):</strong> Usada exclusivamente pelo daemon Tor embutido (<code>libtor.so</code>).</li>
+            </ul>
+          </div>
+
+          <div class="policy-clause" data-keywords="retencao exclusao dados deletar conta burn queima bilateral ram">
+            <h3>4. Retenção e Exclusão Instantânea de Dados</h3>
+            <p>O usuário detém controle total e imediato sobre a retenção e destruição dos seus dados:</p>
+            <ul>
+              <li><strong>Memória Volátil nos Relays:</strong> Envelopes em trânsito ficam apenas em memória RAM volátil até a confirmação criptográfica de entrega (<code>ACK</code>) ou expiração automática em 24h, sendo imediatamente descartados.</li>
+              <li><strong>Queima Bilateral (🔥):</strong> O botão de chama no topo de qualquer conversa destrói e sobrescreve o histórico de mensagens tanto no aparelho local quanto no aparelho do contato.</li>
+              <li><strong>Exclusão Total da Conta:</strong> Em <strong>Configurações &rarr; Excluir Conta e Destruir Dados</strong> (ou digitando a Senha de Coação), todo o banco SQLCipher e as chaves locais sofrem <em>shredding</em> criptográfico irreversível.</li>
+            </ul>
+          </div>
+
+          <div class="policy-clause" data-keywords="publico alvo criancas idade 18 seguranca infantil">
+            <h3>5. Público-Alvo e Segurança Infantil</h3>
+            <p>O OnionTalk é destinado ao público adulto (<strong>18 anos ou mais</strong>) que busca comunicação privada e segura. O aplicativo não é direcionado a menores de idade e não coleta informações de crianças.</p>
+          </div>
+
+          <div class="policy-clause" data-keywords="contato suporte seguranca vulnerabilidade email github">
+            <h3>6. Canal de Contato e Suporte</h3>
+            <p>Para dúvidas sobre esta Política de Privacidade, auditoria de código-fonte do protocolo ou relatórios de segurança:</p>
+            <ul>
+              <li><strong>Organização Oficial no GitHub:</strong> <a href="https://github.com/onion-talk/oniontalk-protocol" style="color: var(--brand-emerald);">github.com/onion-talk/oniontalk-protocol</a></li>
+              <li><strong>E-mail do Responsável / Suporte:</strong> <a href="mailto:eriktonon@gmail.com" style="color: var(--brand-emerald);">eriktonon@gmail.com</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>OnionTalk Sovereign Privacy Project · Pacote Android <code>org.oniontalk.messenger</code> · Licenciado sob MIT (Protocol &amp; Relay)</p>
+  </footer>
+
+  <script>
+    let burnedState = false;
+    const originalMessages = [
+      "Acabei de conectar pelo nó Master PVE2 sem precisar colocar chip ou número de telefone.",
+      "Zero metadados! O envelope vai assinado com Ed25519 e expira da RAM no instante do ACK.",
+      "Clique em \"Testar Burn Bilateral\" no topo para ver a sobrescrita anti-forense em ação."
+    ];
+
+    function triggerDemoBurn() {
+      const ids = ["msg-1", "msg-2", "msg-3"];
+      const btnLabel = document.getElementById("burn-btn-label");
+      burnedState = !burnedState;
+
+      ids.forEach((id, idx) => {
+        const el = document.getElementById(id);
+        const textSpan = el.querySelector(".msg-text");
+        if (burnedState) {
+          textSpan.textContent = "0x" + Array.from({length: 32}, () => Math.floor(Math.random()*16).toString(16)).join("") + " [SHREDDED]";
+          el.style.opacity = "0.55";
+          el.style.fontFamily = "'JetBrains Mono', monospace";
+        } else {
+          textSpan.textContent = originalMessages[idx];
+          el.style.opacity = "1";
+          el.style.fontFamily = "'Inter', sans-serif";
+        }
+      });
+
+      btnLabel.textContent = burnedState ? "Restaurar Demonstração" : "Testar Burn Bilateral";
+    }
+
+    function filterPolicyClauses(query) {
+      const q = (query || "").trim().toLowerCase();
+      const clauses = document.querySelectorAll(".policy-clause");
+      clauses.forEach(card => {
+        const text = (card.textContent + " " + (card.getAttribute("data-keywords") || "")).toLowerCase();
+        card.style.display = (!q || text.includes(q)) ? "block" : "none";
+      });
+    }
+
+    const i18nDict = {
+      pt: {
+        nav_arch: "Arquitetura Tor v3",
+        nav_comp: "OnionTalk vs. WhatsApp & Telegram",
+        nav_priv: "Política de Privacidade (Google Play)",
+        cta_download: "Baixar APK v1.1.2",
+        hero_badge: "MALHA TOR V3 ATIVA · 7 NÓS FEDERADOS · ANDROID API 36",
+        hero_title: "Simples como o WhatsApp.<br/><span>Privado de verdade na rede Tor.</span>",
+        hero_lead: "Enquanto mensageiros tradicionais exigem seu número de telefone, armazenam seu grafo social em servidores centrais e expõem seu endereço IP, o OnionTalk roteia cada mensagem por Serviços Ocultos Tor v3 (.onion) com criptografia Zero-Knowledge X25519 + ChaCha20-Poly1305.",
+        hero_btn_apk: "Download Direto APK (v1.1.2)",
+        hero_btn_policy: "Ler Política de Privacidade Oficial"
+      },
+      en: {
+        nav_arch: "Tor v3 Architecture",
+        nav_comp: "OnionTalk vs. WhatsApp & Telegram",
+        nav_priv: "Privacy Policy (Google Play)",
+        cta_download: "Download APK v1.1.2",
+        hero_badge: "LIVE TOR V3 MESH · 7 FEDERATED NODES · ANDROID API 36",
+        hero_title: "Simple like WhatsApp.<br/><span>Truly private on the Tor network.</span>",
+        hero_lead: "While mainstream messengers demand your phone number, store your social graph on central servers, and expose your IP address, OnionTalk routes every message over Tor v3 Hidden Services (.onion) with Zero-Knowledge X25519 + ChaCha20-Poly1305 encryption.",
+        hero_btn_apk: "Direct Download APK (v1.1.2)",
+        hero_btn_policy: "Read Official Privacy Policy"
+      }
+    };
+
+    function setLanguage(lang) {
+      document.getElementById("btn-pt").classList.toggle("active", lang === "pt");
+      document.getElementById("btn-en").classList.toggle("active", lang === "en");
+      const dict = i18nDict[lang] || i18nDict.pt;
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (dict[key]) {
+          el.innerHTML = dict[key];
+        }
+      });
+    }
+  </script>
 </body>
 </html>
