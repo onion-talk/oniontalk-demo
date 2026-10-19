@@ -4,6 +4,9 @@
   <p><strong>Real Dual-Emulator Walkthrough ("Pablo & Bruna") • Zero-Knowledge Tor v3 P2P Messenger</strong></p>
 
   <p>
+    <a href="#-google-play-store--how-to-install">
+      <img src="https://img.shields.io/badge/Google_Play-Coming_Soon-3DDC84?style=for-the-badge&logo=google-play&logoColor=black" alt="Coming Soon to Google Play Store" />
+    </a>
     <a href="https://github.com/onion-talk/oniontalk-demo/raw/main/apk/OnionTalk-Demo.apk">
       <img src="https://img.shields.io/badge/Download_Demo_APK-Android_8.0%2B-00C853?style=for-the-badge&logo=android&logoColor=white" alt="Download Android Demo APK" />
     </a>
@@ -25,11 +28,12 @@
 
 ---
 
-## 📱 About This Repository
+## 📱 About This Repository & Google Play Store Release
 
 This repository hosts the **official Android Demo APK** and a **complete screen-by-screen visual walkthrough** captured directly from two independent Android emulators (**Pablo** and **Bruna**) communicating in real time over the OnionTalk Tor v3 mesh.
 
-> **Note on Android Source Code**: The relay node implementation ([`oniontalk-relay`](https://github.com/onion-talk/oniontalk-relay)) and wire protocol specification ([`oniontalk-protocol`](https://github.com/onion-talk/oniontalk-protocol)) are already open-sourced. The Android client source code is currently kept private while we complete final security hardening and will be published in an upcoming milestone. In the meantime, you can inspect the full application workflow below or test the signed Demo APK directly.
+- 🚀 **Google Play Store (Coming Soon)**: OnionTalk is currently in final release preparation and **will be published soon on the Google Play Store**.
+- 🔒 **Roadmap & Source Code**: The relay node implementation ([`oniontalk-relay`](https://github.com/onion-talk/oniontalk-relay)) and wire protocol specification ([`oniontalk-protocol`](https://github.com/onion-talk/oniontalk-protocol)) are already open-sourced. The Android client source code remains private during our initial store launch and security review, and will be released in a future milestone. Until the Google Play listing goes live, you can download and install the signed [**Demo APK (`OnionTalk-Demo.apk`)**](https://github.com/onion-talk/oniontalk-demo/raw/main/apk/OnionTalk-Demo.apk) directly from this repository.
 
 ---
 
