@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Política de Privacidade — OnionTalk: Private Tor Chat</title>
+  <style>
+    :root {
+      --bg: #070B14;
+      --card: #0F172A;
+      --border: #1E293B;
+      --text: #E2E8F0;
+      --muted: #94A3B8;
+      --accent: #00E5FF;
+      --emerald: #10B981;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+    .container {
+      max-width: 840px;
+      margin: 0 auto;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(0, 229, 255, 0.12);
+      color: var(--accent);
+      border: 1px solid rgba(0, 229, 255, 0.3);
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 14px 0 6px;
+      font-size: 28px;
+      color: #FFFFFF;
+    }
+    h2 {
+      margin-top: 28px;
+      font-size: 19px;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+    p, li { color: var(--text); font-size: 15px; }
+    .meta { color: var(--muted); font-size: 13px; margin-bottom: 24px; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    hr { border: 0; border-top: 1px solid var(--border); margin: 36px 0; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <span class="badge">Zero-Knowledge · Tor v3 E2EE</span>
+    <h1>Política de Privacidade — OnionTalk: Private Tor Chat</h1>
+    <div class="meta">Pacote Android: <code>org.oniontalk.messenger</code> · Última atualização: 19 de outubro de 2026</div>
+
+    <p>O <strong>OnionTalk: Private Tor Chat</strong> (<code>org.oniontalk.messenger</code>) é um aplicativo de mensagens criptografadas ponta-a-ponta (E2EE) construído sob os princípios de <strong>Zero-Knowledge (Conhecimento Zero)</strong>, <strong>Soberania Digital</strong> e <strong>Privacidade por Design</strong>.</p>
+
+    <h2>1. Coleta de Dados Pessoais (Zero PII)</h2>
+    <p>O OnionTalk <strong>não solicita, não coleta, não armazena, não vende e não compartilha</strong> nenhum dado de identificação pessoal (PII) ou telemetria:</p>
+    <ul>
+      <li><strong>Sem cadastro tradicional:</strong> Nenhum número de telefone, endereço de e-mail, nome civil ou documento é exigido para criar ou utilizar uma conta.</li>
+      <li><strong>Sem leitura de agenda:</strong> A lista de contatos do seu dispositivo nunca é acessada ou enviada para servidores externos.</li>
+      <li><strong>Sem rastreadores ou anúncios:</strong> O aplicativo não contém SDKs de publicidade, Google Analytics, Firebase Analytics ou rastreadores de terceiros.</li>
+      <li><strong>Sem registro de IP ou localização:</strong> Toda a comunicação de rede ocorre exclusivamente através de Serviços Ocultos da rede Tor v3 (<code>.onion</code>), ocultando o endereço IP de origem e destino.</li>
+    </ul>
+
+    <h2>2. Criptografia e Armazenamento Local</h2>
+    <ul>
+      <li>Todas as mensagens, chaves privadas (Ed25519 / X25519), contatos e configurações ficam armazenados <strong>exclusivamente no próprio dispositivo do usuário</strong>, dentro de um banco de dados criptografado com <strong>SQLCipher (AES-256)</strong> derivado via <strong>PBKDF2-HMAC-SHA256</strong> a partir da senha local definida pelo usuário.</li>
+      <li>Todas as mensagens em trânsito são seladas ponta-a-ponta com <strong>X25519 ECDH + HKDF-SHA256 + ChaCha20-Poly1305 AEAD + Assinatura Ed25519</strong>.</li>
+    </ul>
+
+    <h2>3. Permissões do Dispositivo</h2>
+    <ul>
+      <li><strong>Câmera (<code>android.permission.CAMERA</code>):</strong> Utilizada exclusivamente no dispositivo, mediante ação explícita do usuário, para escanear códigos QR de identificadores criptográficos (<code>@hash</code>) ou capturar fotos criptografadas ponta-a-ponta (com remoção automática de metadados EXIF/GPS).</li>
+      <li><strong>Microfone (<code>android.permission.RECORD_AUDIO</code>):</strong> Utilizado exclusivamente quando o usuário grava uma mensagem de voz criptografada ponta-a-ponta.</li>
+      <li><strong>Notificações (<code>android.permission.POST_NOTIFICATIONS</code>):</strong> Utilizada apenas para alertas locais no dispositivo quando novos pacotes criptografados chegam via rede Tor.</li>
+      <li><strong>Internet (<code>android.permission.INTERNET</code>):</strong> Utilizada exclusivamente pelo daemon Tor embutido (<code>libtor.so</code>) para conexão à malha <code>.onion</code>.</li>
+    </ul>
+
+    <h2>4. Retenção e Exclusão de Dados</h2>
+    <ul>
+      <li><strong>Em trânsito (Relays):</strong> Os envelopes criptografados permanecem apenas em memória RAM volátil até a confirmação criptográfica de entrega (<code>ACK</code>) ou expiração automática (TTL de 24h), sendo imediatamente descartados.</li>
+      <li><strong>Exclusão Total pelo Usuário:</strong> O usuário pode destruir permanentemente sua conta, chaves e mensagens a qualquer momento dentro do aplicativo em <strong>Configurações &rarr; Excluir Conta e Destruir Dados</strong>, através do botão de <strong>Queima Bilateral (🔥)</strong> no chat, ou via <strong>Senha de Coação (Duress Password)</strong>.</li>
+    </ul>
+
+    <h2>5. Contato</h2>
+    <p>Para dúvidas relacionadas a esta Política de Privacidade ou segurança do aplicativo:<br/>
+    Repositório Oficial: <a href="https://github.com/onion-talk/oniontalk-protocol">https://github.com/onion-talk/oniontalk-protocol</a><br/>
+    E-mail de suporte: <a href="mailto:eriktonon@gmail.com">eriktonon@gmail.com</a></p>
+
+    <hr />
+
+    <h1>Privacy Policy (English)</h1>
+    <p><strong>OnionTalk: Private Tor Chat</strong> (<code>org.oniontalk.messenger</code>) does <strong>not</strong> collect, store, sell, or share any personally identifiable information (PII). No phone number, email address, or contact list is ever requested or transmitted. All local data is encrypted at rest using <strong>SQLCipher AES-256</strong>, and all network traffic is end-to-end encrypted (<strong>X25519 + ChaCha20-Poly1305 + Ed25519</strong>) over <strong>Tor v3 Hidden Services (<code>.onion</code>)</strong>. Users can permanently shred all local data and cryptographic keys at any time via <strong>Settings &rarr; Delete Account &amp; Destroy Data</strong> or via <strong>Bilateral Burn (🔥)</strong>.</p>
+  </div>
+</body>
+</html>
