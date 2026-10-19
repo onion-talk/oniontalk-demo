@@ -90,7 +90,7 @@ When you launch OnionTalk, there is no "Sign up with Phone Number" or "Continue 
 - **Zero-Telemetry Language Switch (`🇧🇷 PT` / `🇺🇸 EN` / `🇪🇸 ES` / `🇷🇺 RU`)**: Switches the entire UI dictionary in memory without contacting any server or analytics endpoint.
 - **Argon2id Key Derivation (`64 MB RAM, 3 iterations`)**: Your password is never sent over the internet. It is processed locally by Argon2id to derive a 256-bit master key that unlocks the local SQLCipher database and decrypts your private keys at rest.
 - **5-Strike Anti-Coercion Wipe**: Notice the warning **`Remaining attempts before data wipe: 5`**. If an attacker or forensic extraction tool enters a wrong password 5 times in a row, OnionTalk automatically executes a 2-pass Department of Defense (`DoD 5220.22-M`) file shredder (`0x00`, `0xFF`, `SecureRandom`, `fsync()`) over the SQLite database and keystore, destroying all local data.
-- **Local Keypair Generation**: Tapping **Generate Keys & Create Account** generates an **Ed25519** signing keypair and an **X25519** Diffie-Hellman keypair in hardware-backed memory, hashes the public key into a 16-character hex fingerprint (`@06b843cc8f6617fb`), and binds it to an active `.onion` v3 relay from the mesh.
+- **Local Keypair Generation (256-Bit Public Key Identity)**: Tapping **Generate Keys & Create Account** generates a 256-bit **Ed25519** signing keypair (birationally mapped to **X25519** for ECDH key agreement), embeds the full 64-character hex public key in the user's Crypto ID (`@<64-hex-pubkey>:<relay.onion>`) and QR code, and seals the private seed inside the SQLCipher AES-256-CBC vault.
 
 ---
 
