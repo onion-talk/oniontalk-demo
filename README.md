@@ -37,6 +37,25 @@ This repository hosts the **official Android Demo APK** and a **complete screen-
 
 ---
 
+## 🎬 Official Promo Video — Freedom & Digital Sovereignty
+
+Watch how **OnionTalk** restores communication freedom—eliminating SIM cards, phone numbers, and centralized cloud surveillance through sovereign **Tor v3 (`.onion`)** hidden services, **NaCl Curve25519** end-to-end encryption, and **Synchronized Bilateral Burn (`🔥`)**.
+
+<div align="center">
+  <a href="https://github.com/onion-talk/oniontalk-demo/raw/main/video/OnionTalk-Freedom-EN.mp4">
+    <img src="./video/poster-freedom.png" width="840" alt="Watch OnionTalk Official Promo Video" />
+  </a>
+  <br /><br />
+  <a href="https://github.com/onion-talk/oniontalk-demo/raw/main/video/OnionTalk-Freedom-EN.mp4">
+    <img src="https://img.shields.io/badge/%E2%96%B6_Watch_Promo_Video_(English)-1080p_MP4-00E5FF?style=for-the-badge&logoColor=black" alt="Watch Promo Video in English" />
+  </a>
+  <a href="https://github.com/onion-talk/oniontalk-demo/raw/main/video/OnionTalk-Liberdade-PT.mp4">
+    <img src="https://img.shields.io/badge/%E2%96%B6_Assistir_V%C3%ADdeo_(Portugu%C3%AAs)-1080p_MP4-00E676?style=for-the-badge&logoColor=black" alt="Assistir Vídeo em Português" />
+  </a>
+</div>
+
+---
+
 ## 💬 Live Dual-Emulator Demo: Pablo & Bruna
 
 To demonstrate how OnionTalk operates in everyday use without phone numbers, SIM cards, or central servers, we launched two isolated Android instances in English (`🇺🇸 EN`):
