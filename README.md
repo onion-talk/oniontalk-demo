@@ -25,6 +25,25 @@
 
 ---
 
+## 🚀 What's New in `v1.2.0` (`versionCode = 8`) — Always-Connected Background Tor & Bounded Failover
+
+- **📦 Direct Signed APK Download (`v1.2.0-demo`)**: [**Download `OnionTalk-v1.2.0.apk`**](https://github.com/onion-talk/oniontalk-demo/releases/download/v1.2.0-demo/OnionTalk-v1.2.0.apk) (`SHA-256: 028657053bfb5b08703105e3e11fc09c24d2e146587cab24a9a815f2872a19ed`)
+- **🌐 Official Website & Privacy Policy (GitHub Pages)**: [**onion-talk.github.io/oniontalk-demo**](https://onion-talk.github.io/oniontalk-demo/) | [**onion-talk.github.io/oniontalk-protocol**](https://onion-talk.github.io/oniontalk-protocol/)
+- **🛡️ Persistent Background Tor Mode ("Sempre Conectado" — App-Only `127.0.0.1:9050`)**:
+  - New `OnionKeepAliveService` (`ForegroundService` with `specialUse|remoteMessaging`, `START_STICKY`, and 15s watchdog) keeps only OnionTalk's embedded Tor daemon alive in the background without routing the rest of the phone's traffic (no global VPN).
+  - Certified in a **2-hour continuous soak test (60 waves / 120.6 min)** across 3 Android 16 devices rotating into the background: **`0` frozen process warnings (`Sending oneway calls to frozen process = 0`)**, **`0` crashes/ANRs**, and **`157 / 157` (`100.0%`) E2EE messages delivered and ACKed** (`p50 = 1.69s`).
+- **⚡ Bounded Multi-Gateway Failover & Local Tor Health Detection**:
+  - Per-call SOCKS5h handshake timeouts (`12s` primary, `4s–5s` fallback) replacing the legacy `15s` floor that caused `~105s` head-of-line blocking when walking 7 relays sequentially.
+  - Automatic detection of local Tor circuit rebuilds (`>= 2` transport failures in a single cycle pause peer discovery and avoid penalizing healthy `.onion` relays).
+- **🟢 Real-Time `TorTunnelState` Machine**:
+  - Eliminates the false `"🟡 CONECTANDO / STAND-BY"` badge while the app is open in the foreground (`BOOTSTRAPPING`, `CONNECTED_ACTIVE`, `DEGRADED_RETRYING`, `PAUSED_BACKGROUND`).
+- **🔒 Accidental Wipe Protection**:
+  - Empty password taps and transient SQLite I/O errors no longer decrement the 5-strike duress wipe counter; tapping *"Create New Cryptographic Identity"* on the unlock screen now requires explicit confirmation in a destructive modal before overwriting an existing vault.
+- **🌐 Node Operator Incentive ("Fortaleça a Rede — Suba um Nó Relay")**:
+  - Built-in Settings card with 1-tap Docker Compose command copy (`https://github.com/onion-talk/oniontalk-relay`), live active `.onion` v2 relay counter (`7` verified v2 relays), and custom `.onion` node latency verifier.
+
+---
+
 ## 📱 Official Release on Google Play Store
 
 This repository hosts the **complete screen-by-screen visual walkthrough** captured directly from two independent Android emulators (**Pablo** and **Bruna**) communicating in real time over the OnionTalk Tor v3 mesh.

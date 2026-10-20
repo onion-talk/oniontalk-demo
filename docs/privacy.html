@@ -786,13 +786,13 @@
           </div>
           <div class="hero-app-meta">
             <strong>OnionTalk: Private Tor Chat</strong>
-            <span>org.oniontalk.messenger · v1.1.4 · Google Play Oficial</span>
+            <span>org.oniontalk.messenger · v1.2.0 (Sempre Conectado) · Google Play &amp; APK Oficial</span>
           </div>
         </div>
         <div>
           <div class="status-pill">
             <span class="status-dot"></span>
-            <span data-i18n="hero_badge">MALHA TOR V3 ATIVA · 10 NÓS FEDERADOS · ANDROID API 36</span>
+            <span data-i18n="hero_badge">RELEASE V1.2.0 · MODO SEMPRE CONECTADO 2º PLANO · 7 RELAYS V2 ATIVOS</span>
           </div>
         </div>
         <h1 data-i18n="hero_title">
@@ -808,6 +808,17 @@
               <path d="M3 20.5v-17c0-.83.94-1.3 1.6-.8l14 8.5c.6.37.6 1.23 0 1.6l-14 8.5c-.66.5-1.6.03-1.6-.8z"></path>
             </svg>
             <span data-i18n="hero_btn_apk">OnionTalk – Apps no Google Play</span>
+          </a>
+          <a href="https://github.com/onion-talk/oniontalk-demo/releases/download/v1.2.0-demo/OnionTalk-v1.2.0.apk" class="btn-secondary" style="border-color: rgba(16, 185, 129, 0.45); color: #34D399;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Baixar APK v1.2.0 Direto</span>
+          </a>
+          <a href="https://github.com/onion-talk/oniontalk-relay" target="_blank" rel="noopener" class="btn-secondary">
+            <span>🌐 Subir Nó Relay (&lt;60MB RAM)</span>
           </a>
           <a href="#privacy" class="btn-secondary">
             <span data-i18n="hero_btn_policy">Ler Política de Privacidade Oficial</span>
@@ -944,6 +955,39 @@
             __ENC_X25519_CHACHA20_V2__:&lt;ephPubHex&gt;:&lt;nonceB64&gt;:&lt;ctB64&gt;:&lt;ed25519SigHex&gt;
           </div>
         </div>
+
+        <div class="bento-card span-6" style="grid-column: span 6;">
+          <div>
+            <div class="bento-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <h3>Modo "Sempre Conectado" em 2º Plano (Sem VPN Global)</h3>
+            <p>O <code>OnionKeepAliveService</code> mantém exclusivamente o socket SOCKS5h do OnionTalk (<code>127.0.0.1:9050</code>) vivo em segundo plano com watchdog de 15s e failover determinístico (Primário + 2 Nós Core), sem sequestrar o tráfego dos demais apps do telefone e imune ao <em>Cached App Freezer</em> do Android 14/16.</p>
+          </div>
+          <div class="code-snippet mono">
+            2h Soak Test (60 Waves): 157/157 Entregues (100%) · 0 Frozen Process · p50 = 1.69s
+          </div>
+        </div>
+
+        <div class="bento-card span-6" style="grid-column: span 6;">
+          <div>
+            <div class="bento-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                <line x1="6" y1="18" x2="6.01" y2="18"></line>
+              </svg>
+            </div>
+            <h3>🌐 Fortaleça a Rede — Suba um Nó Relay (&lt; 60 MB RAM)</h3>
+            <p>Qualquer pessoa pode subir um nó relay Docker em 1 comando e anunciá-lo automaticamente na malha Auto-Gossip PEX v2. No app (Configurações &rarr; Tor), você também pode testar a latência e adicionar seu próprio endereço <code>.onion</code>.</p>
+          </div>
+          <div class="code-snippet mono">
+            git clone https://github.com/onion-talk/oniontalk-relay.git &amp;&amp; cd oniontalk-relay &amp;&amp; docker compose up -d --build
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1022,7 +1066,7 @@
               <span class="section-eyebrow">Documento Oficial de Conformidade · Google Play Store</span>
               <h2 style="font-size: 28px; font-weight: 800; letter-spacing: -0.02em;">Política de Privacidade — OnionTalk (`org.oniontalk.messenger`)</h2>
               <p style="color: var(--text-secondary); font-size: 13.5px; margin-top: 4px;">
-                Última atualização: <span class="mono">19 de outubro de 2026</span> · Aplicável ao pacote Android <code class="mono" style="color: var(--brand-emerald);">org.oniontalk.messenger</code>
+                Última atualização: <span class="mono">20 de outubro de 2026</span> · Aplicável ao pacote Android <code class="mono" style="color: var(--brand-emerald);">org.oniontalk.messenger</code>
               </p>
             </div>
           </div>
@@ -1144,7 +1188,7 @@
         nav_comp: "OnionTalk vs. WhatsApp & Telegram",
         nav_priv: "Política de Privacidade (Google Play)",
         cta_download: "Baixar no Google Play",
-        hero_badge: "MALHA TOR V3 ATIVA · 10 NÓS FEDERADOS · ANDROID API 36",
+        hero_badge: "RELEASE V1.2.0 · MODO SEMPRE CONECTADO 2º PLANO · 7 RELAYS V2 ATIVOS",
         hero_title: "Simples como o WhatsApp.<br/><span>Privado de verdade na rede Tor.</span>",
         hero_lead: "Enquanto mensageiros tradicionais exigem seu número de telefone, armazenam seu grafo social em servidores centrais e expõem seu endereço IP, o OnionTalk roteia cada mensagem por Serviços Ocultos Tor v3 (.onion) com criptografia Zero-Knowledge X25519 + ChaCha20-Poly1305.",
         hero_btn_apk: "OnionTalk – Apps no Google Play",
@@ -1155,7 +1199,7 @@
         nav_comp: "OnionTalk vs. WhatsApp & Telegram",
         nav_priv: "Privacy Policy (Google Play)",
         cta_download: "Get it on Google Play",
-        hero_badge: "LIVE TOR V3 MESH · 10 FEDERATED NODES · ANDROID API 36",
+        hero_badge: "RELEASE V1.2.0 · ALWAYS-CONNECTED BACKGROUND TOR · 7 V2 RELAYS ONLINE",
         hero_title: "Simple like WhatsApp.<br/><span>Truly private on the Tor network.</span>",
         hero_lead: "While mainstream messengers demand your phone number, store your social graph on central servers, and expose your IP address, OnionTalk routes every message over Tor v3 Hidden Services (.onion) with Zero-Knowledge X25519 + ChaCha20-Poly1305 encryption.",
         hero_btn_apk: "OnionTalk – Apps on Google Play",
