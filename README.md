@@ -4,11 +4,8 @@
   <p><strong>Real Dual-Emulator Walkthrough ("Pablo & Bruna") • Zero-Knowledge Tor v3 P2P Messenger</strong></p>
 
   <p>
-    <a href="#-google-play-store--how-to-install">
-      <img src="https://img.shields.io/badge/Google_Play-Coming_Soon-3DDC84?style=for-the-badge&logo=google-play&logoColor=black" alt="Coming Soon to Google Play Store" />
-    </a>
-    <a href="https://github.com/onion-talk/oniontalk-demo/raw/main/apk/OnionTalk-Demo.apk">
-      <img src="https://img.shields.io/badge/Download_Demo_APK-Android_8.0%2B-00C853?style=for-the-badge&logo=android&logoColor=white" alt="Download Android Demo APK" />
+    <a href="https://play.google.com/store/apps/details?id=org.oniontalk.messenger">
+      <img src="https://img.shields.io/badge/Google_Play-OnionTalk_–_Apps_no_Google_Play-3DDC84?style=for-the-badge&logo=google-play&logoColor=black" alt="OnionTalk – Apps no Google Play" />
     </a>
     <a href="https://github.com/sponsors/eriktonon">
       <img src="https://img.shields.io/badge/Sponsor-OnionTalk-ea4aaa?style=for-the-badge&logo=githubsponsors&logoColor=white" alt="Sponsor on GitHub" />
@@ -28,12 +25,12 @@
 
 ---
 
-## 📱 About This Repository & Google Play Store Release
+## 📱 Official Release on Google Play Store
 
-This repository hosts the **official Android Demo APK** and a **complete screen-by-screen visual walkthrough** captured directly from two independent Android emulators (**Pablo** and **Bruna**) communicating in real time over the OnionTalk Tor v3 mesh.
+This repository hosts the **complete screen-by-screen visual walkthrough** captured directly from two independent Android emulators (**Pablo** and **Bruna**) communicating in real time over the OnionTalk Tor v3 mesh.
 
-- 🚀 **Google Play Store (Coming Soon)**: OnionTalk is currently in final release preparation and **will be published soon on the Google Play Store**.
-- 🔒 **Roadmap & Source Code**: The relay node implementation ([`oniontalk-relay`](https://github.com/onion-talk/oniontalk-relay)) and wire protocol specification ([`oniontalk-protocol`](https://github.com/onion-talk/oniontalk-protocol)) are already open-sourced. The Android client source code remains private during our initial store launch and security review, and will be released in a future milestone. Until the Google Play listing goes live, you can download and install the signed [**Demo APK (`OnionTalk-Demo.apk`)**](https://github.com/onion-talk/oniontalk-demo/raw/main/apk/OnionTalk-Demo.apk) directly from this repository.
+- 🚀 **Download on Google Play**: [**OnionTalk – Apps no Google Play**](https://play.google.com/store/apps/details?id=org.oniontalk.messenger) (`org.oniontalk.messenger`).
+- 🔒 **Roadmap & Source Code**: The relay node implementation ([`oniontalk-relay`](https://github.com/onion-talk/oniontalk-relay)) and wire protocol specification ([`oniontalk-protocol`](https://github.com/onion-talk/oniontalk-protocol)) are open-sourced. Download the official Android app directly from [**Google Play Store**](https://play.google.com/store/apps/details?id=org.oniontalk.messenger).
 
 ---
 
@@ -170,14 +167,10 @@ In **Settings → Security** and **Settings → Donate**, users control physical
 
 ---
 
-## 📲 How to Install the Demo APK
+## 📲 How to Install from Google Play
 
-1. Download [**`OnionTalk-Demo.apk`**](https://github.com/onion-talk/oniontalk-demo/raw/main/apk/OnionTalk-Demo.apk) (`34 MB`, Android 8.0+ / API 26+).
-2. On your Android device or emulator, allow installation from your browser or install via ADB:
-   ```bash
-   adb install -r OnionTalk-Demo.apk
-   ```
-3. Select your preferred language (`🇺🇸 EN`, `🇧🇷 PT`, `🇪🇸 ES`, `🇷🇺 RU`), tap **Create New Cryptographic Identity**, choose a local nickname and master password, and wait ~10 seconds for the top bar to show **`Connected via Tor`**.
+1. Open [**OnionTalk – Apps no Google Play**](https://play.google.com/store/apps/details?id=org.oniontalk.messenger) on your Android device (Android 8.0+ / API 26+) and tap **Install**.
+2. Select your preferred language (`🇺🇸 EN`, `🇧🇷 PT`, `🇪🇸 ES`, `🇷🇺 RU`), tap **Create New Cryptographic Identity**, choose a local nickname and master password, and wait ~10 seconds for the top bar to show **`Connected via Tor`**.
 
 ---
 
