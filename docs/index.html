@@ -1106,21 +1106,165 @@
       font-size: 13px;
     }
 
+    /* Prevent Grid Blowout on Mobile Viewports */
+    .hero > *, .media-showcase-grid > *, .bento-grid > *, .policy-grid > *, .screenshots-grid > * {
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    .mobile-subnav {
+      display: none;
+      overflow-x: auto;
+      white-space: nowrap;
+      gap: 8px;
+      padding: 8px 14px;
+      background: rgba(7, 11, 20, 0.95);
+      border-top: 1px solid var(--border-hairline);
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .mobile-subnav::-webkit-scrollbar {
+      display: none;
+    }
+    .mobile-subnav a {
+      display: inline-block;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-hairline);
+      flex-shrink: 0;
+    }
+    .mobile-subnav a:active, .mobile-subnav a:hover {
+      color: var(--brand-emerald-hover);
+      border-color: var(--border-emerald);
+    }
+
     @media (max-width: 1024px) {
-      .hero, .media-showcase-grid { grid-template-columns: 1fr; }
+      .hero, .media-showcase-grid { grid-template-columns: 1fr; gap: 32px; }
       .hero-metrics { grid-template-columns: repeat(2, 1fr); }
       .screenshots-grid { grid-template-columns: repeat(2, 1fr); }
       .span-7, .span-5, .span-4, .span-8, .span-6 { grid-column: span 12; }
       .policy-grid { grid-template-columns: 1fr; }
       .nav-links { display: none; }
+      .mobile-subnav { display: flex; }
+    }
+
+    @media (max-width: 768px) {
+      .section { padding: 48px 16px; }
+      .section-header-row { gap: 16px; margin-bottom: 24px; }
+      .bento-card, .video-card, .policy-clause { padding: 18px; }
+      .code-snippet, .wire-inspector {
+        white-space: pre-wrap;
+        word-break: break-all;
+        font-size: 11px;
+        line-height: 1.45;
+      }
+
+      /* Transform 16-Node Mesh Table into Native Mobile Cards on Phones */
+      #malha .table-wrap {
+        background: transparent;
+        border: none;
+        overflow-x: visible;
+      }
+      #malha table, #malha tbody {
+        display: block;
+        width: 100%;
+      }
+      #malha thead {
+        display: none;
+      }
+      #mesh-nodes-tbody tr {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        background: var(--bg-surface);
+        border: 1px solid var(--border-subtle);
+        border-radius: 14px;
+        padding: 14px;
+        margin-bottom: 12px;
+      }
+      #mesh-nodes-tbody td {
+        display: block;
+        padding: 0;
+        border: none;
+        font-size: 13px;
+        word-break: break-all;
+      }
+      #mesh-nodes-tbody td .chip-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 9px 12px;
+        margin-top: 4px;
+      }
     }
 
     @media (max-width: 600px) {
-      .nav-container { padding: 0 14px; }
+      .nav-container { padding: 0 12px; height: 62px; gap: 8px; }
+      .brand-logo { font-size: 17px; gap: 8px; }
+      .brand-mark { width: 34px; height: 34px; }
       .brand-version-tag { display: none; }
-      .btn-primary span { display: none; }
-      .hero { padding: 36px 16px 56px; }
-      .privacy-container { padding: 20px; }
+      .navbar .btn-primary span { display: none; }
+      .navbar .btn-primary { padding: 8px 11px; }
+      .lang-btn { padding: 4px 7px; font-size: 11px; }
+
+      .hero { padding: 24px 14px 44px; gap: 28px; }
+      .hero-identity-bar { width: 100%; padding: 8px 12px 8px 8px; }
+      .hero-identity-meta span { font-size: 11px; word-break: break-word; }
+      .status-pill { font-size: 10.5px; line-height: 1.35; border-radius: 12px; padding: 6px 10px; }
+      .hero h1 { font-size: 30px; line-height: 1.12; }
+      .hero-lead { font-size: 15px; margin-bottom: 20px; }
+
+      .hero-cta-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+      .hero-cta-row .btn-primary,
+      .hero-cta-row .btn-secondary,
+      #malha .btn-primary {
+        width: 100%;
+        justify-content: center;
+        min-height: 46px;
+        font-size: 13.5px;
+      }
+
+      .hero-metrics {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+      .metric-card { padding: 12px; }
+      .metric-card strong { font-size: 18px; }
+      .metric-card span { font-size: 11px; }
+
+      .simulator-shell { padding: 12px; border-radius: 18px; }
+      .sim-actions-row { gap: 6px; }
+      .sim-actions-row .chip-btn { flex: 1 1 auto; justify-content: center; font-size: 11.5px; }
+      .sim-input, .search-input { font-size: 16px; }
+
+      .screenshots-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+      .shot-card { padding: 8px; border-radius: 12px; }
+      .shot-caption strong { font-size: 12px; }
+      .shot-caption span { font-size: 11px; }
+
+      .filter-pills {
+        width: 100%;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 4px;
+        -webkit-overflow-scrolling: touch;
+      }
+      .filter-pill { flex-shrink: 0; font-size: 12px; padding: 6px 11px; }
+
+      .privacy-container { padding: 16px; border-radius: 16px; }
+      .privacy-toolbar { flex-direction: column; align-items: stretch; }
+      .search-box { max-width: 100%; min-width: 0; width: 100%; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1167,6 +1311,13 @@
         </a>
       </div>
     </div>
+    <nav class="mobile-subnav" aria-label="Navegação Rápida Mobile">
+      <a href="#vitrine">Telas &amp; Vídeo</a>
+      <a href="#arquitetura">Arquitetura</a>
+      <a href="#malha">16 Nós &amp; Relay Android</a>
+      <a href="#comparativo">Comparativo</a>
+      <a href="#privacy">Privacidade</a>
+    </nav>
   </header>
 
   <main id="top">
@@ -2172,7 +2323,7 @@
       btn.classList.add("active");
       document.querySelectorAll("#mesh-nodes-tbody tr").forEach(row => {
         const r = row.getAttribute("data-region");
-        row.style.display = (region === "all" || r === region) ? "table-row" : "none";
+        row.style.display = (region === "all" || r === region) ? "" : "none";
       });
     }
 
