@@ -1,7 +1,7 @@
 # Política de Privacidade / Privacy Policy — OnionTalk (`org.oniontalk.messenger`)
 
-**Última atualização / Last Updated:** 20 de outubro de 2026  
-**Versão de Referência / App Version:** `v1.3.0 (Build 9)`
+**Última atualização / Last Updated:** 21 de outubro de 2026  
+**Versão de Referência / App Version:** `v1.4.0 (Build 14)`
 
 O **OnionTalk: Private Tor Chat** (`org.oniontalk.messenger`) é um aplicativo de mensagens criptografadas ponta-a-ponta (E2EE) construído sob os princípios de **Zero-Knowledge (Conhecimento Zero)**, **Soberania Digital** e **Privacidade por Design**.
 
@@ -28,7 +28,7 @@ O aplicativo solicita apenas as permissões estritamente necessárias para funci
 - **Câmera (`android.permission.CAMERA`):** Utilizada exclusivamente no dispositivo, sob ação explícita do usuário (menu do botão de clipe `📎` ou leitor de QR Code), para escanear códigos QR de identificadores criptográficos (`@hash:onion`) ou capturar fotos instantâneas em memória RAM que são sanitizadas (remoção de 100% de metadados EXIF/GPS) e criptografadas ponta-a-ponta antes do envio.
 - **Microfone (`android.permission.RECORD_AUDIO`):** Utilizado exclusivamente quando o usuário pressiona o botão de gravação de mensagem de voz. O áudio é sanitizado localmente sem metadados e criptografado ponta-a-ponta antes da transmissão.
 - **Notificações (`android.permission.POST_NOTIFICATIONS`):** Utilizada apenas para exibir alertas locais no aparelho quando novos pacotes criptografados são recebidos pela malha Tor (com opção de silenciar contatos individualmente no menu `⋮` da conversa ou ocultar a prévia do texto nas Configurações).
-- **Proteção Opcional de Captura de Tela (`FLAG_SECURE`):** Por padrão, o bloqueio de captura/gravação de tela vem **desativado** para permitir que o usuário realize capturas ou gravações caso deseje, podendo ser ativado voluntariamente a qualquer momento em **Configurações ➔ Segurança ➔ Bloquear captura de tela**.
+- **Proteção Seletiva de Captura de Tela (`FLAG_SECURE`):** O aplicativo bloqueia capturas e gravações de tela em **100% do tempo** nas telas de **Conversas** e **Contatos**, liberando a captura apenas na tela de **Configurações / QR Code** para facilitar o compartilhamento seguro do identificador público.
 
 ### 4. Recursos de Privacidade de Mensagens e Exclusão de Dados (`Data Retention & Deletion`)
 - **Em trânsito (Relays):** Os envelopes criptografados ficam retidos apenas em memória temporária nos nós de retransmissão até a confirmação criptográfica de entrega (`ACK` com prova de pré-imagem SHA-256) ou expiração automática do TTL (24 horas), sendo imediatamente expurgados.
@@ -66,7 +66,7 @@ Para dúvidas sobre esta Política de Privacidade ou relatórios de segurança:
 - **Camera (`android.permission.CAMERA`):** Used strictly locally when scanning peer QR codes or capturing an instant photo via the attachment clip (`📎`) menu (automatically stripped of 100% of EXIF/GPS metadata in RAM prior to E2EE encryption).
 - **Microphone (`android.permission.RECORD_AUDIO`):** Used strictly locally when recording an end-to-end encrypted voice note.
 - **Notifications (`android.permission.POST_NOTIFICATIONS`):** Used solely to trigger local device notifications upon receiving new encrypted envelopes (with per-chat mute available in the chat `⋮` menu).
-- **Optional Screen Capture Protection (`FLAG_SECURE`):** Disabled by default so users can freely capture or record their screen when needed, and can be enabled at any time under **Settings ➔ Security ➔ Block screenshots**.
+- **Selective Screen Capture Protection (`FLAG_SECURE`):** Enforced 100% of the time on **Chats** and **Contacts** screens to prevent unauthorized screenshots or screen recording, while dynamically allowing screenshots on the **Settings / QR Code** screen for easy identity sharing.
 
 ### 3. Data Retention, Ephemeral Timers & Instant Deletion
 - **Relay Ephemeral RAM:** Encrypted envelopes in transit are held strictly in volatile memory until cryptographic delivery acknowledgment (`ACK`) or 24-hour TTL expiration, and are immediately purged.
