@@ -1264,7 +1264,79 @@
 
       .privacy-container { padding: 16px; border-radius: 16px; }
       .privacy-toolbar { flex-direction: column; align-items: stretch; }
+      .privacy-toolbar > div:first-child { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .privacy-toolbar h2 { font-size: 19px !important; line-height: 1.25; word-break: break-word; }
       .search-box { max-width: 100%; min-width: 0; width: 100%; }
+
+      .video-card > div:last-child {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px !important;
+      }
+      .video-card .chip-btn,
+      .video-card .btn-secondary {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+        padding: 9px 8px !important;
+        font-size: 11.5px !important;
+      }
+
+      #malha .bento-card .btn-primary {
+        width: 100%;
+        justify-content: center;
+      }
+
+      /* Mobile Card Layout for Comparison Table on Smartphones */
+      #comparativo .table-wrap {
+        background: transparent;
+        border: none;
+        overflow-x: visible;
+      }
+      #comparativo table, #comparativo tbody {
+        display: block;
+        width: 100%;
+      }
+      #comparativo thead {
+        display: none;
+      }
+      #comparativo tbody tr {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        background: var(--bg-surface);
+        border: 1px solid var(--border-subtle);
+        border-radius: 14px;
+        padding: 14px;
+        margin-bottom: 12px;
+      }
+      #comparativo tbody td {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        padding: 6px 8px;
+        border: none;
+        font-size: 12px;
+        background: #070B14;
+        border-radius: 8px;
+      }
+      #comparativo tbody td:first-child {
+        grid-column: span 2;
+        background: transparent;
+        padding: 0 0 6px 0;
+        border-bottom: 1px solid var(--border-hairline);
+        border-radius: 0;
+        font-size: 13.5px;
+      }
+      #comparativo tbody td.highlight-col {
+        grid-column: span 2;
+        background: rgba(16, 185, 129, 0.08);
+        border: 1px solid rgba(16, 185, 129, 0.28);
+      }
+      #comparativo tbody td:nth-child(2)::before { content: "🛡️ OnionTalk v1.4.1"; font-size: 10.5px; font-weight: 700; color: #34D399; font-family: 'JetBrains Mono', monospace; }
+      #comparativo tbody td:nth-child(3)::before { content: "WhatsApp"; font-size: 10.5px; font-weight: 600; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
+      #comparativo tbody td:nth-child(4)::before { content: "Telegram"; font-size: 10.5px; font-weight: 600; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
+      #comparativo tbody td:nth-child(5)::before { content: "Signal"; font-size: 10.5px; font-weight: 600; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1365,12 +1437,12 @@
             </svg>
             <span data-i18n="hero_btn_apk">APK Universal Assinado (v1.4.1 · Build 18)</span>
           </a>
-          <a href="OnionTalk-RelayNode-v1.4.1.apk" download class="btn-secondary" style="border-color: rgba(6, 182, 212, 0.45); color: #67E8F9;">
+          <a href="OnionTalk-RelayNode-v1.0.1.apk" download class="btn-secondary" style="border-color: rgba(6, 182, 212, 0.45); color: #67E8F9;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
               <line x1="12" y1="18" x2="12.01" y2="18"></line>
             </svg>
-            <span>APK Relay Server Android (v1.4.1)</span>
+            <span>APK Relay Server Android (v1.0.1 · Zero-Leak)</span>
           </a>
           <a href="#malha" class="btn-secondary">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -1535,7 +1607,7 @@
         </div>
 
         <div class="filter-pills" role="tablist" aria-label="Filtro de capturas de tela">
-          <button type="button" class="filter-pill active" onclick="filterScreenshots('all', this)">Todas (16)</button>
+          <button type="button" class="filter-pill active" onclick="filterScreenshots('all', this)">Todas (17)</button>
           <button type="button" class="filter-pill" onclick="filterScreenshots('v141', this)">Novidades v1.4.1 (8)</button>
           <button type="button" class="filter-pill" onclick="filterScreenshots('vault', this)">Cofre &amp; Identidade</button>
           <button type="button" class="filter-pill" onclick="filterScreenshots('chat', this)">Chat E2EE &amp; Burn</button>
@@ -1859,7 +1931,7 @@
         <div class="section-header">
           <span class="section-eyebrow">MALHA AUTO-GOSSIP PEX V2 · 17 NÓS ATIVOS EM 8 PAÍSES + AUTO-JOIN</span>
           <h2>Infraestrutura Global Descentralizada (.onion) &amp; Relay Android</h2>
-          <p>O OnionTalk sincroniza automaticamente entre 17 relays Tor v3 distribuídos em 8 países (Brasil, EUA, França, Alemanha, Rússia, Singapura, Japão e China) com Zero-Touch Auto-Join e Auto-Geolocalização no Mapa NOC. Suba um novo nó em 10 segundos no Docker ou diretamente dentro do seu celular Android como aplicativo secundário.</p>
+          <p>O OnionTalk sincroniza automaticamente entre 17 relays Tor v3 distribuídos em 8 países (Brasil, EUA, França, Alemanha, Rússia, Singapura, Japão e China) com Zero-Touch Auto-Join 100% anônimo (Zero-Leak de IP, aparelho ou localização). Suba um novo nó em 10 segundos no Docker ou diretamente dentro do seu celular Android como aplicativo secundário.</p>
         </div>
 
         <div class="filter-pills">
@@ -1881,10 +1953,10 @@
           <div>
             <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 8px;">
               <span class="section-eyebrow" style="margin-bottom: 0;">DOCKER HUB ALL-IN-ONE · &lt; 60 MB RAM</span>
-              <span class="badge-yes">Auto-Join + Auto-Geo</span>
+              <span class="badge-yes">Auto-Join Zero-Leak</span>
             </div>
             <h3 style="margin-bottom: 6px;">1. Subir Nó Relay em Servidor / Container</h3>
-            <p style="font-size: 13.5px;">A imagem <code>eriktonon/oniontalk:latest</code> empacota Tor 0.4.9.14 + Gunicorn Zero-Trust Relay + Auto-Join paralelo. Entra na malha e aparece automaticamente no Mapa NOC Grafana sem abrir portas no firewall.</p>
+            <p style="font-size: 13.5px;">A imagem <code>eriktonon/oniontalk:latest</code> empacota Tor 0.4.9.14 + Gunicorn Zero-Trust Relay + Auto-Join paralelo. Entra na malha automaticamente via Tor v3 sem expor IP, latitude/longitude ou abrir portas no firewall.</p>
           </div>
           <div>
             <div class="code-snippet mono" id="docker-cmd-text" style="margin-bottom: 12px;">
@@ -1904,23 +1976,23 @@
           <div>
             <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 8px;">
               <span class="section-eyebrow" style="margin-bottom: 0; color: #38BDF8;">APP SECUNDÁRIO ANDROID · org.oniontalk.relaynode</span>
-              <span class="badge-yes" style="border-color: rgba(6, 182, 212, 0.4); color: #67E8F9; background: rgba(6, 182, 212, 0.12);">NOVO · v1.4.1</span>
+              <span class="badge-yes" style="border-color: rgba(6, 182, 212, 0.4); color: #67E8F9; background: rgba(6, 182, 212, 0.12);">Relay v1.0.1 · Zero-Leak</span>
             </div>
             <h3 style="margin-bottom: 6px;">2. Subir Nó Relay Dentro do Android (App Secundário)</h3>
-            <p style="font-size: 13.5px;">Transforme qualquer celular Android (4G/5G/Wi-Fi, mesmo atrás de CGNAT) em um servidor <strong>Tor v3 Hidden Service</strong> soberano (<code>127.0.0.1:9055 &rarr; :8088</code>). Instala lado a lado com o mensageiro principal sem conflito de portas e faz Auto-Join nos 17 seeds com Modo Furtivo opcional.</p>
+            <p style="font-size: 13.5px;">Transforme qualquer celular Android (4G/5G/Wi-Fi, mesmo atrás de CGNAT) em um servidor <strong>Tor v3 Hidden Service</strong> soberano (<code>127.0.0.1:9055 &rarr; :8088</code>). Instala lado a lado com o mensageiro principal sem conflito de portas, permite escolher apenas o Nome do Nó e faz Auto-Join 100% anônimo nos 17 seeds (zero coleta de IP, modelo do celular ou latitude/longitude).</p>
           </div>
           <div>
             <div class="code-snippet mono" style="margin-bottom: 12px; color: #67E8F9;">
               Pacote: org.oniontalk.relaynode · SOCKS5h :9055 · HiddenServicePort 80 &rarr; :8088
             </div>
             <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-              <a href="OnionTalk-RelayNode-v1.4.1.apk" download class="btn-primary" style="background: #06B6D4; color: #021318;">
+              <a href="OnionTalk-RelayNode-v1.0.1.apk" download class="btn-primary" style="background: #06B6D4; color: #021318;">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                   <polyline points="7 10 12 15 17 10"></polyline>
                   <line x1="12" y1="15" x2="12" y2="3"></line>
                 </svg>
-                <span>Baixar OnionTalk Relay APK (17.1 MB)</span>
+                <span>Baixar OnionTalk Relay APK v1.0.1 (16.4 MB)</span>
               </a>
             </div>
           </div>
