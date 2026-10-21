@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OnionTalk v1.3.0 — Mensageiro Privado na Rede Tor v3 &amp; Política de Privacidade</title>
-  <meta name="description" content="Mensageiro E2EE Zero-Knowledge nativo sobre Serviços Ocultos Tor v3 (.onion). Sem número de telefone, sem e-mail, 13 relays federados em 4 países, biometria AndroidKeyStore anti-coação e queima bilateral anti-forense." />
+  <meta name="description" content="Mensageiro E2EE Zero-Knowledge nativo sobre Serviços Ocultos Tor v3 (.onion). Sem número de telefone, sem e-mail, 16 relays federados em 7 países, app secundário OnionTalk Relay Node para Android, biometria AndroidKeyStore anti-coação e queima bilateral anti-forense." />
   <link rel="icon" type="image/png" href="icon-512.png" />
   <link rel="apple-touch-icon" href="icon-512.png" />
   <meta property="og:title" content="OnionTalk v1.3.0 — Private Tor v3 Messenger &amp; Privacy Policy" />
-  <meta property="og:description" content="Zero-Knowledge E2EE messenger over Tor v3 Hidden Services (.onion). No phone number, no SIM, no central servers, 13 active relays, SQLCipher AES-256 vault &amp; bilateral burn." />
+  <meta property="og:description" content="Zero-Knowledge E2EE messenger over Tor v3 Hidden Services (.onion). No phone number, no SIM, no central servers, 16 active relays in 7 countries, standalone Android Relay Node app, SQLCipher AES-256 vault &amp; bilateral burn." />
   <meta property="og:image" content="https://onion-talk.github.io/oniontalk-demo/icon-512.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1106,21 +1106,165 @@
       font-size: 13px;
     }
 
+    /* Prevent Grid Blowout on Mobile Viewports */
+    .hero > *, .media-showcase-grid > *, .bento-grid > *, .policy-grid > *, .screenshots-grid > * {
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    .mobile-subnav {
+      display: none;
+      overflow-x: auto;
+      white-space: nowrap;
+      gap: 8px;
+      padding: 8px 14px;
+      background: rgba(7, 11, 20, 0.95);
+      border-top: 1px solid var(--border-hairline);
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .mobile-subnav::-webkit-scrollbar {
+      display: none;
+    }
+    .mobile-subnav a {
+      display: inline-block;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-hairline);
+      flex-shrink: 0;
+    }
+    .mobile-subnav a:active, .mobile-subnav a:hover {
+      color: var(--brand-emerald-hover);
+      border-color: var(--border-emerald);
+    }
+
     @media (max-width: 1024px) {
-      .hero, .media-showcase-grid { grid-template-columns: 1fr; }
+      .hero, .media-showcase-grid { grid-template-columns: 1fr; gap: 32px; }
       .hero-metrics { grid-template-columns: repeat(2, 1fr); }
       .screenshots-grid { grid-template-columns: repeat(2, 1fr); }
       .span-7, .span-5, .span-4, .span-8, .span-6 { grid-column: span 12; }
       .policy-grid { grid-template-columns: 1fr; }
       .nav-links { display: none; }
+      .mobile-subnav { display: flex; }
+    }
+
+    @media (max-width: 768px) {
+      .section { padding: 48px 16px; }
+      .section-header-row { gap: 16px; margin-bottom: 24px; }
+      .bento-card, .video-card, .policy-clause { padding: 18px; }
+      .code-snippet, .wire-inspector {
+        white-space: pre-wrap;
+        word-break: break-all;
+        font-size: 11px;
+        line-height: 1.45;
+      }
+
+      /* Transform 16-Node Mesh Table into Native Mobile Cards on Phones */
+      #malha .table-wrap {
+        background: transparent;
+        border: none;
+        overflow-x: visible;
+      }
+      #malha table, #malha tbody {
+        display: block;
+        width: 100%;
+      }
+      #malha thead {
+        display: none;
+      }
+      #mesh-nodes-tbody tr {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        background: var(--bg-surface);
+        border: 1px solid var(--border-subtle);
+        border-radius: 14px;
+        padding: 14px;
+        margin-bottom: 12px;
+      }
+      #mesh-nodes-tbody td {
+        display: block;
+        padding: 0;
+        border: none;
+        font-size: 13px;
+        word-break: break-all;
+      }
+      #mesh-nodes-tbody td .chip-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 9px 12px;
+        margin-top: 4px;
+      }
     }
 
     @media (max-width: 600px) {
-      .nav-container { padding: 0 14px; }
+      .nav-container { padding: 0 12px; height: 62px; gap: 8px; }
+      .brand-logo { font-size: 17px; gap: 8px; }
+      .brand-mark { width: 34px; height: 34px; }
       .brand-version-tag { display: none; }
-      .btn-primary span { display: none; }
-      .hero { padding: 36px 16px 56px; }
-      .privacy-container { padding: 20px; }
+      .navbar .btn-primary span { display: none; }
+      .navbar .btn-primary { padding: 8px 11px; }
+      .lang-btn { padding: 4px 7px; font-size: 11px; }
+
+      .hero { padding: 24px 14px 44px; gap: 28px; }
+      .hero-identity-bar { width: 100%; padding: 8px 12px 8px 8px; }
+      .hero-identity-meta span { font-size: 11px; word-break: break-word; }
+      .status-pill { font-size: 10.5px; line-height: 1.35; border-radius: 12px; padding: 6px 10px; }
+      .hero h1 { font-size: 30px; line-height: 1.12; }
+      .hero-lead { font-size: 15px; margin-bottom: 20px; }
+
+      .hero-cta-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+      .hero-cta-row .btn-primary,
+      .hero-cta-row .btn-secondary,
+      #malha .btn-primary {
+        width: 100%;
+        justify-content: center;
+        min-height: 46px;
+        font-size: 13.5px;
+      }
+
+      .hero-metrics {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+      .metric-card { padding: 12px; }
+      .metric-card strong { font-size: 18px; }
+      .metric-card span { font-size: 11px; }
+
+      .simulator-shell { padding: 12px; border-radius: 18px; }
+      .sim-actions-row { gap: 6px; }
+      .sim-actions-row .chip-btn { flex: 1 1 auto; justify-content: center; font-size: 11.5px; }
+      .sim-input, .search-input { font-size: 16px; }
+
+      .screenshots-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+      .shot-card { padding: 8px; border-radius: 12px; }
+      .shot-caption strong { font-size: 12px; }
+      .shot-caption span { font-size: 11px; }
+
+      .filter-pills {
+        width: 100%;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 4px;
+        -webkit-overflow-scrolling: touch;
+      }
+      .filter-pill { flex-shrink: 0; font-size: 12px; padding: 6px 11px; }
+
+      .privacy-container { padding: 16px; border-radius: 16px; }
+      .privacy-toolbar { flex-direction: column; align-items: stretch; }
+      .search-box { max-width: 100%; min-width: 0; width: 100%; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1147,7 +1291,7 @@
       <nav class="nav-links" aria-label="Navegação Principal">
         <a href="#vitrine" data-i18n="nav_showcase">Telas &amp; Filme Oficial</a>
         <a href="#arquitetura" data-i18n="nav_arch">Arquitetura Tor v3</a>
-        <a href="#malha" data-i18n="nav_mesh">Malha Global (13 Nós)</a>
+        <a href="#malha" data-i18n="nav_mesh">Malha Global (16 Nós)</a>
         <a href="#comparativo" data-i18n="nav_comp">Comparativo</a>
         <a href="#privacy" class="active" data-i18n="nav_priv">Política de Privacidade</a>
       </nav>
@@ -1167,6 +1311,13 @@
         </a>
       </div>
     </div>
+    <nav class="mobile-subnav" aria-label="Navegação Rápida Mobile">
+      <a href="#vitrine">Telas &amp; Vídeo</a>
+      <a href="#arquitetura">Arquitetura</a>
+      <a href="#malha">16 Nós &amp; Relay Android</a>
+      <a href="#comparativo">Comparativo</a>
+      <a href="#privacy">Privacidade</a>
+    </nav>
   </header>
 
   <main id="top">
@@ -1186,7 +1337,7 @@
         <div>
           <div class="status-pill">
             <span class="status-dot"></span>
-            <span data-i18n="hero_badge">MALHA V2 ATIVA · 13 NÓS TOR V3 EM 4 PAÍSES · 100% ENTREGA SOAK TEST</span>
+            <span data-i18n="hero_badge">MALHA V2 ATIVA · 16 NÓS TOR V3 EM 7 PAÍSES + AUTO-JOIN · 100% ENTREGA SOAK TEST</span>
           </div>
         </div>
 
@@ -1214,6 +1365,13 @@
             </svg>
             <span data-i18n="hero_btn_apk">APK Universal Assinado (v1.3.0)</span>
           </a>
+          <a href="OnionTalk-RelayNode-v1.3.0.apk" download class="btn-secondary" style="border-color: rgba(6, 182, 212, 0.45); color: #67E8F9;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+              <line x1="12" y1="18" x2="12.01" y2="18"></line>
+            </svg>
+            <span>APK Relay Server Android (Novo)</span>
+          </a>
           <a href="#malha" class="btn-secondary">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <rect x="2" y="2" width="20" height="8" rx="2"></rect>
@@ -1237,8 +1395,8 @@
             <span data-i18n="metric_1">Telefone, SIM card, e-mail, IP ou EXIF armazenados</span>
           </div>
           <div class="metric-card">
-            <strong>13 Relays</strong>
-            <span data-i18n="metric_2">Malha Tor v3 ativa (Brasil, EUA, França e Rússia)</span>
+            <strong>16 Relays</strong>
+            <span data-i18n="metric_2">Malha Tor v3 em 7 países (BR, US, FR, DE, RU, SG, JP) + Auto-Join</span>
           </div>
           <div class="metric-card">
             <strong>1.69 s</strong>
@@ -1607,42 +1765,76 @@
       </div>
     </section>
 
-    <!-- Interactive 13-Node Federation Mesh Explorer -->
+    <!-- Interactive 16-Node Federation Mesh Explorer -->
     <section class="section" id="malha">
       <div class="section-header-row">
         <div class="section-header">
-          <span class="section-eyebrow">MALHA AUTO-GOSSIP PEX V2 · 13 NÓS ATIVOS</span>
-          <h2>Infraestrutura Global Descentralizada (.onion)</h2>
-          <p>O OnionTalk sincroniza automaticamente entre 13 relays Tor v3 distribuídos em 4 países, sem nenhuma porta aberta na clearnet. Você também pode subir seu próprio nó em 1 comando.</p>
+          <span class="section-eyebrow">MALHA AUTO-GOSSIP PEX V2 · 16 NÓS ATIVOS EM 7 PAÍSES + AUTO-JOIN</span>
+          <h2>Infraestrutura Global Descentralizada (.onion) &amp; Relay Android</h2>
+          <p>O OnionTalk sincroniza automaticamente entre 16 relays Tor v3 distribuídos em 7 países (Brasil, EUA, França, Alemanha, Rússia, Singapura e Japão) com Zero-Touch Auto-Join e Auto-Geolocalização no Mapa NOC. Suba um novo nó em 10 segundos no Docker ou diretamente dentro do seu celular Android como aplicativo secundário.</p>
         </div>
 
         <div class="filter-pills">
-          <button type="button" class="filter-pill active" onclick="filterMeshNodes('all', this)">Todos (9 Públicos + 4 Core)</button>
-          <button type="button" class="filter-pill" onclick="filterMeshNodes('BR', this)">Brasil</button>
-          <button type="button" class="filter-pill" onclick="filterMeshNodes('US', this)">Estados Unidos</button>
-          <button type="button" class="filter-pill" onclick="filterMeshNodes('FR', this)">França</button>
-          <button type="button" class="filter-pill" onclick="filterMeshNodes('RU', this)">Rússia</button>
+          <button type="button" class="filter-pill active" onclick="filterMeshNodes('all', this)">Todos (16 Nós)</button>
+          <button type="button" class="filter-pill" onclick="filterMeshNodes('BR', this)">Brasil (3)</button>
+          <button type="button" class="filter-pill" onclick="filterMeshNodes('US', this)">EUA (5)</button>
+          <button type="button" class="filter-pill" onclick="filterMeshNodes('FR', this)">França (3)</button>
+          <button type="button" class="filter-pill" onclick="filterMeshNodes('DE', this)">Alemanha (1)</button>
+          <button type="button" class="filter-pill" onclick="filterMeshNodes('RU', this)">Rússia (1)</button>
+          <button type="button" class="filter-pill" onclick="filterMeshNodes('SG', this)">Singapura (1)</button>
+          <button type="button" class="filter-pill" onclick="filterMeshNodes('JP', this)">Japão (1)</button>
         </div>
       </div>
 
-      <!-- One-Command Docker Hub Banner -->
-      <div class="bento-card" style="margin-bottom: 20px; border-color: var(--border-emerald);">
-        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px;">
+      <!-- Dual Deployment Cards: Docker All-in-One + Android Secondary Relay App -->
+      <div class="bento-grid" style="margin-bottom: 24px;">
+        <div class="bento-card span-6" style="border-color: var(--border-emerald);">
           <div>
-            <span class="section-eyebrow" style="margin-bottom: 4px;">DOCKER HUB OFICIAL ALL-IN-ONE · &lt; 60 MB RAM</span>
-            <h3 style="margin-bottom: 4px;">Suba um Nó Relay Tor v3 em 10 Segundos</h3>
-            <p style="font-size: 13.5px;">A imagem <code>eriktonon/oniontalk:latest</code> empacota o daemon Tor 0.4.9.14 + Relay Gunicorn Zero-Trust + Watchdog automático sem precisar abrir portas no roteador.</p>
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 8px;">
+              <span class="section-eyebrow" style="margin-bottom: 0;">DOCKER HUB ALL-IN-ONE · &lt; 60 MB RAM</span>
+              <span class="badge-yes">Auto-Join + Auto-Geo</span>
+            </div>
+            <h3 style="margin-bottom: 6px;">1. Subir Nó Relay em Servidor / Container</h3>
+            <p style="font-size: 13.5px;">A imagem <code>eriktonon/oniontalk:latest</code> empacota Tor 0.4.9.14 + Gunicorn Zero-Trust Relay + Auto-Join paralelo. Entra na malha e aparece automaticamente no Mapa NOC Grafana sem abrir portas no firewall.</p>
           </div>
-          <button type="button" class="btn-primary" onclick="copyDockerCommand(this)">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-            </svg>
-            <span>Copiar Comando Docker</span>
-          </button>
+          <div>
+            <div class="code-snippet mono" id="docker-cmd-text" style="margin-bottom: 12px;">
+              docker run -d --name oniontalk-relay --restart unless-stopped -v oniontalk_data:/data eriktonon/oniontalk:latest
+            </div>
+            <button type="button" class="btn-primary" onclick="copyDockerCommand(this)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span>Copiar Comando Docker</span>
+            </button>
+          </div>
         </div>
-        <div class="code-snippet mono" id="docker-cmd-text">
-          docker run -d --name oniontalk-relay --restart unless-stopped -v oniontalk_data:/data eriktonon/oniontalk:latest
+
+        <div class="bento-card span-6" style="border-color: rgba(6, 182, 212, 0.42);">
+          <div>
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 8px;">
+              <span class="section-eyebrow" style="margin-bottom: 0; color: #38BDF8;">APP SECUNDÁRIO ANDROID · org.oniontalk.relaynode</span>
+              <span class="badge-yes" style="border-color: rgba(6, 182, 212, 0.4); color: #67E8F9; background: rgba(6, 182, 212, 0.12);">NOVO · v1.3.0</span>
+            </div>
+            <h3 style="margin-bottom: 6px;">2. Subir Nó Relay Dentro do Android (App Secundário)</h3>
+            <p style="font-size: 13.5px;">Transforme qualquer celular Android (4G/5G/Wi-Fi, mesmo atrás de CGNAT) em um servidor <strong>Tor v3 Hidden Service</strong> soberano (<code>127.0.0.1:9055 &rarr; :8088</code>). Instala lado a lado com o mensageiro principal sem conflito de portas e faz Auto-Join nos 16 seeds com Modo Furtivo opcional.</p>
+          </div>
+          <div>
+            <div class="code-snippet mono" style="margin-bottom: 12px; color: #67E8F9;">
+              Pacote: org.oniontalk.relaynode · SOCKS5h :9055 · HiddenServicePort 80 &rarr; :8088
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+              <a href="OnionTalk-RelayNode-v1.3.0.apk" download class="btn-primary" style="background: #06B6D4; color: #021318;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Baixar OnionTalk Relay APK (17.1 MB)</span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -1659,67 +1851,116 @@
           </thead>
           <tbody id="mesh-nodes-tbody">
             <tr data-region="BR">
-              <td><strong>BR · São Paulo (Master PVE2)</strong></td>
+              <td><strong>BR · São Paulo #1 (Master PVE2)</strong></td>
               <td class="mono" style="font-size: 12px; color: #A7F3D0;">onion4zr3bsdeaelksemwokl5qmxd5o7jyblf46vc2mfl6cozgw77tqd.onion</td>
-              <td>PEX v2 · Ed25519 Seed</td>
+              <td>PEX v2 · Ed25519 Master Seed</td>
               <td><span class="badge-yes">ONLINE · 99.98%</span></td>
               <td><button type="button" class="chip-btn" onclick="copyOnion('onion4zr3bsdeaelksemwokl5qmxd5o7jyblf46vc2mfl6cozgw77tqd.onion', this)">Copiar .onion</button></td>
             </tr>
-            <tr data-region="US">
-              <td><strong>US · Northflank US-Central #13</strong></td>
-              <td class="mono" style="font-size: 12px; color: #A7F3D0;">wfi3nwuzk2tgrsf2scdy4nb6x6rtiocit4n26477zdlvdvshkgip3ayd.onion</td>
-              <td>PEX v2 · Cloud Relay</td>
+            <tr data-region="BR">
+              <td><strong>BR · São Paulo #2 (Worker PVE4)</strong></td>
+              <td class="mono" style="font-size: 12px; color: #A7F3D0;">kn4u2xxl2otoo2ujv3mhehwfwbw7mtppaf56fu3nxogvv7eekf2qdrid.onion</td>
+              <td>PEX v2 · Homelab Core Seed</td>
               <td><span class="badge-yes">ONLINE · SYNCED</span></td>
-              <td><button type="button" class="chip-btn" onclick="copyOnion('wfi3nwuzk2tgrsf2scdy4nb6x6rtiocit4n26477zdlvdvshkgip3ayd.onion', this)">Copiar .onion</button></td>
+              <td><button type="button" class="chip-btn" onclick="copyOnion('kn4u2xxl2otoo2ujv3mhehwfwbw7mtppaf56fu3nxogvv7eekf2qdrid.onion', this)">Copiar .onion</button></td>
             </tr>
             <tr data-region="US">
-              <td><strong>US · GCP South Carolina (us-east1)</strong></td>
-              <td class="mono" style="font-size: 12px; color: #A7F3D0;">jz6urt6ckkqqvtasm6bll2mryhksjcawcl4tbguif5nqvxgsfsx6ywad.onion</td>
-              <td>PEX v2 · Backbone Relay</td>
-              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
-              <td><button type="button" class="chip-btn" onclick="copyOnion('jz6urt6ckkqqvtasm6bll2mryhksjcawcl4tbguif5nqvxgsfsx6ywad.onion', this)">Copiar .onion</button></td>
-            </tr>
-            <tr data-region="US">
-              <td><strong>US · Render Ohio (us-east)</strong></td>
-              <td class="mono" style="font-size: 12px; color: #A7F3D0;">4wufywh2k6ayyz6nmh2w25hj5vjsqgkve24o2tthvc7rhyvxnhaghqqd.onion</td>
+              <td><strong>US · AWS EKS #3 (US-East)</strong></td>
+              <td class="mono" style="font-size: 12px; color: #A7F3D0;">puqjsmsyyzmxjdtcgr2fl4wrdazqd2phaqrz26alzwyletbvekkxhyyd.onion</td>
               <td>PEX v2 · Cloud Relay</td>
               <td><span class="badge-yes">ONLINE · SYNCED</span></td>
-              <td><button type="button" class="chip-btn" onclick="copyOnion('4wufywh2k6ayyz6nmh2w25hj5vjsqgkve24o2tthvc7rhyvxnhaghqqd.onion', this)">Copiar .onion</button></td>
+              <td><button type="button" class="chip-btn" onclick="copyOnion('puqjsmsyyzmxjdtcgr2fl4wrdazqd2phaqrz26alzwyletbvekkxhyyd.onion', this)">Copiar .onion</button></td>
+            </tr>
+            <tr data-region="BR">
+              <td><strong>BR · Oracle Cloud OCI #4 (Vinhedo)</strong></td>
+              <td class="mono" style="font-size: 12px; color: #A7F3D0;">zqdx5x7pfybox7m5rz3fe5kiouxhipvh3ekuteq2urrrvwcxjttnmgid.onion</td>
+              <td>PEX v2 · South America Backbone</td>
+              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
+              <td><button type="button" class="chip-btn" onclick="copyOnion('zqdx5x7pfybox7m5rz3fe5kiouxhipvh3ekuteq2urrrvwcxjttnmgid.onion', this)">Copiar .onion</button></td>
+            </tr>
+            <tr data-region="US">
+              <td><strong>US · AWS Virginia #5 (us-east-1)</strong></td>
+              <td class="mono" style="font-size: 12px; color: #A7F3D0;">ch4s5llfqshxbvba2yulgp5kbopq25w3qqrtli67sle6smbujlebn2id.onion</td>
+              <td>PEX v2 · Cloud Relay</td>
+              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
+              <td><button type="button" class="chip-btn" onclick="copyOnion('ch4s5llfqshxbvba2yulgp5kbopq25w3qqrtli67sle6smbujlebn2id.onion', this)">Copiar .onion</button></td>
             </tr>
             <tr data-region="FR">
-              <td><strong>FR · Alwaysdata Paris #1</strong></td>
+              <td><strong>FR · Alwaysdata Paris #6</strong></td>
               <td class="mono" style="font-size: 12px; color: #A7F3D0;">7bntuiegd3stvcylvx7rhnhq7ncasxiokunbf5onvvm34dg5gccvooid.onion</td>
               <td>PEX v2 · EU Core Relay</td>
               <td><span class="badge-yes">ONLINE · SYNCED</span></td>
               <td><button type="button" class="chip-btn" onclick="copyOnion('7bntuiegd3stvcylvx7rhnhq7ncasxiokunbf5onvvm34dg5gccvooid.onion', this)">Copiar .onion</button></td>
             </tr>
+            <tr data-region="US">
+              <td><strong>US · Google Cloud #7 (South Carolina)</strong></td>
+              <td class="mono" style="font-size: 12px; color: #A7F3D0;">jz6urt6ckkqqvtasm6bll2mryhksjcawcl4tbguif5nqvxgsfsx6ywad.onion</td>
+              <td>PEX v2 · US Backbone Relay</td>
+              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
+              <td><button type="button" class="chip-btn" onclick="copyOnion('jz6urt6ckkqqvtasm6bll2mryhksjcawcl4tbguif5nqvxgsfsx6ywad.onion', this)">Copiar .onion</button></td>
+            </tr>
+            <tr data-region="US">
+              <td><strong>US · Render Cloud #8 (Ohio)</strong></td>
+              <td class="mono" style="font-size: 12px; color: #A7F3D0;">4wufywh2k6ayyz6nmh2w25hj5vjsqgkve24o2tthvc7rhyvxnhaghqqd.onion</td>
+              <td>PEX v2 · Cloud Relay</td>
+              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
+              <td><button type="button" class="chip-btn" onclick="copyOnion('4wufywh2k6ayyz6nmh2w25hj5vjsqgkve24o2tthvc7rhyvxnhaghqqd.onion', this)">Copiar .onion</button></td>
+            </tr>
+            <tr data-region="RU">
+              <td><strong>RU · Amvera Cloud #9 (Moscou)</strong></td>
+              <td class="mono" style="font-size: 12px; color: #A7F3D0;">nwsoa6ddtbbqbwcceanhhj3j23d5a47zbpbs6zspz5zoeytzqpzvkqqd.onion</td>
+              <td>PEX v2 · Eurasia Relay</td>
+              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
+              <td><button type="button" class="chip-btn" onclick="copyOnion('nwsoa6ddtbbqbwcceanhhj3j23d5a47zbpbs6zspz5zoeytzqpzvkqqd.onion', this)">Copiar .onion</button></td>
+            </tr>
+            <tr data-region="US">
+              <td><strong>US · Back4App Cloud #10 (US-East)</strong></td>
+              <td class="mono" style="font-size: 12px; color: #A7F3D0;">bk7iegv3v232ycjyf5ylwsdx42iozvy2dhhff5zn3ciwa3g2lkifdlad.onion</td>
+              <td>PEX v2 · Edge Container Relay</td>
+              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
+              <td><button type="button" class="chip-btn" onclick="copyOnion('bk7iegv3v232ycjyf5ylwsdx42iozvy2dhhff5zn3ciwa3g2lkifdlad.onion', this)">Copiar .onion</button></td>
+            </tr>
             <tr data-region="FR">
-              <td><strong>FR · Alwaysdata Paris #2</strong></td>
+              <td><strong>FR · Alwaysdata Paris #11 (EU-West #2)</strong></td>
               <td class="mono" style="font-size: 12px; color: #A7F3D0;">hdjp7uaj4qemlmwtev7xmj2w3uexnv6ctplfgvbmpqxenbfgwjjwtrid.onion</td>
               <td>PEX v2 · EU Core Relay</td>
               <td><span class="badge-yes">ONLINE · SYNCED</span></td>
               <td><button type="button" class="chip-btn" onclick="copyOnion('hdjp7uaj4qemlmwtev7xmj2w3uexnv6ctplfgvbmpqxenbfgwjjwtrid.onion', this)">Copiar .onion</button></td>
             </tr>
             <tr data-region="FR">
-              <td><strong>FR · Alwaysdata Paris #3</strong></td>
+              <td><strong>FR · Alwaysdata Paris #12 (EU-West #3)</strong></td>
               <td class="mono" style="font-size: 12px; color: #A7F3D0;">gcvfh67zltoyvithw6luetsrcec6cw42upzrsprxfmx27cvh7vidw4yd.onion</td>
               <td>PEX v2 · EU Core Relay</td>
               <td><span class="badge-yes">ONLINE · SYNCED</span></td>
               <td><button type="button" class="chip-btn" onclick="copyOnion('gcvfh67zltoyvithw6luetsrcec6cw42upzrsprxfmx27cvh7vidw4yd.onion', this)">Copiar .onion</button></td>
             </tr>
             <tr data-region="US">
-              <td><strong>US/EU · HF Cloud Space Relay</strong></td>
-              <td class="mono" style="font-size: 12px; color: #A7F3D0;">bk7iegv3v232ycjyf5ylwsdx42iozvy2dhhff5zn3ciwa3g2lkifdlad.onion</td>
-              <td>PEX v2 · Edge Relay</td>
+              <td><strong>US · Northflank #13 (Iowa, US-Central)</strong></td>
+              <td class="mono" style="font-size: 12px; color: #A7F3D0;">wfi3nwuzk2tgrsf2scdy4nb6x6rtiocit4n26477zdlvdvshkgip3ayd.onion</td>
+              <td>PEX v2 · US-Central Relay</td>
               <td><span class="badge-yes">ONLINE · SYNCED</span></td>
-              <td><button type="button" class="chip-btn" onclick="copyOnion('bk7iegv3v232ycjyf5ylwsdx42iozvy2dhhff5zn3ciwa3g2lkifdlad.onion', this)">Copiar .onion</button></td>
+              <td><button type="button" class="chip-btn" onclick="copyOnion('wfi3nwuzk2tgrsf2scdy4nb6x6rtiocit4n26477zdlvdvshkgip3ayd.onion', this)">Copiar .onion</button></td>
             </tr>
-            <tr data-region="RU">
-              <td><strong>RU · Amvera Moscow #1</strong></td>
-              <td class="mono" style="font-size: 12px; color: #A7F3D0;">nwsoa6ddtbbqbwcceanhhj3j23d5a47zbpbs6zspz5zoeytzqpzvkqqd.onion</td>
-              <td>PEX v2 · Eurasia Relay</td>
+            <tr data-region="JP">
+              <td><strong>JP · DOM Cloud #14 (Osaka, Japão)</strong></td>
+              <td class="mono" style="font-size: 12px; color: #A7F3D0;">5s6w6556f2eov2p6wlsuavaxh7si2kaswjwi5reojnovbzemducjzjqd.onion</td>
+              <td>PEX v2 · Asia-Pacific East Relay</td>
               <td><span class="badge-yes">ONLINE · SYNCED</span></td>
-              <td><button type="button" class="chip-btn" onclick="copyOnion('nwsoa6ddtbbqbwcceanhhj3j23d5a47zbpbs6zspz5zoeytzqpzvkqqd.onion', this)">Copiar .onion</button></td>
+              <td><button type="button" class="chip-btn" onclick="copyOnion('5s6w6556f2eov2p6wlsuavaxh7si2kaswjwi5reojnovbzemducjzjqd.onion', this)">Copiar .onion</button></td>
+            </tr>
+            <tr data-region="SG">
+              <td><strong>SG · DOM Cloud #15 (Singapura)</strong></td>
+              <td class="mono" style="font-size: 12px; color: #A7F3D0;">o5yf3eukrwpt2g6jfo4q2y23xtuhoso2qknmnn6ac5eng5t4yt36roqd.onion</td>
+              <td>PEX v2 · Southeast Asia Hub</td>
+              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
+              <td><button type="button" class="chip-btn" onclick="copyOnion('o5yf3eukrwpt2g6jfo4q2y23xtuhoso2qknmnn6ac5eng5t4yt36roqd.onion', this)">Copiar .onion</button></td>
+            </tr>
+            <tr data-region="DE">
+              <td><strong>DE · DOM Cloud #16 (Nuremberg, Alemanha)</strong></td>
+              <td class="mono" style="font-size: 12px; color: #A7F3D0;">azw5qxf4jnfudeei3nanggojle62g4duoxtxjj2pjuvm42xb3456vjad.onion</td>
+              <td>PEX v2 · Central Europe Relay</td>
+              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
+              <td><button type="button" class="chip-btn" onclick="copyOnion('azw5qxf4jnfudeei3nanggojle62g4duoxtxjj2pjuvm42xb3456vjad.onion', this)">Copiar .onion</button></td>
             </tr>
           </tbody>
         </table>
@@ -2082,7 +2323,7 @@
       btn.classList.add("active");
       document.querySelectorAll("#mesh-nodes-tbody tr").forEach(row => {
         const r = row.getAttribute("data-region");
-        row.style.display = (region === "all" || r === region) ? "table-row" : "none";
+        row.style.display = (region === "all" || r === region) ? "" : "none";
       });
     }
 
@@ -2127,11 +2368,11 @@
       pt: {
         nav_showcase: "Telas & Filme Oficial",
         nav_arch: "Arquitetura Tor v3",
-        nav_mesh: "Malha Global (13 Nós)",
+        nav_mesh: "Malha Global (16 Nós)",
         nav_comp: "Comparativo",
         nav_priv: "Política de Privacidade",
         cta_download: "Google Play",
-        hero_badge: "MALHA V2 ATIVA · 13 NÓS TOR V3 EM 4 PAÍSES · 100% ENTREGA SOAK TEST",
+        hero_badge: "MALHA V2 ATIVA · 16 NÓS TOR V3 EM 7 PAÍSES + AUTO-JOIN · 100% ENTREGA SOAK TEST",
         hero_title: "Simples como o WhatsApp.<br/><span>Invisível e soberano na rede Tor v3.</span>",
         hero_lead: "Mensageiros convencionais exigem seu número de telefone, guardam seus contatos em nuvem e expõem seu IP. O OnionTalk opera 100% sobre Serviços Ocultos Tor v3 (<code>.onion</code>) com criptografia X25519 + ChaCha20-Poly1305, cofre SQLCipher AES-256, biometria AndroidKeyStore com trava anti-coação e queima bilateral instantânea.",
         hero_btn_play: "Baixar no Google Play",
@@ -2139,7 +2380,7 @@
         hero_btn_node: "Subir Relay Docker (<60MB)",
         hero_btn_policy: "Política de Privacidade",
         metric_1: "Telefone, SIM card, e-mail, IP ou EXIF armazenados",
-        metric_2: "Malha Tor v3 ativa (Brasil, EUA, França e Rússia)",
+        metric_2: "Malha Tor v3 em 7 países (BR, US, FR, DE, RU, SG, JP) + Auto-Join",
         metric_3: "Mediana p50 de entrega P2P (157/157 no Soak Test 2h)",
         metric_4: "Troca instantânea zero-telemetria (PT, EN, ES, RU)",
         showcase_eyebrow: "EVIDÊNCIA REAL DE EXECUÇÃO · ANDROID NATIVO",
@@ -2155,11 +2396,11 @@
       en: {
         nav_showcase: "Real Screens & Film",
         nav_arch: "Tor v3 Architecture",
-        nav_mesh: "Global Mesh (13 Nodes)",
+        nav_mesh: "Global Mesh (16 Nodes)",
         nav_comp: "Comparison",
         nav_priv: "Privacy Policy",
         cta_download: "Google Play",
-        hero_badge: "V2 MESH LIVE · 13 TOR V3 NODES IN 4 COUNTRIES · 100% SOAK TEST DELIVERY",
+        hero_badge: "V2 MESH LIVE · 16 TOR V3 NODES IN 7 COUNTRIES + AUTO-JOIN · 100% SOAK TEST DELIVERY",
         hero_title: "Simple like WhatsApp.<br/><span>Invisible and sovereign on Tor v3.</span>",
         hero_lead: "Mainstream messengers demand your phone number, store your social graph in the cloud, and expose your IP. OnionTalk runs 100% over Tor v3 Hidden Services (<code>.onion</code>) with X25519 + ChaCha20-Poly1305 encryption, a local SQLCipher AES-256 vault, AndroidKeyStore biometrics with anti-coercion lockdown, and instant bilateral burn.",
         hero_btn_play: "Get it on Google Play",
@@ -2167,7 +2408,7 @@
         hero_btn_node: "Run Docker Relay (<60MB)",
         hero_btn_policy: "Privacy Policy",
         metric_1: "Phone number, SIM, email, IP, or EXIF stored",
-        metric_2: "Active Tor v3 mesh (Brazil, USA, France & Russia)",
+        metric_2: "Active Tor v3 mesh in 7 countries (BR, US, FR, DE, RU, SG, JP) + Auto-Join",
         metric_3: "Median p50 P2P delivery (157/157 in 2h Soak Test)",
         metric_4: "Instant zero-telemetry switch (PT, EN, ES, RU)",
         showcase_eyebrow: "LIVE RUNTIME EVIDENCE · NATIVE ANDROID",
@@ -2183,11 +2424,11 @@
       es: {
         nav_showcase: "Pantallas y Película",
         nav_arch: "Arquitectura Tor v3",
-        nav_mesh: "Malla Global (13 Nodos)",
+        nav_mesh: "Malla Global (16 Nodos)",
         nav_comp: "Comparativa",
         nav_priv: "Política de Privacidad",
         cta_download: "Google Play",
-        hero_badge: "MALLA V2 ACTIVA · 13 NODOS TOR V3 EN 4 PAÍSES · 100% ENTREGA SOAK TEST",
+        hero_badge: "MALLA V2 ACTIVA · 16 NODOS TOR V3 EN 7 PAÍSES + AUTO-JOIN · 100% ENTREGA SOAK TEST",
         hero_title: "Simple como WhatsApp.<br/><span>Invisible y soberano en la red Tor v3.</span>",
         hero_lead: "Los mensajeros tradicionales exigen tu número de teléfono, guardan tus contactos en la nube y exponen tu IP. OnionTalk opera 100% sobre Servicios Ocultos Tor v3 (<code>.onion</code>) con cifrado X25519 + ChaCha20-Poly1305, bóveda SQLCipher AES-256, biometría AndroidKeyStore antocoacción y quema bilateral instantánea.",
         hero_btn_play: "Descargar en Google Play",
@@ -2195,7 +2436,7 @@
         hero_btn_node: "Desplegar Relay Docker (<60MB)",
         hero_btn_policy: "Política de Privacidad",
         metric_1: "Teléfono, tarjeta SIM, correo, IP o EXIF almacenados",
-        metric_2: "Malla Tor v3 activa (Brasil, EE. UU., Francia y Rusia)",
+        metric_2: "Malla Tor v3 en 7 países (BR, US, FR, DE, RU, SG, JP) + Auto-Join",
         metric_3: "Mediana p50 de entrega P2P (157/157 en Soak Test 2h)",
         metric_4: "Cambio instantáneo sin telemetría (PT, EN, ES, RU)",
         showcase_eyebrow: "EVIDENCIA REAL DE EJECUCIÓN · ANDROID NATIVO",
@@ -2211,11 +2452,11 @@
       ru: {
         nav_showcase: "Экраны и Фильм",
         nav_arch: "Архитектура Tor v3",
-        nav_mesh: "Сеть (13 Узлов)",
+        nav_mesh: "Сеть (16 Узлов)",
         nav_comp: "Сравнение",
         nav_priv: "Конфиденциальность",
         cta_download: "Google Play",
-        hero_badge: "СЕТЬ V2 АКТИВНА · 13 УЗЛОВ TOR V3 В 4 СТРАНАХ · 100% ДОСТАВКА",
+        hero_badge: "СЕТЬ V2 АКТИВНА · 16 УЗЛОВ TOR V3 В 7 СТРАНАХ + AUTO-JOIN · 100% ДОСТАВКА",
         hero_title: "Простой как WhatsApp.<br/><span>Невидимый и суверенный в сети Tor v3.</span>",
         hero_lead: "Обычные мессенджеры требуют номер телефона, хранят граф контактов в облаке и раскрывают ваш IP. OnionTalk работает на 100% через скрытые сервисы Tor v3 (<code>.onion</code>) с шифрованием X25519 + ChaCha20-Poly1305, хранилищем SQLCipher AES-256, биометрией AndroidKeyStore с защитой от принуждения и двусторонним уничтожением.",
         hero_btn_play: "Скачать в Google Play",
@@ -2223,7 +2464,7 @@
         hero_btn_node: "Запустить Docker-узел (<60МБ)",
         hero_btn_policy: "Политика конфиденциальности",
         metric_1: "Номер телефона, SIM, email, IP или EXIF-данные",
-        metric_2: "Активная сеть Tor v3 (Бразилия, США, Франция, Россия)",
+        metric_2: "Активная сеть Tor v3 в 7 странах (BR, US, FR, DE, RU, SG, JP) + Auto-Join",
         metric_3: "Медиана p50 доставки P2P (157/157 за 2ч теста)",
         metric_4: "Мгновенное переключение без телеметрии (PT, EN, ES, RU)",
         showcase_eyebrow: "РЕАЛЬНЫЕ ДОКАЗАТЕЛЬСТВА РАБОТЫ · ANDROID",
