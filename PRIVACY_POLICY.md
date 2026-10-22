@@ -1,7 +1,7 @@
 # Política de Privacidade / Privacy Policy — OnionTalk (`org.oniontalk.messenger`)
 
 **Última atualização / Last Updated:** 22 de outubro de 2026  
-**Versão de Referência / App Version:** `v1.4.2 (Build 22)`
+**Versão de Referência / App Version:** `v1.4.2 (Build 23)`
 
 O **OnionTalk: Private Tor Chat** (`org.oniontalk.messenger`) é um aplicativo de mensagens criptografadas ponta-a-ponta (E2EE) construído sob os princípios de **Zero-Knowledge (Conhecimento Zero)**, **Soberania Digital** e **Privacidade por Design**.
 
