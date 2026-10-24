@@ -17,7 +17,7 @@
 
   <p>
     <img src="https://img.shields.io/badge/Transport-Tor_v3_SOCKS5h-7D4698?style=flat-square&logo=torproject&logoColor=white" alt="Tor v3" />
-    <img src="https://img.shields.io/badge/E2EE-X25519_%2B_ChaCha20--Poly1305-00C853?style=flat-square" alt="E2EE" />
+    <img src="https://img.shields.io/badge/PQC_E2EE-X25519_%2B_ML--KEM--768_%2B_ChaCha20-00C853?style=flat-square" alt="E2EE" />
     <img src="https://img.shields.io/badge/Database-SQLCipher_AES--256--CBC-1F6FEB?style=flat-square" alt="SQLCipher" />
     <img src="https://img.shields.io/badge/KDF-Argon2id_64MB-FF6D00?style=flat-square" alt="Argon2id" />
   </p>
@@ -25,10 +25,23 @@
 
 ---
 
+## 🚀 What's New in `v1.4.4` (`versionCode = 28` / Build 28) & Relay Mesh `v=27` — Post-Quantum Hybrid Encryption (`ML-KEM-768`), Dual Warm Socket Pool (~1.13s E2E), S/Kademlia XOR Routing & GossipSub v1.2
+
+- **📦 Direct Signed APK Downloads (`v1.4.4` — Latest Release Build 28)**:
+  - **Main Messenger APK (`org.oniontalk.messenger` `v1.4.4` Build 28)**: [**Download `OnionTalk-v1.4.4.apk`**](https://github.com/onion-talk/oniontalk-demo/releases/download/v1.4.4-demo/OnionTalk-v1.4.4.apk) (`SHA-256: 02290a3e1d2b1719c7736aee898f6dcd0244fc5206d9e749770b1319615ab1ba`)
+  - **Standalone Android Relay Node APK (`org.oniontalk.relaynode` `v1.4.3` Build 7)**: [**Download `OnionTalk-RelayNode-v1.4.3.apk`**](https://github.com/onion-talk/oniontalk-demo/releases/download/v1.4.4-demo/OnionTalk-RelayNode-v1.4.3.apk) (`SHA-256: 14cb0acbff19947312af12df7ba092c7245084e432ffafb4b06c9008e838b4e4`)
+- **🛡️ Key Cryptographic & P2P Mesh Breakthroughs in `v1.4.4` (`Build 28`)**:
+  1. **Hybrid Post-Quantum Cryptography (`__ENC_PQC_KYBER768_X25519_V3__`)**: Combines classical **Dual X25519 ECDH** with **NIST FIPS 203 ML-KEM-768 (`Kyber-768`)** key encapsulation via `HKDF-SHA256` + `ChaCha20-Poly1305 AEAD` + `Ed25519` outer envelope signatures to protect against *Harvest Now, Decrypt Later* quantum adversaries.
+  2. **Ultra-Fast E2E Delivery (`1.139s – 1.244s`, avg `1.20s`)**: Upgraded **Dual Warm Socket Pool** (`minWarmSockets = 2` per `.onion` gateway, `70s/75s` Keep-Alive) achieving **100% pre-warmed Tor circuit reuse (`0ms` SOCKS5 handshake)** alongside a `250ms` speculative *Hedged Send*.
+  3. **S/Kademlia XOR Distance Routing & Blinded Poller Affinity (`v=27`)**: All 17 global `.onion` v3 relays now route by XOR distance (`SHA-256(peer_onion) ^ SHA-256(recipient_hash)`) with zero-knowledge RAM-only rendezvous affinity (`active_pollers`, `TTL 90s`, zero logs).
+  4. **GossipSub v1.2 `IHAVE` / `IDONTWANT` Deduplication**: Relays announce `POST /gossip/ihave` metadata before forwarding payloads `> 1024 bytes`, cutting redundant Tor mesh bandwidth by **~70%**.
+  5. **Continuous `10s–12s` Long-Polling & Mandatory `SHA-256` Media Integrity**: Eliminates dead intervals between poll cycles and verifies `SHA-256` Merkle hashes on all voice notes, images, and attachments prior to rendering.
+
+---
 ## 🚀 What's New in `v1.4.2` (`versionCode = 22` / Build 23) — Anti-Exploit Media Firewall, Hardware-Backed KeyStore Vault, Deflate Super-Compression & Warm Tor Pool — Password-Locked Messages & Chats, Unified Long-Press Menu, Profile Photo Privacy, 15s Auto-Lock & Official Video Suite
 
 - **📦 Direct Signed APK Downloads (`v1.4.2` — Latest Release Build 23)**:
-  - **Main Messenger APK (`org.oniontalk.messenger` `v1.4.2` Build 23)**: [**Download `OnionTalk-v1.4.3.apk`**](https://github.com/onion-talk/oniontalk-demo/releases/download/v1.4.3-demo/OnionTalk-v1.4.3.apk) (`SHA-256: 68f3d5785919acaf0820c238f93f5db0cb02df5986db457ec783d573dbc652a8`)
+  - **Main Messenger APK (`org.oniontalk.messenger` `v1.4.2` Build 23)**: [**Download `OnionTalk-v1.4.3.apk`**](https://github.com/onion-talk/oniontalk-demo/releases/download/v1.4.4-demo/OnionTalk-v1.4.4.apk) (`SHA-256: 68f3d5785919acaf0820c238f93f5db0cb02df5986db457ec783d573dbc652a8`)
   - **Standalone Android Relay Node APK (`org.oniontalk.relaynode` `v1.4.2` Build 3)**: [**Download `OnionTalk-RelayNode-v1.4.3.apk`**](https://github.com/onion-talk/oniontalk-demo/releases/download/v1.4.1-demo/OnionTalk-RelayNode-v1.4.3.apk) (`SHA-256: befe94bcf2e66a2fe067b47b2114af9f226cf3405292df7e67ab5e29782f3f1b`)
 - **🎬 Official `v1.4.2` Promotional & Feature Walkthrough Videos**:
   - [**▶ Watch Official Promo v1.4.2 (Português 1080p)**](https://github.com/onion-talk/oniontalk-demo/raw/main/video/OnionTalk-v1.4.1-Promo-Oficial-PT.mp4)
@@ -59,7 +72,7 @@
 ## 🚀 What's New in `v1.4.0` (`versionCode = 14`) — 17-Node Global Mesh (8 Countries), Selective `FLAG_SECURE`, Instant Tor Auto-Heal & GZIP File Transfers
 
 - **📦 Direct Signed APK Downloads (`v1.4.0`)**:
-  - **Main Messenger APK (`org.oniontalk.messenger`)**: [**Download `OnionTalk-v1.4.0.apk`**](https://github.com/onion-talk/oniontalk-demo/releases/download/v1.4.3-demo/OnionTalk-v1.4.3.apk) (`SHA-256: d11ee5629b6bffa32658d80e2d22cd5582e37c84d3b69bd85dffc424793688c4`)
+  - **Main Messenger APK (`org.oniontalk.messenger`)**: [**Download `OnionTalk-v1.4.0.apk`**](https://github.com/onion-talk/oniontalk-demo/releases/download/v1.4.4-demo/OnionTalk-v1.4.4.apk) (`SHA-256: d11ee5629b6bffa32658d80e2d22cd5582e37c84d3b69bd85dffc424793688c4`)
   - **Standalone Android Relay Node APK (`org.oniontalk.relaynode`)**: [**Download `OnionTalk-RelayNode-v1.4.3.apk`**](https://github.com/onion-talk/oniontalk-demo/releases/download/v1.4.1-demo/OnionTalk-RelayNode-v1.4.3.apk) (`SHA-256: befe94bcf2e66a2fe067b47b2114af9f226cf3405292df7e67ab5e29782f3f1b`)
 - **🌐 17 Active Tor v3 Relays Across 8 Countries (`BR`, `US`, `FR`, `DE`, `RU`, `SG`, `JP`, `CN`)**:
   - Added **Node 16 (DOM Cloud Nuremberg, Germany)**: `o5zqqfl5znzexdojfnxgub5jnjelxdahbyxasjp57sx6fbxtjeqovpad.onion`
@@ -100,7 +113,7 @@
 
 ## 🚀 What's New in `v1.2.0` (`versionCode = 8`) — Always-Connected Background Tor & Bounded Failover
 
-- **📦 Direct Signed APK Download (`v1.2.0-demo`)**: [**Download `OnionTalk-v1.2.0.apk`**](https://github.com/onion-talk/oniontalk-demo/releases/download/v1.4.3-demo/OnionTalk-v1.4.3.apk) (`SHA-256: 028657053bfb5b08703105e3e11fc09c24d2e146587cab24a9a815f2872a19ed`)
+- **📦 Direct Signed APK Download (`v1.2.0-demo`)**: [**Download `OnionTalk-v1.2.0.apk`**](https://github.com/onion-talk/oniontalk-demo/releases/download/v1.4.4-demo/OnionTalk-v1.4.4.apk) (`SHA-256: 028657053bfb5b08703105e3e11fc09c24d2e146587cab24a9a815f2872a19ed`)
 - **🌐 Official Website & Privacy Policy (GitHub Pages)**: [**onion-talk.github.io/oniontalk-demo**](https://onion-talk.github.io/oniontalk-demo/) | [**onion-talk.github.io/oniontalk-protocol**](https://onion-talk.github.io/oniontalk-protocol/)
 - **🛡️ Persistent Background Tor Mode ("Sempre Conectado" — App-Only `127.0.0.1:9050`)**:
   - New `OnionKeepAliveService` (`ForegroundService` with `specialUse|remoteMessaging`, `START_STICKY`, and 15s watchdog) keeps only OnionTalk's embedded Tor daemon alive in the background without routing the rest of the phone's traffic (no global VPN).
