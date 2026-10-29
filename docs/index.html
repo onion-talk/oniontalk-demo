@@ -1,0 +1,2753 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OnionTalk v1.4.4 — Mensageiro Privado na Rede Tor v3 &amp; Política de Privacidade</title>
+  <meta name="description" content="Mensageiro E2EE Zero-Knowledge nativo sobre Serviços Ocultos Tor v3 (.onion). Sem número de telefone, sem e-mail, 17 relays federados em 8 países, app secundário OnionTalk Relay Node para Android, biometria AndroidKeyStore anti-coação e queima bilateral anti-forense." />
+  <link rel="icon" type="image/png" href="icon-512.png" />
+  <link rel="apple-touch-icon" href="icon-512.png" />
+  <meta property="og:title" content="OnionTalk v1.4.4 — Private Tor v3 Messenger &amp; Privacy Policy" />
+  <meta property="og:description" content="Zero-Knowledge E2EE messenger over Tor v3 Hidden Services (.onion). No phone number, no SIM, no central servers, 17 active relays in 8 countries, standalone Android Relay Node app, SQLCipher AES-256 vault &amp; bilateral burn." />
+  <meta property="og:image" content="https://onion-talk.github.io/oniontalk-demo/icon-512.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ==========================================================================
+       TASTE DESIGN DIRECTION CALIBRATION
+       DESIGN_VARIANCE: 6/10 (Editorial Split + Asymmetric 12-Col Bento Grid)
+       VISUAL_DENSITY:  7/10 (Cryptographic DevTools / SRE Tabular Precision)
+       MOTION_INTENSITY: 6/10 (Tactile 0.98 Scale + Smooth Transform/Opacity)
+       ========================================================================== */
+    :root {
+      --bg-base: #05080F;
+      --bg-surface: #0A0F1C;
+      --bg-elevated: #101829;
+      --bg-interactive: #162036;
+      --bg-glass: rgba(10, 15, 28, 0.86);
+      --border-hairline: rgba(255, 255, 255, 0.08);
+      --border-subtle: rgba(255, 255, 255, 0.12);
+      --border-emerald: rgba(16, 185, 129, 0.34);
+      --text-primary: #F8FAFC;
+      --text-secondary: #CBD5E1;
+      --text-muted: #94A3B8;
+      --brand-emerald: #10B981;
+      --brand-emerald-hover: #34D399;
+      --brand-emerald-surface: rgba(16, 185, 129, 0.10);
+      --brand-cyan: #06B6D4;
+      --brand-amber: #F59E0B;
+      --brand-danger: #EF4444;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-base);
+      background-image:
+        radial-gradient(circle at 14% 8%, rgba(16, 185, 129, 0.07) 0%, transparent 38%),
+        radial-gradient(circle at 86% 18%, rgba(6, 182, 212, 0.05) 0%, transparent 34%);
+      color: var(--text-primary);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    code, pre, .mono, .tabular {
+      font-family: 'JetBrains Mono', monospace;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .tabular-sans {
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Sticky Top Navigation */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-primary);
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+      flex-shrink: 0;
+    }
+
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .brand-version-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--brand-emerald);
+      background: var(--brand-emerald-surface);
+      border: 1px solid var(--border-emerald);
+      padding: 2px 8px;
+      border-radius: 999px;
+      letter-spacing: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 500;
+      transition: color 0.15s ease;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--text-primary);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .lang-switch {
+      display: inline-flex;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: 10px;
+      padding: 3px;
+      gap: 2px;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 9px;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .lang-btn:hover {
+      color: var(--text-primary);
+    }
+
+    .lang-btn.active {
+      background: var(--bg-elevated);
+      color: var(--text-primary);
+      border-color: var(--border-subtle);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--brand-emerald);
+      color: #03140E;
+      font-weight: 700;
+      font-size: 13.5px;
+      padding: 10px 18px;
+      border-radius: 10px;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      cursor: pointer;
+      transition: transform 0.15s ease, background-color 0.15s ease;
+    }
+
+    .btn-primary:hover {
+      background: var(--brand-emerald-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary:active, .btn-secondary:active, .chip-btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-surface);
+      color: var(--text-primary);
+      font-weight: 600;
+      font-size: 13.5px;
+      padding: 10px 16px;
+      border-radius: 10px;
+      text-decoration: none;
+      border: 1px solid var(--border-subtle);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-elevated);
+      border-color: rgba(255, 255, 255, 0.24);
+    }
+
+    /* Hero Editorial Split */
+    .hero {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 64px 24px 80px;
+      display: grid;
+      grid-template-columns: 1.12fr 0.88fr;
+      gap: 56px;
+      align-items: start;
+    }
+
+    .hero-identity-bar {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      padding: 8px 16px 8px 8px;
+      border-radius: 14px;
+      margin-bottom: 20px;
+    }
+
+    .hero-identity-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 11px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      flex-shrink: 0;
+    }
+
+    .hero-identity-icon img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .hero-identity-meta strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .hero-identity-meta span {
+      display: block;
+      font-size: 12px;
+      color: var(--brand-emerald);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--brand-emerald-surface);
+      border: 1px solid var(--border-emerald);
+      color: var(--brand-emerald-hover);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      margin-bottom: 20px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--brand-emerald);
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.22);
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 4.4vw, 56px);
+      font-weight: 800;
+      line-height: 1.06;
+      letter-spacing: -0.035em;
+      color: var(--text-primary);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      color: var(--brand-emerald);
+    }
+
+    .hero-lead {
+      font-size: 17px;
+      color: var(--text-secondary);
+      max-width: 62ch;
+      margin-bottom: 28px;
+      line-height: 1.65;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    /* Value Equation Strip (Hormozi + Hopkins Specificity) */
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-hairline);
+    }
+
+    .metric-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 14px;
+    }
+
+    .metric-card strong {
+      display: block;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      font-family: 'JetBrains Mono', monospace;
+      font-variant-numeric: tabular-nums;
+      margin-bottom: 4px;
+    }
+
+    .metric-card span {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.4;
+      display: block;
+    }
+
+    /* Interactive Phone Simulator (Norman Signifiers + Real Affordances) */
+    .simulator-shell {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 16px;
+      position: relative;
+    }
+
+    .sim-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 12px;
+      padding: 0 4px;
+    }
+
+    .sim-toolbar-label {
+      font-size: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .sim-actions-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .chip-btn {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .chip-btn:hover {
+      background: var(--bg-interactive);
+      color: var(--text-primary);
+      border-color: rgba(255, 255, 255, 0.22);
+    }
+
+    .chip-btn.danger {
+      background: rgba(239, 68, 68, 0.10);
+      border-color: rgba(239, 68, 68, 0.35);
+      color: #FCA5A5;
+    }
+
+    .chip-btn.danger:hover {
+      background: rgba(239, 68, 68, 0.20);
+    }
+
+    .chip-btn.active-timer {
+      background: var(--brand-emerald-surface);
+      border-color: var(--border-emerald);
+      color: var(--brand-emerald-hover);
+    }
+
+    .phone-screen {
+      background: #070B14;
+      border: 1px solid var(--border-hairline);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .chat-header {
+      background: #0D1526;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border-hairline);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .chat-peer {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .peer-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid var(--brand-emerald);
+    }
+
+    .peer-meta h4 {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .peer-meta p {
+      font-size: 11px;
+      color: var(--brand-emerald);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .chat-header-badges {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .header-icon-badge {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      padding: 5px 8px;
+      border-radius: 7px;
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .chat-messages {
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 290px;
+      max-height: 320px;
+      overflow-y: auto;
+    }
+
+    .cipher-banner {
+      background: rgba(16, 185, 129, 0.07);
+      border: 1px solid rgba(16, 185, 129, 0.22);
+      border-radius: 8px;
+      padding: 7px 10px;
+      font-size: 11px;
+      color: var(--text-secondary);
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .msg-bubble {
+      max-width: 85%;
+      padding: 9px 12px;
+      border-radius: 12px;
+      font-size: 13px;
+      line-height: 1.45;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .msg-in {
+      align-self: flex-start;
+      background: #121C31;
+      border: 1px solid var(--border-hairline);
+      color: var(--text-primary);
+      border-bottom-left-radius: 4px;
+    }
+
+    .msg-out {
+      align-self: flex-end;
+      background: #064E3B;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #ECFDF5;
+      border-bottom-right-radius: 4px;
+    }
+
+    .reply-quote-box {
+      border-left: 2px solid var(--brand-emerald-hover);
+      background: rgba(0, 0, 0, 0.24);
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+
+    .msg-meta {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 6px;
+      font-size: 10.5px;
+      color: rgba(255, 255, 255, 0.65);
+      margin-top: 4px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .timer-pill {
+      color: #FBBF24;
+      background: rgba(245, 158, 11, 0.16);
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .read-checks {
+      color: #34D399;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+
+    /* Interactive Chat Composer inside Simulator */
+    .sim-composer {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      background: #0B1220;
+      border-top: 1px solid var(--border-hairline);
+    }
+
+    .sim-input {
+      flex: 1;
+      background: #060911;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 12.5px;
+      outline: none;
+    }
+
+    .sim-input:focus {
+      border-color: var(--brand-emerald);
+    }
+
+    .sim-send-btn {
+      background: var(--brand-emerald);
+      color: #03140E;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .wire-inspector {
+      margin-top: 10px;
+      background: #05080F;
+      border: 1px solid var(--border-hairline);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 11px;
+      color: #6EE7B7;
+      font-family: 'JetBrains Mono', monospace;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    /* Section Containers */
+    .section {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 80px 24px;
+      border-top: 1px solid var(--border-hairline);
+    }
+
+    .section-header-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .section-header {
+      max-width: 700px;
+    }
+
+    .section-eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--brand-emerald);
+      margin-bottom: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .section-header h2 {
+      font-size: clamp(26px, 3vw, 38px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.14;
+      margin-bottom: 12px;
+      color: var(--text-primary);
+    }
+
+    .section-header p {
+      color: var(--text-secondary);
+      font-size: 16px;
+      max-width: 64ch;
+    }
+
+    /* Real Screenshots & Studio Video Showcase (Anti-Slop Real Media Rule) */
+    .media-showcase-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .video-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .video-frame {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #000;
+      border: 1px solid var(--border-hairline);
+      margin-bottom: 16px;
+    }
+
+    .video-frame video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .screenshots-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .shot-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: 16px;
+      padding: 12px;
+      cursor: pointer;
+      transition: border-color 0.15s ease, transform 0.15s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .shot-card:hover {
+      border-color: var(--border-emerald);
+      transform: translateY(-2px);
+    }
+
+    .shot-img-wrap {
+      width: 100%;
+      aspect-ratio: 9 / 19.5;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #05080F;
+      border: 1px solid var(--border-hairline);
+    }
+
+    .shot-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.25s ease;
+    }
+
+    .shot-card:hover .shot-img-wrap img {
+      transform: scale(1.03);
+    }
+
+    .shot-caption strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+
+    .shot-caption span {
+      display: block;
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.35;
+    }
+
+    /* Asymmetric 12-Column Bento Grid */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
+    }
+
+    .bento-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.15s ease;
+    }
+
+    .bento-card:hover {
+      border-color: var(--border-emerald);
+    }
+
+    .span-7 { grid-column: span 7; }
+    .span-5 { grid-column: span 5; }
+    .span-4 { grid-column: span 4; }
+    .span-8 { grid-column: span 8; }
+    .span-6 { grid-column: span 6; }
+
+    .bento-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .bento-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--brand-emerald-surface);
+      border: 1px solid var(--border-emerald);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--brand-emerald);
+    }
+
+    .bento-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-hairline);
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+
+    .bento-card h3 {
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+      color: var(--text-primary);
+    }
+
+    .bento-card p {
+      color: var(--text-secondary);
+      font-size: 14.5px;
+      line-height: 1.6;
+    }
+
+    .code-snippet {
+      margin-top: 18px;
+      background: #05080F;
+      border: 1px solid var(--border-hairline);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 12px;
+      color: #A7F3D0;
+      overflow-x: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    /* Interactive 13-Node Federation Mesh Directory */
+    .mesh-controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .filter-pill {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      color: var(--text-secondary);
+      font-size: 12.5px;
+      font-weight: 600;
+      padding: 7px 13px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .filter-pill:hover {
+      border-color: var(--border-subtle);
+      color: var(--text-primary);
+    }
+
+    .filter-pill.active {
+      background: var(--brand-emerald-surface);
+      border-color: var(--border-emerald);
+      color: var(--brand-emerald-hover);
+    }
+
+    /* Tables */
+    .table-wrap {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-lg);
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-variant-numeric: tabular-nums;
+    }
+
+    th, td {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-hairline);
+      font-size: 13.5px;
+    }
+
+    th {
+      background: #070B14;
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    th.highlight-col, td.highlight-col {
+      background: rgba(16, 185, 129, 0.05);
+      border-left: 1px solid rgba(16, 185, 129, 0.22);
+      border-right: 1px solid rgba(16, 185, 129, 0.22);
+    }
+
+    .badge-yes, .badge-no, .badge-warn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .badge-yes {
+      background: rgba(16, 185, 129, 0.14);
+      color: #34D399;
+      border: 1px solid rgba(16, 185, 129, 0.28);
+    }
+
+    .badge-no {
+      background: rgba(239, 68, 68, 0.12);
+      color: #FCA5A5;
+      border: 1px solid rgba(239, 68, 68, 0.25);
+    }
+
+    .badge-warn {
+      background: rgba(245, 158, 11, 0.14);
+      color: #FCD34D;
+      border: 1px solid rgba(245, 158, 11, 0.28);
+    }
+
+    /* Official Google Play Privacy Policy Section */
+    .privacy-container {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-emerald);
+      border-radius: var(--radius-xl);
+      padding: 36px;
+    }
+
+    .privacy-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding-bottom: 24px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 260px;
+      max-width: 400px;
+    }
+
+    .search-input {
+      width: 100%;
+      background: #05080F;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 13.5px;
+      outline: none;
+    }
+
+    .search-input:focus {
+      border-color: var(--brand-emerald);
+    }
+
+    .policy-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .policy-clause {
+      background: #070B14;
+      border: 1px solid var(--border-hairline);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .policy-clause h3 {
+      font-size: 16.5px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .policy-clause p, .policy-clause li {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    .policy-clause ul {
+      padding-left: 18px;
+      margin-top: 8px;
+    }
+
+    .policy-clause li {
+      margin-bottom: 6px;
+    }
+
+    /* Lightbox Modal for Real App Screenshots */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 8, 15, 0.88);
+      backdrop-filter: blur(10px);
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      max-width: 440px;
+      width: 100%;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .modal-card img {
+      max-height: 74vh;
+      width: auto;
+      max-width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--border-hairline);
+      margin-bottom: 12px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border-hairline);
+      padding: 48px 24px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    /* Prevent Grid Blowout on Mobile Viewports */
+    .hero > *, .media-showcase-grid > *, .bento-grid > *, .policy-grid > *, .screenshots-grid > * {
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    .mobile-subnav {
+      display: none;
+      overflow-x: auto;
+      white-space: nowrap;
+      gap: 8px;
+      padding: 8px 14px;
+      background: rgba(7, 11, 20, 0.95);
+      border-top: 1px solid var(--border-hairline);
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .mobile-subnav::-webkit-scrollbar {
+      display: none;
+    }
+    .mobile-subnav a {
+      display: inline-block;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-hairline);
+      flex-shrink: 0;
+    }
+    .mobile-subnav a:active, .mobile-subnav a:hover {
+      color: var(--brand-emerald-hover);
+      border-color: var(--border-emerald);
+    }
+
+    @media (max-width: 1024px) {
+      .hero, .media-showcase-grid { grid-template-columns: 1fr; gap: 32px; }
+      .hero-metrics { grid-template-columns: repeat(2, 1fr); }
+      .screenshots-grid { grid-template-columns: repeat(2, 1fr); }
+      .span-7, .span-5, .span-4, .span-8, .span-6 { grid-column: span 12; }
+      .policy-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .mobile-subnav { display: flex; }
+    }
+
+    @media (max-width: 768px) {
+      .section { padding: 48px 16px; }
+      .section-header-row { gap: 16px; margin-bottom: 24px; }
+      .bento-card, .video-card, .policy-clause { padding: 18px; }
+      .code-snippet, .wire-inspector {
+        white-space: pre-wrap;
+        word-break: break-all;
+        font-size: 11px;
+        line-height: 1.45;
+      }
+
+      /* Transform 16-Node Mesh Table into Native Mobile Cards on Phones */
+      #malha .table-wrap {
+        background: transparent;
+        border: none;
+        overflow-x: visible;
+      }
+      #malha table, #malha tbody {
+        display: block;
+        width: 100%;
+      }
+      #malha thead {
+        display: none;
+      }
+      #mesh-nodes-tbody tr {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        background: var(--bg-surface);
+        border: 1px solid var(--border-subtle);
+        border-radius: 14px;
+        padding: 14px;
+        margin-bottom: 12px;
+      }
+      #mesh-nodes-tbody td {
+        display: block;
+        padding: 0;
+        border: none;
+        font-size: 13px;
+        word-break: break-all;
+      }
+      #mesh-nodes-tbody td .chip-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 9px 12px;
+        margin-top: 4px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav-container { padding: 0 12px; height: 62px; gap: 8px; }
+      .brand-logo { font-size: 17px; gap: 8px; }
+      .brand-mark { width: 34px; height: 34px; }
+      .brand-version-tag { display: none; }
+      .navbar .btn-primary span { display: none; }
+      .navbar .btn-primary { padding: 8px 11px; }
+      .lang-btn { padding: 4px 7px; font-size: 11px; }
+
+      .hero { padding: 24px 14px 44px; gap: 28px; }
+      .hero-identity-bar { width: 100%; padding: 8px 12px 8px 8px; }
+      .hero-identity-meta span { font-size: 11px; word-break: break-word; }
+      .status-pill { font-size: 10.5px; line-height: 1.35; border-radius: 12px; padding: 6px 10px; }
+      .hero h1 { font-size: 30px; line-height: 1.12; }
+      .hero-lead { font-size: 15px; margin-bottom: 20px; }
+
+      .hero-cta-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+      .hero-cta-row .btn-primary,
+      .hero-cta-row .btn-secondary,
+      #malha .btn-primary {
+        width: 100%;
+        justify-content: center;
+        min-height: 46px;
+        font-size: 13.5px;
+      }
+
+      .hero-metrics {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+      .metric-card { padding: 12px; }
+      .metric-card strong { font-size: 18px; }
+      .metric-card span { font-size: 11px; }
+
+      .simulator-shell { padding: 12px; border-radius: 18px; }
+      .sim-actions-row { gap: 6px; }
+      .sim-actions-row .chip-btn { flex: 1 1 auto; justify-content: center; font-size: 11.5px; }
+      .sim-input, .search-input { font-size: 16px; }
+
+      .screenshots-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+      .shot-card { padding: 8px; border-radius: 12px; }
+      .shot-caption strong { font-size: 12px; }
+      .shot-caption span { font-size: 11px; }
+
+      .filter-pills {
+        width: 100%;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 4px;
+        -webkit-overflow-scrolling: touch;
+      }
+      .filter-pill { flex-shrink: 0; font-size: 12px; padding: 6px 11px; }
+
+      .privacy-container { padding: 16px; border-radius: 16px; }
+      .privacy-toolbar { flex-direction: column; align-items: stretch; }
+      .privacy-toolbar > div:first-child { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .privacy-toolbar h2 { font-size: 19px !important; line-height: 1.25; word-break: break-word; }
+      .search-box { max-width: 100%; min-width: 0; width: 100%; }
+
+      .video-card > div:last-child {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px !important;
+      }
+      .video-card .chip-btn,
+      .video-card .btn-secondary {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+        padding: 9px 8px !important;
+        font-size: 11.5px !important;
+      }
+
+      #malha .bento-card .btn-primary {
+        width: 100%;
+        justify-content: center;
+      }
+
+      /* Mobile Card Layout for Comparison Table on Smartphones */
+      #comparativo .table-wrap {
+        background: transparent;
+        border: none;
+        overflow-x: visible;
+      }
+      #comparativo table, #comparativo tbody {
+        display: block;
+        width: 100%;
+      }
+      #comparativo thead {
+        display: none;
+      }
+      #comparativo tbody tr {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        background: var(--bg-surface);
+        border: 1px solid var(--border-subtle);
+        border-radius: 14px;
+        padding: 14px;
+        margin-bottom: 12px;
+      }
+      #comparativo tbody td {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        padding: 6px 8px;
+        border: none;
+        font-size: 12px;
+        background: #070B14;
+        border-radius: 8px;
+      }
+      #comparativo tbody td:first-child {
+        grid-column: span 2;
+        background: transparent;
+        padding: 0 0 6px 0;
+        border-bottom: 1px solid var(--border-hairline);
+        border-radius: 0;
+        font-size: 13.5px;
+      }
+      #comparativo tbody td.highlight-col {
+        grid-column: span 2;
+        background: rgba(16, 185, 129, 0.08);
+        border: 1px solid rgba(16, 185, 129, 0.28);
+      }
+      #comparativo tbody td:nth-child(2)::before { content: "🛡️ OnionTalk v1.4.4"; font-size: 10.5px; font-weight: 700; color: #34D399; font-family: 'JetBrains Mono', monospace; }
+      #comparativo tbody td:nth-child(3)::before { content: "WhatsApp"; font-size: 10.5px; font-weight: 600; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
+      #comparativo tbody td:nth-child(4)::before { content: "Telegram"; font-size: 10.5px; font-weight: 600; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
+      #comparativo tbody td:nth-child(5)::before { content: "Signal"; font-size: 10.5px; font-weight: 600; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Header Navigation -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#top" class="brand-logo">
+        <div class="brand-mark">
+          <img src="icon-512.png" alt="OnionTalk Official App Icon" />
+        </div>
+        <span>OnionTalk</span>
+        <span class="brand-version-tag">v1.5.0 · Build 36</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Navegação Principal">
+        <a href="#vitrine" data-i18n="nav_showcase">Telas &amp; Filme Oficial</a>
+        <a href="#arquitetura" data-i18n="nav_arch">Arquitetura Tor v3</a>
+        <a href="#malha" data-i18n="nav_mesh">Malha Global (17 Nós)</a>
+        <a href="#comparativo" data-i18n="nav_comp">Comparativo</a>
+        <a href="#privacy" class="active" data-i18n="nav_priv">Política de Privacidade</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="lang-switch" role="group" aria-label="Seletor de Idioma">
+          <button type="button" class="lang-btn active" id="btn-pt" onclick="setLanguage('pt')">PT</button>
+          <button type="button" class="lang-btn" id="btn-en" onclick="setLanguage('en')">EN</button>
+          <button type="button" class="lang-btn" id="btn-es" onclick="setLanguage('es')">ES</button>
+          <button type="button" class="lang-btn" id="btn-ru" onclick="setLanguage('ru')">RU</button>
+        </div>
+        <a href="https://play.google.com/store/apps/details?id=org.oniontalk.messenger" target="_blank" rel="noopener" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M3 20.5v-17c0-.83.94-1.3 1.6-.8l14 8.5c.6.37.6 1.23 0 1.6l-14 8.5c-.66.5-1.6.03-1.6-.8z"></path>
+          </svg>
+          <span data-i18n="cta_download">Google Play</span>
+        </a>
+      </div>
+    </div>
+    <nav class="mobile-subnav" aria-label="Navegação Rápida Mobile">
+      <a href="#vitrine">Telas &amp; Vídeo</a>
+      <a href="#arquitetura">Arquitetura</a>
+      <a href="#malha">17 Nós &amp; Relay Android</a>
+      <a href="#comparativo">Comparativo</a>
+      <a href="#privacy">Privacidade</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div>
+        <div class="hero-identity-bar">
+          <div class="hero-identity-icon">
+            <img src="icon-512.png" alt="Ícone Oficial do OnionTalk" />
+          </div>
+          <div class="hero-identity-meta">
+            <strong>OnionTalk: Private Tor Chat</strong>
+            <span>org.oniontalk.messenger · v1.4.6 (Build 35) · PT / EN / ES / RU</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="status-pill">
+            <span class="status-dot"></span>
+            <span data-i18n="hero_badge">MALHA V2 ATIVA · 17 NÓS TOR V3 EM 8 PAÍSES + AUTO-JOIN · 100% ENTREGA SOAK TEST</span>
+          </div>
+        </div>
+
+        <h1 data-i18n="hero_title">
+          Simples como o WhatsApp.<br/>
+          <span>Invisível e soberano na rede Tor v3.</span>
+        </h1>
+
+        <p class="hero-lead" data-i18n="hero_lead">
+          Mensageiros convencionais exigem seu número de telefone, guardam seus contatos em nuvem e expõem seu IP. O OnionTalk opera 100% sobre Serviços Ocultos Tor v3 (<code>.onion</code>) com criptografia X25519 + ML-KEM-768 (PQC) + ChaCha20-Poly1305, cofre SQLCipher AES-256, biometria AndroidKeyStore com trava anti-coação e queima bilateral instantânea.
+        </p>
+
+        <div class="hero-cta-row">
+          <a href="https://play.google.com/store/apps/details?id=org.oniontalk.messenger" target="_blank" rel="noopener" class="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M3 20.5v-17c0-.83.94-1.3 1.6-.8l14 8.5c.6.37.6 1.23 0 1.6l-14 8.5c-.66.5-1.6.03-1.6-.8z"></path>
+            </svg>
+            <span data-i18n="hero_btn_play">Baixar no Google Play</span>
+          </a>
+          <a href="https://github.com/onion-talk/oniontalk-demo/releases/download/v1.5.0-demo/OnionTalk-v1.5.0.apk" target="_blank" rel="noopener" class="btn-secondary" style="border-color: var(--border-emerald); color: var(--brand-emerald-hover);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span data-i18n="hero_btn_apk">APK Universal Assinado (v1.5.0 · Build 36)</span>
+          </a>
+          <a href="OnionTalk-RelayNode-v1.4.4.apk" download class="btn-secondary" style="border-color: rgba(6, 182, 212, 0.45); color: #67E8F9;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+              <line x1="12" y1="18" x2="12.01" y2="18"></line>
+            </svg>
+            <span>APK Relay Server Android (v1.4.3 · Zero-Leak)</span>
+          </a>
+          <a href="#malha" class="btn-secondary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="8" rx="2"></rect>
+              <rect x="2" y="14" width="20" height="8" rx="2"></rect>
+              <line x1="6" y1="6" x2="6.01" y2="6"></line>
+              <line x1="6" y1="18" x2="6.01" y2="18"></line>
+            </svg>
+            <span data-i18n="hero_btn_node">Subir Relay Docker (&lt;60MB)</span>
+          </a>
+          <a href="#web-container" class="btn-secondary" style="border-color: rgba(56, 189, 248, 0.45); color: #38BDF8;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+            <span>Web Client + Relay Docker (v1.4.4)</span>
+          </a>
+          <a href="#privacy" class="btn-secondary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+            <span data-i18n="hero_btn_policy">Política de Privacidade</span>
+          </a>
+        </div>
+
+        <div class="hero-metrics">
+          <div class="metric-card">
+            <strong>0 bytes</strong>
+            <span data-i18n="metric_1">Telefone, SIM card, e-mail, IP ou EXIF armazenados</span>
+          </div>
+          <div class="metric-card">
+            <strong>17 Relays</strong>
+            <span data-i18n="metric_2">Malha Tor v3 em 8 países (BR, US, FR, DE, RU, SG, JP, CN) + Auto-Join</span>
+          </div>
+          <div class="metric-card">
+            <strong>1.15 s</strong>
+            <span data-i18n="metric_3">Mediana p50 de entrega P2P (Soak Test 2h · 60 ondas · 0 crashes)</span>
+          </div>
+          <div class="metric-card">
+            <strong>4 Idiomas</strong>
+            <span data-i18n="metric_4">Troca instantânea zero-telemetria (PT, EN, ES, RU)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive OnionTalk v1.4.4 Simulator -->
+      <div class="simulator-shell" aria-label="Simulador Interativo OnionTalk v1.4.4">
+        <div class="sim-toolbar">
+          <span class="sim-toolbar-label">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="4 17 10 11 4 5"></polyline>
+              <line x1="12" y1="19" x2="20" y2="19"></line>
+            </svg>
+            SIMULADOR INTERATIVO V1.4.2
+          </span>
+          <span class="mono" style="font-size: 11px; color: var(--brand-emerald);">SOCKS5h 127.0.0.1:9050</span>
+        </div>
+
+        <div class="sim-actions-row">
+          <button type="button" class="chip-btn active-timer" id="btn-sim-timer" onclick="toggleSimTimer()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span id="sim-timer-label">Timer: 30s</span>
+          </button>
+          <button type="button" class="chip-btn" onclick="triggerSimLockdown()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            <span>Trava Anti-Coação</span>
+          </button>
+          <button type="button" class="chip-btn danger" onclick="triggerDemoBurn()" id="burn-demo-btn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path>
+            </svg>
+            <span id="burn-btn-label">Burn Bilateral</span>
+          </button>
+        </div>
+
+        <div class="phone-screen">
+          <div class="chat-header">
+            <div class="chat-peer">
+              <img class="peer-avatar" src="icon-512.png" alt="Avatar verificado Tor v3" width="38" height="38" />
+              <div class="peer-meta">
+                <h4>
+                  Helena V.
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  </svg>
+                </h4>
+                <p>@19d0a758...77tqd.onion</p>
+              </div>
+            </div>
+            <div class="chat-header-badges">
+              <span class="header-icon-badge" id="sim-lock-status" title="Estado do Cofre Biométrico">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 10v4"></path>
+                  <rect x="3" y="6" width="18" height="14" rx="2"></rect>
+                </svg>
+                <span>E2EE v2</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="chat-messages" id="demo-chat-box">
+            <div class="cipher-banner" id="sim-banner">
+              X25519 ECDH · ChaCha20-Poly1305 AEAD · Ed25519 Signed
+            </div>
+
+            <div class="msg-bubble msg-in" id="msg-1">
+              <span class="msg-text">Conectada pelo relay Paris #3 sem número de telefone nem Google FCM.</span>
+              <div class="msg-meta">
+                <span>16:14 · Relay FR #3</span>
+              </div>
+            </div>
+
+            <div class="msg-bubble msg-out" id="msg-2">
+              <div class="reply-quote-box">Helena V.: Conectada pelo relay Paris #3...</div>
+              <span class="msg-text">Foto e áudio passam pelo Canvas Raw + LSB Jitter (zero EXIF/GPS) antes de cifrar!</span>
+              <div class="msg-meta">
+                <span class="timer-pill">30s</span>
+                <span>16:14</span>
+                <span class="read-checks">✓✓</span>
+              </div>
+            </div>
+
+            <div class="msg-bubble msg-in" id="msg-3">
+              <span class="msg-text">Teste enviar uma mensagem abaixo ou acione o Burn Bilateral para ver o shredding SQLCipher.</span>
+              <div class="msg-meta">
+                <span>16:15 · ACK Preimage OK</span>
+              </div>
+            </div>
+          </div>
+
+          <form class="sim-composer" onsubmit="sendSimMessage(event)">
+            <input type="text" id="sim-input" class="sim-input" placeholder="Digite uma mensagem E2EE para testar..." maxlength="120" />
+            <button type="submit" class="sim-send-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+              <span>Cifrar</span>
+            </button>
+          </form>
+        </div>
+
+        <div class="wire-inspector" id="wire-packet-log">
+          WIRE V2: __ENC_X25519_CHACHA20_V2__:8f41c09a...e3b1:d9A8kLm2...==:ed25519_sig_ok
+        </div>
+      </div>
+    </section>
+
+    <!-- Real App Screenshots & Studio 1080p Film Section -->
+    <section class="section" id="vitrine">
+      <div class="section-header-row">
+        <div class="section-header">
+          <span class="section-eyebrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+            <span data-i18n="showcase_eyebrow">KIT DE MÍDIA &amp; EVIDÊNCIA REAL DE EXECUÇÃO · ANDROID V1.4.4 (BUILD 28)</span>
+          </span>
+          <h2 data-i18n="showcase_title">Central de Vídeos Promocionais 1080p e Kit de 16 Telas Reais.</h2>
+          <p data-i18n="showcase_desc">Assista aos vídeos oficiais da versão v1.4.2 (Promo Oficial PT/EN, Tour Completo de Funções, formato Reels/Shorts 9:16 e Filme Manifesto) e inspecione as 16 capturas reais do aplicativo em operação.</p>
+        </div>
+
+        <div class="filter-pills" role="tablist" aria-label="Filtro de capturas de tela">
+          <button type="button" class="filter-pill active" onclick="filterScreenshots('all', this)">Todas (16)</button>
+          <button type="button" class="filter-pill" onclick="filterScreenshots('v142', this)">Novidades v1.4.2 (8)</button>
+          <button type="button" class="filter-pill" onclick="filterScreenshots('vault', this)">Cofre &amp; Identidade</button>
+          <button type="button" class="filter-pill" onclick="filterScreenshots('chat', this)">Chat E2EE &amp; Burn</button>
+          <button type="button" class="filter-pill" onclick="filterScreenshots('mesh', this)">Malha Tor &amp; Segurança</button>
+        </div>
+      </div>
+
+      <!-- Studio Film + Multi-Video Walkthrough Showcase Row -->
+      <div class="media-showcase-grid">
+        <div class="video-card">
+          <div>
+            <div class="video-frame" id="promo-video-container">
+              <video id="promo-video-player" controls preload="metadata" loading="lazy" width="1280" height="720" poster="video/poster-freedom.png">
+                <source id="promo-video-src" src="video/OnionTalk-v1.4.1-Promo-Oficial-PT.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <h3 id="promo-video-title" style="font-size: 18px; font-weight: 700; margin-bottom: 6px;">Vídeo Promo Oficial v1.4.2: Mensagens com Senha, Cofre &amp; Malha Tor (1080p)</h3>
+            <p id="promo-video-desc" style="font-size: 13.5px; color: var(--text-secondary);">Locução feminina natural de estúdio apresentando a barra flutuante estilo Telegram, Grupos Criptografados, figurinhas WebP, mensagens com senha (auto-tranca em 15s), nível de Amigo e download direto do Server Relay APK.</p>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px;">
+            <button type="button" class="chip-btn active-timer" id="vid-btn-v142-pt" onclick="switchPromoVideo('v142-pt')">🎬 Promo v1.4.2 (PT-BR)</button>
+            <button type="button" class="chip-btn" id="vid-btn-v142-en" onclick="switchPromoVideo('v142-en')">🎬 Official Promo v1.4.2 (EN)</button>
+            <button type="button" class="chip-btn" id="vid-btn-demo-pt" onclick="switchPromoVideo('demo-pt')">📲 Tour de Funções (PT-BR)</button>
+            <button type="button" class="chip-btn" id="vid-btn-reels-pt" onclick="switchPromoVideo('reels-pt')">📱 Reels / Shorts 9:16</button>
+            <button type="button" class="chip-btn" id="vid-btn-pt" onclick="switchPromoVideo('pt')">🎥 Manifesto (PT)</button>
+            <button type="button" class="chip-btn" id="vid-btn-en" onclick="switchPromoVideo('en')">🎥 Manifesto (EN)</button>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div>
+            <div class="video-frame">
+              <video id="walkthrough-video-player" controls preload="metadata" loading="lazy" width="1280" height="720" poster="screenshots/11-locked-message-e2ee.png">
+                <source id="walkthrough-video-src" src="video/OnionTalk-v1.4.1-Demo-Funcoes-PT.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div style="background: #070B14; border: 1px solid var(--border-hairline); border-radius: 12px; padding: 16px; margin-bottom: 12px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+                <span class="mono" style="font-size: 12px; color: var(--brand-emerald); font-weight: 700;">NOVIDADES DA RELEASE V1.4.2 (BUILD 26)</span>
+                <span class="badge-yes">Play Store Ready · vc26</span>
+              </div>
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 13px; color: var(--text-secondary);">
+                <li style="display: flex; gap: 8px;">
+                  <span style="color: var(--brand-emerald); font-weight: 700;">01.</span>
+                  <span><strong>Blindagem Anti-Exploit 100%:</strong> Firewall de mídia contra vazamento de IP (HLS/MP4 <code>dref</code>), proteção anti-bombas de descompressão (teto 4 MB) e bloqueio de sobreposição de tela (Tapjacking).</span>
+                </li>
+                <li style="display: flex; gap: 8px;">
+                  <span style="color: var(--brand-emerald); font-weight: 700;">02.</span>
+                  <span><strong>Cofre em Hardware (TEE):</strong> Biometria RSA-2048 OAEP vinculada ao <code>CryptoObject</code> e verificador de senha selado no <code>AndroidKeyStore</code>.</span>
+                </li>
+                <li style="display: flex; gap: 8px;">
+                  <span style="color: var(--brand-emerald); font-weight: 700;">03.</span>
+                  <span><strong>Super-Compressão P2P &amp; Pool Tor Quente:</strong> Dicionário <code>Deflate</code> E2EE, fotos WebP (até 65% menores) e entrega sub-segundo (~580ms) com renderização em 0ms.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <a href="video/OnionTalk-v1.4.1-Promo-Oficial-PT.mp4" download="OnionTalk-v1.4.2-Promo-Oficial-PT.mp4" class="btn-secondary" style="padding: 8px 12px; font-size: 12px;">⬇ Promo PT (1080p)</a>
+            <a href="video/OnionTalk-v1.4.1-Promo-Official-EN.mp4" download="OnionTalk-v1.4.2-Promo-Official-EN.mp4" class="btn-secondary" style="padding: 8px 12px; font-size: 12px;">⬇ Promo EN (1080p)</a>
+            <a href="video/OnionTalk-v1.4.1-Demo-Funcoes-PT.mp4" download="OnionTalk-v1.4.2-Demo-Funcoes-PT.mp4" class="btn-secondary" style="padding: 8px 12px; font-size: 12px;">⬇ Demo Funções</a>
+            <a href="video/OnionTalk-v1.4.1-Reels-Shorts-PT.mp4" download="OnionTalk-v1.4.2-Reels-Shorts-PT.mp4" class="btn-secondary" style="padding: 8px 12px; font-size: 12px;">⬇ Reels 9:16</a>
+            </div>
+        </div>
+      </div>
+
+      <!-- 16 Real High-Res Android Screenshots Kit Grid -->
+      <div class="screenshots-grid" id="screenshots-gallery">
+        <div class="shot-card" data-category="v142" onclick="openScreenshotModal('screenshots/11-locked-message-e2ee.png', 'Mensagem Protegida com Senha Individual (__LOCKED_MSG_V1__)')">
+          <div class="shot-img-wrap">
+            <img src="screenshots/11-locked-message-e2ee.png" alt="Bolha de Mensagem Protegida com Senha OnionTalk v1.4.4" width="360" height="780" loading="lazy" />
+          </div>
+          <div class="shot-caption">
+            <strong>1. Mensagem com Senha (v1.4.2)</strong>
+            <span>Bolha criptografada que exige senha dedicada para revelar o texto.</span>
+          </div>
+        </div>
+
+        <div class="shot-card" data-category="v142" onclick="openScreenshotModal('screenshots/12-unlock-message-modal.png', 'Modal de Desbloqueio de Mensagem com Senha e Cache de Sessão')">
+          <div class="shot-img-wrap">
+            <img src="screenshots/12-unlock-message-modal.png" alt="Desbloqueio de Mensagem com Senha OnionTalk v1.4.4" width="360" height="780" loading="lazy" />
+          </div>
+          <div class="shot-caption">
+            <strong>2. Desbloqueio Instantâneo</strong>
+            <span>Destrava na 1ª tentativa com teclado privado sem histórico.</span>
+          </div>
+        </div>
+
+        <div class="shot-card" data-category="v142" onclick="openScreenshotModal('screenshots/13-locked-chat-pin-home.png', 'Lista Limpa v1.4.6 (Build 35): Favoritos Fixados (📌), Conversa Trancada e Toque Longo')">
+          <div class="shot-img-wrap">
+            <img src="screenshots/13-locked-chat-pin-home.png" alt="Tela Inicial Limpa com Favorito e Conversa Trancada v1.4.6 (Build 35)" width="360" height="780" loading="lazy" />
+          </div>
+          <div class="shot-caption">
+            <strong>3. Lista Limpa &amp; Toque Longo</strong>
+            <span>Segure na conversa para favoritar no topo, renomear ou queimar.</span>
+          </div>
+        </div>
+
+        <div class="shot-card" data-category="v142" onclick="openScreenshotModal('screenshots/14-lock-conversation-modal.png', 'Trancar Conversa Inteira com Senha e Ocultar Prévia')">
+          <div class="shot-img-wrap">
+            <img src="screenshots/14-lock-conversation-modal.png" alt="Modal Trancar Conversa com Senha OnionTalk v1.4.4" width="360" height="780" loading="lazy" />
+          </div>
+          <div class="shot-caption">
+            <strong>4. Conversa Trancada com Senha</strong>
+            <span>Oculta a prévia na Home e exige senha dedicada ao abrir o chat.</span>
+          </div>
+        </div>
+
+        <div class="shot-card" data-category="v142" onclick="openScreenshotModal('screenshots/15-profile-photo-privacy.png', 'Configurações v1.4.6 (Build 35): 4 Abas Fixas &amp; Visibilidade da Foto de Perfil')">
+          <div class="shot-img-wrap">
+            <img src="screenshots/15-profile-photo-privacy.png" alt="Privacidade de Foto de Perfil OnionTalk v1.4.4 Build 23" width="360" height="780" loading="lazy" />
+          </div>
+          <div class="shot-caption">
+            <strong>5. Privacidade de Foto (v1.4.2)</strong>
+            <span>Escolha entre Público, Contatos, Amigos (Favoritos) ou Privado.</span>
+          </div>
+        </div>
+
+        <div class="shot-card" data-category="v142" onclick="openScreenshotModal('screenshots/16-autolock-15s-security.png', 'Segurança v1.4.6 (Build 35): Bloqueio Automático de 15s (Mesmo Fechado) &amp; Biometria')">
+          <div class="shot-img-wrap">
+            <img src="screenshots/16-autolock-15s-security.png" alt="Auto-Lock 15s e Biometria OnionTalk v1.4.4 Build 23" width="360" height="780" loading="lazy" />
+          </div>
+          <div class="shot-caption">
+            <strong>6. Auto-Lock 15s &amp; Biometria</strong>
+            <span>Tranca após 15s mesmo com app fechado e leitura única de digital.</span>
+          </div>
+        </div>
+
+        <div class="shot-card" data-category="v142" onclick="openScreenshotModal('screenshots/17-donate-relay-nodes.png', 'Apoio Cripto (BTC / ETH / SOL) &amp; Guia Rápido de Nós Relay v1.4.6 (Build 35)')">
+          <div class="shot-img-wrap">
+            <img src="screenshots/17-donate-relay-nodes.png" alt="Apoie o Projeto e Suba um Servidor OnionTalk v1.4.4 Build 23" width="360" height="780" loading="lazy" />
+          </div>
+          <div class="shot-caption">
+            <strong>7. Doações &amp; Guia Relay Docker</strong>
+            <span>Cartões responsivos BTC/ETH/SOL com QR Code e comando Docker.</span>
+          </div>
+        </div>
+
+        <div class="shot-card" data-category="v142" onclick="openScreenshotModal('screenshots/03a-add-onion-contact-en.png', 'Adicionar Contato .onion com Fechamento Instantâneo e Navegação Direta')">
+          <div class="shot-img-wrap">
+            <img src="screenshots/03a-add-onion-contact-en.png" alt="Adicionar Contato OnionTalk" width="360" height="780" loading="lazy" />
+          </div>
+          <div class="shot-caption">
+            <strong>8. Adição Rápida de Contato</strong>
+            <span>Fecha o modal imediatamente e abre a conversa criptografada.</span>
+          </div>
+        </div>
+
+        <div class="shot-card" data-category="vault" onclick="openScreenshotModal('screenshots/01-vault-unlock-en.png', 'Cofre Local SQLCipher AES-256 &amp; Proteção contra Coação')">
+          <div class="shot-img-wrap">
+            <img src="screenshots/01-vault-unlock-en.png" alt="Tela de Desbloqueio SQLCipher OnionTalk" width="360" height="780" loading="lazy" />
+          </div>
+          <div class="shot-caption">
+            <strong>9. Cofre SQLCipher AES-256</strong>
+            <span>Desbloqueio local com limite de tentativas e wipe anti-forense.</span>
+          </div>
+        </div>
+
+        <div class="shot-card" data-category="vault" onclick="openScreenshotModal('screenshots/02-create-identity-en.png', 'Criação de Identidade Anônima Zero-PII (Sem Telefone ou E-mail)')">
+          <div class="shot-img-wrap">
+            <img src="screenshots/02-create-identity-en.png" alt="Criar Identidade Anônima OnionTalk" width="360" height="780" loading="lazy" />
+          </div>
+          <div class="shot-caption">
+            <strong>10. Criação Zero-PII</strong>
+            <span>Geração offline de par de chaves Ed25519 + X25519 em segundos.</span>
+          </div>
+        </div>
+
+        <div class="shot-card" data-category="vault" onclick="openScreenshotModal('screenshots/07-profile-qr-identity-en.png', 'Identidade Criptográfica Ed25519 &amp; QR Code P2P')">
+          <div class="shot-img-wrap">
+            <img src="screenshots/07-profile-qr-identity-en.png" alt="Identidade QR Code OnionTalk" width="360" height="780" loading="lazy" />
+          </div>
+          <div class="shot-caption">
+            <strong>11. Identidade Pura (@hash)</strong>
+            <span>Chave Ed25519 + QR Code e foto sanitizada sem EXIF/GPS.</span>
+          </div>
+        </div>
+
+        <div class="shot-card" data-category="chat" onclick="openScreenshotModal('screenshots/04-chat-pablo-bruna-en.png', 'Chat Ponta-a-Ponta X25519 + ML-KEM-768 (PQC) + ChaCha20-Poly1305')">
+          <div class="shot-img-wrap">
+            <img src="screenshots/04-chat-pablo-bruna-en.png" alt="Chat Criptografado OnionTalk" width="360" height="780" loading="lazy" />
+          </div>
+          <div class="shot-caption">
+            <strong>12. Chat E2EE em Tempo Real</strong>
+            <span>Entrega sub-segundo via Long-Poll Rendezvous sobre Tor v3.</span>
+          </div>
+        </div>
+
+        <div class="shot-card" data-category="chat" onclick="openScreenshotModal('screenshots/05-chat-bruna-pablo-en.png', 'Visão Espelhada do Destinatário (Entrega P2P em Tempo Real)')">
+          <div class="shot-img-wrap">
+            <img src="screenshots/05-chat-bruna-pablo-en.png" alt="Recebimento P2P OnionTalk" width="360" height="780" loading="lazy" />
+          </div>
+          <div class="shot-caption">
+            <strong>13. Recebimento Espelhado P2P</strong>
+            <span>Confirmação criptográfica de leitura (✓✓) e timers efêmeros.</span>
+          </div>
+        </div>
+
+        <div class="shot-card" data-category="chat" onclick="openScreenshotModal('screenshots/06-synchronized-burn-en.png', 'Acionamento da Queima Bilateral Anti-Forense (Burn)')">
+          <div class="shot-img-wrap">
+            <img src="screenshots/06-synchronized-burn-en.png" alt="Confirmação de Queima Bilateral OnionTalk" width="360" height="780" loading="lazy" />
+          </div>
+          <div class="shot-caption">
+            <strong>14. Queima Bilateral (Burn)</strong>
+            <span>Comando autenticado Ed25519 que destrói a conversa nos 2 aparelhos.</span>
+          </div>
+        </div>
+
+        <div class="shot-card" data-category="chat" onclick="openScreenshotModal('screenshots/06b-after-synchronized-burn-en.png', 'Histórico Destruído em Ambos os Dispositivos')">
+          <div class="shot-img-wrap">
+            <img src="screenshots/06b-after-synchronized-burn-en.png" alt="Resultado após Queima Bilateral OnionTalk" width="360" height="780" loading="lazy" />
+          </div>
+          <div class="shot-caption">
+            <strong>15. Pós-Burn Verificado</strong>
+            <span>Páginas SQLCipher sobrescritas fisicamente e zeradas.</span>
+          </div>
+        </div>
+
+        <div class="shot-card" data-category="mesh" onclick="openScreenshotModal('screenshots/08-tor-mesh-settings-en.png', 'Gerenciamento da Malha Tor v3 &amp; 17 Nós Globais')">
+          <div class="shot-img-wrap">
+            <img src="screenshots/08-tor-mesh-settings-en.png" alt="Configurações da Malha Tor OnionTalk" width="360" height="780" loading="lazy" />
+          </div>
+          <div class="shot-caption">
+            <strong>16. Malha Tor v3 &amp; 17 Relays</strong>
+            <span>Modo Sempre Conectado, diagnóstico de latência e adição de nós.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Asymmetric 12-Col Architecture Bento Grid -->
+    <section class="section" id="arquitetura">
+      <div class="section-header">
+        <span class="section-eyebrow" data-i18n="arch_eyebrow">ARQUITETURA CRIPTOGRÁFICA ZERO-TRUST</span>
+        <h2 data-i18n="arch_title">Construído para resistir a auditoria forense, interceptação de rede e coação física.</h2>
+        <p data-i18n="arch_desc">Cada componente substitui uma dependência centralizada de Big Tech por provas matemáticas verificáveis.</p>
+      </div>
+
+      <div class="bento-grid">
+        <div class="bento-card span-7">
+          <div>
+            <div class="bento-top-bar">
+              <div class="bento-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="2" y1="12" x2="22" y2="12"></line>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                </svg>
+              </div>
+              <span class="bento-tag">libtor.so JNI · SOCKS5h :9050</span>
+            </div>
+            <h3 data-i18n="bento_1_title">Daemon Tor v3 Nativo Embarcado (Sem Orbot / Sem VPN Global)</h3>
+            <p data-i18n="bento_1_desc">O binário nativo <code>libtor.so</code> roda estritamente dentro do sandbox do aplicativo. O <code>OnionKeepAliveService</code> mantém o circuito SOCKS5h vivo em segundo plano com <code>boundedGateways</code> (eliminando Head-of-Line Blocking) sem sequestrar a VPN do sistema Android.</p>
+          </div>
+          <div class="code-snippet mono">
+            <span>Master: onion4zr3bsdeaelksemwokl5qmxd5o7jyblf46vc2mfl6cozgw77tqd.onion</span>
+          </div>
+        </div>
+
+        <div class="bento-card span-5">
+          <div>
+            <div class="bento-top-bar">
+              <div class="bento-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path>
+                </svg>
+              </div>
+              <span class="bento-tag">Ed25519 + X25519</span>
+            </div>
+            <h3 data-i18n="bento_2_title">Identidade Sem Chip SIM, Sem Telefone e Sem E-mail</h3>
+            <p data-i18n="bento_2_desc">Sua conta é um par de chaves criptográficas gerado offline no seu aparelho. Nenhum SMS, e-mail, IMEI ou número de telefone jamais existe no protocolo.</p>
+          </div>
+          <div class="code-snippet mono">
+            <span>ID: @19d0a7584794cdae:onion4zr3bs...77tqd.onion</span>
+          </div>
+        </div>
+
+        <div class="bento-card span-4">
+          <div>
+            <div class="bento-top-bar">
+              <div class="bento-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+              </div>
+              <span class="bento-tag">AndroidKeyStore + Duress</span>
+            </div>
+            <h3 data-i18n="bento_3_title">Cofre SQLCipher AES-256, Senha de Coação &amp; Lockdown</h3>
+            <p data-i18n="bento_3_desc">Banco cifrado com PBKDF2-HMAC-SHA256. A Senha de Coação destrói o cofre em milissegundos, e o botão de cadeado manual desarma a biometria contra coação física.</p>
+          </div>
+        </div>
+
+        <div class="bento-card span-8">
+          <div>
+            <div class="bento-top-bar">
+              <div class="bento-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                </svg>
+              </div>
+              <span class="bento-tag">Wire Protocol v2 · RFC 8032</span>
+            </div>
+            <h3 data-i18n="bento_4_title">Envelopes Wire V2 com Forward Secrecy &amp; ACK Preimage Lock</h3>
+            <p data-i18n="bento_4_desc">Cada mensagem gera uma chave efêmera X25519 combinada via HKDF-SHA256 e selada com ChaCha20-Poly1305 AEAD + assinatura Ed25519. O relay só descarta o envelope da RAM quando o destinatário prova conhecer a pré-imagem <code>SHA-256(ack_token) == ack_lock</code>.</p>
+          </div>
+          <div class="code-snippet mono">
+            <span>__ENC_X25519_CHACHA20_V2__:&lt;ephPubHex&gt;:&lt;nonceB64&gt;:&lt;ctB64&gt;:&lt;ed25519SigHex&gt;</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive 16-Node Federation Mesh Explorer -->
+    <section class="section" id="malha">
+      <div class="section-header-row">
+        <div class="section-header">
+          <span class="section-eyebrow">MALHA AUTO-GOSSIP PEX V2 · 17 NÓS ATIVOS EM 8 PAÍSES + AUTO-JOIN</span>
+          <h2>Infraestrutura Global Descentralizada (.onion) &amp; Relay Android</h2>
+          <p>O OnionTalk sincroniza automaticamente entre 17 relays Tor v3 distribuídos em 8 países (Brasil, EUA, França, Alemanha, Rússia, Singapura, Japão e China) com Zero-Touch Auto-Join 100% anônimo (Zero-Leak de IP, aparelho ou localização). Suba um novo nó em 10 segundos no Docker ou diretamente dentro do seu celular Android como aplicativo secundário.</p>
+        </div>
+
+        <div class="filter-pills">
+          <button type="button" class="filter-pill active" onclick="filterMeshNodes('all', this)">Todos (17 Nós)</button>
+          <button type="button" class="filter-pill" onclick="filterMeshNodes('BR', this)">Brasil (3)</button>
+          <button type="button" class="filter-pill" onclick="filterMeshNodes('US', this)">EUA (5)</button>
+          <button type="button" class="filter-pill" onclick="filterMeshNodes('FR', this)">França (3)</button>
+          <button type="button" class="filter-pill" onclick="filterMeshNodes('DE', this)">Alemanha (1)</button>
+          <button type="button" class="filter-pill" onclick="filterMeshNodes('RU', this)">Rússia (1)</button>
+          <button type="button" class="filter-pill" onclick="filterMeshNodes('SG', this)">Singapura (1)</button>
+          <button type="button" class="filter-pill" onclick="filterMeshNodes('JP', this)">Japão (1)</button>
+          <button type="button" class="filter-pill" onclick="filterMeshNodes('CN', this)">China (1)</button>
+        </div>
+      </div>
+
+      <!-- Dual Deployment Cards: Docker All-in-One + Android Secondary Relay App -->
+      <div class="bento-grid" style="margin-bottom: 24px;">
+        <div class="bento-card span-6" style="border-color: var(--border-emerald);">
+          <div>
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 8px;">
+              <span class="section-eyebrow" style="margin-bottom: 0;">DOCKER HUB ALL-IN-ONE · &lt; 60 MB RAM</span>
+              <span class="badge-yes">Auto-Join Zero-Leak</span>
+            </div>
+            <h3 style="margin-bottom: 6px;">1. Subir Nó Relay em Servidor / Container</h3>
+            <p style="font-size: 13.5px;">A imagem <code>eriktonon/oniontalk:latest</code> empacota Tor 0.4.9.14 + Gunicorn Zero-Trust Relay + Auto-Join paralelo. Entra na malha automaticamente via Tor v3 sem expor IP, latitude/longitude ou abrir portas no firewall.</p>
+          </div>
+          <div>
+            <div class="code-snippet mono" id="docker-cmd-text" style="margin-bottom: 12px;">
+              docker run -d --name oniontalk-relay --restart unless-stopped -v oniontalk_data:/data eriktonon/oniontalk:latest
+            </div>
+            <button type="button" class="btn-primary" onclick="copyDockerCommand(this)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span>Copiar Comando Docker</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="bento-card span-6" style="border-color: rgba(6, 182, 212, 0.42);">
+          <div>
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 8px;">
+              <span class="section-eyebrow" style="margin-bottom: 0; color: #38BDF8;">APP SECUNDÁRIO ANDROID · org.oniontalk.relaynode</span>
+              <span class="badge-yes" style="border-color: rgba(6, 182, 212, 0.4); color: #67E8F9; background: rgba(6, 182, 212, 0.12);">Relay v1.4.3 · Zero-Leak</span>
+            </div>
+            <h3 style="margin-bottom: 6px;">2. Subir Nó Relay Dentro do Android (App Secundário)</h3>
+            <p style="font-size: 13.5px;">Transforme qualquer celular Android (4G/5G/Wi-Fi, mesmo atrás de CGNAT) em um servidor <strong>Tor v3 Hidden Service</strong> soberano (<code>127.0.0.1:9055 &rarr; :8088</code>). Instala lado a lado com o mensageiro principal sem conflito de portas, permite escolher apenas o Nome do Nó e faz Auto-Join 100% anônimo nos 17 seeds (zero coleta de IP, modelo do celular ou latitude/longitude).</p>
+          </div>
+          <div>
+            <div class="code-snippet mono" style="margin-bottom: 12px; color: #67E8F9;">
+              Pacote: org.oniontalk.relaynode · SOCKS5h :9055 · HiddenServicePort 80 &rarr; :8088
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+              <a href="OnionTalk-RelayNode-v1.4.4.apk" download class="btn-primary" style="background: #06B6D4; color: #021318;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Baixar OnionTalk Relay APK v1.4.3 (16.4 MB)</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="bento-card span-12" id="web-container" style="border-color: rgba(56, 189, 248, 0.45); grid-column: span 12;">
+          <div>
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 8px;">
+              <span class="section-eyebrow" style="margin-bottom: 0; color: #38BDF8;">DESKTOP &amp; WEB CLIENT + RELAY TOR V3 · eriktonon/oniontalk-web:latest</span>
+              <span class="badge-yes" style="border-color: rgba(56, 189, 248, 0.45); color: #38BDF8; background: rgba(56, 189, 248, 0.12);">Rust Black-Box · CIS Level 2 Hardened · v1.4.4-build28</span>
+            </div>
+            <h3 style="margin-bottom: 6px;">3. Rodar OnionTalk Web Client + Nó Relay Tor v3 (Windows / Linux / macOS)</h3>
+            <p style="font-size: 13.5px;">Execute o cliente web completo do OnionTalk + nó Relay Tor v3 embutido localmente em <code>http://127.0.0.1:8420</code> via Docker. Compilado nativamente em Rust (binário <code>strip=symbols</code> + <code>UPX --lzma</code>, <code>PR_SET_DUMPABLE=0</code>, cofre <code>Argon2id 64 MiB + AES-256-GCM</code>, áudios cifrados em repouso <code>OTATT1</code>, handshake <code>Ed25519 + X25519 X3DH</code> e transporte local selado com <code>ChaCha20</code>).</p>
+          </div>
+          <div>
+            <div class="code-snippet mono" style="margin-bottom: 12px; color: #BAE6FD;">
+              docker run -d --name oniontalk-web --restart unless-stopped --read-only --cap-drop ALL --security-opt no-new-privileges:true --pids-limit 128 --memory 512m --tmpfs /tmp:rw,noexec,nosuid,nodev,size=64m -p 127.0.0.1:8420:8420 -v oniontalk_web_vault:/data -v oniontalk_web_tor:/var/lib/tor eriktonon/oniontalk-web:latest
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+              <a href="docker-compose.web.yml" download class="btn-primary" style="background: #38BDF8; color: #021318;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Baixar docker-compose.web.yml</span>
+              </a>
+              <a href="https://hub.docker.com/r/eriktonon/oniontalk-web" target="_blank" rel="noopener" class="btn-secondary" style="border-color: rgba(56, 189, 248, 0.45); color: #38BDF8;">
+                <span>Ver no Docker Hub (eriktonon/oniontalk-web)</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Nó / Região</th>
+              <th>Endereço Tor v3 Hidden Service (.onion)</th>
+              <th>Protocolo &amp; Papel</th>
+              <th>Status</th>
+              <th>Ação</th>
+            </tr>
+          </thead>
+          <tbody id="mesh-nodes-tbody">
+            <tr data-region="BR">
+              <td><strong>BR · São Paulo #1 (Master BR-Master)</strong></td>
+              <td class="mono" style="font-size: 12px; color: #A7F3D0;">onion4zr3bsdeaelksemwokl5qmxd5o7jyblf46vc2mfl6cozgw77tqd.onion</td>
+              <td>PEX v2 · Ed25519 Master Seed</td>
+              <td><span class="badge-yes">ONLINE · 99.98%</span></td>
+              <td><button type="button" class="chip-btn" onclick="copyOnion('onion4zr3bsdeaelksemwokl5qmxd5o7jyblf46vc2mfl6cozgw77tqd.onion', this)">Copiar .onion</button></td>
+            </tr>
+            <tr data-region="BR">
+              <td><strong>BR · São Paulo #2 (Worker BR-Worker)</strong></td>
+              <td class="mono" style="font-size: 12px; color: #A7F3D0;">kn4u2xxl2otoo2ujv3mhehwfwbw7mtppaf56fu3nxogvv7eekf2qdrid.onion</td>
+              <td>PEX v2 · Homelab Core Seed</td>
+              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
+              <td><button type="button" class="chip-btn" onclick="copyOnion('kn4u2xxl2otoo2ujv3mhehwfwbw7mtppaf56fu3nxogvv7eekf2qdrid.onion', this)">Copiar .onion</button></td>
+            </tr>
+            <tr data-region="US">
+              <td><strong>US · AWS EKS #3 (US-East)</strong></td>
+              <td class="mono" style="font-size: 12px; color: #A7F3D0;">puqjsmsyyzmxjdtcgr2fl4wrdazqd2phaqrz26alzwyletbvekkxhyyd.onion</td>
+              <td>PEX v2 · Cloud Relay</td>
+              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
+              <td><button type="button" class="chip-btn" onclick="copyOnion('puqjsmsyyzmxjdtcgr2fl4wrdazqd2phaqrz26alzwyletbvekkxhyyd.onion', this)">Copiar .onion</button></td>
+            </tr>
+            <tr data-region="BR">
+              <td><strong>BR · Oracle Cloud OCI #4 (São Paulo)</strong></td>
+              <td class="mono" style="font-size: 12px; color: #A7F3D0;">zqdx5x7pfybox7m5rz3fe5kiouxhipvh3ekuteq2urrrvwcxjttnmgid.onion</td>
+              <td>PEX v2 · South America Backbone</td>
+              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
+              <td><button type="button" class="chip-btn" onclick="copyOnion('zqdx5x7pfybox7m5rz3fe5kiouxhipvh3ekuteq2urrrvwcxjttnmgid.onion', this)">Copiar .onion</button></td>
+            </tr>
+            <tr data-region="US">
+              <td><strong>US · AWS Virginia #5 (us-east-1)</strong></td>
+              <td class="mono" style="font-size: 12px; color: #A7F3D0;">ch4s5llfqshxbvba2yulgp5kbopq25w3qqrtli67sle6smbujlebn2id.onion</td>
+              <td>PEX v2 · Cloud Relay</td>
+              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
+              <td><button type="button" class="chip-btn" onclick="copyOnion('ch4s5llfqshxbvba2yulgp5kbopq25w3qqrtli67sle6smbujlebn2id.onion', this)">Copiar .onion</button></td>
+            </tr>
+            <tr data-region="FR">
+              <td><strong>FR · EU-West Node Paris #6</strong></td>
+              <td class="mono" style="font-size: 12px; color: #A7F3D0;">7bntuiegd3stvcylvx7rhnhq7ncasxiokunbf5onvvm34dg5gccvooid.onion</td>
+              <td>PEX v2 · EU Core Relay</td>
+              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
+              <td><button type="button" class="chip-btn" onclick="copyOnion('7bntuiegd3stvcylvx7rhnhq7ncasxiokunbf5onvvm34dg5gccvooid.onion', this)">Copiar .onion</button></td>
+            </tr>
+            <tr data-region="US">
+              <td><strong>US · Google Cloud #7 (South Carolina)</strong></td>
+              <td class="mono" style="font-size: 12px; color: #A7F3D0;">jz6urt6ckkqqvtasm6bll2mryhksjcawcl4tbguif5nqvxgsfsx6ywad.onion</td>
+              <td>PEX v2 · US Backbone Relay</td>
+              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
+              <td><button type="button" class="chip-btn" onclick="copyOnion('jz6urt6ckkqqvtasm6bll2mryhksjcawcl4tbguif5nqvxgsfsx6ywad.onion', this)">Copiar .onion</button></td>
+            </tr>
+            <tr data-region="US">
+              <td><strong>US · Render Cloud #8 (Ohio)</strong></td>
+              <td class="mono" style="font-size: 12px; color: #A7F3D0;">4wufywh2k6ayyz6nmh2w25hj5vjsqgkve24o2tthvc7rhyvxnhaghqqd.onion</td>
+              <td>PEX v2 · Cloud Relay</td>
+              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
+              <td><button type="button" class="chip-btn" onclick="copyOnion('4wufywh2k6ayyz6nmh2w25hj5vjsqgkve24o2tthvc7rhyvxnhaghqqd.onion', this)">Copiar .onion</button></td>
+            </tr>
+            <tr data-region="RU">
+              <td><strong>RU · EE-East Relay Node</strong></td>
+              <td class="mono" style="font-size: 12px; color: #A7F3D0;">nwsoa6ddtbbqbwcceanhhj3j23d5a47zbpbs6zspz5zoeytzqpzvkqqd.onion</td>
+              <td>PEX v2 · Eurasia Relay</td>
+              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
+              <td><button type="button" class="chip-btn" onclick="copyOnion('nwsoa6ddtbbqbwcceanhhj3j23d5a47zbpbs6zspz5zoeytzqpzvkqqd.onion', this)">Copiar .onion</button></td>
+            </tr>
+            <tr data-region="US">
+              <td><strong>US · US-East Container Relay</strong></td>
+              <td class="mono" style="font-size: 12px; color: #A7F3D0;">bk7iegv3v232ycjyf5ylwsdx42iozvy2dhhff5zn3ciwa3g2lkifdlad.onion</td>
+              <td>PEX v2 · Edge Container Relay</td>
+              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
+              <td><button type="button" class="chip-btn" onclick="copyOnion('bk7iegv3v232ycjyf5ylwsdx42iozvy2dhhff5zn3ciwa3g2lkifdlad.onion', this)">Copiar .onion</button></td>
+            </tr>
+            <tr data-region="FR">
+              <td><strong>FR · EU-West Relay Node</strong></td>
+              <td class="mono" style="font-size: 12px; color: #A7F3D0;">hdjp7uaj4qemlmwtev7xmj2w3uexnv6ctplfgvbmpqxenbfgwjjwtrid.onion</td>
+              <td>PEX v2 · EU Core Relay</td>
+              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
+              <td><button type="button" class="chip-btn" onclick="copyOnion('hdjp7uaj4qemlmwtev7xmj2w3uexnv6ctplfgvbmpqxenbfgwjjwtrid.onion', this)">Copiar .onion</button></td>
+            </tr>
+            <tr data-region="FR">
+              <td><strong>FR · EU-West Relay Node</strong></td>
+              <td class="mono" style="font-size: 12px; color: #A7F3D0;">gcvfh67zltoyvithw6luetsrcec6cw42upzrsprxfmx27cvh7vidw4yd.onion</td>
+              <td>PEX v2 · EU Core Relay</td>
+              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
+              <td><button type="button" class="chip-btn" onclick="copyOnion('gcvfh67zltoyvithw6luetsrcec6cw42upzrsprxfmx27cvh7vidw4yd.onion', this)">Copiar .onion</button></td>
+            </tr>
+            <tr data-region="US">
+              <td><strong>US · US-Central Node #13 (Iowa, US-Central)</strong></td>
+              <td class="mono" style="font-size: 12px; color: #A7F3D0;">wfi3nwuzk2tgrsf2scdy4nb6x6rtiocit4n26477zdlvdvshkgip3ayd.onion</td>
+              <td>PEX v2 · US-Central Relay</td>
+              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
+              <td><button type="button" class="chip-btn" onclick="copyOnion('wfi3nwuzk2tgrsf2scdy4nb6x6rtiocit4n26477zdlvdvshkgip3ayd.onion', this)">Copiar .onion</button></td>
+            </tr>
+            <tr data-region="JP">
+              <td><strong>JP · Global Mesh Node #14 (Osaka, Japão)</strong></td>
+              <td class="mono" style="font-size: 12px; color: #A7F3D0;">5s6w6556f2eov2p6wlsuavaxh7si2kaswjwi5reojnovbzemducjzjqd.onion</td>
+              <td>PEX v2 · Asia-Pacific East Relay</td>
+              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
+              <td><button type="button" class="chip-btn" onclick="copyOnion('5s6w6556f2eov2p6wlsuavaxh7si2kaswjwi5reojnovbzemducjzjqd.onion', this)">Copiar .onion</button></td>
+            </tr>
+            <tr data-region="SG">
+              <td><strong>SG · Global Mesh Node #15 (Singapura)</strong></td>
+              <td class="mono" style="font-size: 12px; color: #A7F3D0;">o5yf3eukrwpt2g6jfo4q2y23xtuhoso2qknmnn6ac5eng5t4yt36roqd.onion</td>
+              <td>PEX v2 · Southeast Asia Hub</td>
+              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
+              <td><button type="button" class="chip-btn" onclick="copyOnion('o5yf3eukrwpt2g6jfo4q2y23xtuhoso2qknmnn6ac5eng5t4yt36roqd.onion', this)">Copiar .onion</button></td>
+            </tr>
+            <tr data-region="DE">
+              <td><strong>DE · Global Mesh Node #16 (Nuremberg, Alemanha)</strong></td>
+              <td class="mono" style="font-size: 12px; color: #A7F3D0;">o5zqqfl5znzexdojfnxgub5jnjelxdahbyxasjp57sx6fbxtjeqovpad.onion</td>
+              <td>PEX v2 · Central Europe Relay</td>
+              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
+              <td><button type="button" class="chip-btn" onclick="copyOnion('o5zqqfl5znzexdojfnxgub5jnjelxdahbyxasjp57sx6fbxtjeqovpad.onion', this)">Copiar .onion</button></td>
+            </tr>
+            <tr data-region="CN">
+              <td><strong>CN · AP-East Mesh #17 (Hangzhou, China)</strong></td>
+              <td class="mono" style="font-size: 12px; color: #A7F3D0;">2amizuhb3p5x2lk3sra7f7thm5tgs7qtnysgowqpmexcqi4cuwyv7vad.onion</td>
+              <td>PEX v2 · East Asia / GFW Bypass Relay</td>
+              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
+              <td><button type="button" class="chip-btn" onclick="copyOnion('2amizuhb3p5x2lk3sra7f7thm5tgs7qtnysgowqpmexcqi4cuwyv7vad.onion', this)">Copiar .onion</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Technical Comparison Table -->
+    <section class="section" id="comparativo">
+      <div class="section-header">
+        <span class="section-eyebrow" data-i18n="comp_eyebrow">COMPARATIVO TÉCNICO DE ARQUITETURA</span>
+        <h2 data-i18n="comp_title">OnionTalk vs. WhatsApp, Telegram e Signal</h2>
+        <p data-i18n="comp_desc">Por que proteger apenas o texto da mensagem é insuficiente quando o seu número de telefone, IP e grafo social ficam expostos.</p>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Critério de Privacidade &amp; Soberania</th>
+              <th class="highlight-col" style="color: var(--brand-emerald-hover);">
+                <span style="display: inline-flex; align-items: center; gap: 8px;">
+                  <img src="icon-512.png" alt="OnionTalk" style="width: 22px; height: 22px; border-radius: 6px;" />
+                  OnionTalk v1.4.4
+                </span>
+              </th>
+              <th>WhatsApp</th>
+              <th>Telegram</th>
+              <th>Signal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Exige Número de Telefone (Chip SIM / KYC)?</strong></td>
+              <td class="highlight-col"><span class="badge-yes">Zero Telefone / Zero E-mail</span></td>
+              <td><span class="badge-no">Obrigatório</span></td>
+              <td><span class="badge-no">Obrigatório</span></td>
+              <td><span class="badge-no">Obrigatório</span></td>
+            </tr>
+            <tr>
+              <td><strong>Oculta seu Endereço IP por padrão (Roteamento Onion)?</strong></td>
+              <td class="highlight-col"><span class="badge-yes">Tor v3 Nativo Embutido</span></td>
+              <td><span class="badge-no">Expõe IP à Meta</span></td>
+              <td><span class="badge-no">Expõe IP ao Servidor</span></td>
+              <td><span class="badge-warn">Apenas Proxy Manual</span></td>
+            </tr>
+            <tr>
+              <td><strong>Depende do Google Firebase (FCM) para receber mensagens?</strong></td>
+              <td class="highlight-col"><span class="badge-yes">100% Independente (P2P Tor)</span></td>
+              <td><span class="badge-no">Depende de Google Play/FCM</span></td>
+              <td><span class="badge-no">Usa Push Centralizado</span></td>
+              <td><span class="badge-warn">Usa FCM por padrão</span></td>
+            </tr>
+            <tr>
+              <td><strong>Criptografia Ponta-a-Ponta (E2EE) em 100% das conversas?</strong></td>
+              <td class="highlight-col"><span class="badge-yes">Sempre Ativa (X25519 + ChaCha20)</span></td>
+              <td><span class="badge-yes">Sim (Metadados abertos)</span></td>
+              <td><span class="badge-no">Desativada por padrão (Cloud)</span></td>
+              <td><span class="badge-yes">Sempre Ativa</span></td>
+            </tr>
+            <tr>
+              <td><strong>Queima Bilateral + Senha de Coação + Trava Anti-Biometria?</strong></td>
+              <td class="highlight-col"><span class="badge-yes">Nativo (Shredding SQLCipher)</span></td>
+              <td><span class="badge-no">Não possui</span></td>
+              <td><span class="badge-warn">Exclusão sem coação</span></td>
+              <td><span class="badge-no">Não possui</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Official Google Play Privacy Policy Section -->
+    <section class="section" id="privacy">
+      <div class="privacy-container">
+        <div class="privacy-toolbar">
+          <div style="display: flex; align-items: center; gap: 16px;">
+            <img src="icon-512.png" alt="OnionTalk Official Icon" style="width: 52px; height: 52px; border-radius: 13px; border: 1px solid var(--border-subtle); flex-shrink: 0;" />
+            <div>
+              <span class="section-eyebrow" style="margin-bottom: 4px;">DOCUMENTO OFICIAL DE CONFORMIDADE · GOOGLE PLAY CONSOLE</span>
+              <h2 style="font-size: 26px; font-weight: 800; letter-spacing: -0.02em;">Política de Privacidade — OnionTalk (<code class="mono" style="color: var(--brand-emerald);">org.oniontalk.messenger</code>)</h2>
+              <p style="color: var(--text-secondary); font-size: 13px; margin-top: 4px;">
+                Última atualização: <span class="mono">24 de outubro de 2026</span> · Versão de Referência: <span class="mono">v1.4.6 (Build 35)</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="search-box">
+            <input type="text" id="policy-search" class="search-input" placeholder="Buscar na política (ex: câmera, FOREGROUND_SERVICE, biometria)..." oninput="filterPolicyClauses(this.value)" />
+          </div>
+        </div>
+
+        <div class="filter-pills" style="margin-bottom: 22px;">
+          <button type="button" class="filter-pill active" onclick="filterPolicyByTag('all', this)">Todas as Cláusulas (6)</button>
+          <button type="button" class="filter-pill" onclick="filterPolicyByTag('pii', this)">1. Zero PII</button>
+          <button type="button" class="filter-pill" onclick="filterPolicyByTag('crypto', this)">2. SQLCipher &amp; E2EE</button>
+          <button type="button" class="filter-pill" onclick="filterPolicyByTag('permissions', this)">3. Permissões &amp; Foreground Service</button>
+          <button type="button" class="filter-pill" onclick="filterPolicyByTag('retention', this)">4. Retenção, Timer &amp; Burn</button>
+        </div>
+
+        <div class="policy-grid" id="policy-clauses-grid">
+          <div class="policy-clause" data-tag="pii" data-keywords="coleta dados pessoais pii telefone email agenda gps zero knowledge sim card">
+            <h3>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+              1. Coleta Zero de Dados Pessoais (Zero PII)
+            </h3>
+            <p>O <strong>OnionTalk: Private Tor Chat</strong> (<code>org.oniontalk.messenger</code>) opera sob o princípio estrito de <strong>Zero-Knowledge (Conhecimento Zero)</strong>. O aplicativo <strong>não solicita, não coleta, não armazena, não vende e não compartilha</strong> nenhum dado pessoal ou sensível do usuário:</p>
+            <ul>
+              <li><strong>Sem cadastro tradicional:</strong> Nenhum número de telefone, chip SIM, endereço de e-mail, nome civil ou documento é solicitado.</li>
+              <li><strong>Sem leitura da agenda do telefone:</strong> Os contatos do sistema Android nunca são lidos ou sincronizados.</li>
+              <li><strong>Sem anúncios, rastreadores ou push em nuvem:</strong> Zero SDKs de publicidade, zero Google/Firebase Analytics e zero dependência do Google Cloud Messaging (FCM).</li>
+              <li><strong>Sem registro de IP ou localização:</strong> Toda a comunicação trafega exclusivamente por Serviços Ocultos Tor v3 (<code>.onion</code>).</li>
+            </ul>
+          </div>
+
+          <div class="policy-clause" data-tag="crypto" data-keywords="armazenamento criptografia local sqlcipher aes-256 x25519 chacha20 ed25519 pbkdf2">
+            <h3>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+              2. Criptografia e Armazenamento Local
+            </h3>
+            <p>Todos os dados gerados permanecem exclusivamente no dispositivo do próprio usuário:</p>
+            <ul>
+              <li><strong>Em repouso (No aparelho):</strong> Mensagens, chaves privadas (Ed25519 / X25519), contatos e preferências de idioma (<code>.oniontalk_lang</code>) são guardados localmente no banco criptografado <strong>SQLCipher (AES-256)</strong> derivado via <strong>PBKDF2-HMAC-SHA256</strong> (100.000 iterações).</li>
+              <li><strong>Em trânsito (Na malha Tor v3):</strong> Envelopes selados ponta-a-ponta com <strong>X25519 ECDH Efêmero + HKDF-SHA256 + ChaCha20-Poly1305 AEAD + Assinatura Ed25519</strong>. Os nós de retransmissão jamais têm acesso ao conteúdo das mensagens, recibos de leitura ou timers.</li>
+            </ul>
+          </div>
+
+          <div class="policy-clause" data-tag="permissions" data-keywords="permissoes camera microfone audio notificacoes internet qr code exif foreground service remote messaging special use flag secure biometria">
+            <h3>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+              3. Permissões e Serviços em Primeiro Plano (Foreground Service Disclosure)
+            </h3>
+            <p>O OnionTalk solicita apenas permissões estritamente necessárias para ações iniciadas pelo usuário e para manter o recebimento de mensagens P2P:</p>
+            <ul>
+              <li><strong>Serviços em Primeiro Plano (<code>FOREGROUND_SERVICE</code>, <code>FOREGROUND_SERVICE_REMOTE_MESSAGING</code> e <code>FOREGROUND_SERVICE_SPECIAL_USE</code>):</strong> Utilizados pelo <code>OnionKeepAliveService</code> ("Modo Sempre Conectado") para manter o daemon Tor v3 (<code>libtor.so</code> em <code>127.0.0.1:9050</code>) ativo em segundo plano e transferir/receber mensagens criptografadas em tempo real sem depender do Google Firebase (FCM) e sem usar <code>VpnService</code> global. Exibe notificação visível com controles imediatos para <em>"Novo Circuito"</em> e <em>"Pausar 2º Plano"</em>.</li>
+              <li><strong>Câmera (<code>android.permission.CAMERA</code>):</strong> Usada exclusivamente no aparelho quando o usuário escaneia um QR Code de contato ou tira uma foto instantânea pelo menu de anexos, com destruição de 100% dos metadados EXIF/GPS (Canvas Raw + LSB Jitter) antes da cifragem.</li>
+              <li><strong>Microfone (<code>android.permission.RECORD_AUDIO</code>):</strong> Usado apenas enquanto o usuário grava uma nota de voz criptografada ponta-a-ponta.</li>
+              <li><strong>Biometria Opcional (<code>android.permission.USE_BIOMETRIC</code>):</strong> Desativada por padrão. Quando ativada pelo usuário em <strong>Configurações &rarr; Segurança</strong>, utiliza o chip seguro local <code>AndroidKeyStore</code> (<code>BiometricPrompt.CryptoObject</code>) sem coletar ou transmitir dados biométricos, sendo desarmada automaticamente quando o usuário aciona o cadeado manual contra coação física.</li>
+              <li><strong>Bloqueio de Captura de Tela Seletivo (<code>FLAG_SECURE</code>):</strong> Ativo 100% do tempo nas telas de <strong>Conversas</strong> e <strong>Agenda de Contatos</strong> para impedir prints/gravações não autorizadas, permanecendo desativado na tela de <strong>Configurações / QR Code</strong> para permitir o compartilhamento da sua chave pública.</li>
+            </ul>
+          </div>
+
+          <div class="policy-clause" data-tag="retention" data-keywords="retencao exclusao dados deletar conta burn queima bilateral ram timer contatos">
+            <h3>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+              </svg>
+              4. Retenção, Mensagens Efêmeras e Exclusão Instantânea
+            </h3>
+            <p>O usuário possui controle total e irreversível sobre a retenção e destruição dos seus dados:</p>
+            <ul>
+              <li><strong>RAM Volátil nos Relays:</strong> Envelopes em trânsito ficam retidos apenas em memória RAM volátil até a prova criptográfica de entrega (<code>ACK</code>) ou expiração em 24h, sendo imediatamente expurgados.</li>
+              <li><strong>Mensagens com Timer e Queima Bilateral (Burn):</strong> Pelo menu da conversa, o usuário pode ativar autodestruição por mensagem (30s, 1m, 5m, 1h ou 24h) ou acionar o <em>Burn Bilateral</em> para sobrescrever o histórico nos dois dispositivos.</li>
+              <li><strong>Apagar Conversa vs. Biblioteca de Contatos:</strong> Apagar uma conversa limpa as mensagens mantendo o contato salvo localmente na <strong>Biblioteca de Contatos</strong>; deslizar o contato para a esquerda na Biblioteca remove o contato permanentemente.</li>
+              <li><strong>Exclusão Total da Conta:</strong> Em <strong>Configurações &rarr; Segurança &rarr; Excluir Conta</strong> (ou via Senha de Coação), todo o banco SQLCipher e as chaves locais sofrem <em>shredding</em> físico irreversível.</li>
+            </ul>
+          </div>
+
+          <div class="policy-clause" data-tag="pii" data-keywords="publico alvo criancas idade 18 seguranca infantil">
+            <h3>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+              </svg>
+              5. Público-Alvo e Segurança Infantil
+            </h3>
+            <p>O OnionTalk é destinado ao público adulto (<strong>18 anos ou mais</strong>) que busca comunicação privada e soberania criptográfica. O aplicativo não é direcionado a menores de idade e não coleta informações de crianças.</p>
+          </div>
+
+          <div class="policy-clause" data-tag="permissions" data-keywords="contato suporte seguranca vulnerabilidade email github">
+            <h3>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              6. Canal de Contato e Auditoria Open Source
+            </h3>
+            <p>Para dúvidas sobre esta Política de Privacidade, verificação do protocolo ou relatórios de segurança:</p>
+            <ul>
+              <li><strong>Organização Oficial no GitHub:</strong> <a href="https://github.com/onion-talk" target="_blank" rel="noopener" style="color: var(--brand-emerald-hover);">github.com/onion-talk</a></li>
+              <li><strong>Especificação do Protocolo &amp; Issues:</strong> <a href="https://github.com/onion-talk/oniontalk-protocol" target="_blank" rel="noopener" style="color: var(--brand-emerald-hover);">github.com/onion-talk/oniontalk-protocol</a></li>
+              <li><strong>E-mail do Responsável / Suporte:</strong> <a href="mailto:privacy@oniontalk.org" style="color: var(--brand-emerald-hover);">privacy@oniontalk.org</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Screenshot Lightbox Modal -->
+  <div class="modal-backdrop" id="screenshot-modal" onclick="closeScreenshotModal()">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <img id="modal-shot-img" src="screenshots/01-vault-unlock-en.png" alt="Preview da Tela OnionTalk" />
+      <p id="modal-shot-title" style="font-size: 14px; font-weight: 700; color: var(--text-primary); margin-bottom: 12px;"></p>
+      <button type="button" class="btn-secondary" onclick="closeScreenshotModal()">Fechar Visualização</button>
+    </div>
+  </div>
+
+  <footer>
+    <div style="display: inline-flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+      <img src="icon-512.png" alt="OnionTalk" style="width: 28px; height: 28px; border-radius: 7px;" />
+      <strong style="color: var(--text-primary); font-size: 15px;">OnionTalk: Private Tor Chat · v1.4.6 (Build 35)</strong>
+    </div>
+    <p>OnionTalk Sovereign Privacy Project · Pacote Android <code class="mono">org.oniontalk.messenger</code> · Licenciado sob MIT (Protocol &amp; Relay)</p>
+  </footer>
+
+  <script>
+    /* ==========================================================================
+       INTERACTIVE SIMULATOR, GALLERY, MESH FILTER & 4-LANGUAGE I18N (PT/EN/ES/RU)
+       ========================================================================== */
+    let burnedState = false;
+    let timerIndex = 1;
+    const timerOptions = ["OFF", "30s", "1m", "5m", "1h", "24h"];
+    const originalMessages = [
+      "Conectada pelo relay Paris #3 sem número de telefone nem Google FCM.",
+      "Foto e áudio passam pelo Canvas Raw + LSB Jitter (zero EXIF/GPS) antes de cifrar!",
+      "Teste enviar uma mensagem abaixo ou acione o Burn Bilateral para ver o shredding SQLCipher."
+    ];
+
+    function randomHex(len) {
+      return Array.from({ length: len }, () => Math.floor(Math.random() * 16).toString(16)).join("");
+    }
+
+    function toggleSimTimer() {
+      timerIndex = (timerIndex + 1) % timerOptions.length;
+      const val = timerOptions[timerIndex];
+      const btn = document.getElementById("btn-sim-timer");
+      const label = document.getElementById("sim-timer-label");
+      label.textContent = "Timer: " + val;
+      btn.classList.toggle("active-timer", val !== "OFF");
+      document.getElementById("wire-packet-log").textContent =
+        "CTRL_TIMER_V1: __MSG_META_V1__:ttl=" + val + ":sig=" + randomHex(16);
+    }
+
+    function triggerSimLockdown() {
+      const lockBadge = document.getElementById("sim-lock-status");
+      const banner = document.getElementById("sim-banner");
+      lockBadge.style.borderColor = "#F59E0B";
+      lockBadge.style.color = "#FCD34D";
+      lockBadge.innerHTML = "<span>LOCKDOWN ATIVO</span>";
+      banner.textContent = "TRAVA ANTI-COAÇÃO ATIVA · Biometria desarmada por 1 ciclo (Exige Senha)";
+      document.getElementById("wire-packet-log").textContent =
+        "KEYSTORE_GUARD: manual_lockdown_active=true · BiometricPrompt.CryptoObject disarmed";
+    }
+
+    function triggerDemoBurn() {
+      const ids = ["msg-1", "msg-2", "msg-3"];
+      const btnLabel = document.getElementById("burn-btn-label");
+      burnedState = !burnedState;
+
+      ids.forEach((id, idx) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const textSpan = el.querySelector(".msg-text");
+        if (burnedState) {
+          textSpan.textContent = "0x" + randomHex(28) + " [SQLCIPHER_SHREDDED]";
+          el.style.opacity = "0.52";
+          el.style.fontFamily = "'JetBrains Mono', monospace";
+        } else {
+          textSpan.textContent = originalMessages[idx];
+          el.style.opacity = "1";
+          el.style.fontFamily = "'Inter', sans-serif";
+        }
+      });
+
+      btnLabel.textContent = burnedState ? "Restaurar Chat" : "Burn Bilateral";
+      document.getElementById("wire-packet-log").textContent = burnedState
+        ? "CTRL_BURN_V2: __BURN_BILATERAL_SIG__:" + randomHex(24) + " · DoD 2-Pass Overwrite OK"
+        : "WIRE V2: __ENC_X25519_CHACHA20_V2__:" + randomHex(16) + ":ed25519_sig_ok";
+    }
+
+    function sendSimMessage(e) {
+      e.preventDefault();
+      const input = document.getElementById("sim-input");
+      const text = (input.value || "").trim();
+      if (!text) return;
+
+      const box = document.getElementById("demo-chat-box");
+      const bubble = document.createElement("div");
+      bubble.className = "msg-bubble msg-out";
+
+      const timerVal = timerOptions[timerIndex];
+      const now = new Date();
+      const timeStr = String(now.getHours()).padStart(2, "0") + ":" + String(now.getMinutes()).padStart(2, "0");
+
+      const msgSpan = document.createElement("span");
+      msgSpan.className = "msg-text";
+      msgSpan.textContent = text;
+      bubble.appendChild(msgSpan);
+
+      const metaDiv = document.createElement("div");
+      metaDiv.className = "msg-meta";
+      if (timerVal !== "OFF") {
+        const tSpan = document.createElement("span");
+        tSpan.className = "timer-pill";
+        tSpan.textContent = timerVal;
+        metaDiv.appendChild(tSpan);
+      }
+      const timeSpan = document.createElement("span");
+      timeSpan.textContent = timeStr;
+      metaDiv.appendChild(timeSpan);
+
+      const checkSpan = document.createElement("span");
+      checkSpan.className = "read-checks";
+      checkSpan.textContent = "✓✓";
+      metaDiv.appendChild(checkSpan);
+
+      bubble.appendChild(metaDiv);
+      box.appendChild(bubble);
+      box.scrollTop = box.scrollHeight;
+      input.value = "";
+
+      document.getElementById("wire-packet-log").textContent =
+        "WIRE V2: __ENC_X25519_CHACHA20_V2__:" + randomHex(14) + ":" + btoa(unescape(encodeURIComponent(text))).slice(0, 18) + "...:ack_lock=" + randomHex(12);
+    }
+
+    function switchPromoVideo(mode) {
+      const video = document.getElementById("promo-video-player");
+      const src = document.getElementById("promo-video-src");
+      const titleEl = document.getElementById("promo-video-title");
+      const descEl = document.getElementById("promo-video-desc");
+      const container = document.getElementById("promo-video-container");
+
+      const catalog = {
+        "v142-pt": {
+          url: "video/OnionTalk-v1.4.1-Promo-Oficial-PT.mp4",
+          title: "Vídeo Promo Oficial v1.4.2: Mensagens com Senha, Cofre & Malha Tor (1080p)",
+          desc: "Locução feminina natural de estúdio apresentando a barra flutuante estilo Telegram, Grupos Criptografados, figurinhas WebP, mensagens com senha (auto-tranca em 15s), nível de Amigo e download direto do Server Relay APK.",
+          aspect: "16 / 9"
+        },
+        "v142-en": {
+          url: "video/OnionTalk-v1.4.1-Promo-Official-EN.mp4",
+          title: "Official Promo v1.4.2: Password-Locked Messages, Vault & Tor Mesh (1080p)",
+          desc: "Official English commercial showcasing real-time P2P messaging, password-locked messages, locked chats, long-press actions, and 15s auto-lock.",
+          aspect: "16 / 9"
+        },
+        "demo-pt": {
+          url: "video/OnionTalk-v1.4.1-Demo-Funcoes-PT.mp4",
+          title: "Tour Completo de Funções v1.4.2: Envio, Senha por Mensagem & Privacidade (1080p)",
+          desc: "Demonstração passo a passo de todas as telas reais do OnionTalk v1.4.6 (Build 35) operando sobre a malha global de 17 nós Tor v3.",
+          aspect: "16 / 9"
+        },
+        "reels-pt": {
+          url: "video/OnionTalk-v1.4.1-Reels-Shorts-PT.mp4",
+          title: "Formato Vertical Reels / Shorts / TikTok (9:16 · 1080x1920)",
+          desc: "Spot dinâmico vertical de 27 segundos destacando as novidades da versão v1.4.2 para redes sociais.",
+          aspect: "16 / 9"
+        },
+        "pt": {
+          url: "video/OnionTalk-Liberdade-PT.mp4",
+          title: "Filme Manifesto Original: Soberania Digital & Queima Bilateral (PT-BR)",
+          desc: "Demonstração cinematográfica da arquitetura Zero-Knowledge e conversa real entre dois aparelhos sobre a malha Tor v3.",
+          aspect: "16 / 9"
+        },
+        "en": {
+          url: "video/OnionTalk-Freedom-EN.mp4",
+          title: "Original Manifesto Film: Digital Sovereignty & Bilateral Burn (EN)",
+          desc: "Cinematic breakdown of OnionTalk's Zero-Knowledge architecture and real dual-device messaging over Tor v3.",
+          aspect: "16 / 9"
+        }
+      };
+
+      const item = catalog[mode] || catalog["v142-pt"];
+      if (src && video && src.getAttribute("src") !== item.url) {
+        src.setAttribute("src", item.url);
+        video.load();
+      }
+      if (titleEl) titleEl.textContent = item.title;
+      if (descEl) descEl.textContent = item.desc;
+      if (container) container.style.aspectRatio = item.aspect;
+
+      const btnMap = {
+        "v142-pt": "vid-btn-v142-pt",
+        "v142-en": "vid-btn-v142-en",
+        "demo-pt": "vid-btn-demo-pt",
+        "reels-pt": "vid-btn-reels-pt",
+        "pt": "vid-btn-pt",
+        "en": "vid-btn-en"
+      };
+      Object.keys(btnMap).forEach(k => {
+        const b = document.getElementById(btnMap[k]);
+        if (b) b.classList.toggle("active-timer", k === mode);
+      });
+    }
+
+    function filterScreenshots(cat, btn) {
+      document.querySelectorAll("#vitrine .filter-pill").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      document.querySelectorAll("#screenshots-gallery .shot-card").forEach(card => {
+        const c = card.getAttribute("data-category");
+        card.style.display = (cat === "all" || c === cat) ? "flex" : "none";
+      });
+    }
+
+    function openScreenshotModal(src, title) {
+      document.getElementById("modal-shot-img").src = src;
+      document.getElementById("modal-shot-title").innerHTML = title;
+      document.getElementById("screenshot-modal").classList.add("open");
+    }
+
+    function closeScreenshotModal() {
+      document.getElementById("screenshot-modal").classList.remove("open");
+    }
+
+    function filterMeshNodes(region, btn) {
+      document.querySelectorAll("#malha .filter-pill").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      document.querySelectorAll("#mesh-nodes-tbody tr").forEach(row => {
+        const r = row.getAttribute("data-region");
+        row.style.display = (region === "all" || r === region) ? "" : "none";
+      });
+    }
+
+    function copyOnion(onionAddress, btn) {
+      navigator.clipboard.writeText(onionAddress);
+      const original = btn.textContent;
+      btn.textContent = "Copiado!";
+      btn.classList.add("active-timer");
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.classList.remove("active-timer");
+      }, 1500);
+    }
+
+    function copyDockerCommand(btn) {
+      const cmd = document.getElementById("docker-cmd-text").textContent.trim();
+      navigator.clipboard.writeText(cmd);
+      const span = btn.querySelector("span");
+      const orig = span.textContent;
+      span.textContent = "Comando Copiado!";
+      setTimeout(() => { span.textContent = orig; }, 1600);
+    }
+
+    function filterPolicyClauses(query) {
+      const q = (query || "").trim().toLowerCase();
+      document.querySelectorAll(".policy-clause").forEach(card => {
+        const text = (card.textContent + " " + (card.getAttribute("data-keywords") || "")).toLowerCase();
+        card.style.display = (!q || text.includes(q)) ? "block" : "none";
+      });
+    }
+
+    function filterPolicyByTag(tag, btn) {
+      document.querySelectorAll("#privacy .filter-pill").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      document.querySelectorAll(".policy-clause").forEach(card => {
+        const t = card.getAttribute("data-tag");
+        card.style.display = (tag === "all" || t === tag) ? "block" : "none";
+      });
+    }
+
+    const i18nDict = {
+      pt: {
+        nav_showcase: "Telas & Filme Oficial",
+        nav_arch: "Arquitetura Tor v3",
+        nav_mesh: "Malha Global (17 Nós)",
+        nav_comp: "Comparativo",
+        nav_priv: "Política de Privacidade",
+        cta_download: "Google Play",
+        hero_badge: "MALHA V2 ATIVA · 17 NÓS TOR V3 EM 8 PAÍSES + AUTO-JOIN · 100% ENTREGA SOAK TEST",
+        hero_title: "Simples como o WhatsApp.<br/><span>Invisível e soberano na rede Tor v3.</span>",
+        hero_lead: "Mensageiros convencionais exigem seu número de telefone, guardam seus contatos em nuvem e expõem seu IP. O OnionTalk opera 100% sobre Serviços Ocultos Tor v3 (<code>.onion</code>) com criptografia X25519 + ML-KEM-768 (PQC) + ChaCha20-Poly1305, cofre SQLCipher AES-256, biometria AndroidKeyStore com trava anti-coação e queima bilateral instantânea.",
+        hero_btn_play: "Baixar no Google Play",
+        hero_btn_apk: "APK Universal Assinado (v1.5.0 · Build 36)",
+        hero_btn_node: "Subir Relay Docker (<60MB)",
+        hero_btn_policy: "Política de Privacidade",
+        metric_1: "Telefone, SIM card, e-mail, IP ou EXIF armazenados",
+        metric_2: "Malha Tor v3 em 8 países (BR, US, FR, DE, RU, SG, JP, CN) + Auto-Join",
+        metric_3: "Mediana p50 de entrega P2P (Soak Test 2h · 60 ondas · 0 crashes)",
+        metric_4: "Troca instantânea zero-telemetria (PT, EN, ES, RU)",
+        showcase_eyebrow: "KIT DE MÍDIA & EVIDÊNCIA REAL DE EXECUÇÃO · ANDROID V1.4.4 (BUILD 28)",
+        showcase_title: "Central de Vídeos Promocionais 1080p e Kit de 16 Telas Reais.",
+        showcase_desc: "Assista aos vídeos oficiais da versão v1.4.2 (Promo Oficial PT/EN, Tour Completo de Funções, formato Reels/Shorts 9:16 e Filme Manifesto) e inspecione as 16 capturas reais do aplicativo em operação.",
+        arch_eyebrow: "ARQUITETURA CRIPTOGRÁFICA ZERO-TRUST",
+        arch_title: "Construído para resistir a auditoria forense, interceptação de rede e coação física.",
+        arch_desc: "Cada componente substitui uma dependência centralizada de Big Tech por provas matemáticas verificáveis.",
+        comp_eyebrow: "COMPARATIVO TÉCNICO DE ARQUITETURA",
+        comp_title: "OnionTalk vs. WhatsApp, Telegram e Signal",
+        comp_desc: "Por que proteger apenas o texto da mensagem é insuficiente quando o seu número de telefone, IP e grafo social ficam expostos."
+      },
+      en: {
+        nav_showcase: "Real Screens & Film",
+        nav_arch: "Tor v3 Architecture",
+        nav_mesh: "Global Mesh (17 Nodes)",
+        nav_comp: "Comparison",
+        nav_priv: "Privacy Policy",
+        cta_download: "Google Play",
+        hero_badge: "V2 MESH LIVE · 17 TOR V3 NODES IN 8 COUNTRIES + AUTO-JOIN · 100% SOAK TEST DELIVERY",
+        hero_title: "Simple like WhatsApp.<br/><span>Invisible and sovereign on Tor v3.</span>",
+        hero_lead: "Mainstream messengers demand your phone number, store your social graph in the cloud, and expose your IP. OnionTalk runs 100% over Tor v3 Hidden Services (<code>.onion</code>) with X25519 + ML-KEM-768 (PQC) + ChaCha20-Poly1305 encryption, a local SQLCipher AES-256 vault, AndroidKeyStore biometrics with anti-coercion lockdown, and instant bilateral burn.",
+        hero_btn_play: "Get it on Google Play",
+        hero_btn_apk: "Signed Universal APK (v1.5.0 · Build 36)",
+        hero_btn_node: "Run Docker Relay (<60MB)",
+        hero_btn_policy: "Privacy Policy",
+        metric_1: "Phone number, SIM, email, IP, or EXIF stored",
+        metric_2: "Active Tor v3 mesh in 8 countries (BR, US, FR, DE, RU, SG, JP, CN) + Auto-Join",
+        metric_3: "Median p50 P2P delivery (157/157 in 2h Soak Test)",
+        metric_4: "Instant zero-telemetry switch (PT, EN, ES, RU)",
+        showcase_eyebrow: "MEDIA KIT & LIVE RUNTIME EVIDENCE · ANDROID V1.4.4 (BUILD 28)",
+        showcase_title: "1080p Promotional Video Hub & 16 Real Device Captures.",
+        showcase_desc: "Watch the official v1.4.2 videos (Official Promo PT/EN, Complete Feature Tour, 9:16 Reels/Shorts & Manifesto Film) and inspect the 16 real runtime captures.",
+        arch_eyebrow: "ZERO-TRUST CRYPTOGRAPHIC ARCHITECTURE",
+        arch_title: "Engineered to withstand forensic extraction, network interception, and physical coercion.",
+        arch_desc: "Every layer replaces a centralized Big Tech dependency with verifiable mathematical proofs.",
+        comp_eyebrow: "TECHNICAL ARCHITECTURE COMPARISON",
+        comp_title: "OnionTalk vs. WhatsApp, Telegram & Signal",
+        comp_desc: "Why encrypting message text alone fails when your phone number, IP address, and social graph remain exposed."
+      },
+      es: {
+        nav_showcase: "Pantallas y Película",
+        nav_arch: "Arquitectura Tor v3",
+        nav_mesh: "Malla Global (17 Nodos)",
+        nav_comp: "Comparativa",
+        nav_priv: "Política de Privacidad",
+        cta_download: "Google Play",
+        hero_badge: "MALLA V2 ACTIVA · 17 NODOS TOR V3 EN 8 PAÍSES + AUTO-JOIN · 100% ENTREGA SOAK TEST",
+        hero_title: "Simple como WhatsApp.<br/><span>Invisible y soberano en la red Tor v3.</span>",
+        hero_lead: "Los mensajeros tradicionales exigen tu número de teléfono, guardan tus contactos en la nube y exponen tu IP. OnionTalk opera 100% sobre Servicios Ocultos Tor v3 (<code>.onion</code>) con cifrado X25519 + ML-KEM-768 (PQC) + ChaCha20-Poly1305, bóveda SQLCipher AES-256, biometría AndroidKeyStore antocoacción y quema bilateral instantánea.",
+        hero_btn_play: "Descargar en Google Play",
+        hero_btn_apk: "APK Universal Firmado (v1.5.0 · Build 36)",
+        hero_btn_node: "Desplegar Relay Docker (<60MB)",
+        hero_btn_policy: "Política de Privacidad",
+        metric_1: "Teléfono, tarjeta SIM, correo, IP o EXIF almacenados",
+        metric_2: "Malla Tor v3 en 8 países (BR, US, FR, DE, RU, SG, JP, CN) + Auto-Join",
+        metric_3: "Mediana p50 de entrega P2P (157/157 en Soak Test 2h)",
+        metric_4: "Cambio instantáneo sin telemetría (PT, EN, ES, RU)",
+        showcase_eyebrow: "EVIDENCIA REAL DE EJECUCIÓN · ANDROID NATIVO",
+        showcase_title: "Capturas reales en operación y Película Manifiesto 1080p.",
+        showcase_desc: "Inspecciona la bóveda SQLCipher, mensajería en tiempo real sobre Tor v3, quema bilateral sincronizada y configuración de la malla.",
+        arch_eyebrow: "ARQUITECTURA CRIPTOGRÁFICA ZERO-TRUST",
+        arch_title: "Diseñado para resistir auditoría forense, interceptación de red y coacción física.",
+        arch_desc: "Cada componente reemplaza una dependencia centralizada por pruebas matemáticas verificables.",
+        comp_eyebrow: "COMPARATIVA TÉCNICA DE ARQUITECTURA",
+        comp_title: "OnionTalk vs. WhatsApp, Telegram y Signal",
+        comp_desc: "Por qué cifrar solo el texto no basta cuando tu número telefónico, dirección IP y grafo social siguen expuestos."
+      },
+      ru: {
+        nav_showcase: "Экраны и Фильм",
+        nav_arch: "Архитектура Tor v3",
+        nav_mesh: "Сеть (17 Узлов)",
+        nav_comp: "Сравнение",
+        nav_priv: "Конфиденциальность",
+        cta_download: "Google Play",
+        hero_badge: "СЕТЬ V2 АКТИВНА · 17 УЗЛОВ TOR V3 В 8 СТРАНАХ + AUTO-JOIN · 100% ДОСТАВКА",
+        hero_title: "Простой как WhatsApp.<br/><span>Невидимый и суверенный в сети Tor v3.</span>",
+        hero_lead: "Обычные мессенджеры требуют номер телефона, хранят граф контактов в облаке и раскрывают ваш IP. OnionTalk работает на 100% через скрытые сервисы Tor v3 (<code>.onion</code>) с шифрованием X25519 + ML-KEM-768 (PQC) + ChaCha20-Poly1305, хранилищем SQLCipher AES-256, биометрией AndroidKeyStore с защитой от принуждения и двусторонним уничтожением.",
+        hero_btn_play: "Скачать в Google Play",
+        hero_btn_apk: "Подписанный APK (v1.5.0 · Build 36)",
+        hero_btn_node: "Запустить Docker-узел (<60МБ)",
+        hero_btn_policy: "Политика конфиденциальности",
+        metric_1: "Номер телефона, SIM, email, IP или EXIF-данные",
+        metric_2: "Активная сеть Tor v3 в 8 странах (BR, US, FR, DE, RU, SG, JP, CN) + Auto-Join",
+        metric_3: "Медиана p50 доставки P2P (157/157 за 2ч теста)",
+        metric_4: "Мгновенное переключение без телеметрии (PT, EN, ES, RU)",
+        showcase_eyebrow: "РЕАЛЬНЫЕ ДОКАЗАТЕЛЬСТВА РАБОТЫ · ANDROID",
+        showcase_title: "Реальные скриншоты работы и фильм-манифест 1080p.",
+        showcase_desc: "Изучите работу хранилища SQLCipher, обмен сообщениями через Tor v3, синхронное уничтожение переписки и настройку узлов.",
+        arch_eyebrow: "КРИПТОГРАФИЧЕСКАЯ АРХИТЕКТУРА ZERO-TRUST",
+        arch_title: "Создан для защиты от криминалистического анализа, перехвата трафика и физического принуждения.",
+        arch_desc: "Каждый уровень заменяет централизованные серверы проверяемыми математическими доказательствами.",
+        comp_eyebrow: "ТЕХНИЧЕСКОЕ СРАВНЕНИЕ АРХИТЕКТУРЫ",
+        comp_title: "OnionTalk против WhatsApp, Telegram и Signal",
+        comp_desc: "Почему шифрования только текста недостаточно, когда ваш номер телефона, IP-адрес и список контактов остаются открытыми."
+      }
+    };
+
+    function setLanguage(lang) {
+      ["pt", "en", "es", "ru"].forEach(code => {
+        const btn = document.getElementById("btn-" + code);
+        if (btn) btn.classList.toggle("active", code === lang);
+      });
+      const dict = i18nDict[lang] || i18nDict.pt;
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (dict[key]) {
+          el.innerHTML = dict[key];
+        }
+      });
+      switchPromoVideo(lang === "pt" ? "v142-pt" : "v142-en");
+    }
+  </script>
+</body>
+</html>
