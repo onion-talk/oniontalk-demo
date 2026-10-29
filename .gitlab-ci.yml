@@ -1,0 +1,11 @@
+stages:
+  - security_test
+
+strix_zero_leak_gate:
+  stage: security_test
+  image: python:3.12-slim
+  script:
+    - python3 scripts/zero_leak_scanner.py
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == "main"
