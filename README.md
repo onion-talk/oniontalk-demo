@@ -64,7 +64,7 @@ Or use [`docker-compose.web.yml`](./docker-compose.web.yml) (`docker compose -f 
 > **💬 Ao Baixar / After Downloading:**
 > Ao baixar o OnionTalk (Android ou Desktop/Web), **entre em contato pelo próprio app com um de nossos administradores**:
 > ```text
-> @54d5b5d3cc6b4406b5b46a6faa6b4208b14a3ce64cae6dd4a6862783f87151cd:onion4zr3bsdeaelksemwokl5qmxd5o7jyblf46vc2mfl6cozgw77tqd.onion
+> @bbac48f99ed4536ce9134df16cc49dbed2d9109ed351710d181d86c28f34efd9:onion4zr3bsdeaelksemwokl5qmxd5o7jyblf46vc2mfl6cozgw77tqd.onion
 > ```
 > 📸 **Instagram Oficial:** [https://www.instagram.com/oniontalk.app/](https://www.instagram.com/oniontalk.app/) (`@oniontalk.app`)
 - **🛡️ Key Cryptographic & P2P Mesh Breakthroughs in `v1.5.0` (`Build 36` & Relay `Build 10`)**:
@@ -317,7 +317,7 @@ In **Settings → Security** and **Settings → Donate**, users control physical
 2. Select your preferred language (`🇺🇸 EN`, `🇧🇷 PT`, `🇪🇸 ES`, `🇷🇺 RU`), tap **Create New Cryptographic Identity**, choose a local nickname and master password, and wait ~10 seconds for the top bar to show **`Connected via Tor`**.
 3. **Ao baixar, entre em contato com um de nossos administradores pelo app:**
    ```text
-   @54d5b5d3cc6b4406b5b46a6faa6b4208b14a3ce64cae6dd4a6862783f87151cd:onion4zr3bsdeaelksemwokl5qmxd5o7jyblf46vc2mfl6cozgw77tqd.onion
+   @bbac48f99ed4536ce9134df16cc49dbed2d9109ed351710d181d86c28f34efd9:onion4zr3bsdeaelksemwokl5qmxd5o7jyblf46vc2mfl6cozgw77tqd.onion
    ```
    - 📸 **Instagram Oficial:** [https://www.instagram.com/oniontalk.app/](https://www.instagram.com/oniontalk.app/) (`@oniontalk.app`)
 
@@ -333,7 +333,7 @@ OnionTalk is funded entirely by voluntary community contributions—zero ads, ze
 - **Solana (`SOL`)**: `3E8L1Hdqe7Xk6GCrzHbtY5sReAfLFc9CdwgZxP7qaoHq`
 - **💬 Em caso de doação por algum outro meio / Contato do Administrador pelo App**:
   ```text
-  @54d5b5d3cc6b4406b5b46a6faa6b4208b14a3ce64cae6dd4a6862783f87151cd:onion4zr3bsdeaelksemwokl5qmxd5o7jyblf46vc2mfl6cozgw77tqd.onion
+  @bbac48f99ed4536ce9134df16cc49dbed2d9109ed351710d181d86c28f34efd9:onion4zr3bsdeaelksemwokl5qmxd5o7jyblf46vc2mfl6cozgw77tqd.onion
   ```
 - **📸 Instagram Oficial**: [https://www.instagram.com/oniontalk.app/](https://www.instagram.com/oniontalk.app/) (`@oniontalk.app`)
 

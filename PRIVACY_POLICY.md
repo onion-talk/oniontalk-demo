@@ -31,7 +31,8 @@ O OnionTalk **não solicita, não coleta, não armazena, não vende e não compa
 - **Proteção Seletiva de Captura de Tela (FLAG_SECURE):** Bloqueia capturas e gravações de tela em **100% do tempo** nas telas de **Conversas** e **Contatos**, liberando a captura apenas na tela de **Configurações / QR Code**.
 
 ### 4. Retenção, Mensagens Efêmeras e Destruição Anti-Forense (Data Retention & Deletion)
-- **Em trânsito (Relays RAM-Only =31):** Os envelopes criptografados ficam retidos apenas em memória RAM volátil (am-volatile-ephemeral-ttl24h) até a confirmação criptográfica de entrega (ACK com prova de pré-imagem SHA-256(ack_token) == ack_lock) ou expiração do TTL, sendo imediatamente expurgados.
+- **Em trânsito (Relays RAM-Only =31):** Os envelopes criptografados ficam retidos apenas em memória RAM volátil (
+am-volatile-ephemeral-ttl24h) até a confirmação criptográfica de entrega (ACK com prova de pré-imagem SHA-256(ack_token) == ack_lock) ou expiração do TTL, sendo imediatamente expurgados.
 - **Mensagens Efêmeras com Timer (⏱️) & Queima Bilateral (🔥 Burn):** Autodestruição configurável por mensagem (30s a 24h) e comando autenticado Ed25519 para sobrescrita e destruição simultânea do histórico em ambos os aparelhos.
 - **Destruição Completa da Conta & Senha de Coação (*Duress Wipe*):** Executa o *shredding* físico (DoD 2-pass overwrite + VACUUM) do banco SQLCipher e de todas as chaves locais.
 
@@ -45,7 +46,7 @@ O OnionTalk é destinado ao público adulto (**18 anos ou mais**) interessado em
 4. **Apoio Voluntário Sem Contrapartida Comercial:** Doações em criptoativos (BTC, ETH, SOL) são contribuições voluntárias para manutenção da pesquisa e infraestrutura open-source, não configurando contratação de serviço ou SLA.
 
 ### 7. Contato & Canais Oficiais
-- **Contato do Administrador pelo App:** @54d5b5d3cc6b4406b5b46a6faa6b4208b14a3ce64cae6dd4a6862783f87151cd:onion4zr3bsdeaelksemwokl5qmxd5o7jyblf46vc2mfl6cozgw77tqd.onion
+- **Contato do Administrador pelo App:** @bbac48f99ed4536ce9134df16cc49dbed2d9109ed351710d181d86c28f34efd9:onion4zr3bsdeaelksemwokl5qmxd5o7jyblf46vc2mfl6cozgw77tqd.onion
 - **Espelho Oficial na Rede Tor v3 (.onion):** http://oniontg2bwgpz25axonrxmxw5yfsf4pgj5d5wzsqe3sirinhfpzasoad.onion
 - **Organização Oficial GitHub:** [https://github.com/onion-talk](https://github.com/onion-talk)
 - **Instagram Oficial:** [https://www.instagram.com/oniontalk.app/](https://www.instagram.com/oniontalk.app/) (@oniontalk.app)
@@ -73,4 +74,5 @@ O OnionTalk é destinado ao público adulto (**18 anos ou mais**) interessado em
 ### 4. Legal Disclaimers, Limitation of Liability & Sovereign Terms of Use (1.5.0)
 1. **"AS IS" Open-Source Provision (MIT License):** OnionTalk is provided free of charge *"AS IS"*, without any express or implied warranties of merchantability, fitness for a particular purpose, or uninterrupted Tor network availability.
 2. **Mathematical Impossibility of Password Recovery or Decryption (*Zero-Knowledge Disclaimer*):** Because no central account server, master key, or backdoor exists, project maintainers and relay operators **cannot** recover lost passwords, unlock password-protected messages (__LOCKED_MSG_V1__), reverse a Bilateral Burn (🔥) or Duress Wipe, identify IP addresses, or decrypt envelopes in transit. Losing your local vault password results in permanent, irreversible data loss.
-3. **Relay Operator Neutrality & Lawful Use:** Federated relay nodes act exclusively as blind, volatile-RAM store-and-forward routers (am-volatile-ephemeral-ttl24h) over Tor v3 Hidden Services with zero visibility into sender, recipient, or plaintext. Users are solely responsible for using the software ethically and lawfully in their jurisdiction.
+3. **Relay Operator Neutrality & Lawful Use:** Federated relay nodes act exclusively as blind, volatile-RAM store-and-forward routers (
+am-volatile-ephemeral-ttl24h) over Tor v3 Hidden Services with zero visibility into sender, recipient, or plaintext. Users are solely responsible for using the software ethically and lawfully in their jurisdiction.
