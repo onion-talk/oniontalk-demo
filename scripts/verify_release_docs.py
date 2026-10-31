@@ -9,7 +9,8 @@ the gate keeps working when scripts/sync_release_links.py bumps the version.
 Checks (fail the build):
   1. README.md has the Legal Disclaimers section.
   2. The latest-release main APK line in README.md carries a SHA-256 equal to
-     the digest GitHub reports for release asset OnionTalk-v<ver>.apk.
+     the digest GitHub reports for release asset OnionTalk-v<ver>.apk (the release
+     repo is taken from the download link in that same README section).
   3. Every site HTML file mentions `v<ver> (Build <code>)` and keeps the
      "Disclaimers Legais, Isenção de Responsabilidade" clause.
 
@@ -26,7 +27,6 @@ import urllib.error
 import urllib.request
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-REPO = "onion-talk/oniontalk-demo"
 HTML_FILES = ["index.html", "privacy.html", "docs/index.html", "docs/privacy.html"]
 CLAUSE_7 = "Disclaimers Legais, Isenção de Responsabilidade"
 HEADING_RE = re.compile(r"What's New in `v(\d+\.\d+\.\d+)` \(`versionCode = (\d+)`")
@@ -38,8 +38,8 @@ def fail(msg: str) -> None:
     sys.exit(1)
 
 
-def release_asset_digest(ver: str) -> str:
-    url = f"https://api.github.com/repos/{REPO}/releases/tags/v{ver}"
+def release_asset_digest(repo: str, ver: str) -> str:
+    url = f"https://api.github.com/repos/{repo}/releases/tags/v{ver}"
     headers = {"Accept": "application/vnd.github+json", "User-Agent": "oniontalk-docs-gate"}
     token = os.environ.get("GITHUB_TOKEN")
     if token:
@@ -52,7 +52,7 @@ def release_asset_digest(ver: str) -> str:
             break
         except urllib.error.HTTPError as e:
             if e.code == 404:
-                fail(f"release tag v{ver} not found in {REPO}")
+                fail(f"release tag v{ver} not found in {repo}")
             last_err = e
         except Exception as e:  # network flake: retry, then fail closed
             last_err = e
@@ -80,13 +80,19 @@ def main() -> int:
     if "Legal Disclaimers" not in readme:
         fail("README.md must include Legal Disclaimers section")
 
-    digest = release_asset_digest(ver)
     apk_name = f"OnionTalk-v{ver}.apk"
     lines = readme.splitlines()
     start = readme[: m.start()].count("\n")
     next_heading = next(
         (i for i in range(start + 1, len(lines)) if HEADING_RE.search(lines[i])), len(lines)
     )
+    section = "\n".join(lines[start:next_heading])
+    link = re.search(
+        rf"https://github\.com/([\w.-]+/[\w.-]+)/releases/download/v{re.escape(ver)}/{re.escape(apk_name)}", section
+    )
+    if not link:
+        fail(f"latest-release section of README.md has no download link for {apk_name}")
+    digest = release_asset_digest(link.group(1), ver)
     latest_shas = set()
     for line in lines[start:next_heading]:
         if apk_name in line:
