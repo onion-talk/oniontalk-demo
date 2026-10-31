@@ -3,12 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OnionTalk v1.5.4 — Mensageiro Privado Pós-Quântico na Rede Tor v3, Políticas &amp; Disclaimers</title>
-  <meta name="description" content="Mensageiro E2EE Zero-Knowledge nativo sobre Serviços Ocultos Tor v3 (.onion). Sem número de telefone, sem e-mail, 20 relays federados em 8 países, criptografia pós-quântica híbrida ML-KEM-768 (Kyber-768), grupos PQC soberanos, estúdio de desfoque em RAM, app secundário OnionTalk Relay Node v1.5.0 para Android, biometria AndroidKeyStore anti-coação e queima bilateral anti-forense." />
+  <title>OnionTalk v1.5.4 — Mensageiro privado sobre Tor v3 · Política de Privacidade</title>
+  <meta name="description" content="Mensageiro sem número de telefone, sem e-mail e sem servidor central. Funciona sobre a rede Tor v3, com criptografia pós-quântica híbrida e relays que qualquer pessoa pode operar." />
+  <meta name="theme-color" content="#05080F" />
+  <meta name="color-scheme" content="dark" />
   <link rel="icon" type="image/png" href="icon-512.png" />
   <link rel="apple-touch-icon" href="icon-512.png" />
-  <meta property="og:title" content="OnionTalk v1.5.4 — Post-Quantum Private Tor v3 Messenger, Privacy Policy &amp; Disclaimers" />
-  <meta property="og:description" content="Zero-Knowledge E2EE messenger over Tor v3 Hidden Services (.onion). No phone number, no SIM, no central servers, 20 active relays in 8 countries, hybrid post-quantum ML-KEM-768 (Kyber-768) encryption, sovereign PQC groups, in-RAM image blur studio, standalone Android Relay Node v1.5.0 app, SQLCipher AES-256 vault &amp; bilateral burn." />
+  <meta property="og:title" content="OnionTalk v1.5.4 — Private messenger on Tor v3" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="No phone number, no email, no central server. Runs on the Tor v3 network with hybrid post-quantum encryption and relays anyone can operate." />
   <meta property="og:image" content="https://onion-talk.github.io/oniontalk-demo/icon-512.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -480,7 +483,7 @@
       border: 1.5px solid var(--brand-emerald);
     }
 
-    .peer-meta h4 {
+    .peer-meta h4, .peer-meta .peer-name {
       font-size: 13.5px;
       font-weight: 700;
       color: var(--text-primary);
@@ -1345,6 +1348,127 @@
         transition-duration: 0.01ms !important;
       }
     }
+
+    /* ==========================================================================
+       POLISH LAYER — nav sem quebra de linha, hero com hierarquia de CTA,
+       foco visível, tipografia balanceada, scrollbars discretas e
+       renderização adiada para seções fora da primeira dobra.
+       ========================================================================== */
+    * { scrollbar-width: thin; scrollbar-color: rgba(255, 255, 255, 0.2) transparent; }
+
+    :focus-visible {
+      outline: 2px solid var(--brand-emerald-hover);
+      outline-offset: 2px;
+    }
+
+    h1, h2, h3 { text-wrap: balance; }
+    p, li { text-wrap: pretty; }
+
+    .nav-links a,
+    .brand-version-tag,
+    .nav-actions .btn-primary { white-space: nowrap; }
+
+    @media (max-width: 1280px) {
+      .nav-links { gap: 18px; }
+      .brand-version-tag { display: none; }
+    }
+
+    .hero h1 { font-size: clamp(34px, 3.6vw, 48px); line-height: 1.1; }
+    .hero h1 span { display: block; }
+    .hero-lead { font-size: 17px; max-width: 58ch; margin-bottom: 20px; }
+
+    .hero-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      list-style: none;
+      margin-bottom: 28px;
+    }
+    .hero-chips li {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: 6px;
+      padding: 4px 9px;
+    }
+
+    .hero-cta-row { align-items: center; margin-bottom: 20px; }
+    .hero-text-link {
+      color: var(--text-secondary);
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: var(--border-subtle);
+    }
+    .hero-text-link:hover { color: var(--text-primary); text-decoration-color: currentColor; }
+
+    .hero-more { margin-bottom: 20px; }
+    .hero-more summary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      list-style: none;
+      color: var(--text-secondary);
+      font-size: 13.5px;
+      font-weight: 600;
+      padding: 6px 0;
+    }
+    .hero-more summary::-webkit-details-marker { display: none; }
+    .hero-more summary::after {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-right: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      transform: rotate(45deg) translateY(-2px);
+      transition: transform 0.15s ease;
+    }
+    .hero-more[open] summary::after { transform: rotate(-135deg); }
+    .hero-more summary:hover { color: var(--text-primary); }
+    .hero-more-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .hero-more-grid .btn-secondary { justify-content: flex-start; }
+
+    .hero-meta-line {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+      overflow-wrap: anywhere;
+    }
+
+    .peer-meta .peer-name {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    table td, table th { font-variant-numeric: tabular-nums; }
+
+    footer p, footer code { overflow-wrap: anywhere; }
+
+    /* Seções abaixo da primeira dobra: o navegador só calcula layout e pintura
+       quando elas se aproximam da viewport. */
+    #vitrine    { content-visibility: auto; contain-intrinsic-size: auto 3600px; }
+    #arquitetura{ content-visibility: auto; contain-intrinsic-size: auto 1000px; }
+    #malha      { content-visibility: auto; contain-intrinsic-size: auto 2800px; }
+    #comparativo{ content-visibility: auto; contain-intrinsic-size: auto 1050px; }
+    #privacy    { content-visibility: auto; contain-intrinsic-size: auto 2900px; }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 28px; }
+      .hero-chips li { font-size: 11px; }
+      .hero-more-grid { grid-template-columns: 1fr; }
+      .hero-more-grid .btn-secondary { width: 100%; min-height: 46px; justify-content: center; }
+    }
   </style>
 </head>
 <body>
@@ -1361,11 +1485,11 @@
       </a>
 
       <nav class="nav-links" aria-label="Navegação Principal">
-        <a href="#vitrine" data-i18n="nav_showcase">Telas &amp; Filme Oficial</a>
-        <a href="#arquitetura" data-i18n="nav_arch">Arquitetura Tor v3</a>
-        <a href="#malha" data-i18n="nav_mesh">Malha Global (20 Nós)</a>
+        <a href="#vitrine" data-i18n="nav_showcase">Telas &amp; Vídeo</a>
+        <a href="#arquitetura" data-i18n="nav_arch">Arquitetura</a>
+        <a href="#malha" data-i18n="nav_mesh">Rede de Relays</a>
         <a href="#comparativo" data-i18n="nav_comp">Comparativo</a>
-        <a href="#privacy" class="active" data-i18n="nav_priv">Política de Privacidade</a>
+        <a href="#privacy" data-i18n="nav_priv">Privacidade</a>
       </nav>
 
       <div class="nav-actions">
@@ -1375,7 +1499,7 @@
           <button type="button" class="lang-btn" id="btn-es" onclick="setLanguage('es')">ES</button>
           <button type="button" class="lang-btn" id="btn-ru" onclick="setLanguage('ru')">RU</button>
         </div>
-        <a href="https://play.google.com/store/apps/details?id=org.oniontalk.messenger" target="_blank" rel="noopener" class="btn-primary">
+        <a href="https://play.google.com/store/apps/details?id=org.oniontalk.messenger" target="_blank" rel="noopener" class="btn-primary" aria-label="Google Play">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M3 20.5v-17c0-.83.94-1.3 1.6-.8l14 8.5c.6.37.6 1.23 0 1.6l-14 8.5c-.66.5-1.6.03-1.6-.8z"></path>
           </svg>
@@ -1396,78 +1520,57 @@
     <!-- Hero Section -->
     <section class="hero">
       <div>
-        <div class="hero-identity-bar">
-          <div class="hero-identity-icon">
-            <img src="icon-512.png" alt="Ícone Oficial do OnionTalk" />
-          </div>
-          <div class="hero-identity-meta">
-            <strong>OnionTalk: Private Tor Chat</strong>
-            <span>org.oniontalk.messenger · v1.5.4 (Build 48) · PT / EN / ES / RU</span>
-          </div>
-        </div>
-
-        <div>
-          <div class="status-pill">
-            <span class="status-dot"></span>
-            <span data-i18n="hero_badge">MALHA V31 ATIVA · 20 NÓS TOR V3 EM 8 PAÍSES + AUTO-JOIN · 100% ENTREGA SOAK TEST</span>
-          </div>
+        <div class="status-pill">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span data-i18n="hero_badge">20 relays Tor v3 ativos em 8 países</span>
         </div>
 
         <h1 data-i18n="hero_title">
-          Simples como o WhatsApp.<br/>
-          <span>Invisível e soberano na rede Tor v3.</span>
+          Mensageiro privado,<br/>
+          <span>sem número de telefone.</span>
         </h1>
 
         <p class="hero-lead" data-i18n="hero_lead">
-          Mensageiros convencionais exigem seu número de telefone, guardam seus contatos em nuvem e expõem seu IP. O OnionTalk opera 100% sobre Serviços Ocultos Tor v3 (<code>.onion</code>) com criptografia X25519 + ML-KEM-768 (PQC) + ChaCha20-Poly1305, cofre SQLCipher AES-256, biometria AndroidKeyStore com trava anti-coação e queima bilateral instantânea.
+          O OnionTalk funciona sobre a rede Tor v3, sem servidor central. Não pede telefone nem e-mail, não guarda seus contatos na nuvem e esconde seu IP. Cada mensagem é cifrada no seu aparelho e entregue por relays que qualquer pessoa pode operar.
         </p>
+
+        <ul class="hero-chips" aria-label="Pilha criptográfica">
+          <li>Tor v3 (.onion)</li>
+          <li>X25519 + ML-KEM-768</li>
+          <li>ChaCha20-Poly1305</li>
+          <li>SQLCipher AES-256</li>
+        </ul>
 
         <div class="hero-cta-row">
           <a href="https://play.google.com/store/apps/details?id=org.oniontalk.messenger" target="_blank" rel="noopener" class="btn-primary">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M3 20.5v-17c0-.83.94-1.3 1.6-.8l14 8.5c.6.37.6 1.23 0 1.6l-14 8.5c-.66.5-1.6.03-1.6-.8z"></path>
-            </svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 20.5v-17c0-.83.94-1.3 1.6-.8l14 8.5c.6.37.6 1.23 0 1.6l-14 8.5c-.66.5-1.6.03-1.6-.8z"></path></svg>
             <span data-i18n="hero_btn_play">Baixar no Google Play</span>
           </a>
-          <a href="https://github.com/onion-talk/oniontalk-demo/releases/download/v1.5.4/OnionTalk-v1.5.4.apk" target="_blank" rel="noopener" class="btn-secondary" style="border-color: var(--border-emerald); color: var(--brand-emerald-hover);">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-              <polyline points="7 10 12 15 17 10"></polyline>
-              <line x1="12" y1="15" x2="12" y2="3"></line>
-            </svg>
+          <a href="https://github.com/onion-talk/oniontalk-demo/releases/download/v1.5.4/OnionTalk-v1.5.4.apk" target="_blank" rel="noopener" class="btn-secondary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
             <span data-i18n="hero_btn_apk">APK Universal Assinado (v1.5.4 · Build 48)</span>
           </a>
-          <a href="https://github.com/onion-talk/oniontalk-relay/releases/download/v1.5.2/OnionTalk-RelayNode-v1.5.2.apk" download class="btn-secondary" style="border-color: rgba(6, 182, 212, 0.45); color: #67E8F9;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-              <line x1="12" y1="18" x2="12.01" y2="18"></line>
-            </svg>
-            <span>APK Relay Server Android (v1.5.2 · Build 11 Zero-Leak)</span>
-          </a>
-          <a href="#malha" class="btn-secondary">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <rect x="2" y="2" width="20" height="8" rx="2"></rect>
-              <rect x="2" y="14" width="20" height="8" rx="2"></rect>
-              <line x1="6" y1="6" x2="6.01" y2="6"></line>
-              <line x1="6" y1="18" x2="6.01" y2="18"></line>
-            </svg>
-            <span data-i18n="hero_btn_node">Subir Relay Docker (&lt;60MB)</span>
-          </a>
-          <a href="#web-container" class="btn-secondary" style="border-color: rgba(56, 189, 248, 0.45); color: #38BDF8;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-              <line x1="8" y1="21" x2="16" y2="21"></line>
-              <line x1="12" y1="17" x2="12" y2="21"></line>
-            </svg>
-            <span>Web Client + Relay Docker (v1.5.4 · Build 48)</span>
-          </a>
-          <a href="#privacy" class="btn-secondary">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-            </svg>
-            <span data-i18n="hero_btn_policy">Política de Privacidade</span>
-          </a>
         </div>
+
+        <details class="hero-more">
+          <summary data-i18n="hero_more">Outras formas de instalar e rodar um relay</summary>
+          <div class="hero-more-grid">
+            <a href="https://github.com/onion-talk/oniontalk-relay/releases/download/v1.5.2/OnionTalk-RelayNode-v1.5.2.apk" download class="btn-secondary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+              <span>APK Relay Server Android (v1.5.2 · Build 11 Zero-Leak)</span>
+            </a>
+            <a href="#malha" class="btn-secondary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="8" rx="2"></rect><rect x="2" y="14" width="20" height="8" rx="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+              <span data-i18n="hero_btn_node">Subir Relay Docker (&lt;60MB)</span>
+            </a>
+            <a href="#web-container" class="btn-secondary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+              <span>Web Client + Relay Docker (v1.5.4 · Build 48)</span>
+            </a>
+          </div>
+        </details>
+
+        <p class="hero-meta-line"><a href="#privacy" class="hero-text-link" data-i18n="hero_btn_policy">Política de Privacidade</a> <span class="mono">· org.oniontalk.messenger · v1.5.4 (Build 48) · PT / EN / ES / RU</span></p>
 
         <div class="hero-metrics">
           <div class="metric-card">
@@ -1530,12 +1633,12 @@
             <div class="chat-peer">
               <img class="peer-avatar" src="icon-512.png" alt="Avatar verificado Tor v3" width="38" height="38" />
               <div class="peer-meta">
-                <h4>
+                <div class="peer-name">
                   Helena V.
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5">
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                   </svg>
-                </h4>
+                </div>
                 <p>@19d0a758...77tqd.onion</p>
               </div>
             </div>
@@ -1614,12 +1717,12 @@
           <p data-i18n="showcase_desc">Assista aos vídeos oficiais da versão v1.5.0 (Promo Oficial PT/EN, Tour Completo de Funções, formato Reels/Shorts 9:16 e Filme Manifesto) e inspecione as 16 capturas reais do aplicativo em operação.</p>
         </div>
 
-        <div class="filter-pills" role="tablist" aria-label="Filtro de capturas de tela">
-          <button type="button" class="filter-pill active" onclick="filterScreenshots('all', this)">Todas (16)</button>
-          <button type="button" class="filter-pill" onclick="filterScreenshots('v142', this)">Novidades v1.5.0 (8)</button>
-          <button type="button" class="filter-pill" onclick="filterScreenshots('vault', this)">Cofre &amp; Identidade</button>
-          <button type="button" class="filter-pill" onclick="filterScreenshots('chat', this)">Chat E2EE &amp; Burn</button>
-          <button type="button" class="filter-pill" onclick="filterScreenshots('mesh', this)">Malha Tor &amp; Segurança</button>
+        <div class="filter-pills" role="group" aria-label="Filtro de capturas de tela">
+          <button type="button" class="filter-pill active" aria-pressed="true" onclick="filterScreenshots('all', this)">Todas (16)</button>
+          <button type="button" class="filter-pill" aria-pressed="false" onclick="filterScreenshots('v142', this)">Novidades v1.5.0 (8)</button>
+          <button type="button" class="filter-pill" aria-pressed="false" onclick="filterScreenshots('vault', this)">Cofre &amp; Identidade</button>
+          <button type="button" class="filter-pill" aria-pressed="false" onclick="filterScreenshots('chat', this)">Chat E2EE &amp; Burn</button>
+          <button type="button" class="filter-pill" aria-pressed="false" onclick="filterScreenshots('mesh', this)">Malha Tor &amp; Segurança</button>
         </div>
       </div>
 
@@ -1636,12 +1739,12 @@
             <p id="promo-video-desc" style="font-size: 13.5px; color: var(--text-secondary);">Locução feminina natural de estúdio apresentando a barra flutuante estilo Telegram, Grupos Criptografados, figurinhas WebP, mensagens com senha (auto-tranca em 15s), nível de Amigo e download direto do Server Relay APK.</p>
           </div>
           <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px;">
-            <button type="button" class="chip-btn active-timer" id="vid-btn-v142-pt" onclick="switchPromoVideo('v142-pt')">🎬 Promo v1.4.2 (PT-BR)</button>
-            <button type="button" class="chip-btn" id="vid-btn-v142-en" onclick="switchPromoVideo('v142-en')">🎬 Official Promo v1.5.0 (EN)</button>
-            <button type="button" class="chip-btn" id="vid-btn-demo-pt" onclick="switchPromoVideo('demo-pt')">📲 Tour de Funções (PT-BR)</button>
-            <button type="button" class="chip-btn" id="vid-btn-reels-pt" onclick="switchPromoVideo('reels-pt')">📱 Reels / Shorts 9:16</button>
-            <button type="button" class="chip-btn" id="vid-btn-pt" onclick="switchPromoVideo('pt')">🎥 Manifesto (PT)</button>
-            <button type="button" class="chip-btn" id="vid-btn-en" onclick="switchPromoVideo('en')">🎥 Manifesto (EN)</button>
+            <button type="button" class="chip-btn active-timer" id="vid-btn-v142-pt" onclick="switchPromoVideo('v142-pt')">Promo v1.4.2 (PT-BR)</button>
+            <button type="button" class="chip-btn" id="vid-btn-v142-en" onclick="switchPromoVideo('v142-en')">Official Promo v1.5.0 (EN)</button>
+            <button type="button" class="chip-btn" id="vid-btn-demo-pt" onclick="switchPromoVideo('demo-pt')">Tour de Funções (PT-BR)</button>
+            <button type="button" class="chip-btn" id="vid-btn-reels-pt" onclick="switchPromoVideo('reels-pt')">Reels / Shorts 9:16</button>
+            <button type="button" class="chip-btn" id="vid-btn-pt" onclick="switchPromoVideo('pt')">Manifesto (PT)</button>
+            <button type="button" class="chip-btn" id="vid-btn-en" onclick="switchPromoVideo('en')">Manifesto (EN)</button>
           </div>
         </div>
 
@@ -1674,10 +1777,10 @@
             </div>
           </div>
           <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <a href="video/OnionTalk-v1.4.1-Promo-Oficial-PT.mp4" download="OnionTalk-v1.5.0-Promo-Oficial-PT.mp4" class="btn-secondary" style="padding: 8px 12px; font-size: 12px;">⬇ Promo PT (1080p)</a>
-            <a href="video/OnionTalk-v1.4.1-Promo-Official-EN.mp4" download="OnionTalk-v1.5.0-Promo-Official-EN.mp4" class="btn-secondary" style="padding: 8px 12px; font-size: 12px;">⬇ Promo EN (1080p)</a>
-            <a href="video/OnionTalk-v1.4.1-Demo-Funcoes-PT.mp4" download="OnionTalk-v1.5.0-Demo-Funcoes-PT.mp4" class="btn-secondary" style="padding: 8px 12px; font-size: 12px;">⬇ Demo Funções</a>
-            <a href="video/OnionTalk-v1.4.1-Reels-Shorts-PT.mp4" download="OnionTalk-v1.5.0-Reels-Shorts-PT.mp4" class="btn-secondary" style="padding: 8px 12px; font-size: 12px;">⬇ Reels 9:16</a>
+            <a href="video/OnionTalk-v1.4.1-Promo-Oficial-PT.mp4" download="OnionTalk-v1.5.0-Promo-Oficial-PT.mp4" class="btn-secondary" style="padding: 8px 12px; font-size: 12px;">Promo PT (1080p)</a>
+            <a href="video/OnionTalk-v1.4.1-Promo-Official-EN.mp4" download="OnionTalk-v1.5.0-Promo-Official-EN.mp4" class="btn-secondary" style="padding: 8px 12px; font-size: 12px;">Promo EN (1080p)</a>
+            <a href="video/OnionTalk-v1.4.1-Demo-Funcoes-PT.mp4" download="OnionTalk-v1.5.0-Demo-Funcoes-PT.mp4" class="btn-secondary" style="padding: 8px 12px; font-size: 12px;">Demo Funções</a>
+            <a href="video/OnionTalk-v1.4.1-Reels-Shorts-PT.mp4" download="OnionTalk-v1.5.0-Reels-Shorts-PT.mp4" class="btn-secondary" style="padding: 8px 12px; font-size: 12px;">Reels 9:16</a>
             </div>
         </div>
       </div>
@@ -1938,15 +2041,15 @@
         </div>
 
         <div class="filter-pills">
-          <button type="button" class="filter-pill active" onclick="filterMeshNodes('all', this)">Todos (20 Nós)</button>
-          <button type="button" class="filter-pill" onclick="filterMeshNodes('BR', this)">Brasil (3)</button>
-          <button type="button" class="filter-pill" onclick="filterMeshNodes('US', this)">EUA (8)</button>
-          <button type="button" class="filter-pill" onclick="filterMeshNodes('FR', this)">França (3)</button>
-          <button type="button" class="filter-pill" onclick="filterMeshNodes('RU', this)">Rússia (2)</button>
-          <button type="button" class="filter-pill" onclick="filterMeshNodes('DE', this)">Alemanha (1)</button>
-          <button type="button" class="filter-pill" onclick="filterMeshNodes('SG', this)">Singapura (1)</button>
-          <button type="button" class="filter-pill" onclick="filterMeshNodes('JP', this)">Japão (1)</button>
-          <button type="button" class="filter-pill" onclick="filterMeshNodes('CN', this)">China (1)</button>
+          <button type="button" class="filter-pill active" aria-pressed="true" onclick="filterMeshNodes('all', this)">Todos (20 Nós)</button>
+          <button type="button" class="filter-pill" aria-pressed="false" onclick="filterMeshNodes('BR', this)">Brasil (3)</button>
+          <button type="button" class="filter-pill" aria-pressed="false" onclick="filterMeshNodes('US', this)">EUA (8)</button>
+          <button type="button" class="filter-pill" aria-pressed="false" onclick="filterMeshNodes('FR', this)">França (3)</button>
+          <button type="button" class="filter-pill" aria-pressed="false" onclick="filterMeshNodes('RU', this)">Rússia (2)</button>
+          <button type="button" class="filter-pill" aria-pressed="false" onclick="filterMeshNodes('DE', this)">Alemanha (1)</button>
+          <button type="button" class="filter-pill" aria-pressed="false" onclick="filterMeshNodes('SG', this)">Singapura (1)</button>
+          <button type="button" class="filter-pill" aria-pressed="false" onclick="filterMeshNodes('JP', this)">Japão (1)</button>
+          <button type="button" class="filter-pill" aria-pressed="false" onclick="filterMeshNodes('CN', this)">China (1)</button>
         </div>
       </div>
 
@@ -2274,12 +2377,12 @@
         </div>
 
         <div class="filter-pills" style="margin-bottom: 22px;">
-          <button type="button" class="filter-pill active" onclick="filterPolicyByTag('all', this)">Todas as Cláusulas (7)</button>
-          <button type="button" class="filter-pill" onclick="filterPolicyByTag('pii', this)">1. Zero PII</button>
-          <button type="button" class="filter-pill" onclick="filterPolicyByTag('crypto', this)">2. SQLCipher &amp; E2EE</button>
-          <button type="button" class="filter-pill" onclick="filterPolicyByTag('permissions', this)">3. Permissões &amp; Foreground Service</button>
-          <button type="button" class="filter-pill" onclick="filterPolicyByTag('retention', this)">4. Retenção, Timer &amp; Burn</button>
-          <button type="button" class="filter-pill" onclick="filterPolicyByTag('disclaimer', this)">7. Disclaimers &amp; Isenção Legal</button>
+          <button type="button" class="filter-pill active" aria-pressed="true" onclick="filterPolicyByTag('all', this)">Todas as Cláusulas (7)</button>
+          <button type="button" class="filter-pill" aria-pressed="false" onclick="filterPolicyByTag('pii', this)">1. Zero PII</button>
+          <button type="button" class="filter-pill" aria-pressed="false" onclick="filterPolicyByTag('crypto', this)">2. SQLCipher &amp; E2EE</button>
+          <button type="button" class="filter-pill" aria-pressed="false" onclick="filterPolicyByTag('permissions', this)">3. Permissões &amp; Foreground Service</button>
+          <button type="button" class="filter-pill" aria-pressed="false" onclick="filterPolicyByTag('retention', this)">4. Retenção, Timer &amp; Burn</button>
+          <button type="button" class="filter-pill" aria-pressed="false" onclick="filterPolicyByTag('disclaimer', this)">7. Disclaimers &amp; Isenção Legal</button>
         </div>
 
         <div class="policy-grid" id="policy-clauses-grid">
@@ -2391,7 +2494,7 @@
             <p>Ao instalar, executar ou operar qualquer componente do ecossistema <strong>OnionTalk v1.5.4 (Build 48)</strong> (aplicativo Android <code>org.oniontalk.messenger</code>, nó Android <code>org.oniontalk.relaynode</code>, container Desktop/Web <code>onion-talk-web</code> ou servidor <code>oniontalk-relay</code>), o usuário declara ciência e concordância integral com os seguintes avisos legais:</p>
             <ul>
               <li><strong>Provisão &ldquo;No Estado em que se Encontra&rdquo; (<em>AS IS</em> · Licença MIT):</strong> O software é distribuído gratuitamente como projeto experimental de pesquisa criptográfica aplicada, sem garantias expressas ou implícitas de comercialização, adequação a um propósito específico ou disponibilidade ininterrupta dos circuitos da rede Tor v3.</li>
-              <li><strong>Impossibilidade Técnica de Recuperação de Senha, Custódia ou Interceptação (<em>Zero-Knowledge Disclaimer</em>):</strong> Por operar sem servidores centrais de contas, sem cadastro de telefone/e-mail e sem chaves mestras (<em>backdoors</em>), os desenvolvedores e operadores de nós relay <strong>não possuem meios técnicos ou matemáticos</strong> para recuperar senhas perdidas, destravar mensagens/conversas protegidas por senha (<code>__LOCKED_MSG_V1__</code>), reverter uma Queima Bilateral (<code>🔥 Burn</code>) ou Senha de Coação (<em>Duress Wipe</em>), identificar endereços IP ou descriptografar envelopes em trânsito. A perda da senha local resulta na perda definitiva e irreversível dos dados armazenados no dispositivo.</li>
+              <li><strong>Impossibilidade Técnica de Recuperação de Senha, Custódia ou Interceptação (<em>Zero-Knowledge Disclaimer</em>):</strong> Por operar sem servidores centrais de contas, sem cadastro de telefone/e-mail e sem chaves mestras (<em>backdoors</em>), os desenvolvedores e operadores de nós relay <strong>não possuem meios técnicos ou matemáticos</strong> para recuperar senhas perdidas, destravar mensagens/conversas protegidas por senha (<code>__LOCKED_MSG_V1__</code>), reverter uma Queima Bilateral (<code>Burn</code>) ou Senha de Coação (<em>Duress Wipe</em>), identificar endereços IP ou descriptografar envelopes em trânsito. A perda da senha local resulta na perda definitiva e irreversível dos dados armazenados no dispositivo.</li>
               <li><strong>Neutralidade de Roteamento dos Operadores de Nós Relay &amp; Uso Lícito:</strong> Os nós da malha federada atuam estritamente como roteadores cegos de trânsito em memória RAM volátil (<code>ram-volatile-ephemeral-ttl24h</code>) sobre Serviços Ocultos Tor v3, sem conhecimento de remetente, destinatário ou conteúdo. O OnionTalk é concebido exclusivamente para a proteção legítima da privacidade, direitos humanos, sigilo profissional e segurança da informação; o usuário é o único e exclusivo responsável pelo uso ético e lícito da ferramenta em sua jurisdição.</li>
               <li><strong>Governança Local de Grupos PQC &amp; Natureza Voluntária de Doações:</strong> O desbloqueio de criação de Grupos Pós-Quânticos (<code>3+ contatos</code> e <code>5+ dias</code> de conta ou <code>FounderPass</code> assinado via <code>Ed25519</code>) é verificado 100% offline no próprio aparelho como mecanismo anti-spam/anti-Sybil, sem cobrança financeira. Doações em criptoativos (<code>BTC</code>, <code>ETH</code>, <code>SOL</code>) são contribuições voluntárias ao projeto open-source e não configuram contratação de serviço ou SLA.</li>
             </ul>
@@ -2599,8 +2702,9 @@
     }
 
     function filterScreenshots(cat, btn) {
-      document.querySelectorAll("#vitrine .filter-pill").forEach(b => b.classList.remove("active"));
+      document.querySelectorAll("#vitrine .filter-pill").forEach(b => { b.classList.remove("active"); b.setAttribute("aria-pressed", "false"); });
       btn.classList.add("active");
+      btn.setAttribute("aria-pressed", "true");
       document.querySelectorAll("#screenshots-gallery .shot-card").forEach(card => {
         const c = card.getAttribute("data-category");
         card.style.display = (cat === "all" || c === cat) ? "flex" : "none";
@@ -2618,8 +2722,9 @@
     }
 
     function filterMeshNodes(region, btn) {
-      document.querySelectorAll("#malha .filter-pill").forEach(b => b.classList.remove("active"));
+      document.querySelectorAll("#malha .filter-pill").forEach(b => { b.classList.remove("active"); b.setAttribute("aria-pressed", "false"); });
       btn.classList.add("active");
+      btn.setAttribute("aria-pressed", "true");
       document.querySelectorAll("#mesh-nodes-tbody tr").forEach(row => {
         const r = row.getAttribute("data-region");
         row.style.display = (region === "all" || r === region) ? "" : "none";
@@ -2655,8 +2760,9 @@
     }
 
     function filterPolicyByTag(tag, btn) {
-      document.querySelectorAll("#privacy .filter-pill").forEach(b => b.classList.remove("active"));
+      document.querySelectorAll("#privacy .filter-pill").forEach(b => { b.classList.remove("active"); b.setAttribute("aria-pressed", "false"); });
       btn.classList.add("active");
+      btn.setAttribute("aria-pressed", "true");
       document.querySelectorAll(".policy-clause").forEach(card => {
         const t = card.getAttribute("data-tag");
         card.style.display = (tag === "all" || t === tag) ? "block" : "none";
@@ -2665,19 +2771,20 @@
 
     const i18nDict = {
       pt: {
-        nav_showcase: "Telas & Filme Oficial",
-        nav_arch: "Arquitetura Tor v3",
-        nav_mesh: "Malha Global (20 Nós)",
+        nav_showcase: "Telas & Vídeo",
+        nav_arch: "Arquitetura",
+        nav_mesh: "Rede de Relays",
         nav_comp: "Comparativo",
-        nav_priv: "Política de Privacidade",
+        nav_priv: "Privacidade",
         cta_download: "Google Play",
-        hero_badge: "MALHA V31 ATIVA · 20 NÓS TOR V3 EM 8 PAÍSES + AUTO-JOIN · 100% ENTREGA SOAK TEST",
-        hero_title: "Simples como o WhatsApp.<br/><span>Invisível e soberano na rede Tor v3.</span>",
-        hero_lead: "Mensageiros convencionais exigem seu número de telefone, guardam seus contatos em nuvem e expõem seu IP. O OnionTalk opera 100% sobre Serviços Ocultos Tor v3 (<code>.onion</code>) com criptografia X25519 + ML-KEM-768 (PQC) + ChaCha20-Poly1305, cofre SQLCipher AES-256, biometria AndroidKeyStore com trava anti-coação e queima bilateral instantânea.",
+        hero_badge: "20 relays Tor v3 ativos em 8 países",
+        hero_title: "Mensageiro privado,<br/><span>sem número de telefone.</span>",
+        hero_lead: "O OnionTalk funciona sobre a rede Tor v3, sem servidor central. Não pede telefone nem e-mail, não guarda seus contatos na nuvem e esconde seu IP. Cada mensagem é cifrada no seu aparelho e entregue por relays que qualquer pessoa pode operar.",
         hero_btn_play: "Baixar no Google Play",
         hero_btn_apk: "APK Universal Assinado (v1.5.4 · Build 48)",
         hero_btn_node: "Subir Relay Docker (<60MB)",
         hero_btn_policy: "Política de Privacidade",
+        hero_more: "Outras formas de instalar e rodar um relay",
         metric_1: "Telefone, SIM card, e-mail, IP ou EXIF armazenados",
         metric_2: "Malha Tor v3 em 8 países (BR, US, FR, DE, RU, SG, JP, CN) + Auto-Join",
         metric_3: "Mediana p50 de entrega P2P (Soak Test 2h · 60 ondas · 0 crashes)",
@@ -2693,19 +2800,20 @@
         comp_desc: "Por que proteger apenas o texto da mensagem é insuficiente quando o seu número de telefone, IP e grafo social ficam expostos."
       },
       en: {
-        nav_showcase: "Real Screens & Film",
-        nav_arch: "Tor v3 Architecture",
-        nav_mesh: "Global Mesh (20 Nodes)",
+        nav_showcase: "Screens & Video",
+        nav_arch: "Architecture",
+        nav_mesh: "Relay Network",
         nav_comp: "Comparison",
-        nav_priv: "Privacy Policy",
+        nav_priv: "Privacy",
         cta_download: "Google Play",
-        hero_badge: "V31 MESH LIVE · 20 TOR V3 NODES IN 8 COUNTRIES + AUTO-JOIN · 100% SOAK TEST DELIVERY",
-        hero_title: "Simple like WhatsApp.<br/><span>Invisible and sovereign on Tor v3.</span>",
-        hero_lead: "Mainstream messengers demand your phone number, store your social graph in the cloud, and expose your IP. OnionTalk runs 100% over Tor v3 Hidden Services (<code>.onion</code>) with X25519 + ML-KEM-768 (PQC) + ChaCha20-Poly1305 encryption, a local SQLCipher AES-256 vault, AndroidKeyStore biometrics with anti-coercion lockdown, and instant bilateral burn.",
+        hero_badge: "20 Tor v3 relays active in 8 countries",
+        hero_title: "Private messenger,<br/><span>no phone number.</span>",
+        hero_lead: "OnionTalk runs on the Tor v3 network, with no central server. It asks for no phone number or email, keeps no contact list in the cloud, and hides your IP address. Every message is encrypted on your device and delivered through relays anyone can run.",
         hero_btn_play: "Get it on Google Play",
         hero_btn_apk: "Signed Universal APK (v1.5.4 · Build 48)",
         hero_btn_node: "Run Docker Relay (<60MB)",
         hero_btn_policy: "Privacy Policy",
+        hero_more: "More ways to install or run a relay",
         metric_1: "Phone number, SIM, email, IP, or EXIF stored",
         metric_2: "Active Tor v3 mesh in 8 countries (BR, US, FR, DE, RU, SG, JP, CN) + Auto-Join",
         metric_3: "Median p50 P2P delivery (157/157 in 2h Soak Test)",
@@ -2721,19 +2829,20 @@
         comp_desc: "Why encrypting message text alone fails when your phone number, IP address, and social graph remain exposed."
       },
       es: {
-        nav_showcase: "Pantallas y Película",
-        nav_arch: "Arquitectura Tor v3",
-        nav_mesh: "Malla Global (20 Nodos)",
+        nav_showcase: "Pantallas y Video",
+        nav_arch: "Arquitectura",
+        nav_mesh: "Red de Relays",
         nav_comp: "Comparativa",
-        nav_priv: "Política de Privacidad",
+        nav_priv: "Privacidad",
         cta_download: "Google Play",
-        hero_badge: "MALLA V31 ACTIVA · 20 NODOS TOR V3 EN 8 PAÍSES + AUTO-JOIN · 100% ENTREGA SOAK TEST",
-        hero_title: "Simple como WhatsApp.<br/><span>Invisible y soberano en la red Tor v3.</span>",
-        hero_lead: "Los mensajeros tradicionales exigen tu número de teléfono, guardan tus contactos en la nube y exponen tu IP. OnionTalk opera 100% sobre Servicios Ocultos Tor v3 (<code>.onion</code>) con cifrado X25519 + ML-KEM-768 (PQC) + ChaCha20-Poly1305, bóveda SQLCipher AES-256, biometría AndroidKeyStore antocoacción y quema bilateral instantánea.",
+        hero_badge: "20 relays Tor v3 activos en 8 países",
+        hero_title: "Mensajería privada,<br/><span>sin número de teléfono.</span>",
+        hero_lead: "OnionTalk funciona sobre la red Tor v3, sin servidor central. No pide teléfono ni correo, no guarda tus contactos en la nube y oculta tu IP. Cada mensaje se cifra en tu dispositivo y se entrega mediante relays que cualquiera puede operar.",
         hero_btn_play: "Descargar en Google Play",
         hero_btn_apk: "APK Universal Firmado (v1.5.4 · Build 48)",
         hero_btn_node: "Desplegar Relay Docker (<60MB)",
         hero_btn_policy: "Política de Privacidad",
+        hero_more: "Más formas de instalar o ejecutar un relay",
         metric_1: "Teléfono, tarjeta SIM, correo, IP o EXIF almacenados",
         metric_2: "Malla Tor v3 en 8 países (BR, US, FR, DE, RU, SG, JP, CN) + Auto-Join",
         metric_3: "Mediana p50 de entrega P2P (157/157 en Soak Test 2h)",
@@ -2749,19 +2858,20 @@
         comp_desc: "Por qué cifrar solo el texto no basta cuando tu número telefónico, dirección IP y grafo social siguen expuestos."
       },
       ru: {
-        nav_showcase: "Экраны и Фильм",
-        nav_arch: "Архитектура Tor v3",
-        nav_mesh: "Сеть (20 Узлов)",
+        nav_showcase: "Экраны и видео",
+        nav_arch: "Архитектура",
+        nav_mesh: "Сеть узлов",
         nav_comp: "Сравнение",
         nav_priv: "Конфиденциальность",
         cta_download: "Google Play",
-        hero_badge: "СЕТЬ V31 АКТИВНА · 20 УЗЛОВ TOR V3 В 8 СТРАНАХ + AUTO-JOIN · 100% ДОСТАВКА",
-        hero_title: "Простой как WhatsApp.<br/><span>Невидимый и суверенный в сети Tor v3.</span>",
-        hero_lead: "Обычные мессенджеры требуют номер телефона, хранят граф контактов в облаке и раскрывают ваш IP. OnionTalk работает на 100% через скрытые сервисы Tor v3 (<code>.onion</code>) с шифрованием X25519 + ML-KEM-768 (PQC) + ChaCha20-Poly1305, хранилищем SQLCipher AES-256, биометрией AndroidKeyStore с защитой от принуждения и двусторонним уничтожением.",
+        hero_badge: "20 узлов Tor v3 активны в 8 странах",
+        hero_title: "Приватный мессенджер<br/><span>без номера телефона.</span>",
+        hero_lead: "OnionTalk работает в сети Tor v3, без центрального сервера. Он не требует номер телефона или e-mail, не хранит ваши контакты в облаке и скрывает ваш IP. Каждое сообщение шифруется на устройстве и доставляется через узлы, которые может запустить любой.",
         hero_btn_play: "Скачать в Google Play",
         hero_btn_apk: "Подписанный APK (v1.5.4 · Build 48)",
         hero_btn_node: "Запустить Docker-узел (<60МБ)",
         hero_btn_policy: "Политика конфиденциальности",
+        hero_more: "Другие способы установки и запуск узла",
         metric_1: "Номер телефона, SIM, email, IP или EXIF-данные",
         metric_2: "Активная сеть Tor v3 в 8 странах (BR, US, FR, DE, RU, SG, JP, CN) + Auto-Join",
         metric_3: "Медиана p50 доставки P2P (157/157 за 2ч теста)",
