@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OnionTalk v1.5.5 — Mensageiro privado sobre Tor v3 · Política de Privacidade</title>
+  <title>OnionTalk — Mensageiro privado sobre Tor v3 · Política de Privacidade</title>
   <meta name="description" content="Mensageiro sem número de telefone, sem e-mail e sem servidor central. Funciona sobre a rede Tor v3, com criptografia pós-quântica híbrida e relays que qualquer pessoa pode operar." />
   <meta name="theme-color" content="#05080F" />
   <meta name="color-scheme" content="dark" />
   <link rel="icon" type="image/png" href="icon-512.png" />
   <link rel="apple-touch-icon" href="icon-512.png" />
-  <meta property="og:title" content="OnionTalk v1.5.5 — Private messenger on Tor v3" />
+  <meta property="og:title" content="OnionTalk — Private messenger on Tor v3" />
   <meta property="og:type" content="website" />
   <meta property="og:description" content="No phone number, no email, no central server. Runs on the Tor v3 network with hybrid post-quantum encryption and relays anyone can operate." />
   <meta property="og:image" content="https://onion-talk.github.io/oniontalk-demo/icon-512.png" />
@@ -1336,7 +1336,7 @@
         background: rgba(16, 185, 129, 0.08);
         border: 1px solid rgba(16, 185, 129, 0.28);
       }
-      #comparativo tbody td:nth-child(2)::before { content: "🛡️ OnionTalk v1.5.5"; font-size: 10.5px; font-weight: 700; color: #34D399; font-family: 'JetBrains Mono', monospace; }
+      #comparativo tbody td:nth-child(2)::before { content: "OnionTalk"; font-size: 10.5px; font-weight: 700; color: #34D399; font-family: 'JetBrains Mono', monospace; }
       #comparativo tbody td:nth-child(3)::before { content: "WhatsApp"; font-size: 10.5px; font-weight: 600; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
       #comparativo tbody td:nth-child(4)::before { content: "Telegram"; font-size: 10.5px; font-weight: 600; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
       #comparativo tbody td:nth-child(5)::before { content: "Signal"; font-size: 10.5px; font-weight: 600; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
@@ -1469,6 +1469,10 @@
       .hero-more-grid { grid-template-columns: 1fr; }
       .hero-more-grid .btn-secondary { width: 100%; min-height: 46px; justify-content: center; }
     }
+
+    /* release labels filled by script; hidden until then */
+    [data-release][hidden] { display: none !important; }
+    .rel-tag { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 500; color: var(--text-muted); white-space: nowrap; }
   </style>
 </head>
 <body>
@@ -1481,7 +1485,7 @@
           <img src="icon-512.png" alt="OnionTalk Official App Icon" />
         </div>
         <span>OnionTalk</span>
-        <span class="brand-version-tag">v1.5.5 · Build 49</span>
+        <span class="brand-version-tag" data-release="app" hidden></span>
       </a>
 
       <nav class="nav-links" aria-label="Navegação Principal">
@@ -1546,18 +1550,18 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 20.5v-17c0-.83.94-1.3 1.6-.8l14 8.5c.6.37.6 1.23 0 1.6l-14 8.5c-.66.5-1.6.03-1.6-.8z"></path></svg>
             <span data-i18n="hero_btn_play">Baixar no Google Play</span>
           </a>
-          <a href="https://github.com/onion-talk/oniontalk-demo/releases/download/v1.5.5/OnionTalk-v1.5.5.apk" target="_blank" rel="noopener" class="btn-secondary">
+          <a href="https://github.com/onion-talk/oniontalk-demo/releases/latest/download/OnionTalk.apk" target="_blank" rel="noopener" class="btn-secondary">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-            <span data-i18n="hero_btn_apk">APK Universal Assinado (v1.5.5 · Build 49)</span>
+            <span><span data-i18n="hero_btn_apk">APK Universal Assinado</span> <span class="rel-tag" data-release="app" hidden></span></span>
           </a>
         </div>
 
         <details class="hero-more">
           <summary data-i18n="hero_more">Outras formas de instalar e rodar um relay</summary>
           <div class="hero-more-grid">
-            <a href="https://github.com/onion-talk/oniontalk-relay/releases/download/v1.5.2/OnionTalk-RelayNode-v1.5.2.apk" download class="btn-secondary">
+            <a href="https://github.com/onion-talk/oniontalk-relay/releases/latest/download/OnionTalk-RelayNode.apk" download class="btn-secondary">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
-              <span>APK Relay Server Android (v1.5.2 · Build 11 Zero-Leak)</span>
+              <span>APK Relay Server Android <span class="rel-tag" data-release="relay" hidden></span></span>
             </a>
             <a href="#malha" class="btn-secondary">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="8" rx="2"></rect><rect x="2" y="14" width="20" height="8" rx="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
@@ -1565,12 +1569,12 @@
             </a>
             <a href="#web-container" class="btn-secondary">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-              <span>Web Client + Relay Docker (v1.5.5 · Build 49)</span>
+              <span>Web Client + Relay Docker</span>
             </a>
           </div>
         </details>
 
-        <p class="hero-meta-line"><a href="#privacy" class="hero-text-link" data-i18n="hero_btn_policy">Política de Privacidade</a> <span class="mono">· org.oniontalk.messenger · v1.5.5 (Build 49) · PT / EN / ES / RU</span></p>
+        <p class="hero-meta-line"><a href="#privacy" class="hero-text-link" data-i18n="hero_btn_policy">Política de Privacidade</a> <span class="mono">· org.oniontalk.messenger<span data-release="app" data-prefix=" · " hidden></span> · PT / EN / ES / RU</span></p>
 
         <div class="hero-metrics">
           <div class="metric-card">
@@ -1592,15 +1596,15 @@
         </div>
       </div>
 
-      <!-- Interactive OnionTalk v1.5.5 Simulator -->
-      <div class="simulator-shell" aria-label="Simulador Interativo OnionTalk v1.5.5">
+      <!-- Interactive OnionTalk Simulator -->
+      <div class="simulator-shell" aria-label="Simulador Interativo OnionTalk">
         <div class="sim-toolbar">
           <span class="sim-toolbar-label">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="4 17 10 11 4 5"></polyline>
               <line x1="12" y1="19" x2="20" y2="19"></line>
             </svg>
-            SIMULADOR INTERATIVO V1.5.5
+            SIMULADOR INTERATIVO
           </span>
           <span class="mono" style="font-size: 11px; color: var(--brand-emerald);">SOCKS5h 127.0.0.1:9050</span>
         </div>
@@ -1711,7 +1715,7 @@
               <line x1="8" y1="21" x2="16" y2="21"></line>
               <line x1="12" y1="17" x2="12" y2="21"></line>
             </svg>
-            <span data-i18n="showcase_eyebrow">KIT DE MÍDIA &amp; EVIDÊNCIA REAL DE EXECUÇÃO · ANDROID V1.5.5 (BUILD 49)</span>
+            <span data-i18n="showcase_eyebrow">KIT DE MÍDIA &amp; EVIDÊNCIA REAL DE EXECUÇÃO · ANDROID V1.5.4 (BUILD 48)</span>
           </span>
           <h2 data-i18n="showcase_title">Central de Vídeos Promocionais 1080p e Kit de 16 Telas Reais.</h2>
           <p data-i18n="showcase_desc">Assista aos vídeos oficiais da versão v1.5.0 (Promo Oficial PT/EN, Tour Completo de Funções, formato Reels/Shorts 9:16 e Filme Manifesto) e inspecione as 16 capturas reais do aplicativo em operação.</p>
@@ -1757,8 +1761,8 @@
             </div>
             <div style="background: #070B14; border: 1px solid var(--border-hairline); border-radius: 12px; padding: 16px; margin-bottom: 12px;">
               <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
-                <span class="mono" style="font-size: 12px; color: var(--brand-emerald); font-weight: 700;">NOVIDADES DA RELEASE V1.5.5 (BUILD 49)</span>
-                <span class="badge-yes">Play Store Ready · vc49</span>
+                <span class="mono" style="font-size: 12px; color: var(--brand-emerald); font-weight: 700;">NOVIDADES DA RELEASE V1.5.4 (BUILD 48)</span>
+                <span class="badge-yes">Play Store Ready · vc48</span>
               </div>
               <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 13px; color: var(--text-secondary);">
                 <li style="display: flex; gap: 8px;">
@@ -1789,7 +1793,7 @@
       <div class="screenshots-grid" id="screenshots-gallery">
         <div class="shot-card" data-category="v142" onclick="openScreenshotModal('screenshots/11-locked-message-e2ee.png', 'Mensagem Protegida com Senha Individual (__LOCKED_MSG_V1__)')">
           <div class="shot-img-wrap">
-            <img src="screenshots/11-locked-message-e2ee.png" alt="Bolha de Mensagem Protegida com Senha OnionTalk v1.5.5" width="360" height="780" loading="lazy" />
+            <img src="screenshots/11-locked-message-e2ee.png" alt="Bolha de Mensagem Protegida com Senha OnionTalk v1.5.4" width="360" height="780" loading="lazy" />
           </div>
           <div class="shot-caption">
             <strong>1. Mensagem com Senha (v1.5.0)</strong>
@@ -1799,7 +1803,7 @@
 
         <div class="shot-card" data-category="v142" onclick="openScreenshotModal('screenshots/12-unlock-message-modal.png', 'Modal de Desbloqueio de Mensagem com Senha e Cache de Sessão')">
           <div class="shot-img-wrap">
-            <img src="screenshots/12-unlock-message-modal.png" alt="Desbloqueio de Mensagem com Senha OnionTalk v1.5.5" width="360" height="780" loading="lazy" />
+            <img src="screenshots/12-unlock-message-modal.png" alt="Desbloqueio de Mensagem com Senha OnionTalk v1.5.4" width="360" height="780" loading="lazy" />
           </div>
           <div class="shot-caption">
             <strong>2. Desbloqueio Instantâneo</strong>
@@ -1807,9 +1811,9 @@
           </div>
         </div>
 
-        <div class="shot-card" data-category="v142" onclick="openScreenshotModal('screenshots/13-locked-chat-pin-home.png', 'Lista Limpa v1.5.5 (Build 49): Favoritos Fixados (📌), Conversa Trancada e Toque Longo')">
+        <div class="shot-card" data-category="v142" onclick="openScreenshotModal('screenshots/13-locked-chat-pin-home.png', 'Lista Limpa v1.5.4 (Build 48): Favoritos Fixados (📌), Conversa Trancada e Toque Longo')">
           <div class="shot-img-wrap">
-            <img src="screenshots/13-locked-chat-pin-home.png" alt="Tela Inicial Limpa com Favorito e Conversa Trancada v1.5.5 (Build 49)" width="360" height="780" loading="lazy" />
+            <img src="screenshots/13-locked-chat-pin-home.png" alt="Tela Inicial Limpa com Favorito e Conversa Trancada v1.5.4 (Build 48)" width="360" height="780" loading="lazy" />
           </div>
           <div class="shot-caption">
             <strong>3. Lista Limpa &amp; Toque Longo</strong>
@@ -1819,7 +1823,7 @@
 
         <div class="shot-card" data-category="v142" onclick="openScreenshotModal('screenshots/14-lock-conversation-modal.png', 'Trancar Conversa Inteira com Senha e Ocultar Prévia')">
           <div class="shot-img-wrap">
-            <img src="screenshots/14-lock-conversation-modal.png" alt="Modal Trancar Conversa com Senha OnionTalk v1.5.5" width="360" height="780" loading="lazy" />
+            <img src="screenshots/14-lock-conversation-modal.png" alt="Modal Trancar Conversa com Senha OnionTalk v1.5.4" width="360" height="780" loading="lazy" />
           </div>
           <div class="shot-caption">
             <strong>4. Conversa Trancada com Senha</strong>
@@ -1827,9 +1831,9 @@
           </div>
         </div>
 
-        <div class="shot-card" data-category="v142" onclick="openScreenshotModal('screenshots/15-profile-photo-privacy.png', 'Configurações v1.5.5 (Build 49): 4 Abas Fixas &amp; Visibilidade da Foto de Perfil')">
+        <div class="shot-card" data-category="v142" onclick="openScreenshotModal('screenshots/15-profile-photo-privacy.png', 'Configurações v1.5.4 (Build 48): 4 Abas Fixas &amp; Visibilidade da Foto de Perfil')">
           <div class="shot-img-wrap">
-            <img src="screenshots/15-profile-photo-privacy.png" alt="Privacidade de Foto de Perfil OnionTalk v1.5.5 Build 36" width="360" height="780" loading="lazy" />
+            <img src="screenshots/15-profile-photo-privacy.png" alt="Privacidade de Foto de Perfil OnionTalk v1.5.4 Build 36" width="360" height="780" loading="lazy" />
           </div>
           <div class="shot-caption">
             <strong>5. Privacidade de Foto (v1.5.0)</strong>
@@ -1837,9 +1841,9 @@
           </div>
         </div>
 
-        <div class="shot-card" data-category="v142" onclick="openScreenshotModal('screenshots/16-autolock-15s-security.png', 'Segurança v1.5.5 (Build 49): Bloqueio Automático de 15s (Mesmo Fechado) &amp; Biometria')">
+        <div class="shot-card" data-category="v142" onclick="openScreenshotModal('screenshots/16-autolock-15s-security.png', 'Segurança v1.5.4 (Build 48): Bloqueio Automático de 15s (Mesmo Fechado) &amp; Biometria')">
           <div class="shot-img-wrap">
-            <img src="screenshots/16-autolock-15s-security.png" alt="Auto-Lock 15s e Biometria OnionTalk v1.5.5 Build 36" width="360" height="780" loading="lazy" />
+            <img src="screenshots/16-autolock-15s-security.png" alt="Auto-Lock 15s e Biometria OnionTalk v1.5.4 Build 36" width="360" height="780" loading="lazy" />
           </div>
           <div class="shot-caption">
             <strong>6. Auto-Lock 15s &amp; Biometria</strong>
@@ -1847,9 +1851,9 @@
           </div>
         </div>
 
-        <div class="shot-card" data-category="v142" onclick="openScreenshotModal('screenshots/17-donate-relay-nodes.png', 'Apoio Cripto (BTC / ETH / SOL) &amp; Guia Rápido de Nós Relay v1.5.5 (Build 49)')">
+        <div class="shot-card" data-category="v142" onclick="openScreenshotModal('screenshots/17-donate-relay-nodes.png', 'Apoio Cripto (BTC / ETH / SOL) &amp; Guia Rápido de Nós Relay v1.5.4 (Build 48)')">
           <div class="shot-img-wrap">
-            <img src="screenshots/17-donate-relay-nodes.png" alt="Apoie o Projeto e Suba um Servidor OnionTalk v1.5.5 Build 36" width="360" height="780" loading="lazy" />
+            <img src="screenshots/17-donate-relay-nodes.png" alt="Apoie o Projeto e Suba um Servidor OnionTalk v1.5.4 Build 36" width="360" height="780" loading="lazy" />
           </div>
           <div class="shot-caption">
             <strong>7. Doações &amp; Guia Relay Docker</strong>
@@ -2082,7 +2086,7 @@
           <div>
             <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 8px;">
               <span class="section-eyebrow" style="margin-bottom: 0; color: #38BDF8;">APP SECUNDÁRIO ANDROID · org.oniontalk.relaynode</span>
-              <span class="badge-yes" style="border-color: rgba(6, 182, 212, 0.4); color: #67E8F9; background: rgba(6, 182, 212, 0.12);">Relay v1.5.2 · Build 11 · Zero-Leak</span>
+              <span class="badge-yes" style="border-color: rgba(6, 182, 212, 0.4); color: #67E8F9; background: rgba(6, 182, 212, 0.12);">Relay Node · Zero-Leak <span data-release="relay" data-prefix="· " hidden></span></span>
             </div>
             <h3 style="margin-bottom: 6px;">2. Subir Nó Relay Dentro do Android (App Secundário)</h3>
             <p style="font-size: 13.5px;">Transforme qualquer celular Android (4G/5G/Wi-Fi, mesmo atrás de CGNAT) em um servidor <strong>Tor v3 Hidden Service</strong> soberano (<code>127.0.0.1:9055 &rarr; :8088</code>). Instala lado a lado com o mensageiro principal sem conflito de portas, permite escolher apenas o Nome do Nó e faz Auto-Join 100% anônimo nos 20 seeds (zero coleta de IP, modelo do celular ou latitude/longitude).</p>
@@ -2092,13 +2096,13 @@
               Pacote: org.oniontalk.relaynode · SOCKS5h :9055 · HiddenServicePort 80 &rarr; :8088
             </div>
             <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-              <a href="https://github.com/onion-talk/oniontalk-relay/releases/download/v1.5.2/OnionTalk-RelayNode-v1.5.2.apk" download class="btn-primary" style="background: #06B6D4; color: #021318;">
+              <a href="https://github.com/onion-talk/oniontalk-relay/releases/latest/download/OnionTalk-RelayNode.apk" download class="btn-primary" style="background: #06B6D4; color: #021318;">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                   <polyline points="7 10 12 15 17 10"></polyline>
                   <line x1="12" y1="15" x2="12" y2="3"></line>
                 </svg>
-                <span>Baixar OnionTalk Relay APK v1.5.2 (Build 11 · 16.4 MB)</span>
+                <span>Baixar OnionTalk Relay APK <span class="rel-tag" data-release="relay" hidden></span></span>
               </a>
             </div>
           </div>
@@ -2108,7 +2112,7 @@
           <div>
             <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 8px;">
               <span class="section-eyebrow" style="margin-bottom: 0; color: #38BDF8;">DESKTOP &amp; WEB CLIENT + RELAY TOR V3 · eriktonon/oniontalk-web:latest</span>
-              <span class="badge-yes" style="border-color: rgba(56, 189, 248, 0.45); color: #38BDF8; background: rgba(56, 189, 248, 0.12);">Rust Black-Box · CIS Level 2 Hardened · v1.5.5-build49</span>
+              <span class="badge-yes" style="border-color: rgba(56, 189, 248, 0.45); color: #38BDF8; background: rgba(56, 189, 248, 0.12);">Rust Black-Box · CIS Level 2 Hardened</span>
             </div>
             <h3 style="margin-bottom: 6px;">3. Rodar OnionTalk Web Client + Nó Relay Tor v3 (Windows / Linux / macOS)</h3>
             <p style="font-size: 13.5px;">Execute o cliente web completo do OnionTalk + nó Relay Tor v3 embutido localmente em <code>http://127.0.0.1:8420</code> via Docker. Compilado nativamente em Rust (binário <code>strip=symbols</code> + <code>UPX --lzma</code>, <code>PR_SET_DUMPABLE=0</code>, cofre <code>Argon2id 64 MiB + AES-256-GCM</code>, áudios e imagens cifrados em repouso <code>OTATT1</code>, Grupos Pós-Quânticos <code>ML-KEM-768</code>, Estúdio de Desfoque em RAM e transporte local selado com <code>ChaCha20</code>).</p>
@@ -2307,7 +2311,7 @@
               <th class="highlight-col" style="color: var(--brand-emerald-hover);">
                 <span style="display: inline-flex; align-items: center; gap: 8px;">
                   <img src="icon-512.png" alt="OnionTalk" style="width: 22px; height: 22px; border-radius: 6px;" />
-                  OnionTalk v1.5.5
+                  OnionTalk
                 </span>
               </th>
               <th>WhatsApp</th>
@@ -2366,7 +2370,7 @@
               <span class="section-eyebrow" style="margin-bottom: 4px;">DOCUMENTO OFICIAL DE CONFORMIDADE · GOOGLE PLAY CONSOLE</span>
               <h2 style="font-size: 26px; font-weight: 800; letter-spacing: -0.02em;">Política de Privacidade — OnionTalk (<code class="mono" style="color: var(--brand-emerald);">org.oniontalk.messenger</code>)</h2>
               <p style="color: var(--text-secondary); font-size: 13px; margin-top: 4px;">
-                Última atualização: <span class="mono">29 de outubro de 2026</span> · Versão de Referência: <span class="mono">v1.5.5 (Build 49) &amp; Relay v1.5.5 (Build 49)</span>
+                Última atualização: <span class="mono">29 de outubro de 2026</span> · Versão de Referência: <span class="mono">v1.5.4 (Build 48) &amp; Relay v1.5.4 (Build 48)</span>
               </p>
             </div>
           </div>
@@ -2491,7 +2495,7 @@
               </svg>
               7. Disclaimers Legais, Isenção de Responsabilidade &amp; Termos de Uso Soberano (v1.5.0)
             </h3>
-            <p>Ao instalar, executar ou operar qualquer componente do ecossistema <strong>OnionTalk v1.5.5 (Build 49)</strong> (aplicativo Android <code>org.oniontalk.messenger</code>, nó Android <code>org.oniontalk.relaynode</code>, container Desktop/Web <code>onion-talk-web</code> ou servidor <code>oniontalk-relay</code>), o usuário declara ciência e concordância integral com os seguintes avisos legais:</p>
+            <p>Ao instalar, executar ou operar qualquer componente do ecossistema <strong>OnionTalk v1.5.4 (Build 48)</strong> (aplicativo Android <code>org.oniontalk.messenger</code>, nó Android <code>org.oniontalk.relaynode</code>, container Desktop/Web <code>onion-talk-web</code> ou servidor <code>oniontalk-relay</code>), o usuário declara ciência e concordância integral com os seguintes avisos legais:</p>
             <ul>
               <li><strong>Provisão &ldquo;No Estado em que se Encontra&rdquo; (<em>AS IS</em> · Licença MIT):</strong> O software é distribuído gratuitamente como projeto experimental de pesquisa criptográfica aplicada, sem garantias expressas ou implícitas de comercialização, adequação a um propósito específico ou disponibilidade ininterrupta dos circuitos da rede Tor v3.</li>
               <li><strong>Impossibilidade Técnica de Recuperação de Senha, Custódia ou Interceptação (<em>Zero-Knowledge Disclaimer</em>):</strong> Por operar sem servidores centrais de contas, sem cadastro de telefone/e-mail e sem chaves mestras (<em>backdoors</em>), os desenvolvedores e operadores de nós relay <strong>não possuem meios técnicos ou matemáticos</strong> para recuperar senhas perdidas, destravar mensagens/conversas protegidas por senha (<code>__LOCKED_MSG_V1__</code>), reverter uma Queima Bilateral (<code>Burn</code>) ou Senha de Coação (<em>Duress Wipe</em>), identificar endereços IP ou descriptografar envelopes em trânsito. A perda da senha local resulta na perda definitiva e irreversível dos dados armazenados no dispositivo.</li>
@@ -2516,7 +2520,7 @@
   <footer>
     <div style="display: inline-flex; align-items: center; gap: 10px; margin-bottom: 10px;">
       <img src="icon-512.png" alt="OnionTalk" style="width: 28px; height: 28px; border-radius: 7px;" />
-      <strong style="color: var(--text-primary); font-size: 15px;">OnionTalk: Private Tor Chat · v1.5.5 (Build 49)</strong>
+      <strong style="color: var(--text-primary); font-size: 15px;">OnionTalk: Private Tor Chat · v1.5.4 (Build 48)</strong>
     </div>
     <p style="margin-bottom: 6px;">Ao baixar ou em caso de doação por outro meio, fale com nosso Admin pelo App: <code class="mono" style="color: var(--brand-emerald-hover);">@bbac48f99ed4536ce9134df16cc49dbed2d9109ed351710d181d86c28f34efd9:onion4zr3bsdeaelksemwokl5qmxd5o7jyblf46vc2mfl6cozgw77tqd.onion</code> · <a href="https://www.instagram.com/oniontalk.app/" target="_blank" rel="noopener" style="color: var(--brand-emerald-hover);">Instagram Oficial (@oniontalk.app)</a></p>
     <p>OnionTalk Sovereign Privacy Project · Pacote Android <code class="mono">org.oniontalk.messenger</code> · Licenciado sob MIT (Protocol &amp; Relay)</p>
@@ -2655,7 +2659,7 @@
         "demo-pt": {
           url: "video/OnionTalk-v1.4.1-Demo-Funcoes-PT.mp4",
           title: "Tour Completo de Funções v1.5.0: Envio, Senha por Mensagem & Privacidade (1080p)",
-          desc: "Demonstração passo a passo de todas as telas reais do OnionTalk v1.5.5 (Build 49) operando sobre a malha global de 20 nós Tor v3.",
+          desc: "Demonstração passo a passo de todas as telas reais do OnionTalk v1.5.4 (Build 48) operando sobre a malha global de 20 nós Tor v3.",
           aspect: "16 / 9"
         },
         "reels-pt": {
@@ -2781,7 +2785,7 @@
         hero_title: "Mensageiro privado,<br/><span>sem número de telefone.</span>",
         hero_lead: "O OnionTalk funciona sobre a rede Tor v3, sem servidor central. Não pede telefone nem e-mail, não guarda seus contatos na nuvem e esconde seu IP. Cada mensagem é cifrada no seu aparelho e entregue por relays que qualquer pessoa pode operar.",
         hero_btn_play: "Baixar no Google Play",
-        hero_btn_apk: "APK Universal Assinado (v1.5.5 · Build 49)",
+        hero_btn_apk: "APK Universal Assinado",
         hero_btn_node: "Subir Relay Docker (<60MB)",
         hero_btn_policy: "Política de Privacidade",
         hero_more: "Outras formas de instalar e rodar um relay",
@@ -2789,7 +2793,7 @@
         metric_2: "Malha Tor v3 em 8 países (BR, US, FR, DE, RU, SG, JP, CN) + Auto-Join",
         metric_3: "Mediana p50 de entrega P2P (Soak Test 2h · 60 ondas · 0 crashes)",
         metric_4: "Troca instantânea zero-telemetria (PT, EN, ES, RU)",
-        showcase_eyebrow: "KIT DE MÍDIA & EVIDÊNCIA REAL DE EXECUÇÃO · ANDROID V1.5.5 (BUILD 49)",
+        showcase_eyebrow: "KIT DE MÍDIA & EVIDÊNCIA REAL DE EXECUÇÃO · ANDROID V1.5.4 (BUILD 48)",
         showcase_title: "Central de Vídeos Promocionais 1080p e Kit de 16 Telas Reais.",
         showcase_desc: "Assista aos vídeos oficiais da versão v1.5.0 (Promo Oficial PT/EN, Tour Completo de Funções, formato Reels/Shorts 9:16 e Filme Manifesto) e inspecione as 16 capturas reais do aplicativo em operação.",
         arch_eyebrow: "ARQUITETURA CRIPTOGRÁFICA ZERO-TRUST",
@@ -2810,7 +2814,7 @@
         hero_title: "Private messenger,<br/><span>no phone number.</span>",
         hero_lead: "OnionTalk runs on the Tor v3 network, with no central server. It asks for no phone number or email, keeps no contact list in the cloud, and hides your IP address. Every message is encrypted on your device and delivered through relays anyone can run.",
         hero_btn_play: "Get it on Google Play",
-        hero_btn_apk: "Signed Universal APK (v1.5.5 · Build 49)",
+        hero_btn_apk: "Signed Universal APK",
         hero_btn_node: "Run Docker Relay (<60MB)",
         hero_btn_policy: "Privacy Policy",
         hero_more: "More ways to install or run a relay",
@@ -2818,7 +2822,7 @@
         metric_2: "Active Tor v3 mesh in 8 countries (BR, US, FR, DE, RU, SG, JP, CN) + Auto-Join",
         metric_3: "Median p50 P2P delivery (157/157 in 2h Soak Test)",
         metric_4: "Instant zero-telemetry switch (PT, EN, ES, RU)",
-        showcase_eyebrow: "MEDIA KIT & LIVE RUNTIME EVIDENCE · ANDROID V1.5.5 (BUILD 49)",
+        showcase_eyebrow: "MEDIA KIT & LIVE RUNTIME EVIDENCE · ANDROID V1.5.4 (BUILD 48)",
         showcase_title: "1080p Promotional Video Hub & 16 Real Device Captures.",
         showcase_desc: "Watch the official v1.5.0 videos (Official Promo PT/EN, Complete Feature Tour, 9:16 Reels/Shorts & Manifesto Film) and inspect the 16 real runtime captures.",
         arch_eyebrow: "ZERO-TRUST CRYPTOGRAPHIC ARCHITECTURE",
@@ -2839,7 +2843,7 @@
         hero_title: "Mensajería privada,<br/><span>sin número de teléfono.</span>",
         hero_lead: "OnionTalk funciona sobre la red Tor v3, sin servidor central. No pide teléfono ni correo, no guarda tus contactos en la nube y oculta tu IP. Cada mensaje se cifra en tu dispositivo y se entrega mediante relays que cualquiera puede operar.",
         hero_btn_play: "Descargar en Google Play",
-        hero_btn_apk: "APK Universal Firmado (v1.5.5 · Build 49)",
+        hero_btn_apk: "APK Universal Firmado",
         hero_btn_node: "Desplegar Relay Docker (<60MB)",
         hero_btn_policy: "Política de Privacidad",
         hero_more: "Más formas de instalar o ejecutar un relay",
@@ -2868,7 +2872,7 @@
         hero_title: "Приватный мессенджер<br/><span>без номера телефона.</span>",
         hero_lead: "OnionTalk работает в сети Tor v3, без центрального сервера. Он не требует номер телефона или e-mail, не хранит ваши контакты в облаке и скрывает ваш IP. Каждое сообщение шифруется на устройстве и доставляется через узлы, которые может запустить любой.",
         hero_btn_play: "Скачать в Google Play",
-        hero_btn_apk: "Подписанный APK (v1.5.5 · Build 49)",
+        hero_btn_apk: "Подписанный APK",
         hero_btn_node: "Запустить Docker-узел (<60МБ)",
         hero_btn_policy: "Политика конфиденциальности",
         hero_more: "Другие способы установки и запуск узла",
@@ -2887,6 +2891,41 @@
         comp_desc: "Почему шифрования только текста недостаточно, когда ваш номер телефона, IP-адрес и список контактов остаются открытыми."
       }
     };
+
+
+    /* Latest release labels (GitHub API, cached 1h). Elements stay hidden if the call fails. */
+    (function () {
+      var REPOS = { app: "onion-talk/oniontalk-demo", relay: "onion-talk/oniontalk-relay" };
+      var KEY = "ot_latest_release_v1", TTL = 3600000;
+      function label(rel) {
+        var m = /Build\s*(\d+)/i.exec(rel.name || "");
+        return rel.tag_name + (m ? " \u00b7 Build " + m[1] : "");
+      }
+      function paint(data) {
+        document.querySelectorAll("[data-release]").forEach(function (el) {
+          var v = data[el.getAttribute("data-release")];
+          if (!v) return;
+          el.textContent = (el.getAttribute("data-prefix") || "") + v;
+          el.hidden = false;
+        });
+      }
+      try {
+        var c = JSON.parse(localStorage.getItem(KEY) || "null");
+        if (c && Date.now() - c.t < TTL) { paint(c.d); return; }
+      } catch (e) {}
+      var d = {};
+      Promise.all(Object.keys(REPOS).map(function (k) {
+        return fetch("https://api.github.com/repos/" + REPOS[k] + "/releases/latest", { headers: { Accept: "application/vnd.github+json" } })
+          .then(function (r) { return r.ok ? r.json() : null; })
+          .then(function (rel) { if (rel && rel.tag_name) d[k] = label(rel); })
+          .catch(function () {});
+      })).then(function () {
+        if (Object.keys(d).length) {
+          try { localStorage.setItem(KEY, JSON.stringify({ t: Date.now(), d: d })); } catch (e) {}
+          paint(d);
+        }
+      });
+    })();
 
     function setLanguage(lang) {
       ["pt", "en", "es", "ru"].forEach(code => {

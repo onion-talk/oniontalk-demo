@@ -1,22 +1,16 @@
 #!/usr/bin/env python3
 """
-OnionTalk release docs gate (version-agnostic).
+Release docs gate (v2): the docs must never go stale or point at nothing.
 
-Replaces the old hard-coded v1.5.0 assertions. The "latest release" is derived
-from the first `What's New in vX.Y.Z (versionCode = N` heading of README.md, so
-the gate keeps working when scripts/sync_release_links.py bumps the version.
-
-Checks (fail the build):
-  1. README.md has the Legal Disclaimers section.
-  2. The latest-release main APK line in README.md carries a SHA-256 equal to
-     the digest GitHub reports for release asset OnionTalk-v<ver>.apk (the release
-     repo is taken from the download link in that same README section).
-  3. Every site HTML file mentions `v<ver> (Build <code>)` and keeps the
-     "Disclaimers Legais, Isenção de Responsabilidade" clause.
-
-Non-fatal: prints a WARNING for any other README line that links the latest
-APK but shows a different SHA-256 (historical sections rewritten by the sync).
+Fails the build when:
+  1. a README/HTML still links a versioned asset (`/releases/download/`) or shows an inline
+     `SHA-256: <hex>` (both go stale at the next release; use the stable
+     `/releases/latest/download/<fixed-name>` URLs and SHA256SUMS.txt instead);
+  2. a stable download URL used in the docs does not exist in that repo's latest release;
+  3. SHA256SUMS.txt of a release disagrees with the digests GitHub computed for its assets;
+  4. the Legal Disclaimers section / Clause 7 heading disappeared.
 """
+import hashlib
 import json
 import os
 import pathlib
@@ -27,102 +21,95 @@ import urllib.error
 import urllib.request
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-HTML_FILES = ["index.html", "privacy.html", "docs/index.html", "docs/privacy.html"]
+DOCS = ["README.md", "README.pt-BR.md", "profile/README.md", "index.html", "privacy.html", "docs/index.html", "docs/privacy.html"]
+HTML = ["index.html", "privacy.html", "docs/index.html", "docs/privacy.html"]
 CLAUSE_7 = "Disclaimers Legais, Isenção de Responsabilidade"
-HEADING_RE = re.compile(r"What's New in `v(\d+\.\d+\.\d+)` \(`versionCode = (\d+)`")
-SHA_RE = re.compile(r"SHA-256:\s*`?([0-9a-fA-F]{64})")
+STABLE = re.compile(r"https://github\.com/(onion-talk/[\w.-]+)/releases/latest/download/([\w.\-]+)")
+SHA_INLINE = re.compile(r"SHA-256:\s*`?[0-9a-fA-F]{64}")
+errors = []
 
 
-def fail(msg: str) -> None:
+def fail(msg):
+    errors.append(msg)
     print(f"[SECOPS-DOCS-GATE] FAIL: {msg}")
-    sys.exit(1)
 
 
-def release_asset_digest(repo: str, ver: str) -> str:
-    url = f"https://api.github.com/repos/{repo}/releases/tags/v{ver}"
-    headers = {"Accept": "application/vnd.github+json", "User-Agent": "oniontalk-docs-gate"}
+def http(url, accept="application/vnd.github+json"):
+    headers = {"Accept": accept, "User-Agent": "oniontalk-docs-gate"}
     token = os.environ.get("GITHUB_TOKEN")
-    if token:
+    if token and "api.github.com" in url:
         headers["Authorization"] = f"Bearer {token}"
-    last_err = None
+    last = None
     for attempt in range(3):
         try:
-            with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=20) as r:
-                data = json.loads(r.read().decode("utf-8"))
-            break
+            with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=30) as r:
+                return r.read()
         except urllib.error.HTTPError as e:
             if e.code == 404:
-                fail(f"release tag v{ver} not found in {repo}")
-            last_err = e
+                return None
+            last = e
         except Exception as e:  # network flake: retry, then fail closed
-            last_err = e
+            last = e
         time.sleep(2 * (attempt + 1))
-    else:
-        fail(f"could not query release v{ver} after 3 attempts: {last_err}")
-    name = f"OnionTalk-v{ver}.apk"
-    for asset in data.get("assets", []):
-        if asset.get("name") == name:
-            digest = (asset.get("digest") or "").removeprefix("sha256:").lower()
-            if len(digest) != 64:
-                fail(f"asset {name} has no sha256 digest in GitHub API")
-            return digest
-    fail(f"asset {name} not found in release v{ver}")
+    fail(f"could not reach {url}: {last}")
+    return None
 
 
-def main() -> int:
-    readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    m = HEADING_RE.search(readme)
-    if not m:
-        fail("README.md has no `What's New in vX.Y.Z (versionCode = N` heading")
-    ver, code = m.group(1), m.group(2)
-    print(f"[SECOPS-DOCS-GATE] latest release in README: v{ver} (Build {code})")
+def main():
+    files = {n: (ROOT / n).read_text(encoding="utf-8") for n in DOCS if (ROOT / n).exists()}
+    if not files:
+        fail("no README/HTML found")
 
-    if "Legal Disclaimers" not in readme:
-        fail("README.md must include Legal Disclaimers section")
+    # 4. legal text
+    if "README.md" in files and "Legal Disclaimers" not in files["README.md"]:
+        fail("README.md must include the Legal Disclaimers section")
+    for n in HTML:
+        if n in files and CLAUSE_7 not in files[n]:
+            fail(f"{n} missing Clause 7 Legal Disclaimers")
 
-    apk_name = f"OnionTalk-v{ver}.apk"
-    lines = readme.splitlines()
-    start = readme[: m.start()].count("\n")
-    next_heading = next(
-        (i for i in range(start + 1, len(lines)) if HEADING_RE.search(lines[i])), len(lines)
-    )
-    section = "\n".join(lines[start:next_heading])
-    link = re.search(
-        rf"https://github\.com/([\w.-]+/[\w.-]+)/releases/download/v{re.escape(ver)}/{re.escape(apk_name)}", section
-    )
-    if not link:
-        fail(f"latest-release section of README.md has no download link for {apk_name}")
-    digest = release_asset_digest(link.group(1), ver)
-    latest_shas = set()
-    for line in lines[start:next_heading]:
-        if apk_name in line:
-            latest_shas.update(s.lower() for s in SHA_RE.findall(line))
-    if not latest_shas:
-        fail(f"latest-release section of README.md has no SHA-256 next to {apk_name}")
-    if latest_shas != {digest}:
-        fail(f"README SHA-256 {sorted(latest_shas)} != GitHub release digest {digest} for {apk_name}")
+    # 1. static links / hashes
+    wanted = {}
+    for n, txt in files.items():
+        for i, line in enumerate(txt.splitlines(), 1):
+            if "releases/download/" in line:
+                fail(f"{n}:{i} versioned release link (use /releases/latest/download/<stable-name>)")
+            if n.endswith(".md") and SHA_INLINE.search(line):
+                fail(f"{n}:{i} inline SHA-256 (link SHA256SUMS.txt instead)")
+        for repo, asset in STABLE.findall(txt):
+            wanted.setdefault(repo, set()).add(asset)
 
-    for i, line in enumerate(lines):
-        if start <= i < next_heading or apk_name not in line:
+    # 2 + 3. links alive and checksums consistent
+    for repo, assets in sorted(wanted.items()):
+        raw = http(f"https://api.github.com/repos/{repo}/releases/latest")
+        if raw is None:
+            fail(f"{repo}: no latest release found")
             continue
-        for sha in SHA_RE.findall(line):
-            if sha.lower() != digest:
-                print(
-                    f"[SECOPS-DOCS-GATE] WARNING: README.md:{i + 1} links {apk_name} "
-                    f"but shows SHA-256 {sha[:12]}... (does not match release digest)"
-                )
+        rel = json.loads(raw)
+        by_name = {a["name"]: a for a in rel.get("assets", [])}
+        before = len(errors)
+        for asset in sorted(assets):
+            if asset not in by_name:
+                fail(f"{repo}@{rel['tag_name']}: stable asset '{asset}' is linked in the docs but missing from the release")
+        sums = by_name.get("SHA256SUMS.txt")
+        if sums:
+            body = http(sums["browser_download_url"], accept="application/octet-stream")
+            for line in (body or b"").decode("utf-8", "replace").splitlines():
+                m = re.match(r"^([0-9a-fA-F]{64})\s+\*?(\S+)$", line.strip())
+                if not m:
+                    continue
+                digest, name = m.group(1).lower(), m.group(2)
+                a = by_name.get(name)
+                if not a:
+                    fail(f"{repo}@{rel['tag_name']}: SHA256SUMS lists '{name}' which is not a release asset")
+                elif (a.get("digest") or "").removeprefix("sha256:").lower() != digest:
+                    fail(f"{repo}@{rel['tag_name']}: SHA256SUMS hash for '{name}' differs from the asset digest")
+        if len(errors) == before:
+            print(f"[SECOPS-DOCS-GATE] {repo}@{rel['tag_name']}: {len(assets)} stable asset(s) OK")
 
-    for name in HTML_FILES:
-        p = ROOT / name
-        if not p.exists():
-            continue
-        txt = p.read_text(encoding="utf-8")
-        if f"v{ver} (Build {code})" not in txt:
-            fail(f"{name} missing v{ver} (Build {code})")
-        if CLAUSE_7 not in txt:
-            fail(f"{name} missing Clause 7 Legal Disclaimers")
-
-    print(f"[SECOPS-DOCS-GATE] PASS: v{ver} (Build {code}) hash matches release digest; Legal Disclaimers verified.")
+    if errors:
+        print(f"[SECOPS-DOCS-GATE] {len(errors)} problem(s)")
+        return 1
+    print("[SECOPS-DOCS-GATE] PASS: links are stable and alive, checksums consistent, disclaimers intact.")
     return 0
 
 
