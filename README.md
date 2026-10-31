@@ -31,12 +31,18 @@
 
 ---
 
-## 🚀 What's New in `v1.5.4` (`versionCode = 48` / Build 48) & Relay Node `v1.5.2` (`Build 11`) & Mesh `v=31` — Sovereign PQC Groups, In-RAM Image Blur Studio, Post-Quantum Hybrid Encryption (`ML-KEM-768`), Dual Warm Socket Pool (`~1.13s` E2E) & 20-Node Zero-Leak Mesh
+## 🚀 What's New in `v1.5.7` (`versionCode = 51` / Build 51) & Relay Node `v1.5.7` (100% Rust Native `oniontalk-relay-rs`) — Sub-700ms OnionVoice V1 PQC Voice Calls, Pop-on-Read Voice Stream, Sovereign PQC Groups, Real Web Mic Recording & 35-Node Zero-Leak Mesh
 
-- **📦 Direct Signed APK Downloads & Web Container (`v1.5.4` — Latest Release Build 48)**:
-  - **Main Messenger APK (`org.oniontalk.messenger` `v1.5.4` Build 48)**: [**Download `OnionTalk.apk` (latest)**](https://github.com/onion-talk/oniontalk-demo/releases/latest/download/OnionTalk.apk) ([`SHA256SUMS.txt`](https://github.com/onion-talk/oniontalk-demo/releases/latest/download/SHA256SUMS.txt))
+- **📦 Direct Signed APK Downloads & Web Container (`v1.5.7` — Latest Release Build 51)**:
+  - **Main Messenger APK (`org.oniontalk.messenger` `v1.5.7` Build 51)**: [**Download `OnionTalk.apk` (latest)**](https://github.com/onion-talk/oniontalk-demo/releases/latest/download/OnionTalk.apk) ([`SHA256SUMS.txt`](https://github.com/onion-talk/oniontalk-demo/releases/latest/download/SHA256SUMS.txt))
   - **Standalone Android Relay Node APK (`org.oniontalk.relaynode` `v1.5.2` Build 11)**: [**Download `OnionTalk-RelayNode.apk` (latest)**](https://github.com/onion-talk/oniontalk-relay/releases/latest/download/OnionTalk-RelayNode.apk) ([`SHA256SUMS.txt`](https://github.com/onion-talk/oniontalk-relay/releases/latest/download/SHA256SUMS.txt))
   - **🐳 Desktop & Web Container + Embedded Tor v3 Relay (`Windows / Linux / macOS`)**: [**`eriktonon/oniontalk-web:latest`**](https://hub.docker.com/r/eriktonon/oniontalk-web) ![Docker tag](https://img.shields.io/docker/v/eriktonon/oniontalk-web?sort=semver&label=tag&style=flat-square) — Self-contained Rust Black-Box Web Messenger + active Tor v3 Hidden Service Relay listening on `127.0.0.1:8420`.
+  - **🦀 100% Rust Native Relay Container (`oniontalk-relay-rs v1.5.7`)**: [**`eriktonon/oniontalk:latest`**](https://hub.docker.com/r/eriktonon/oniontalk) — Zero-Python Tokio/Axum + Sharded `DashMap` relay node (`11.9 MiB` RAM, `-92%` footprint) with isochronous `/api/v1/voice/stream`.
+
+| **1. OnionVoice V1 PQC Call (`v1.5.7`)** | **2. Sovereign PQC Groups & FounderPass** | **3. 100% Rust Relay Node & 35-Node Mesh** |
+| :---: | :---: | :---: |
+| <img src="./screenshots/20-onionvoice-pqc-call-v157.png" width="260" alt="OnionVoice V1 PQC Voice Call" /> | <img src="./screenshots/21-pqc-groups-founder-v157.png" width="260" alt="Sovereign PQC Groups and FounderPass" /> | <img src="./screenshots/18-relay-node-android-v101.png" width="260" alt="OnionTalk Relay v1.5.7 Rust Engine" /> |
+| *Sub-700ms PQC voice calls over Tor v3 with WSOLA 1.17x + CoDel anti-clip and pop-on-read `/api/v1/voice/stream`.* | *Post-Quantum Groups (`ML-KEM-768`), Admin Criteria Sync (`__CTRL_GROUP_META_PQC_V1__`), `FounderPass` & sovereign local deletion.* | *`oniontalk-relay-rs v1.5.7` (`11.9 MiB` RAM, 0% Python) synchronized across 35 global `.onion` v3 nodes.* |
 
 ### 🐳 Run OnionTalk Web Client + Embedded Tor v3 Relay on Desktop (`Windows / Linux / macOS`)
 
@@ -67,7 +73,7 @@ Or use [`docker-compose.web.yml`](./docker-compose.web.yml) (`docker compose -f 
 > @bbac48f99ed4536ce9134df16cc49dbed2d9109ed351710d181d86c28f34efd9:onion4zr3bsdeaelksemwokl5qmxd5o7jyblf46vc2mfl6cozgw77tqd.onion
 > ```
 > 📸 **Instagram Oficial:** [https://www.instagram.com/oniontalk.app/](https://www.instagram.com/oniontalk.app/) (`@oniontalk.app`)
-- **🛡️ Key Cryptographic & P2P Mesh Breakthroughs in `v1.5.4` (`Build 48` & Relay `Build 10`)**:
+- **🛡️ Key Cryptographic, Voice & P2P Mesh Breakthroughs in `v1.5.7` (`Build 51` & Rust Relay `v1.5.7`)**:
   1. **Sovereign Post-Quantum Encrypted Groups (`PQC Groups`) & Anti-Spam Proof-of-Community**: End-to-end encrypted multi-party group chats over Tor v3 with zero central member servers. Group creation unlocks automatically via organic local proof-of-community (`3+ mutual contacts` + `5+ days of vault maturity`, evaluated 100% locally) or immediately via an offline `Ed25519`-signed **`FounderPass`** certificate granted to community Relay Node Operators (`2+ hours active uptime`) or voluntary crypto supporters.
   2. **In-RAM Image Blur & Pixelation Studio + Zero-EXIF Sanitizer**: Built-in tactile brush editor (`Gaussian Blur` & `Mosaic Pixelate`) operating strictly in volatile RAM before encryption, combined with 100% EXIF/GPS header stripping and Least Significant Bit (`LSB`) anti-fingerprinting jitter.
   3. **Hybrid Post-Quantum Cryptography (`__ENC_PQC_KYBER768_X25519_V3__`)**: Combines classical **Dual X25519 ECDH** with **NIST FIPS 203 ML-KEM-768 (`Kyber-768`)** key encapsulation via `HKDF-SHA256` + `ChaCha20-Poly1305 AEAD` + `Ed25519` outer envelope signatures to protect against *Harvest Now, Decrypt Later* quantum adversaries.
