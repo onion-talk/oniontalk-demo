@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   zero-leak-and-disclaimer-gate:
-    name: "🛡️ Strix Zero-Leak, Anti-Hardcode & v1.5.0 Disclaimer Gate"
+    name: "🛡️ Strix Zero-Leak, Anti-Hardcode & Release Disclaimer Gate"
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -33,20 +33,7 @@ jobs:
       - name: Run Mandatory Zero-Leak & Anti-Hardcode Scanner
         run: python3 scripts/zero_leak_scanner.py
 
-      - name: Verify v1.5.0 Release Hashes & Legal Disclaimer Integrity
-        run: |
-          python3 - <<'EOF'
-          import pathlib
-          root = pathlib.Path(".")
-          readme = (root / "README.md").read_text(encoding="utf-8")
-          assert "v1.5.0" in readme, "README.md must document v1.5.0"
-          assert "Legal Disclaimers" in readme, "README.md must include Legal Disclaimers section"
-          assert "4a5472a26444cbfdad7ed5dbab76e1e88ab64824d18df95694e6cd741a66dc6f" in readme, "README.md missing v1.5.0 APK SHA-256"
-          for html_name in ["index.html", "privacy.html", "docs/index.html", "docs/privacy.html"]:
-              p = root / html_name
-              if p.exists():
-                  txt = p.read_text(encoding="utf-8")
-                  assert "v1.5.0 (Build 36)" in txt, f"{html_name} missing v1.5.0 (Build 36)"
-                  assert "Disclaimers Legais, Isenção de Responsabilidade" in txt, f"{html_name} missing Clause 7 Legal Disclaimers"
-          print("[SECOPS-DOCS-GATE] PASS: v1.5.0 hashes and Legal Disclaimers verified.")
-          EOF
+      - name: Verify Latest Release Hash (vs GitHub digest) & Legal Disclaimer Integrity
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/verify_release_docs.py
