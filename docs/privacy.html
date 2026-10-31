@@ -1715,15 +1715,15 @@
               <line x1="8" y1="21" x2="16" y2="21"></line>
               <line x1="12" y1="17" x2="12" y2="21"></line>
             </svg>
-            <span data-i18n="showcase_eyebrow">KIT DE MÍDIA &amp; EVIDÊNCIA REAL DE EXECUÇÃO · ANDROID V1.5.4 (BUILD 48)</span>
+            <span data-i18n="showcase_eyebrow">KIT DE MÍDIA &amp; EVIDÊNCIA REAL DE EXECUÇÃO · ANDROID &amp; WEB V1.5.7 (BUILD 51)</span>
           </span>
-          <h2 data-i18n="showcase_title">Central de Vídeos Promocionais 1080p e Kit de 16 Telas Reais.</h2>
-          <p data-i18n="showcase_desc">Assista aos vídeos oficiais da versão v1.5.0 (Promo Oficial PT/EN, Tour Completo de Funções, formato Reels/Shorts 9:16 e Filme Manifesto) e inspecione as 16 capturas reais do aplicativo em operação.</p>
+          <h2 data-i18n="showcase_title">Central de Vídeos Promocionais 1080p e Kit de 20 Telas Reais.</h2>
+          <p data-i18n="showcase_desc">Assista aos vídeos oficiais da versão v1.5.0 (Promo Oficial PT/EN, Tour Completo de Funções, formato Reels/Shorts 9:16 e Filme Manifesto) e inspecione as 20 capturas reais do aplicativo em operação.</p>
         </div>
 
         <div class="filter-pills" role="group" aria-label="Filtro de capturas de tela">
-          <button type="button" class="filter-pill active" aria-pressed="true" onclick="filterScreenshots('all', this)">Todas (16)</button>
-          <button type="button" class="filter-pill" aria-pressed="false" onclick="filterScreenshots('v142', this)">Novidades v1.5.0 (8)</button>
+          <button type="button" class="filter-pill active" aria-pressed="true" onclick="filterScreenshots('all', this)">Todas (20)</button>
+          <button type="button" class="filter-pill" aria-pressed="false" onclick="filterScreenshots('v142', this)">Novidades v1.5.7 (11)</button>
           <button type="button" class="filter-pill" aria-pressed="false" onclick="filterScreenshots('vault', this)">Cofre &amp; Identidade</button>
           <button type="button" class="filter-pill" aria-pressed="false" onclick="filterScreenshots('chat', this)">Chat E2EE &amp; Burn</button>
           <button type="button" class="filter-pill" aria-pressed="false" onclick="filterScreenshots('mesh', this)">Malha Tor &amp; Segurança</button>
@@ -1789,8 +1789,47 @@
         </div>
       </div>
 
-      <!-- 16 Real High-Res Android Screenshots Kit Grid -->
+      <!-- 20 Real High-Res Android & Web Container Screenshots Kit Grid -->
       <div class="screenshots-grid" id="screenshots-gallery">
+        <div class="shot-card" data-category="v142" onclick="openScreenshotModal('screenshots/20-onionvoice-pqc-call-v157.png', 'OnionVoice V1 (v1.5.7 Build 51): Chamada de Voz Pós-Quântica ML-KEM-768 + X25519 via Stream Isócrono Pop-on-Read')">
+          <div class="shot-img-wrap">
+            <img src="screenshots/20-onionvoice-pqc-call-v157.png" alt="Chamada de Voz Pós-Quântica OnionVoice V1 OnionTalk v1.5.7 Build 51" width="360" height="780" loading="lazy" />
+          </div>
+          <div class="shot-caption">
+            <strong>1. Chamada de Voz PQC (OnionVoice V1 • v1.5.7)</strong>
+            <span>Voz sub-700ms ML-KEM-768 + X25519 com stream isócrono Pop-on-Read e DSP WSOLA/CoDel anti-corte.</span>
+          </div>
+        </div>
+
+        <div class="shot-card" data-category="v142" onclick="openScreenshotModal('screenshots/21-pqc-groups-founder-v157.png', 'Grupos PQC Soberanos (v1.5.7 Build 51): Lista de Critérios do Admin (__CTRL_GROUP_META_PQC_V1__), Certificado FounderPass e Exclusão Soberana')">
+          <div class="shot-img-wrap">
+            <img src="screenshots/21-pqc-groups-founder-v157.png" alt="Grupos PQC Soberanos e FounderPass OnionTalk v1.5.7 Build 51" width="360" height="780" loading="lazy" />
+          </div>
+          <div class="shot-caption">
+            <strong>2. Grupos PQC, Critérios &amp; FounderPass</strong>
+            <span>Critérios Admin assinados em Ed25519, certificado offline FounderPass e exclusão soberana local.</span>
+          </div>
+        </div>
+
+        <div class="shot-card" data-category="mesh" onclick="openScreenshotModal('screenshots/18-relay-node-android-v101.png', 'OnionTalk Relay v1.5.7: Motor 100% Rust Nativo (oniontalk-relay-rs), 11.9 MiB RAM (-92%) e 35 Nós na Malha Tor v3')">
+          <div class="shot-img-wrap">
+            <img src="screenshots/18-relay-node-android-v101.png" alt="OnionTalk Relay v1.5.7 Motor 100% Rust Nativo e 35 Nós Tor v3" width="360" height="780" loading="lazy" />
+          </div>
+          <div class="shot-caption">
+            <strong>3. Relay 100% Rust Nativo &amp; 35 Nós</strong>
+            <span>Motor Tokio/Axum + DashMap (0% Python, 11.9 MiB RAM) sincronizado em 35 nós Tor v3.</span>
+          </div>
+        </div>
+
+        <div class="shot-card" data-category="v142" onclick="openScreenshotModal('screenshots/19-oniontalk-web-container.png', 'OnionTalk Web &amp; Desktop Container v1.5.7 (Build 51): Chamada OnionVoice V1, Nota de Voz via Microfone Web e Relay Tor v3 Embutido')">
+          <div class="shot-img-wrap">
+            <img src="screenshots/19-oniontalk-web-container.png" alt="OnionTalk Web e Desktop Container v1.5.7 Build 51" width="360" height="780" loading="lazy" style="object-fit: cover;" />
+          </div>
+          <div class="shot-caption">
+            <strong>4. Web &amp; Desktop Container (v1.5.7)</strong>
+            <span>Gravação real de voz no navegador, chamada PQC OnionVoice V1 e Relay Tor v3 em :8420.</span>
+          </div>
+        </div>
         <div class="shot-card" data-category="v142" onclick="openScreenshotModal('screenshots/11-locked-message-e2ee.png', 'Mensagem Protegida com Senha Individual (__LOCKED_MSG_V1__)')">
           <div class="shot-img-wrap">
             <img src="screenshots/11-locked-message-e2ee.png" alt="Bolha de Mensagem Protegida com Senha OnionTalk v1.5.4" width="360" height="780" loading="lazy" />
@@ -1811,9 +1850,9 @@
           </div>
         </div>
 
-        <div class="shot-card" data-category="v142" onclick="openScreenshotModal('screenshots/13-locked-chat-pin-home.png', 'Lista Limpa v1.5.4 (Build 48): Favoritos Fixados (📌), Conversa Trancada e Toque Longo')">
+        <div class="shot-card" data-category="v142" onclick="openScreenshotModal('screenshots/13-locked-chat-pin-home.png', 'Lista Limpa v1.5.7 (Build 51): Favoritos Fixados (📌), Conversa Trancada e Toque Longo')">
           <div class="shot-img-wrap">
-            <img src="screenshots/13-locked-chat-pin-home.png" alt="Tela Inicial Limpa com Favorito e Conversa Trancada v1.5.4 (Build 48)" width="360" height="780" loading="lazy" />
+            <img src="screenshots/13-locked-chat-pin-home.png" alt="Tela Inicial Limpa com Favorito e Conversa Trancada v1.5.7 (Build 51)" width="360" height="780" loading="lazy" />
           </div>
           <div class="shot-caption">
             <strong>3. Lista Limpa &amp; Toque Longo</strong>
@@ -1831,9 +1870,9 @@
           </div>
         </div>
 
-        <div class="shot-card" data-category="v142" onclick="openScreenshotModal('screenshots/15-profile-photo-privacy.png', 'Configurações v1.5.4 (Build 48): 4 Abas Fixas &amp; Visibilidade da Foto de Perfil')">
+        <div class="shot-card" data-category="v142" onclick="openScreenshotModal('screenshots/15-profile-photo-privacy.png', 'Configurações v1.5.7 (Build 51): 4 Abas Fixas &amp; Visibilidade da Foto de Perfil')">
           <div class="shot-img-wrap">
-            <img src="screenshots/15-profile-photo-privacy.png" alt="Privacidade de Foto de Perfil OnionTalk v1.5.4 Build 36" width="360" height="780" loading="lazy" />
+            <img src="screenshots/15-profile-photo-privacy.png" alt="Privacidade de Foto de Perfil OnionTalk v1.5.7 Build 51" width="360" height="780" loading="lazy" />
           </div>
           <div class="shot-caption">
             <strong>5. Privacidade de Foto (v1.5.0)</strong>
@@ -1841,9 +1880,9 @@
           </div>
         </div>
 
-        <div class="shot-card" data-category="v142" onclick="openScreenshotModal('screenshots/16-autolock-15s-security.png', 'Segurança v1.5.4 (Build 48): Bloqueio Automático de 15s (Mesmo Fechado) &amp; Biometria')">
+        <div class="shot-card" data-category="v142" onclick="openScreenshotModal('screenshots/16-autolock-15s-security.png', 'Segurança v1.5.7 (Build 51): Bloqueio Automático de 15s (Mesmo Fechado) &amp; Biometria')">
           <div class="shot-img-wrap">
-            <img src="screenshots/16-autolock-15s-security.png" alt="Auto-Lock 15s e Biometria OnionTalk v1.5.4 Build 36" width="360" height="780" loading="lazy" />
+            <img src="screenshots/16-autolock-15s-security.png" alt="Auto-Lock 15s e Biometria OnionTalk v1.5.7 Build 51" width="360" height="780" loading="lazy" />
           </div>
           <div class="shot-caption">
             <strong>6. Auto-Lock 15s &amp; Biometria</strong>
@@ -1851,9 +1890,9 @@
           </div>
         </div>
 
-        <div class="shot-card" data-category="v142" onclick="openScreenshotModal('screenshots/17-donate-relay-nodes.png', 'Apoio Cripto (BTC / ETH / SOL) &amp; Guia Rápido de Nós Relay v1.5.4 (Build 48)')">
+        <div class="shot-card" data-category="v142" onclick="openScreenshotModal('screenshots/17-donate-relay-nodes.png', 'Apoio Cripto (BTC / ETH / SOL) &amp; Guia Rápido de Nós Relay v1.5.7 (Build 51)')">
           <div class="shot-img-wrap">
-            <img src="screenshots/17-donate-relay-nodes.png" alt="Apoie o Projeto e Suba um Servidor OnionTalk v1.5.4 Build 36" width="360" height="780" loading="lazy" />
+            <img src="screenshots/17-donate-relay-nodes.png" alt="Apoie o Projeto e Suba um Servidor OnionTalk v1.5.7 Build 51" width="360" height="780" loading="lazy" />
           </div>
           <div class="shot-caption">
             <strong>7. Doações &amp; Guia Relay Docker</strong>
@@ -1941,12 +1980,12 @@
           </div>
         </div>
 
-        <div class="shot-card" data-category="mesh" onclick="openScreenshotModal('screenshots/08-tor-mesh-settings-en.png', 'Gerenciamento da Malha Tor v3 &amp; 20 Nós Globais')">
+        <div class="shot-card" data-category="mesh" onclick="openScreenshotModal('screenshots/08-tor-mesh-settings-en.png', 'Gerenciamento da Malha Tor v3 &amp; 35 Nós Globais')">
           <div class="shot-img-wrap">
             <img src="screenshots/08-tor-mesh-settings-en.png" alt="Configurações da Malha Tor OnionTalk" width="360" height="780" loading="lazy" />
           </div>
           <div class="shot-caption">
-            <strong>16. Malha Tor v3 &amp; 20 Relays</strong>
+            <strong>20. Malha Tor v3 &amp; 35 Relays</strong>
             <span>Modo Sempre Conectado, diagnóstico de latência e adição de nós.</span>
           </div>
         </div>
@@ -2370,7 +2409,7 @@
               <span class="section-eyebrow" style="margin-bottom: 4px;">DOCUMENTO OFICIAL DE CONFORMIDADE · GOOGLE PLAY CONSOLE</span>
               <h2 style="font-size: 26px; font-weight: 800; letter-spacing: -0.02em;">Política de Privacidade — OnionTalk (<code class="mono" style="color: var(--brand-emerald);">org.oniontalk.messenger</code>)</h2>
               <p style="color: var(--text-secondary); font-size: 13px; margin-top: 4px;">
-                Última atualização: <span class="mono">29 de outubro de 2026</span> · Versão de Referência: <span class="mono">v1.5.4 (Build 48) &amp; Relay v1.5.4 (Build 48)</span>
+                Última atualização: <span class="mono">29 de outubro de 2026</span> · Versão de Referência: <span class="mono">v1.5.7 (Build 51) &amp; Relay v1.5.7 (Build 51)</span>
               </p>
             </div>
           </div>
@@ -2495,7 +2534,7 @@
               </svg>
               7. Disclaimers Legais, Isenção de Responsabilidade &amp; Termos de Uso Soberano (v1.5.0)
             </h3>
-            <p>Ao instalar, executar ou operar qualquer componente do ecossistema <strong>OnionTalk v1.5.4 (Build 48)</strong> (aplicativo Android <code>org.oniontalk.messenger</code>, nó Android <code>org.oniontalk.relaynode</code>, container Desktop/Web <code>onion-talk-web</code> ou servidor <code>oniontalk-relay</code>), o usuário declara ciência e concordância integral com os seguintes avisos legais:</p>
+            <p>Ao instalar, executar ou operar qualquer componente do ecossistema <strong>OnionTalk v1.5.7 (Build 51)</strong> (aplicativo Android <code>org.oniontalk.messenger</code>, nó Android <code>org.oniontalk.relaynode</code>, container Desktop/Web <code>onion-talk-web</code> ou servidor <code>oniontalk-relay</code>), o usuário declara ciência e concordância integral com os seguintes avisos legais:</p>
             <ul>
               <li><strong>Provisão &ldquo;No Estado em que se Encontra&rdquo; (<em>AS IS</em> · Licença MIT):</strong> O software é distribuído gratuitamente como projeto experimental de pesquisa criptográfica aplicada, sem garantias expressas ou implícitas de comercialização, adequação a um propósito específico ou disponibilidade ininterrupta dos circuitos da rede Tor v3.</li>
               <li><strong>Impossibilidade Técnica de Recuperação de Senha, Custódia ou Interceptação (<em>Zero-Knowledge Disclaimer</em>):</strong> Por operar sem servidores centrais de contas, sem cadastro de telefone/e-mail e sem chaves mestras (<em>backdoors</em>), os desenvolvedores e operadores de nós relay <strong>não possuem meios técnicos ou matemáticos</strong> para recuperar senhas perdidas, destravar mensagens/conversas protegidas por senha (<code>__LOCKED_MSG_V1__</code>), reverter uma Queima Bilateral (<code>Burn</code>) ou Senha de Coação (<em>Duress Wipe</em>), identificar endereços IP ou descriptografar envelopes em trânsito. A perda da senha local resulta na perda definitiva e irreversível dos dados armazenados no dispositivo.</li>
@@ -2520,7 +2559,7 @@
   <footer>
     <div style="display: inline-flex; align-items: center; gap: 10px; margin-bottom: 10px;">
       <img src="icon-512.png" alt="OnionTalk" style="width: 28px; height: 28px; border-radius: 7px;" />
-      <strong style="color: var(--text-primary); font-size: 15px;">OnionTalk: Private Tor Chat · v1.5.4 (Build 48)</strong>
+      <strong style="color: var(--text-primary); font-size: 15px;">OnionTalk: Private Tor Chat · v1.5.7 (Build 51)</strong>
     </div>
     <p style="margin-bottom: 6px;">Ao baixar ou em caso de doação por outro meio, fale com nosso Admin pelo App: <code class="mono" style="color: var(--brand-emerald-hover);">@bbac48f99ed4536ce9134df16cc49dbed2d9109ed351710d181d86c28f34efd9:onion4zr3bsdeaelksemwokl5qmxd5o7jyblf46vc2mfl6cozgw77tqd.onion</code> · <a href="https://www.instagram.com/oniontalk.app/" target="_blank" rel="noopener" style="color: var(--brand-emerald-hover);">Instagram Oficial (@oniontalk.app)</a></p>
     <p>OnionTalk Sovereign Privacy Project · Pacote Android <code class="mono">org.oniontalk.messenger</code> · Licenciado sob MIT (Protocol &amp; Relay)</p>
@@ -2659,7 +2698,7 @@
         "demo-pt": {
           url: "video/OnionTalk-v1.4.1-Demo-Funcoes-PT.mp4",
           title: "Tour Completo de Funções v1.5.0: Envio, Senha por Mensagem & Privacidade (1080p)",
-          desc: "Demonstração passo a passo de todas as telas reais do OnionTalk v1.5.4 (Build 48) operando sobre a malha global de 20 nós Tor v3.",
+          desc: "Demonstração passo a passo de todas as telas reais do OnionTalk v1.5.7 (Build 51) operando sobre a malha global de 20 nós Tor v3.",
           aspect: "16 / 9"
         },
         "reels-pt": {
@@ -2793,9 +2832,9 @@
         metric_2: "Malha Tor v3 em 8 países (BR, US, FR, DE, RU, SG, JP, CN) + Auto-Join",
         metric_3: "Mediana p50 de entrega P2P (Soak Test 2h · 60 ondas · 0 crashes)",
         metric_4: "Troca instantânea zero-telemetria (PT, EN, ES, RU)",
-        showcase_eyebrow: "KIT DE MÍDIA & EVIDÊNCIA REAL DE EXECUÇÃO · ANDROID V1.5.4 (BUILD 48)",
-        showcase_title: "Central de Vídeos Promocionais 1080p e Kit de 16 Telas Reais.",
-        showcase_desc: "Assista aos vídeos oficiais da versão v1.5.0 (Promo Oficial PT/EN, Tour Completo de Funções, formato Reels/Shorts 9:16 e Filme Manifesto) e inspecione as 16 capturas reais do aplicativo em operação.",
+        showcase_eyebrow: "KIT DE MÍDIA & EVIDÊNCIA REAL DE EXECUÇÃO · ANDROID &amp; WEB V1.5.7 (BUILD 51)",
+        showcase_title: "Central de Vídeos Promocionais 1080p e Kit de 20 Telas Reais.",
+        showcase_desc: "Assista aos vídeos oficiais da versão v1.5.0 (Promo Oficial PT/EN, Tour Completo de Funções, formato Reels/Shorts 9:16 e Filme Manifesto) e inspecione as 20 capturas reais do aplicativo em operação.",
         arch_eyebrow: "ARQUITETURA CRIPTOGRÁFICA ZERO-TRUST",
         arch_title: "Construído para resistir a auditoria forense, interceptação de rede e coação física.",
         arch_desc: "Cada componente substitui uma dependência centralizada de Big Tech por provas matemáticas verificáveis.",
@@ -2822,7 +2861,7 @@
         metric_2: "Active Tor v3 mesh in 8 countries (BR, US, FR, DE, RU, SG, JP, CN) + Auto-Join",
         metric_3: "Median p50 P2P delivery (157/157 in 2h Soak Test)",
         metric_4: "Instant zero-telemetry switch (PT, EN, ES, RU)",
-        showcase_eyebrow: "MEDIA KIT & LIVE RUNTIME EVIDENCE · ANDROID V1.5.4 (BUILD 48)",
+        showcase_eyebrow: "MEDIA KIT & LIVE RUNTIME EVIDENCE · ANDROID &amp; WEB V1.5.7 (BUILD 51)",
         showcase_title: "1080p Promotional Video Hub & 16 Real Device Captures.",
         showcase_desc: "Watch the official v1.5.0 videos (Official Promo PT/EN, Complete Feature Tour, 9:16 Reels/Shorts & Manifesto Film) and inspect the 16 real runtime captures.",
         arch_eyebrow: "ZERO-TRUST CRYPTOGRAPHIC ARCHITECTURE",
