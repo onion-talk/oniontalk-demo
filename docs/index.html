@@ -2177,160 +2177,214 @@
         </div>
       </div>
 
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Nó / Região</th>
-              <th>Endereço Tor v3 Hidden Service (.onion)</th>
-              <th>Protocolo &amp; Papel</th>
-              <th>Status</th>
-              <th>Ação</th>
-            </tr>
-          </thead>
-          <tbody id="mesh-nodes-tbody">
-            <tr data-region="BR">
-              <td><strong>BR · São Paulo #1 (Primary Seed #1)</strong></td>
-              <td class="mono" style="font-size: 12px; color: #A7F3D0;">onion4zr3bsdeaelksemwokl5qmxd5o7jyblf46vc2mfl6cozgw77tqd.onion</td>
-              <td>PEX v31 · Ed25519 Master Seed</td>
-              <td><span class="badge-yes">ONLINE · 99.98%</span></td>
-              <td><button type="button" class="chip-btn" onclick="copyOnion('onion4zr3bsdeaelksemwokl5qmxd5o7jyblf46vc2mfl6cozgw77tqd.onion', this)">Copiar .onion</button></td>
-            </tr>
-            <tr data-region="BR">
-              <td><strong>BR · São Paulo #2 (Secondary Seed #2)</strong></td>
-              <td class="mono" style="font-size: 12px; color: #A7F3D0;">kn4u2xxl2otoo2ujv3mhehwfwbw7mtppaf56fu3nxogvv7eekf2qdrid.onion</td>
-              <td>PEX v31 · South America Core Seed</td>
-              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
-              <td><button type="button" class="chip-btn" onclick="copyOnion('kn4u2xxl2otoo2ujv3mhehwfwbw7mtppaf56fu3nxogvv7eekf2qdrid.onion', this)">Copiar .onion</button></td>
-            </tr>
-            <tr data-region="US">
-              <td><strong>US · US-East Mesh Node #3 (Virginia #1)</strong></td>
-              <td class="mono" style="font-size: 12px; color: #A7F3D0;">e3a7jfpzcsj6e7o7lzrwos2qz53wesp62lgjmsa3pld6xwnqvromrvqd.onion</td>
-              <td>PEX v31 · North America Relay</td>
-              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
-              <td><button type="button" class="chip-btn" onclick="copyOnion('e3a7jfpzcsj6e7o7lzrwos2qz53wesp62lgjmsa3pld6xwnqvromrvqd.onion', this)">Copiar .onion</button></td>
-            </tr>
-            <tr data-region="BR">
-              <td><strong>BR · São Paulo #3 (South America Backbone #4)</strong></td>
-              <td class="mono" style="font-size: 12px; color: #A7F3D0;">zqdx5x7pfybox7m5rz3fe5kiouxhipvh3ekuteq2urrrvwcxjttnmgid.onion</td>
-              <td>PEX v31 · South America Backbone</td>
-              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
-              <td><button type="button" class="chip-btn" onclick="copyOnion('zqdx5x7pfybox7m5rz3fe5kiouxhipvh3ekuteq2urrrvwcxjttnmgid.onion', this)">Copiar .onion</button></td>
-            </tr>
-            <tr data-region="US">
-              <td><strong>US · US-East Mesh Node #5 (Ashburn #2)</strong></td>
-              <td class="mono" style="font-size: 12px; color: #A7F3D0;">xememocnagky3qlkkx7n6tgkmjrzhmfzoahbke3gvtea6nu4nnc27sad.onion</td>
-              <td>PEX v31 · North America Relay</td>
-              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
-              <td><button type="button" class="chip-btn" onclick="copyOnion('xememocnagky3qlkkx7n6tgkmjrzhmfzoahbke3gvtea6nu4nnc27sad.onion', this)">Copiar .onion</button></td>
-            </tr>
-            <tr data-region="FR">
-              <td><strong>FR · EU-West Node #6 (Paris #1)</strong></td>
-              <td class="mono" style="font-size: 12px; color: #A7F3D0;">7bntuiegd3stvcylvx7rhnhq7ncasxiokunbf5onvvm34dg5gccvooid.onion</td>
-              <td>PEX v31 · Western Europe Relay</td>
-              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
-              <td><button type="button" class="chip-btn" onclick="copyOnion('7bntuiegd3stvcylvx7rhnhq7ncasxiokunbf5onvvm34dg5gccvooid.onion', this)">Copiar .onion</button></td>
-            </tr>
-            <tr data-region="US">
-              <td><strong>US · US-East Mesh Node #7 (South Carolina)</strong></td>
-              <td class="mono" style="font-size: 12px; color: #A7F3D0;">jz6urt6ckkqqvtasm6bll2mryhksjcawcl4tbguif5nqvxgsfsx6ywad.onion</td>
-              <td>PEX v31 · US-East Backbone Relay</td>
-              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
-              <td><button type="button" class="chip-btn" onclick="copyOnion('jz6urt6ckkqqvtasm6bll2mryhksjcawcl4tbguif5nqvxgsfsx6ywad.onion', this)">Copiar .onion</button></td>
-            </tr>
-            <tr data-region="US">
-              <td><strong>US · US-Central Mesh Node #8 (Ohio #1)</strong></td>
-              <td class="mono" style="font-size: 12px; color: #A7F3D0;">4wufywh2k6ayyz6nmh2w25hj5vjsqgkve24o2tthvc7rhyvxnhaghqqd.onion</td>
-              <td>PEX v31 · US-Central Relay</td>
-              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
-              <td><button type="button" class="chip-btn" onclick="copyOnion('4wufywh2k6ayyz6nmh2w25hj5vjsqgkve24o2tthvc7rhyvxnhaghqqd.onion', this)">Copiar .onion</button></td>
-            </tr>
-            <tr data-region="RU">
-              <td><strong>RU · EE-East Mesh Node #9 (Moscow #1)</strong></td>
-              <td class="mono" style="font-size: 12px; color: #A7F3D0;">nwsoa6ddtbbqbwcceanhhj3j23d5a47zbpbs6zspz5zoeytzqpzvkqqd.onion</td>
-              <td>PEX v31 · Eurasia Relay</td>
-              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
-              <td><button type="button" class="chip-btn" onclick="copyOnion('nwsoa6ddtbbqbwcceanhhj3j23d5a47zbpbs6zspz5zoeytzqpzvkqqd.onion', this)">Copiar .onion</button></td>
-            </tr>
-            <tr data-region="US">
-              <td><strong>US · US-East Mesh Node #10 (Container Hub #1)</strong></td>
-              <td class="mono" style="font-size: 12px; color: #A7F3D0;">bk7iegv3v232ycjyf5ylwsdx42iozvy2dhhff5zn3ciwa3g2lkifdlad.onion</td>
-              <td>PEX v31 · Edge Container Relay</td>
-              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
-              <td><button type="button" class="chip-btn" onclick="copyOnion('bk7iegv3v232ycjyf5ylwsdx42iozvy2dhhff5zn3ciwa3g2lkifdlad.onion', this)">Copiar .onion</button></td>
-            </tr>
-            <tr data-region="FR">
-              <td><strong>FR · EU-West Node #11 (Paris #2)</strong></td>
-              <td class="mono" style="font-size: 12px; color: #A7F3D0;">hdjp7uaj4qemlmwtev7xmj2w3uexnv6ctplfgvbmpqxenbfgwjjwtrid.onion</td>
-              <td>PEX v31 · Western Europe Relay</td>
-              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
-              <td><button type="button" class="chip-btn" onclick="copyOnion('hdjp7uaj4qemlmwtev7xmj2w3uexnv6ctplfgvbmpqxenbfgwjjwtrid.onion', this)">Copiar .onion</button></td>
-            </tr>
-            <tr data-region="FR">
-              <td><strong>FR · EU-West Node #12 (Paris #3)</strong></td>
-              <td class="mono" style="font-size: 12px; color: #A7F3D0;">gcvfh67zltoyvithw6luetsrcec6cw42upzrsprxfmx27cvh7vidw4yd.onion</td>
-              <td>PEX v31 · Western Europe Relay</td>
-              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
-              <td><button type="button" class="chip-btn" onclick="copyOnion('gcvfh67zltoyvithw6luetsrcec6cw42upzrsprxfmx27cvh7vidw4yd.onion', this)">Copiar .onion</button></td>
-            </tr>
-            <tr data-region="US">
-              <td><strong>US · US-Central Mesh Node #13 (Iowa)</strong></td>
-              <td class="mono" style="font-size: 12px; color: #A7F3D0;">wfi3nwuzk2tgrsf2scdy4nb6x6rtiocit4n26477zdlvdvshkgip3ayd.onion</td>
-              <td>PEX v31 · US-Central Relay</td>
-              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
-              <td><button type="button" class="chip-btn" onclick="copyOnion('wfi3nwuzk2tgrsf2scdy4nb6x6rtiocit4n26477zdlvdvshkgip3ayd.onion', this)">Copiar .onion</button></td>
-            </tr>
-            <tr data-region="JP">
-              <td><strong>JP · AP-Northeast Mesh Node #14 (Osaka)</strong></td>
-              <td class="mono" style="font-size: 12px; color: #A7F3D0;">5s6w6556f2eov2p6wlsuavaxh7si2kaswjwi5reojnovbzemducjzjqd.onion</td>
-              <td>PEX v31 · Asia-Pacific East Relay</td>
-              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
-              <td><button type="button" class="chip-btn" onclick="copyOnion('5s6w6556f2eov2p6wlsuavaxh7si2kaswjwi5reojnovbzemducjzjqd.onion', this)">Copiar .onion</button></td>
-            </tr>
-            <tr data-region="SG">
-              <td><strong>SG · AP-Southeast Mesh Node #15 (Singapore)</strong></td>
-              <td class="mono" style="font-size: 12px; color: #A7F3D0;">o5yf3eukrwpt2g6jfo4q2y23xtuhoso2qknmnn6ac5eng5t4yt36roqd.onion</td>
-              <td>PEX v31 · Southeast Asia Hub</td>
-              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
-              <td><button type="button" class="chip-btn" onclick="copyOnion('o5yf3eukrwpt2g6jfo4q2y23xtuhoso2qknmnn6ac5eng5t4yt36roqd.onion', this)">Copiar .onion</button></td>
-            </tr>
-            <tr data-region="DE">
-              <td><strong>DE · EU-Central Mesh Node #16 (Nuremberg)</strong></td>
-              <td class="mono" style="font-size: 12px; color: #A7F3D0;">o5zqqfl5znzexdojfnxgub5jnjelxdahbyxasjp57sx6fbxtjeqovpad.onion</td>
-              <td>PEX v31 · Central Europe Relay</td>
-              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
-              <td><button type="button" class="chip-btn" onclick="copyOnion('o5zqqfl5znzexdojfnxgub5jnjelxdahbyxasjp57sx6fbxtjeqovpad.onion', this)">Copiar .onion</button></td>
-            </tr>
-            <tr data-region="CN">
-              <td><strong>CN · AP-East Mesh Node #17 (Hangzhou)</strong></td>
-              <td class="mono" style="font-size: 12px; color: #A7F3D0;">2amizuhb3p5x2lk3sra7f7thm5tgs7qtnysgowqpmexcqi4cuwyv7vad.onion</td>
-              <td>PEX v31 · East Asia / GFW Bypass Relay</td>
-              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
-              <td><button type="button" class="chip-btn" onclick="copyOnion('2amizuhb3p5x2lk3sra7f7thm5tgs7qtnysgowqpmexcqi4cuwyv7vad.onion', this)">Copiar .onion</button></td>
-            </tr>
-            <tr data-region="US">
-              <td><strong>US · US-East Mesh Node #18 (Container Hub #2)</strong></td>
-              <td class="mono" style="font-size: 12px; color: #A7F3D0;">fllhsqmq2qj4stn22bvdtdigthj5bftq6bq6eb62ynk4kva4kfkbjtid.onion</td>
-              <td>PEX v31 · Edge Container Relay</td>
-              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
-              <td><button type="button" class="chip-btn" onclick="copyOnion('fllhsqmq2qj4stn22bvdtdigthj5bftq6bq6eb62ynk4kva4kfkbjtid.onion', this)">Copiar .onion</button></td>
-            </tr>
-            <tr data-region="US">
-              <td><strong>US · US-Central Mesh Node #19 (Ohio #2)</strong></td>
-              <td class="mono" style="font-size: 12px; color: #A7F3D0;">rx46t5jwyoi7pqajaazk7xndqy6ep2n3x2u6bn7t3r34mg6eiehpdlad.onion</td>
-              <td>PEX v31 · US-Central Relay</td>
-              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
-              <td><button type="button" class="chip-btn" onclick="copyOnion('rx46t5jwyoi7pqajaazk7xndqy6ep2n3x2u6bn7t3r34mg6eiehpdlad.onion', this)">Copiar .onion</button></td>
-            </tr>
-            <tr data-region="RU">
-              <td><strong>RU · EE-East Mesh Node #20 (Moscow #2)</strong></td>
-              <td class="mono" style="font-size: 12px; color: #A7F3D0;">q75gf2rwco7v33kuhmilafbtsvoxrygqmef7lq6allnk27zxruwzeqqd.onion</td>
-              <td>PEX v31 · Eurasia Relay #2</td>
-              <td><span class="badge-yes">ONLINE · SYNCED</span></td>
-              <td><button type="button" class="chip-btn" onclick="copyOnion('q75gf2rwco7v33kuhmilafbtsvoxrygqmef7lq6allnk27zxruwzeqqd.onion', this)">Copiar .onion</button></td>
-            </tr>
-          </tbody>
-        </table>
+      <div id="mesh-world-map-card" style="background: linear-gradient(180deg, rgba(11, 17, 29, 0.96) 0%, rgba(6, 10, 18, 0.99) 100%); border: 1px solid var(--border-subtle); border-radius: 18px; padding: 24px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 18px;">
+          <div>
+            <span class="mono" style="font-size: 11.5px; color: var(--brand-emerald); font-weight: 700; letter-spacing: 0.08em;">MAPA GLOBAL DA MALHA TOR V3 · TOPOLOGIA ZERO-LEAK</span>
+            <p style="font-size: 13px; color: var(--text-secondary); margin: 4px 0 0 0;">Distribuição geográfica dos servidores relay ativos em 8 países. Por segurança operacional (OpSec), os endereços <code>.onion</code> e detalhes internos dos nós não são exibidos publicamente — a sincronização ocorre automaticamente via protocolo <strong>Auto-Gossip PEX</strong>.</p>
+          </div>
+          <span class="badge-yes">20 Nós Ativos · 8 Países · Endereços Protegidos</span>
+        </div>
+
+        <!-- Stylized Cyber-Cartography World Map SVG -->
+        <div style="position: relative; width: 100%; overflow: hidden; border-radius: 14px; background: radial-gradient(circle at 50% 50%, #0D192B 0%, #060B13 100%); border: 1px solid rgba(46, 204, 113, 0.18); margin-bottom: 20px;">
+          <svg id="onion-world-map-svg" viewBox="0 0 1000 480" style="width: 100%; height: auto; display: block;" role="img" aria-label="Mapa Mundi da Malha Global OnionTalk em 8 Países">
+            <defs>
+              <radialGradient id="nodeGlowEmerald" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#10B981" stop-opacity="0.85" />
+                <stop offset="50%" stop-color="#10B981" stop-opacity="0.25" />
+                <stop offset="100%" stop-color="#10B981" stop-opacity="0" />
+              </radialGradient>
+              <linearGradient id="meshArcGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#10B981" stop-opacity="0.65" />
+                <stop offset="50%" stop-color="#38BDF8" stop-opacity="0.85" />
+                <stop offset="100%" stop-color="#10B981" stop-opacity="0.65" />
+              </linearGradient>
+              <pattern id="cyberGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(148, 163, 184, 0.06)" stroke-width="1" />
+              </pattern>
+            </defs>
+
+            <!-- Background Lat/Lon Cyber Grid -->
+            <rect width="1000" height="480" fill="url(#cyberGrid)" />
+            <line x1="0" y1="240" x2="1000" y2="240" stroke="rgba(56, 189, 248, 0.10)" stroke-dasharray="4 6" stroke-width="1" />
+            <line x1="500" y1="0" x2="500" y2="480" stroke="rgba(56, 189, 248, 0.10)" stroke-dasharray="4 6" stroke-width="1" />
+
+            <!-- Stylized World Continents Silhouette -->
+            <g fill="#132238" stroke="rgba(100, 116, 139, 0.28)" stroke-width="1.2">
+              <!-- North America -->
+              <path d="M 85 75 L 165 62 L 255 78 L 295 125 L 270 175 L 235 215 L 195 238 L 160 210 L 120 170 L 80 120 Z" />
+              <!-- Greenland -->
+              <path d="M 305 42 L 368 38 L 382 72 L 330 85 Z" />
+              <!-- South America -->
+              <path d="M 248 258 L 315 268 L 358 312 L 342 385 L 298 442 L 268 425 L 252 345 Z" />
+              <!-- Europe -->
+              <path d="M 442 78 L 515 68 L 568 85 L 575 145 L 535 168 L 468 172 L 435 142 Z" />
+              <!-- Africa -->
+              <path d="M 448 188 L 542 185 L 592 242 L 580 335 L 535 402 L 488 385 L 465 298 L 432 240 Z" />
+              <!-- Eurasia / Russia / Asia -->
+              <path d="M 575 68 L 715 55 L 865 72 L 915 125 L 885 198 L 835 248 L 765 265 L 685 242 L 615 205 L 578 145 Z" />
+              <!-- Japan & East Asian Islands -->
+              <path d="M 885 150 L 905 165 L 898 198 L 878 185 Z" />
+              <!-- Southeast Asia / Maritime -->
+              <path d="M 755 275 L 828 282 L 845 325 L 775 332 Z" />
+              <!-- Oceania / Australia -->
+              <path d="M 785 352 L 885 348 L 908 405 L 845 432 L 782 408 Z" />
+            </g>
+
+            <!-- Encrypted P2P GossipSub Mesh Backbone Arcs -->
+            <g fill="none" stroke="url(#meshArcGrad)" stroke-width="1.6" stroke-dasharray="5 5" opacity="0.72">
+              <path d="M 322 332 Q 250 240 232 152" />
+              <path d="M 232 152 Q 360 85 482 132" />
+              <path d="M 322 332 Q 415 230 482 132" />
+              <path d="M 482 132 Q 498 115 512 122" />
+              <path d="M 512 122 Q 555 95 595 106" />
+              <path d="M 595 106 Q 710 135 818 182" />
+              <path d="M 818 182 Q 855 170 882 168" />
+              <path d="M 818 182 Q 790 235 778 282" />
+              <path d="M 595 106 Q 690 200 778 282" />
+            </g>
+
+            <!-- 1. BRAZIL (South America Hub) -->
+            <g class="mesh-map-node" data-region="BR" onclick="filterMeshNodes('BR')" style="cursor: pointer;">
+              <circle cx="322" cy="332" r="28" fill="url(#nodeGlowEmerald)" />
+              <circle cx="322" cy="332" r="13" fill="rgba(16, 185, 129, 0.22)" stroke="#10B981" stroke-width="1.5" />
+              <circle cx="322" cy="332" r="5.5" fill="#10B981" />
+              <rect x="274" y="352" width="96" height="22" rx="6" fill="rgba(6, 12, 22, 0.92)" stroke="rgba(16, 185, 129, 0.55)" />
+              <text x="322" y="367" text-anchor="middle" fill="#ECFDF5" font-family="monospace" font-size="11" font-weight="700">BR · 3 Nós</text>
+            </g>
+
+            <!-- 2. UNITED STATES (North America Hub) -->
+            <g class="mesh-map-node" data-region="US" onclick="filterMeshNodes('US')" style="cursor: pointer;">
+              <circle cx="232" cy="152" r="32" fill="url(#nodeGlowEmerald)" />
+              <circle cx="232" cy="152" r="15" fill="rgba(16, 185, 129, 0.22)" stroke="#10B981" stroke-width="1.5" />
+              <circle cx="232" cy="152" r="6" fill="#10B981" />
+              <rect x="180" y="172" width="104" height="22" rx="6" fill="rgba(6, 12, 22, 0.92)" stroke="rgba(16, 185, 129, 0.55)" />
+              <text x="232" y="187" text-anchor="middle" fill="#ECFDF5" font-family="monospace" font-size="11" font-weight="700">EUA · 8 Nós</text>
+            </g>
+
+            <!-- 3. FRANCE (Western Europe Hub) -->
+            <g class="mesh-map-node" data-region="FR" onclick="filterMeshNodes('FR')" style="cursor: pointer;">
+              <circle cx="476" cy="136" r="24" fill="url(#nodeGlowEmerald)" />
+              <circle cx="476" cy="136" r="11" fill="rgba(16, 185, 129, 0.22)" stroke="#10B981" stroke-width="1.5" />
+              <circle cx="476" cy="136" r="5" fill="#10B981" />
+              <rect x="382" y="124" width="82" height="22" rx="6" fill="rgba(6, 12, 22, 0.92)" stroke="rgba(16, 185, 129, 0.55)" />
+              <text x="423" y="139" text-anchor="middle" fill="#ECFDF5" font-family="monospace" font-size="11" font-weight="700">FR · 3 Nós</text>
+            </g>
+
+            <!-- 4. GERMANY (Central Europe Hub) -->
+            <g class="mesh-map-node" data-region="DE" onclick="filterMeshNodes('DE')" style="cursor: pointer;">
+              <circle cx="512" cy="122" r="20" fill="url(#nodeGlowEmerald)" />
+              <circle cx="512" cy="122" r="9.5" fill="rgba(16, 185, 129, 0.22)" stroke="#10B981" stroke-width="1.5" />
+              <circle cx="512" cy="122" r="4.5" fill="#10B981" />
+              <rect x="472" y="88" width="80" height="22" rx="6" fill="rgba(6, 12, 22, 0.92)" stroke="rgba(16, 185, 129, 0.55)" />
+              <text x="512" y="103" text-anchor="middle" fill="#ECFDF5" font-family="monospace" font-size="11" font-weight="700">DE · 1 Nó</text>
+            </g>
+
+            <!-- 5. RUSSIA (Eurasia Hub) -->
+            <g class="mesh-map-node" data-region="RU" onclick="filterMeshNodes('RU')" style="cursor: pointer;">
+              <circle cx="595" cy="106" r="24" fill="url(#nodeGlowEmerald)" />
+              <circle cx="595" cy="106" r="11" fill="rgba(16, 185, 129, 0.22)" stroke="#10B981" stroke-width="1.5" />
+              <circle cx="595" cy="106" r="5" fill="#10B981" />
+              <rect x="562" y="72" width="84" height="22" rx="6" fill="rgba(6, 12, 22, 0.92)" stroke="rgba(16, 185, 129, 0.55)" />
+              <text x="604" y="87" text-anchor="middle" fill="#ECFDF5" font-family="monospace" font-size="11" font-weight="700">RU · 2 Nós</text>
+            </g>
+
+            <!-- 6. CHINA (East Asia Hub) -->
+            <g class="mesh-map-node" data-region="CN" onclick="filterMeshNodes('CN')" style="cursor: pointer;">
+              <circle cx="818" cy="182" r="22" fill="url(#nodeGlowEmerald)" />
+              <circle cx="818" cy="182" r="10" fill="rgba(16, 185, 129, 0.22)" stroke="#10B981" stroke-width="1.5" />
+              <circle cx="818" cy="182" r="4.5" fill="#10B981" />
+              <rect x="730" y="170" width="76" height="22" rx="6" fill="rgba(6, 12, 22, 0.92)" stroke="rgba(16, 185, 129, 0.55)" />
+              <text x="768" y="185" text-anchor="middle" fill="#ECFDF5" font-family="monospace" font-size="11" font-weight="700">CN · 1 Nó</text>
+            </g>
+
+            <!-- 7. JAPAN (Asia-Pacific Northeast Hub) -->
+            <g class="mesh-map-node" data-region="JP" onclick="filterMeshNodes('JP')" style="cursor: pointer;">
+              <circle cx="888" cy="168" r="22" fill="url(#nodeGlowEmerald)" />
+              <circle cx="888" cy="168" r="10" fill="rgba(16, 185, 129, 0.22)" stroke="#10B981" stroke-width="1.5" />
+              <circle cx="888" cy="168" r="4.5" fill="#10B981" />
+              <rect x="852" y="132" width="78" height="22" rx="6" fill="rgba(6, 12, 22, 0.92)" stroke="rgba(16, 185, 129, 0.55)" />
+              <text x="891" y="147" text-anchor="middle" fill="#ECFDF5" font-family="monospace" font-size="11" font-weight="700">JP · 1 Nó</text>
+            </g>
+
+            <!-- 8. SINGAPORE (Southeast Asia Hub) -->
+            <g class="mesh-map-node" data-region="SG" onclick="filterMeshNodes('SG')" style="cursor: pointer;">
+              <circle cx="778" cy="282" r="22" fill="url(#nodeGlowEmerald)" />
+              <circle cx="778" cy="282" r="10" fill="rgba(16, 185, 129, 0.22)" stroke="#10B981" stroke-width="1.5" />
+              <circle cx="778" cy="282" r="4.5" fill="#10B981" />
+              <rect x="738" y="300" width="80" height="22" rx="6" fill="rgba(6, 12, 22, 0.92)" stroke="rgba(16, 185, 129, 0.55)" />
+              <text x="778" y="315" text-anchor="middle" fill="#ECFDF5" font-family="monospace" font-size="11" font-weight="700">SG · 1 Nó</text>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Compact Regional Summary Cards (Zero .onion Exposure) -->
+        <div id="mesh-regions-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 12px;">
+          <div class="mesh-region-card" data-region="BR" style="background: rgba(15, 23, 42, 0.65); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <strong style="font-size: 13.5px; color: var(--text-primary);">🇧🇷 Brasil (América do Sul)</strong>
+              <span class="badge-yes" style="font-size: 11px;">3 Relays</span>
+            </div>
+            <div class="mono" style="font-size: 11.5px; color: var(--text-secondary);">Auto-Gossip PEX · Endereço .onion oculto</div>
+          </div>
+
+          <div class="mesh-region-card" data-region="US" style="background: rgba(15, 23, 42, 0.65); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <strong style="font-size: 13.5px; color: var(--text-primary);">🇺🇸 Estados Unidos (Am. Norte)</strong>
+              <span class="badge-yes" style="font-size: 11px;">8 Relays</span>
+            </div>
+            <div class="mono" style="font-size: 11.5px; color: var(--text-secondary);">Auto-Gossip PEX · Endereço .onion oculto</div>
+          </div>
+
+          <div class="mesh-region-card" data-region="FR" style="background: rgba(15, 23, 42, 0.65); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <strong style="font-size: 13.5px; color: var(--text-primary);">🇫🇷 França (Europa Ocidental)</strong>
+              <span class="badge-yes" style="font-size: 11px;">3 Relays</span>
+            </div>
+            <div class="mono" style="font-size: 11.5px; color: var(--text-secondary);">Auto-Gossip PEX · Endereço .onion oculto</div>
+          </div>
+
+          <div class="mesh-region-card" data-region="RU" style="background: rgba(15, 23, 42, 0.65); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <strong style="font-size: 13.5px; color: var(--text-primary);">🇷🇺 Rússia (Eurásia)</strong>
+              <span class="badge-yes" style="font-size: 11px;">2 Relays</span>
+            </div>
+            <div class="mono" style="font-size: 11.5px; color: var(--text-secondary);">Auto-Gossip PEX · Endereço .onion oculto</div>
+          </div>
+
+          <div class="mesh-region-card" data-region="DE" style="background: rgba(15, 23, 42, 0.65); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <strong style="font-size: 13.5px; color: var(--text-primary);">🇩🇪 Alemanha (Europa Central)</strong>
+              <span class="badge-yes" style="font-size: 11px;">1 Relay</span>
+            </div>
+            <div class="mono" style="font-size: 11.5px; color: var(--text-secondary);">Auto-Gossip PEX · Endereço .onion oculto</div>
+          </div>
+
+          <div class="mesh-region-card" data-region="SG" style="background: rgba(15, 23, 42, 0.65); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <strong style="font-size: 13.5px; color: var(--text-primary);">🇸🇬 Singapura (Sudeste Asiático)</strong>
+              <span class="badge-yes" style="font-size: 11px;">1 Relay</span>
+            </div>
+            <div class="mono" style="font-size: 11.5px; color: var(--text-secondary);">Auto-Gossip PEX · Endereço .onion oculto</div>
+          </div>
+
+          <div class="mesh-region-card" data-region="JP" style="background: rgba(15, 23, 42, 0.65); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <strong style="font-size: 13.5px; color: var(--text-primary);">🇯🇵 Japão (Ásia-Pacífico)</strong>
+              <span class="badge-yes" style="font-size: 11px;">1 Relay</span>
+            </div>
+            <div class="mono" style="font-size: 11.5px; color: var(--text-secondary);">Auto-Gossip PEX · Endereço .onion oculto</div>
+          </div>
+
+          <div class="mesh-region-card" data-region="CN" style="background: rgba(15, 23, 42, 0.65); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <strong style="font-size: 13.5px; color: var(--text-primary);">🇨🇳 China (Ásia Oriental)</strong>
+              <span class="badge-yes" style="font-size: 11px;">1 Relay</span>
+            </div>
+            <div class="mono" style="font-size: 11.5px; color: var(--text-secondary);">Auto-Gossip PEX · Endereço .onion oculto</div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -2765,12 +2819,18 @@
     }
 
     function filterMeshNodes(region, btn) {
-      document.querySelectorAll("#malha .filter-pill").forEach(b => { b.classList.remove("active"); b.setAttribute("aria-pressed", "false"); });
-      btn.classList.add("active");
-      btn.setAttribute("aria-pressed", "true");
-      document.querySelectorAll("#mesh-nodes-tbody tr").forEach(row => {
-        const r = row.getAttribute("data-region");
-        row.style.display = (region === "all" || r === region) ? "" : "none";
+      if (btn) {
+        document.querySelectorAll("#malha .filter-pill").forEach(b => { b.classList.remove("active"); b.setAttribute("aria-pressed", "false"); });
+        btn.classList.add("active");
+        btn.setAttribute("aria-pressed", "true");
+      }
+      document.querySelectorAll(".mesh-map-node").forEach(node => {
+        const r = node.getAttribute("data-region");
+        node.style.opacity = (region === "all" || r === region) ? "1" : "0.22";
+      });
+      document.querySelectorAll(".mesh-region-card").forEach(card => {
+        const r = card.getAttribute("data-region");
+        card.style.display = (region === "all" || r === region) ? "block" : "none";
       });
     }
 
