@@ -31,10 +31,10 @@
 
 ---
 
-## 🚀 What's New in `v1.6.0` (`versionCode = 55` / Build 55) & Relay Node `v1.6.0` (100% Rust Native `oniontalk-relay-rs`) — Sub-700ms OnionVoice V1 PQC Voice Calls, Pop-on-Read Voice Stream, Sovereign PQC Groups, Real Web Mic Recording & 35-Node Zero-Leak Mesh
+## 🚀 What's New in `v1.6.0` (`versionCode = 56` / Build 56) & Relay Node `v1.6.0` (100% Rust Native `oniontalk-relay-rs`) — Sub-700ms OnionVoice V1 PQC Voice Calls, Pop-on-Read Voice Stream, Sovereign PQC Groups, Real Web Mic Recording & 35-Node Zero-Leak Mesh
 
-- **📦 Direct Signed APK Downloads & Web Container (`v1.6.0` — Latest Release Build 55)**:
-  - **Main Messenger APK (`org.oniontalk.messenger` `v1.6.0` Build 55)**: [**Download `OnionTalk.apk` (latest)**](https://github.com/onion-talk/oniontalk-demo/releases/latest/download/OnionTalk.apk) ([`SHA256SUMS.txt`](https://github.com/onion-talk/oniontalk-demo/releases/latest/download/SHA256SUMS.txt))
+- **📦 Direct Signed APK Downloads & Web Container (`v1.6.0` — Latest Release Build 56)**:
+  - **Main Messenger APK (`org.oniontalk.messenger` `v1.6.0` Build 56)**: [**Download `OnionTalk.apk` (latest)**](https://github.com/onion-talk/oniontalk-demo/releases/latest/download/OnionTalk.apk) ([`SHA256SUMS.txt`](https://github.com/onion-talk/oniontalk-demo/releases/latest/download/SHA256SUMS.txt))
   - **Standalone Android Relay Node APK (`org.oniontalk.relaynode` `v1.5.2` Build 11)**: [**Download `OnionTalk-RelayNode.apk` (latest)**](https://github.com/onion-talk/oniontalk-relay/releases/latest/download/OnionTalk-RelayNode.apk) ([`SHA256SUMS.txt`](https://github.com/onion-talk/oniontalk-relay/releases/latest/download/SHA256SUMS.txt))
   - **🐳 Desktop & Web Container + Embedded Tor v3 Relay (`Windows / Linux / macOS`)**: [**`eriktonon/oniontalk-web:latest`**](https://hub.docker.com/r/eriktonon/oniontalk-web) ![Docker tag](https://img.shields.io/docker/v/eriktonon/oniontalk-web?sort=semver&label=tag&style=flat-square) — Self-contained Rust Black-Box Web Messenger + active Tor v3 Hidden Service Relay listening on `127.0.0.1:8420`.
   - **🦀 100% Rust Native Relay Container (`oniontalk-relay-rs v1.6.0`)**: [**`eriktonon/oniontalk:latest`**](https://hub.docker.com/r/eriktonon/oniontalk) — Zero-Python Tokio/Axum + Sharded `DashMap` relay node (`11.9 MiB` RAM, `-92%` footprint) with isochronous `/api/v1/voice/stream`.
@@ -73,7 +73,7 @@ Or use [`docker-compose.web.yml`](./docker-compose.web.yml) (`docker compose -f 
 > @bbac48f99ed4536ce9134df16cc49dbed2d9109ed351710d181d86c28f34efd9:onion4zr3bsdeaelksemwokl5qmxd5o7jyblf46vc2mfl6cozgw77tqd.onion
 > ```
 > 📸 **Instagram Oficial:** [https://www.instagram.com/oniontalk.app/](https://www.instagram.com/oniontalk.app/) (`@oniontalk.app`)
-- **🛡️ Key Cryptographic, Voice & P2P Mesh Breakthroughs in `v1.6.0` (`Build 55` & Rust Relay `v1.6.0`)**:
+- **🛡️ Key Cryptographic, Voice & P2P Mesh Breakthroughs in `v1.6.0` (`Build 56` & Rust Relay `v1.6.0`)**:
   1. **Sovereign Post-Quantum Encrypted Groups (`PQC Groups`) & Anti-Spam Proof-of-Community**: End-to-end encrypted multi-party group chats over Tor v3 with zero central member servers. Group creation unlocks automatically via organic local proof-of-community (`3+ mutual contacts` + `5+ days of vault maturity`, evaluated 100% locally) or immediately via an offline `Ed25519`-signed **`FounderPass`** certificate granted to community Relay Node Operators (`2+ hours active uptime`) or voluntary crypto supporters.
   2. **In-RAM Image Blur & Pixelation Studio + Zero-EXIF Sanitizer**: Built-in tactile brush editor (`Gaussian Blur` & `Mosaic Pixelate`) operating strictly in volatile RAM before encryption, combined with 100% EXIF/GPS header stripping and Least Significant Bit (`LSB`) anti-fingerprinting jitter.
   3. **Hybrid Post-Quantum Cryptography (`__ENC_PQC_KYBER768_X25519_V3__`)**: Combines classical **Dual X25519 ECDH** with **NIST FIPS 203 ML-KEM-768 (`Kyber-768`)** key encapsulation via `HKDF-SHA256` + `ChaCha20-Poly1305 AEAD` + `Ed25519` outer envelope signatures to protect against *Harvest Now, Decrypt Later* quantum adversaries.
