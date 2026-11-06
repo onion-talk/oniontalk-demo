@@ -5,10 +5,7 @@
 
   <p>
     <a href="https://play.google.com/store/apps/details?id=org.oniontalk.messenger">
-      <img src="https://img.shields.io/badge/Google_Play-Open_Beta_(org.oniontalk.messenger)-3DDC84?style=for-the-badge&logo=google-play&logoColor=black" alt="OnionTalk – Google Play Open Beta" />
-    </a>
-    <a href="https://play.google.com/apps/testing/org.oniontalk.messenger">
-      <img src="https://img.shields.io/badge/Play_Testing-Join_Open_Beta_(Web)-10B981?style=for-the-badge&logo=android&logoColor=black" alt="Join OnionTalk Open Beta on Web" />
+      <img src="https://img.shields.io/badge/Google_Play-OnionTalk_–_Apps_no_Google_Play_(Open_Beta)-3DDC84?style=for-the-badge&logo=google-play&logoColor=black" alt="OnionTalk – Apps no Google Play" />
     </a>
     <a href="https://hub.docker.com/r/eriktonon/oniontalk-web">
       <img src="https://img.shields.io/badge/Docker_Web_Client-eriktonon%2Foniontalk--web:latest-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker Hub OnionTalk Web Client & Relay" />
@@ -37,7 +34,7 @@
 ## 🚀 What's New in `v1.6.1` (`versionCode = 57` / Build 57) & Relay Node `v1.6.1` (100% Rust Native `oniontalk-relay-rs`) — Sub-700ms OnionVoice V1 PQC Voice Calls, Pop-on-Read Voice Stream, Sovereign PQC Groups, Real Web Mic Recording & 35-Node Zero-Leak Mesh
 
 - **📦 Official Google Play Open Beta, Direct Signed APK Downloads & Web Container (`v1.6.1` — Build 57)**:
-  - **▶️ Google Play Store (Official Open Beta)**: [**Install on Google Play (`org.oniontalk.messenger`)**](https://play.google.com/store/apps/details?id=org.oniontalk.messenger) · [**Join Open Testing on Web (`apps/testing`)**](https://play.google.com/apps/testing/org.oniontalk.messenger)
+  - **▶️ Google Play Store (Official Open Beta)**: [**OnionTalk – Apps no Google Play**](https://play.google.com/store/apps/details?id=org.oniontalk.messenger)
   - **🌐 Official Website & Privacy Policy**: [**https://onion-talk.github.io/oniontalk-demo/**](https://onion-talk.github.io/oniontalk-demo/)
   - **Main Messenger APK (`org.oniontalk.messenger` `v1.6.1` Build 57)**: [**Download `OnionTalk.apk` (latest)**](https://github.com/onion-talk/oniontalk-demo/releases/latest/download/OnionTalk.apk) ([`SHA256SUMS.txt`](https://github.com/onion-talk/oniontalk-demo/releases/latest/download/SHA256SUMS.txt))
   - **Standalone Android Relay Node APK (`org.oniontalk.relaynode` `v1.5.2` Build 11)**: [**Download `OnionTalk-RelayNode.apk` (latest)**](https://github.com/onion-talk/oniontalk-relay/releases/latest/download/OnionTalk-RelayNode.apk) ([`SHA256SUMS.txt`](https://github.com/onion-talk/oniontalk-relay/releases/latest/download/SHA256SUMS.txt))
@@ -169,7 +166,6 @@ Or use [`docker-compose.web.yml`](./docker-compose.web.yml) (`docker compose -f 
 This repository hosts the **complete screen-by-screen visual walkthrough** captured directly from two independent Android emulators (**Pablo** and **Bruna**) communicating in real time over the OnionTalk Tor v3 mesh.
 
 - 🚀 **Download on Google Play (Open Beta)**: [**OnionTalk – Apps no Google Play**](https://play.google.com/store/apps/details?id=org.oniontalk.messenger) (`org.oniontalk.messenger`).
-- 🧪 **Join Open Testing on Web**: [**Google Play Open Beta Opt-In (`apps/testing`)**](https://play.google.com/apps/testing/org.oniontalk.messenger).
 - 🔒 **Roadmap & Source Code**: The relay node implementation ([`oniontalk-relay`](https://github.com/onion-talk/oniontalk-relay)) and wire protocol specification ([`oniontalk-protocol`](https://github.com/onion-talk/oniontalk-protocol)) are open-sourced. Download the official Android app directly from [**Google Play Store**](https://play.google.com/store/apps/details?id=org.oniontalk.messenger).
 
 ---
