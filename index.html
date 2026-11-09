@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OnionTalk — Mensageiro privado sobre Tor v3 · Política de Privacidade</title>
+  <title>OnionTalk — Mensageiro Privado sem Número de Telefone sobre Tor v3</title>
   <meta name="description" content="Mensageiro sem número de telefone, sem e-mail e sem servidor central. Funciona sobre a rede Tor v3, com criptografia pós-quântica híbrida e relays que qualquer pessoa pode operar." />
   <meta name="theme-color" content="#05080F" />
   <meta name="color-scheme" content="dark" />
@@ -13,8 +13,139 @@
   <meta property="og:type" content="website" />
   <meta property="og:description" content="No phone number, no email, no central server. Runs on the Tor v3 network with hybrid post-quantum encryption and relays anyone can operate." />
   <meta property="og:url" content="https://oniontalk.co/" />
+  <meta property="og:site_name" content="OnionTalk" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="ru_RU" />
   <meta property="og:image" content="https://oniontalk.co/icon-512.png" />
+  <meta property="og:image:width" content="512" />
+  <meta property="og:image:height" content="512" />
+  <meta property="og:image:alt" content="OnionTalk — Mensageiro Privado sobre Tor v3 com Criptografia Pós-Quântica" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="OnionTalk — Mensageiro Privado sem Número de Telefone sobre Tor v3" />
+  <meta name="twitter:description" content="Sem número de telefone, sem e-mail e sem servidor central. Criptografia pós-quântica híbrida ML-KEM-768 + X25519 sobre a malha Tor v3." />
+  <meta name="twitter:image" content="https://oniontalk.co/video/poster-freedom.png" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="keywords" content="OnionTalk, mensageiro privado, mensageiro sem numero de telefone, chat anonimo Tor v3, criptografia pos-quantica, ML-KEM-768, X25519, SQLCipher, Android private messenger, anonymous chat without phone number, P2P encrypted voice call" />
+  <meta name="author" content="OnionTalk Project" />
   <link rel="canonical" href="https://oniontalk.co/" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://oniontalk.co/sitemap.xml" />
+  <link rel="alternate" hreflang="pt-BR" href="https://oniontalk.co/" />
+  <link rel="alternate" hreflang="en" href="https://oniontalk.co/?lang=en" />
+  <link rel="alternate" hreflang="es" href="https://oniontalk.co/?lang=es" />
+  <link rel="alternate" hreflang="ru" href="https://oniontalk.co/?lang=ru" />
+  <link rel="alternate" hreflang="x-default" href="https://oniontalk.co/" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://oniontalk.co/#organization",
+        "name": "OnionTalk",
+        "url": "https://oniontalk.co/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://oniontalk.co/icon-512.png",
+          "width": 512,
+          "height": 512
+        },
+        "sameAs": [
+          "https://play.google.com/store/apps/details?id=org.oniontalk.messenger",
+          "https://github.com/onion-talk/oniontalk-demo",
+          "https://www.instagram.com/oniontalk.app/"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://oniontalk.co/#website",
+        "url": "https://oniontalk.co/",
+        "name": "OnionTalk — Mensageiro Privado sobre Tor v3",
+        "publisher": { "@id": "https://oniontalk.co/#organization" },
+        "inLanguage": ["pt-BR", "en", "es", "ru"]
+      },
+      {
+        "@type": "MobileApplication",
+        "@id": "https://oniontalk.co/#app",
+        "name": "OnionTalk",
+        "operatingSystem": "Android 8.0+",
+        "applicationCategory": "CommunicationApplication",
+        "applicationSubCategory": "Encrypted Peer-to-Peer Messenger",
+        "softwareVersion": "1.6.3",
+        "url": "https://oniontalk.co/",
+        "installUrl": "https://play.google.com/store/apps/details?id=org.oniontalk.messenger",
+        "downloadUrl": "https://github.com/onion-talk/oniontalk-demo/releases/latest/download/OnionTalk.apk",
+        "description": "Mensageiro privado ponto a ponto (P2P) sobre a rede Tor v3 sem número de telefone, sem e-mail e sem servidor central. Criptografia pós-quântica híbrida ML-KEM-768 (FIPS 203) + X25519, chamadas de voz P2P cifradas e cofre local SQLCipher AES-256.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        },
+        "author": { "@id": "https://oniontalk.co/#organization" },
+        "screenshot": [
+          "https://oniontalk.co/screenshots/01-vault-unlock-en.png",
+          "https://oniontalk.co/screenshots/03-chat-list-pablo-en.png",
+          "https://oniontalk.co/screenshots/06-synchronized-burn-en.png",
+          "https://oniontalk.co/screenshots/08-tor-mesh-settings-en.png",
+          "https://oniontalk.co/screenshots/20-onionvoice-pqc-call-v157.png",
+          "https://oniontalk.co/screenshots/21-pqc-groups-founder-v157.png"
+        ],
+        "featureList": [
+          "Zero PII: Sem número de telefone, sem chip SIM e sem e-mail",
+          "Rede Tor v3 nativa com 20 relays ativos em 8 países",
+          "Criptografia Pós-Quântica Híbrida (NIST FIPS 203 ML-KEM-768 + X25519 + Double Ratchet)",
+          "Chamadas de voz P2P pós-quânticas sobre circuitos Tor v3",
+          "Cofre local SQLCipher AES-256-GCM com Argon2id e PIN de coação (Duress PIN)",
+          "Destruição Sincronizada Bilateral (Synchronized Burn)"
+        ]
+      },
+      {
+        "@type": "VideoObject",
+        "@id": "https://oniontalk.co/#video-pt",
+        "name": "OnionTalk — Mensageiro Privado sem Número de Telefone sobre Tor v3 (Filme Manifesto)",
+        "description": "Conheça a arquitetura Zero-Trust do OnionTalk para Android: conversas e chamadas de voz criptografadas sobre a rede Tor v3 sem número de telefone ou servidor central.",
+        "thumbnailUrl": ["https://oniontalk.co/video/poster-freedom.png"],
+        "uploadDate": "2026-10-30T00:00:00Z",
+        "contentUrl": "https://oniontalk.co/video/OnionTalk-Liberdade-PT.mp4",
+        "embedUrl": "https://oniontalk.co/"
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://oniontalk.co/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "O que é o OnionTalk e como ele funciona sem número de telefone?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "O OnionTalk é um mensageiro privado para Android que opera sobre a rede Tor v3. Em vez de exigir número de telefone (SIM) ou e-mail, sua identidade é gerada localmente no aparelho através de um par de chaves criptográficas Ed25519/X25519 e ML-KEM-768."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Qual criptografia o OnionTalk utiliza para proteger mensagens e chamadas de voz?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "O OnionTalk combina o protocolo Double Ratchet com encapsulamento pós-quântico híbrido NIST FIPS 203 ML-KEM-768 + X25519 para mensagens e chamadas de voz P2P sobre circuitos Tor v3, além de armazenamento local cifrado com SQLCipher AES-256-GCM e Argon2id."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "O OnionTalk é gratuito e está disponível na Google Play Store?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sim. O OnionTalk é 100% gratuito, sem anúncios e sem rastreadores, disponível oficialmente na Google Play Store (org.oniontalk.messenger) e também via APK assinado no GitHub Releases."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -3014,7 +3145,12 @@
         }
       });
       switchPromoVideo(lang === "pt" ? "v142-pt" : "v142-en");
+      document.documentElement.lang = { pt: "pt-BR", en: "en", es: "es", ru: "ru" }[lang] || "pt-BR";
+      const tMap = { pt: "OnionTalk — Mensageiro Privado sem Número de Telefone sobre Tor v3", en: "OnionTalk — Anonymous Private Messenger on Tor v3 & Post-Quantum", es: "OnionTalk — Mensajero Privado sin Número de Teléfono sobre Tor v3", ru: "OnionTalk — Приватный мессенджер без номера телефона в сети Tor v3" };
+      if (tMap[lang]) document.title = tMap[lang];
+      if (!window.__langInitDone) { window.__langInitDone = true; }
     }
+    try { const qL = (new URLSearchParams(window.location.search).get("lang") || "").toLowerCase(); if (["pt", "en", "es", "ru"].includes(qL)) setLanguage(qL); } catch (_) {}
   </script>
 </body>
 </html>

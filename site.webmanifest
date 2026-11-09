@@ -1,0 +1,26 @@
+{
+  "name": "OnionTalk — Mensageiro Privado sobre Tor v3",
+  "short_name": "OnionTalk",
+  "description": "Mensageiro privado sem número de telefone, sem e-mail e sem servidor central. Funciona sobre a rede Tor v3 com criptografia pós-quântica híbrida ML-KEM-768.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#05080F",
+  "theme_color": "#05080F",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "prefer_related_applications": true,
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=org.oniontalk.messenger",
+      "id": "org.oniontalk.messenger"
+    }
+  ]
+}
