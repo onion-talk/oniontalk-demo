@@ -74,7 +74,7 @@
         "operatingSystem": "Android 8.0+",
         "applicationCategory": "CommunicationApplication",
         "applicationSubCategory": "Encrypted Peer-to-Peer Messenger",
-        "softwareVersion": "1.6.3",
+        "softwareVersion": "1.6.6",
         "url": "https://oniontalk.co/",
         "installUrl": "https://play.google.com/store/apps/details?id=org.oniontalk.messenger",
         "downloadUrl": "https://github.com/onion-talk/oniontalk-demo/releases/latest/download/OnionTalk.apk",
@@ -1647,7 +1647,7 @@
     <nav class="mobile-subnav" aria-label="Navegação Rápida Mobile">
       <a href="#vitrine">Telas &amp; Vídeo</a>
       <a href="#arquitetura">Arquitetura</a>
-      <a href="#malha">20 Nós &amp; Relay Android</a>
+      <a href="#malha">35 Nós &amp; Relay Android</a>
       <a href="#comparativo">Comparativo</a>
       <a href="#privacy">Privacidade</a>
     </nav>
@@ -1659,7 +1659,7 @@
       <div>
         <div class="status-pill">
           <span class="status-dot" aria-hidden="true"></span>
-          <span data-i18n="hero_badge">20 relays Tor v3 ativos em 8 países · Open Beta na Google Play</span>
+          <span data-i18n="hero_badge">35 relays Tor v3 ativos em 8 países · Open Beta na Google Play</span>
         </div>
 
         <h1 data-i18n="hero_title">
@@ -1685,7 +1685,7 @@
           </a>
           <a href="https://github.com/onion-talk/oniontalk-demo/releases/latest/download/OnionTalk.apk" target="_blank" rel="noopener" class="btn-secondary">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-            <span><span data-i18n="hero_btn_apk">APK Universal Assinado (v1.6.1)</span></span>
+            <span><span data-i18n="hero_btn_apk">APK Universal Assinado (v1.6.6)</span></span>
           </a>
         </div>
 
@@ -2212,20 +2212,20 @@
       </div>
     </section>
 
-    <!-- Interactive 16-Node Federation Mesh Explorer -->
+    <!-- Interactive 35-Node Federation Mesh Explorer -->
     <section class="section" id="malha">
       <div class="section-header-row">
         <div class="section-header">
-          <span class="section-eyebrow">MALHA AUTO-GOSSIP PEX V2 · 20 NÓS ATIVOS EM 8 PAÍSES (v=31) + AUTO-JOIN</span>
+          <span class="section-eyebrow">MALHA AUTO-GOSSIP PEX V2 · 35 NÓS ATIVOS EM 8 PAÍSES (v=32) + AUTO-JOIN</span>
           <h2>Infraestrutura Global Descentralizada (.onion) &amp; Relay Android</h2>
-          <p>O OnionTalk sincroniza automaticamente entre 20 relays Tor v3 distribuídos em 8 países (Brasil, EUA, França, Alemanha, Rússia, Singapura, Japão e China) com Zero-Touch Auto-Join 100% anônimo (Zero-Leak de IP, aparelho ou localização). Suba um novo nó em 10 segundos no Docker ou diretamente dentro do seu celular Android como aplicativo secundário.</p>
+          <p>O OnionTalk sincroniza automaticamente entre 35 relays Tor v3 distribuídos em 8 países (Brasil, EUA, França, Alemanha, Rússia, Singapura, Japão e China) com Zero-Touch Auto-Join 100% anônimo (Zero-Leak de IP, aparelho ou localização) e Failover Zero-SPOF em &lt;800ms. Suba um novo nó em 10 segundos no Docker ou diretamente dentro do seu celular Android como aplicativo secundário.</p>
         </div>
 
         <div class="filter-pills">
-          <button type="button" class="filter-pill active" aria-pressed="true" onclick="filterMeshNodes('all', this)">Todos (20 Nós)</button>
-          <button type="button" class="filter-pill" aria-pressed="false" onclick="filterMeshNodes('BR', this)">Brasil (3)</button>
-          <button type="button" class="filter-pill" aria-pressed="false" onclick="filterMeshNodes('US', this)">EUA (8)</button>
-          <button type="button" class="filter-pill" aria-pressed="false" onclick="filterMeshNodes('FR', this)">França (3)</button>
+          <button type="button" class="filter-pill active" aria-pressed="true" onclick="filterMeshNodes('all', this)">Todos (35 Nós)</button>
+          <button type="button" class="filter-pill" aria-pressed="false" onclick="filterMeshNodes('BR', this)">Brasil (5)</button>
+          <button type="button" class="filter-pill" aria-pressed="false" onclick="filterMeshNodes('US', this)">EUA (20)</button>
+          <button type="button" class="filter-pill" aria-pressed="false" onclick="filterMeshNodes('FR', this)">França (4)</button>
           <button type="button" class="filter-pill" aria-pressed="false" onclick="filterMeshNodes('RU', this)">Rússia (2)</button>
           <button type="button" class="filter-pill" aria-pressed="false" onclick="filterMeshNodes('DE', this)">Alemanha (1)</button>
           <button type="button" class="filter-pill" aria-pressed="false" onclick="filterMeshNodes('SG', this)">Singapura (1)</button>
@@ -2240,10 +2240,10 @@
           <div>
             <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 8px;">
               <span class="section-eyebrow" style="margin-bottom: 0;">DOCKER HUB ALL-IN-ONE · &lt; 60 MB RAM</span>
-              <span class="badge-yes">Auto-Join Zero-Leak · v=31</span>
+              <span class="badge-yes">Auto-Join Zero-Leak · v=32</span>
             </div>
             <h3 style="margin-bottom: 6px;">1. Subir Nó Relay em Servidor / Container</h3>
-            <p style="font-size: 13.5px;">A imagem <code>eriktonon/oniontalk:latest</code> empacota Tor 0.4.9.14 + Gunicorn Zero-Trust Relay + Auto-Join paralelo. Entra na malha automaticamente via Tor v3 sem expor IP, latitude/longitude ou abrir portas no firewall.</p>
+            <p style="font-size: 13.5px;">A imagem <code>eriktonon/oniontalk:latest</code> empacota Tor 0.4.9.14 + Relay Soberano Rust/Python + Auto-Join paralelo. Entra na malha automaticamente via Tor v3 sem expor IP, latitude/longitude ou abrir portas no firewall.</p>
           </div>
           <div>
             <div class="code-snippet mono" id="docker-cmd-text" style="margin-bottom: 12px;">
@@ -2266,7 +2266,7 @@
               <span class="badge-yes" style="border-color: rgba(6, 182, 212, 0.4); color: #67E8F9; background: rgba(6, 182, 212, 0.12);">Relay Node · Zero-Leak </span>
             </div>
             <h3 style="margin-bottom: 6px;">2. Subir Nó Relay Dentro do Android (App Secundário)</h3>
-            <p style="font-size: 13.5px;">Transforme qualquer celular Android (4G/5G/Wi-Fi, mesmo atrás de CGNAT) em um servidor <strong>Tor v3 Hidden Service</strong> soberano (<code>127.0.0.1:9055 &rarr; :8088</code>). Instala lado a lado com o mensageiro principal sem conflito de portas, permite escolher apenas o Nome do Nó e faz Auto-Join 100% anônimo nos 20 seeds (zero coleta de IP, modelo do celular ou latitude/longitude).</p>
+            <p style="font-size: 13.5px;">Transforme qualquer celular Android (4G/5G/Wi-Fi, mesmo atrás de CGNAT) em um servidor <strong>Tor v3 Hidden Service</strong> soberano (<code>127.0.0.1:9055 &rarr; :8088</code>). Instala lado a lado com o mensageiro principal sem conflito de portas, permite escolher apenas o Nome do Nó e faz Auto-Join 100% anônimo nos 35 seeds (zero coleta de IP, modelo do celular ou latitude/longitude).</p>
           </div>
           <div>
             <div class="code-snippet mono" style="margin-bottom: 12px; color: #67E8F9;">
@@ -2279,7 +2279,7 @@
                   <polyline points="7 10 12 15 17 10"></polyline>
                   <line x1="12" y1="15" x2="12" y2="3"></line>
                 </svg>
-                <span>Baixar OnionTalk Relay APK</span>
+                <span>Baixar OnionTalk Relay APK (v1.6.6)</span>
               </a>
             </div>
           </div>
@@ -2321,7 +2321,7 @@
             <span class="mono" style="font-size: 11.5px; color: var(--brand-emerald); font-weight: 700; letter-spacing: 0.08em;">MAPA GLOBAL DA MALHA TOR V3 · TOPOLOGIA ZERO-LEAK</span>
             <p style="font-size: 13px; color: var(--text-secondary); margin: 4px 0 0 0;">Distribuição geográfica dos servidores relay ativos em 8 países. Por segurança operacional (OpSec), os endereços <code>.onion</code> e detalhes internos dos nós não são exibidos publicamente — a sincronização ocorre automaticamente via protocolo <strong>Auto-Gossip PEX</strong>.</p>
           </div>
-          <span class="badge-yes">20 Nós Ativos · 8 Países · Endereços Protegidos</span>
+          <span class="badge-yes">35 Nós Ativos · 8 Países · Endereços Protegidos</span>
         </div>
 
         <!-- Stylized Cyber-Cartography World Map SVG -->
@@ -2389,7 +2389,7 @@
               <circle cx="322" cy="332" r="13" fill="rgba(16, 185, 129, 0.22)" stroke="#10B981" stroke-width="1.5" />
               <circle cx="322" cy="332" r="5.5" fill="#10B981" />
               <rect x="274" y="352" width="96" height="22" rx="6" fill="rgba(6, 12, 22, 0.92)" stroke="rgba(16, 185, 129, 0.55)" />
-              <text x="322" y="367" text-anchor="middle" fill="#ECFDF5" font-family="monospace" font-size="11" font-weight="700">BR · 3 Nós</text>
+              <text x="322" y="367" text-anchor="middle" fill="#ECFDF5" font-family="monospace" font-size="11" font-weight="700">BR · 5 Nós</text>
             </g>
 
             <!-- 2. UNITED STATES (North America Hub) -->
@@ -2398,7 +2398,7 @@
               <circle cx="232" cy="152" r="15" fill="rgba(16, 185, 129, 0.22)" stroke="#10B981" stroke-width="1.5" />
               <circle cx="232" cy="152" r="6" fill="#10B981" />
               <rect x="180" y="172" width="104" height="22" rx="6" fill="rgba(6, 12, 22, 0.92)" stroke="rgba(16, 185, 129, 0.55)" />
-              <text x="232" y="187" text-anchor="middle" fill="#ECFDF5" font-family="monospace" font-size="11" font-weight="700">EUA · 8 Nós</text>
+              <text x="232" y="187" text-anchor="middle" fill="#ECFDF5" font-family="monospace" font-size="11" font-weight="700">EUA · 20 Nós</text>
             </g>
 
             <!-- 3. FRANCE (Western Europe Hub) -->
@@ -2407,7 +2407,7 @@
               <circle cx="476" cy="136" r="11" fill="rgba(16, 185, 129, 0.22)" stroke="#10B981" stroke-width="1.5" />
               <circle cx="476" cy="136" r="5" fill="#10B981" />
               <rect x="382" y="124" width="82" height="22" rx="6" fill="rgba(6, 12, 22, 0.92)" stroke="rgba(16, 185, 129, 0.55)" />
-              <text x="423" y="139" text-anchor="middle" fill="#ECFDF5" font-family="monospace" font-size="11" font-weight="700">FR · 3 Nós</text>
+              <text x="423" y="139" text-anchor="middle" fill="#ECFDF5" font-family="monospace" font-size="11" font-weight="700">FR · 4 Nós</text>
             </g>
 
             <!-- 4. GERMANY (Central Europe Hub) -->
@@ -2462,7 +2462,7 @@
           <div class="mesh-region-card" data-region="BR" style="background: rgba(15, 23, 42, 0.65); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 14px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
               <strong style="font-size: 13.5px; color: var(--text-primary);">🇧🇷 Brasil (América do Sul)</strong>
-              <span class="badge-yes" style="font-size: 11px;">3 Relays</span>
+              <span class="badge-yes" style="font-size: 11px;">5 Relays</span>
             </div>
             <div class="mono" style="font-size: 11.5px; color: var(--text-secondary);">Auto-Gossip PEX · Endereço .onion oculto</div>
           </div>
@@ -2470,7 +2470,7 @@
           <div class="mesh-region-card" data-region="US" style="background: rgba(15, 23, 42, 0.65); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 14px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
               <strong style="font-size: 13.5px; color: var(--text-primary);">🇺🇸 Estados Unidos (Am. Norte)</strong>
-              <span class="badge-yes" style="font-size: 11px;">8 Relays</span>
+              <span class="badge-yes" style="font-size: 11px;">20 Relays</span>
             </div>
             <div class="mono" style="font-size: 11.5px; color: var(--text-secondary);">Auto-Gossip PEX · Endereço .onion oculto</div>
           </div>
@@ -2478,7 +2478,7 @@
           <div class="mesh-region-card" data-region="FR" style="background: rgba(15, 23, 42, 0.65); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 14px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
               <strong style="font-size: 13.5px; color: var(--text-primary);">🇫🇷 França (Europa Ocidental)</strong>
-              <span class="badge-yes" style="font-size: 11px;">3 Relays</span>
+              <span class="badge-yes" style="font-size: 11px;">4 Relays</span>
             </div>
             <div class="mono" style="font-size: 11.5px; color: var(--text-secondary);">Auto-Gossip PEX · Endereço .onion oculto</div>
           </div>
@@ -3018,12 +3018,12 @@
         nav_comp: "Comparativo",
         nav_priv: "Privacidade",
         cta_download: "Google Play (Open Beta)",
-        hero_badge: "20 relays Tor v3 ativos em 8 países · Open Beta na Google Play",
+        hero_badge: "35 relays Tor v3 ativos em 8 países · Open Beta na Google Play",
         hero_title: "Mensageiro privado,<br/><span>sem número de telefone.</span>",
         hero_lead: "O OnionTalk funciona sobre a rede Tor v3, sem servidor central. Não pede telefone nem e-mail, não guarda seus contatos na nuvem e esconde seu IP. Cada mensagem é cifrada no seu aparelho e entregue por relays que qualquer pessoa pode operar.",
         hero_btn_play: "OnionTalk – Apps no Google Play (Open Beta)",
         hero_open_beta_note: "⚡ <strong>OPEN BETA OFICIAL NA GOOGLE PLAY:</strong> Baixe e instale diretamente pelo link oficial <a href=\"https://play.google.com/store/apps/details?id=org.oniontalk.messenger\" target=\"_blank\" rel=\"noopener\" style=\"color:#34D399;text-decoration:underline;font-weight:700;\">OnionTalk – Apps no Google Play</a>.",
-        hero_btn_apk: "APK Universal Assinado (v1.6.1)",
+        hero_btn_apk: "APK Universal Assinado (v1.6.6)",
         hero_btn_node: "Subir Relay Docker (<60MB)",
         hero_btn_policy: "Política de Privacidade",
         hero_more: "Outras formas de instalar e rodar um relay",
@@ -3048,12 +3048,12 @@
         nav_comp: "Comparison",
         nav_priv: "Privacy",
         cta_download: "Google Play (Open Beta)",
-        hero_badge: "20 Tor v3 relays active in 8 countries · Google Play Open Beta",
+        hero_badge: "35 Tor v3 relays active in 8 countries · Google Play Open Beta",
         hero_title: "Private messenger,<br/><span>no phone number.</span>",
         hero_lead: "OnionTalk runs on the Tor v3 network, with no central server. It asks for no phone number or email, keeps no contact list in the cloud, and hides your IP address. Every message is encrypted on your device and delivered through relays anyone can run.",
         hero_btn_play: "OnionTalk – Apps on Google Play (Open Beta)",
         hero_open_beta_note: "⚡ <strong>OFFICIAL OPEN BETA ON GOOGLE PLAY:</strong> Download and install directly via the official link <a href=\"https://play.google.com/store/apps/details?id=org.oniontalk.messenger\" target=\"_blank\" rel=\"noopener\" style=\"color:#34D399;text-decoration:underline;font-weight:700;\">OnionTalk – Apps no Google Play</a>.",
-        hero_btn_apk: "Signed Universal APK (v1.6.1)",
+        hero_btn_apk: "Signed Universal APK (v1.6.6)",
         hero_btn_node: "Run Docker Relay (<60MB)",
         hero_btn_policy: "Privacy Policy",
         hero_more: "More ways to install or run a relay",
@@ -3078,12 +3078,12 @@
         nav_comp: "Comparativa",
         nav_priv: "Privacidad",
         cta_download: "Google Play (Open Beta)",
-        hero_badge: "20 relays Tor v3 activos en 8 países · Open Beta en Google Play",
+        hero_badge: "35 relays Tor v3 activos en 8 países · Open Beta en Google Play",
         hero_title: "Mensajería privada,<br/><span>sin número de teléfono.</span>",
         hero_lead: "OnionTalk funciona sobre la red Tor v3, sin servidor central. No pide teléfono ni correo, no guarda tus contactos en la nube y oculta tu IP. Cada mensaje se cifra en tu dispositivo y se entrega mediante relays que cualquiera puede operar.",
         hero_btn_play: "OnionTalk – Apps en Google Play (Open Beta)",
         hero_open_beta_note: "⚡ <strong>OPEN BETA OFICIAL EN GOOGLE PLAY:</strong> Descarga e instala directamente desde el enlace oficial <a href=\"https://play.google.com/store/apps/details?id=org.oniontalk.messenger\" target=\"_blank\" rel=\"noopener\" style=\"color:#34D399;text-decoration:underline;font-weight:700;\">OnionTalk – Apps no Google Play</a>.",
-        hero_btn_apk: "APK Universal Firmado (v1.6.1)",
+        hero_btn_apk: "APK Universal Firmado (v1.6.6)",
         hero_btn_node: "Desplegar Relay Docker (<60MB)",
         hero_btn_policy: "Política de Privacidad",
         hero_more: "Más formas de instalar o ejecutar un relay",
@@ -3108,12 +3108,12 @@
         nav_comp: "Сравнение",
         nav_priv: "Конфиденциальность",
         cta_download: "Google Play (Open Beta)",
-        hero_badge: "20 узлов Tor v3 активны в 8 странах · Открытая бета в Google Play",
+        hero_badge: "35 узлов Tor v3 активны в 8 странах · Открытая бета в Google Play",
         hero_title: "Приватный мессенджер<br/><span>без номера телефона.</span>",
         hero_lead: "OnionTalk работает в сети Tor v3, без центрального сервера. Он не требует номер телефона или e-mail, не хранит ваши контакты в облаке и скрывает ваш IP. Каждое сообщение шифруется на устройстве и доставляется через узлы, которые может запустить любой.",
         hero_btn_play: "OnionTalk – Google Play (Open Beta)",
         hero_open_beta_note: "⚡ <strong>ОФИЦИАЛЬНАЯ ОТКРЫТАЯ БЕТА В GOOGLE PLAY:</strong> Скачайте и установите напрямую по официальной ссылке <a href=\"https://play.google.com/store/apps/details?id=org.oniontalk.messenger\" target=\"_blank\" rel=\"noopener\" style=\"color:#34D399;text-decoration:underline;font-weight:700;\">OnionTalk – Apps no Google Play</a>.",
-        hero_btn_apk: "Подписанный APK (v1.6.1)",
+        hero_btn_apk: "Подписанный APK (v1.6.6)",
         hero_btn_node: "Запустить Docker-узел (<60МБ)",
         hero_btn_policy: "Политика конфиденциальности",
         hero_more: "Другие способы установки и запуск узла",
