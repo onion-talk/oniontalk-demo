@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; form-action 'none'; frame-ancestors 'none';" />
+  <title>OnionTalk — Adicionar Contato Privado</title>
+  <meta property="og:title" content="OnionTalk — Sua conversa sem número e sem rastros" />
+  <meta property="og:description" content="Toque para abrir o convite criptografado diretamente no OnionTalk ou baixe na Google Play." />
+  <meta property="og:image" content="https://oniontalk.co/icon-512.png" />
+  <meta property="og:type" content="website" />
+  <style>
+    :root {
+      --bg: #0A0E14;
+      --surface: #111923;
+      --border: #243447;
+      --primary: #3B82F6;
+      --primary-dark: #2563EB;
+      --emerald: #34D399;
+      --text: #F8FAFC;
+      --muted: #94A3B8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.14), transparent 55%), var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px 24px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+      text-align: center;
+    }
+    .shield {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      margin: 0 auto 16px;
+      background: rgba(59, 130, 246, 0.14);
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    h1 { font-size: 21px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.02em; }
+    .subtitle { font-size: 14px; color: var(--muted); line-height: 1.5; margin-bottom: 18px; }
+    .id-box {
+      background: #0D131C;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12px;
+      color: var(--emerald);
+      word-break: break-all;
+      margin-bottom: 18px;
+      display: none;
+    }
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.15s ease;
+      margin-bottom: 10px;
+    }
+    .btn:active { opacity: 0.85; }
+    .btn-primary { background: var(--primary-dark); color: #FFFFFF; }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .note {
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="shield" aria-hidden="true">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        <path d="m9 12 2 2 4-4"/>
+      </svg>
+    </div>
+    <h1>Convite Direto OnionTalk</h1>
+    <p class="subtitle">Sua conversa sem número e sem rastros. Adicione este contato diretamente no seu cofre criptografado.</p>
+    <div id="cryptoIdDisplay" class="id-box"></div>
+
+    <a id="openAppBtn" class="btn btn-primary" href="https://play.google.com/store/apps/details?id=org.oniontalk.messenger" rel="noreferrer">
+      Abrir no OnionTalk
+    </a>
+    <button id="copyIdBtn" class="btn btn-secondary" type="button" style="display:none;">
+      Copiar ID Criptográfico
+    </button>
+    <a class="btn btn-secondary" href="https://play.google.com/store/apps/details?id=org.oniontalk.messenger" rel="noreferrer">
+      Baixar na Google Play
+    </a>
+
+    <p class="note">
+      Zero vazamento de metadados: a chave pública permanece exclusivamente no fragmento local (<code>#</code>) do seu navegador e nunca é enviada ao servidor.
+    </p>
+  </main>
+
+  <script>
+    (function () {
+      var rawHash = (window.location.hash || "").replace(/^#+/, "").replace(/^@/, "").trim().toLowerCase();
+      var isValid = /^[0-9a-f]{64}$/.test(rawHash);
+      var openBtn = document.getElementById("openAppBtn");
+      var copyBtn = document.getElementById("copyIdBtn");
+      var idBox = document.getElementById("cryptoIdDisplay");
+      var playUrl = "https://play.google.com/store/apps/details?id=org.oniontalk.messenger";
+
+      if (isValid) {
+        var fullId = "@" + rawHash;
+        idBox.textContent = fullId;
+        idBox.style.display = "block";
+        copyBtn.style.display = "block";
+
+        var isAndroid = /Android/i.test(navigator.userAgent || "");
+        var deepUri = isAndroid
+          ? "intent://add#" + rawHash + "#Intent;scheme=oniontalk;package=org.oniontalk.messenger;S.browser_fallback_url=" + encodeURIComponent(playUrl) + ";end"
+          : "oniontalk://add#" + rawHash;
+        openBtn.setAttribute("href", deepUri);
+
+        copyBtn.addEventListener("click", function () {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(fullId).then(function () {
+              copyBtn.textContent = "ID Copiado!";
+            });
+          }
+        });
+
+        // Auto-handoff to OnionTalk on Android
+        if (isAndroid) {
+          setTimeout(function () {
+            window.location.replace("oniontalk://add#" + rawHash);
+          }, 180);
+        }
+      }
+    })();
+  </script>
+</body>
+</html>
