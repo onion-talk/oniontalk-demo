@@ -1575,7 +1575,7 @@
           </a>
           <a href="https://github.com/onion-talk/oniontalk-demo/releases/latest/download/OnionTalk.apk" target="_blank" rel="noopener" class="btn-secondary">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-            <span><span data-i18n="hero_btn_apk">APK Universal Assinado (v1.6.7)</span></span>
+            <span><span data-i18n="hero_btn_apk">APK Universal Assinado (v1.7.1)</span></span>
           </a>
         </div>
 
@@ -2165,7 +2165,7 @@
                   <polyline points="7 10 12 15 17 10"></polyline>
                   <line x1="12" y1="15" x2="12" y2="3"></line>
                 </svg>
-                <span>Baixar OnionTalk Relay APK (v1.6.7)</span>
+                <span>Baixar OnionTalk Relay APK (v1.7.1)</span>
               </a>
             </div>
           </div>
@@ -2622,7 +2622,7 @@
       const banner = document.getElementById("sim-banner");
       lockBadge.style.borderColor = "#F59E0B";
       lockBadge.style.color = "#FCD34D";
-      lockBadge.innerHTML = "<span>LOCKDOWN ATIVO</span>";
+      lockBadge.textContent = "LOCKDOWN ATIVO";
       banner.textContent = "TRAVA ANTI-COAÇÃO ATIVA · Biometria desarmada por 1 ciclo (Exige Senha)";
       document.getElementById("wire-packet-log").textContent =
         "KEYSTORE_GUARD: manual_lockdown_active=true · BiometricPrompt.CryptoObject disarmed";
@@ -2780,7 +2780,7 @@
 
     function openScreenshotModal(src, title) {
       document.getElementById("modal-shot-img").src = src;
-      document.getElementById("modal-shot-title").innerHTML = title;
+      document.getElementById("modal-shot-title").textContent = title;
       document.getElementById("screenshot-modal").classList.add("open");
     }
 
@@ -2848,7 +2848,7 @@
         hero_title: "Mensageiro privado,<br/><span>sem número de telefone.</span>",
         hero_lead: "O OnionTalk funciona sobre a rede Tor v3, sem servidor central. Não pede telefone nem e-mail, não guarda seus contatos na nuvem e esconde seu IP. Cada mensagem é cifrada no seu aparelho e entregue por relays que qualquer pessoa pode operar.",
         hero_btn_play: "Baixar no Google Play",
-        hero_btn_apk: "APK Universal Assinado (v1.6.7)",
+        hero_btn_apk: "APK Universal Assinado (v1.7.1)",
         hero_btn_node: "Subir Relay Docker (<60MB)",
         hero_btn_policy: "Política de Privacidade",
         hero_more: "Outras formas de instalar e rodar um relay",
@@ -2877,7 +2877,7 @@
         hero_title: "Private messenger,<br/><span>no phone number.</span>",
         hero_lead: "OnionTalk runs on the Tor v3 network, with no central server. It asks for no phone number or email, keeps no contact list in the cloud, and hides your IP address. Every message is encrypted on your device and delivered through relays anyone can run.",
         hero_btn_play: "Get it on Google Play",
-        hero_btn_apk: "Signed Universal APK (v1.6.7)",
+        hero_btn_apk: "Signed Universal APK (v1.7.1)",
         hero_btn_node: "Run Docker Relay (<60MB)",
         hero_btn_policy: "Privacy Policy",
         hero_more: "More ways to install or run a relay",
@@ -2906,7 +2906,7 @@
         hero_title: "Mensajería privada,<br/><span>sin número de teléfono.</span>",
         hero_lead: "OnionTalk funciona sobre la red Tor v3, sin servidor central. No pide teléfono ni correo, no guarda tus contactos en la nube y oculta tu IP. Cada mensaje se cifra en tu dispositivo y se entrega mediante relays que cualquiera puede operar.",
         hero_btn_play: "Descargar en Google Play",
-        hero_btn_apk: "APK Universal Firmado (v1.6.7)",
+        hero_btn_apk: "APK Universal Firmado (v1.7.1)",
         hero_btn_node: "Desplegar Relay Docker (<60MB)",
         hero_btn_policy: "Política de Privacidad",
         hero_more: "Más formas de instalar o ejecutar un relay",
@@ -2935,7 +2935,7 @@
         hero_title: "Приватный мессенджер<br/><span>без номера телефона.</span>",
         hero_lead: "OnionTalk работает в сети Tor v3, без центрального сервера. Он не требует номер телефона или e-mail, не хранит ваши контакты в облаке и скрывает ваш IP. Каждое сообщение шифруется на устройстве и доставляется через узлы, которые может запустить любой.",
         hero_btn_play: "Скачать в Google Play",
-        hero_btn_apk: "Подписанный APK (v1.6.7)",
+        hero_btn_apk: "Подписанный APK (v1.7.1)",
         hero_btn_node: "Запустить Docker-узел (<60МБ)",
         hero_btn_policy: "Политика конфиденциальности",
         hero_more: "Другие способы установки и запуск узла",
@@ -2955,6 +2955,19 @@
       }
     };
 
+    function setSafeStaticMarkup(el, markup) {
+      const parsed = new DOMParser().parseFromString(String(markup || ""), "text/html");
+      parsed.body.querySelectorAll("script,iframe,object,embed").forEach(n => n.remove());
+      parsed.body.querySelectorAll("*").forEach(node => {
+        Array.from(node.attributes).forEach(attr => {
+          if (/^on/i.test(attr.name) || (/^(href|src)$/i.test(attr.name) && /^\s*javascript:/i.test(attr.value))) {
+            node.removeAttribute(attr.name);
+          }
+        });
+      });
+      el.replaceChildren(...parsed.body.childNodes);
+    }
+
     function setLanguage(lang) {
       ["pt", "en", "es", "ru"].forEach(code => {
         const btn = document.getElementById("btn-" + code);
@@ -2964,7 +2977,7 @@
       document.querySelectorAll("[data-i18n]").forEach(el => {
         const key = el.getAttribute("data-i18n");
         if (dict[key]) {
-          el.innerHTML = dict[key];
+          setSafeStaticMarkup(el, dict[key]);
         }
       });
       switchPromoVideo(lang === "pt" ? "v142-pt" : "v142-en");

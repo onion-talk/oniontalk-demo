@@ -38,10 +38,10 @@ const I18N = {
     check_3: 'Mensagens com Senha + Auto-Lock 15s',
     check_4: 'Print 100% Preto & Botão Burn nos 2',
     cta_playstore: 'Baixar na Google Play',
-    cta_apk: 'Baixar APK Direto',
+    cta_apk: 'Baixar APK Direto (v1.7.1)',
     cta_watch_video: 'Ver Vídeo (1m20s)',
     cta_support_hero: 'Apoiar Projeto',
-    hero_trust: '<span><strong>Zero Anúncios</strong> • Hoje mantido por doações voluntárias e criação de grupos privados</span>',
+    hero_trust: '<span><strong>Zero Anúncios</strong> • 1 Grupo Grátis (até 50 pessoas) • Mantido por doações voluntárias</span>',
 
     sim_contact_name: 'Marina (Sócia)',
     sim_contact_status: '● Conectado Direto P2P • Sem Servidor',
@@ -131,7 +131,7 @@ const I18N = {
     s3_text: 'Já entrou em um grupo e começou a receber spam porque seu número (+55) ficou visível para dezenas de desconhecidos? Aqui sua identidade fica sempre protegida.',
     s3_b1: '<strong>OnionVoice (Chamadas P2P Gratuitas):</strong> Ligações de áudio diretas de ponta a ponta sem passar por centrais telefônicas.',
     s3_b2: '<strong>Entrar em Grupos é 100% Grátis:</strong> Participe de qualquer grupo a convite sem que ninguém descubra seu telefone pessoal ou IP.',
-    s3_b3: '<strong>Criação de Grupos Sustentável:</strong> Criar novos grupos privados é nossa forma inicial de monetização (US$ 10 libera 10 grupos permanentes, ou 1 nó ativo libera 1 grupo).',
+    s3_b3: '<strong>Campanha Inicial — 1 Grupo Grátis (até 50 pessoas):</strong> Todo usuário já pode criar gratuitamente 1 grupo pós-quântico de até 50 membros.',
     s3_cta: 'Criar Minha Identidade P2P Agora',
     s3_badge: 'SEM +55',
     s3_callout: 'Nos grupos do OnionTalk, nenhum participante tem acesso ao seu chip SIM ou operadora.',
@@ -230,7 +230,7 @@ const I18N = {
 
     sus_tag: 'Transparência & Independência',
     sus_title: 'Zero anúncios. Zero venda de dados. Como nos mantemos?',
-    sus_desc: 'Diferente das Big Techs, você nunca é o produto. No momento, o OnionTalk depende de <strong>doações voluntárias da comunidade</strong> e utiliza a <strong>criação de Grupos Privados como forma de monetização inicial</strong>.',
+    sus_desc: 'Diferente das Big Techs, você nunca é o produto. O OnionTalk é gratuito e depende de <strong>doações voluntárias da comunidade</strong> para ajudar a manter os servidores e relays no ar.',
     don_badge: 'Mantido pela Comunidade no Momento',
     don_title: '1. Doações Voluntárias para Manter a Rede Livre',
     don_desc: 'Como nossa arquitetura é P2P (celular direto para celular), não temos custos milionários de nuvem espionando usuários. Hoje dependemos diretamente do apoio de quem valoriza a privacidade real para evoluir o aplicativo:',
@@ -240,21 +240,21 @@ const I18N = {
     don_other_desc: ' Chame nosso Admin diretamente dentro do app ou no Instagram ',
     btn_copy_admin: 'Copiar ID do Admin no App',
 
-    grp_badge: 'Monetização Inicial Justa & Sem Anúncios',
-    grp_title: '2. Grupos Privados como Forma de Monetização Inicial',
-    grp_desc: 'Para garantir que o chat individual e as chamadas de voz nunca tenham propaganda nem coleta de dados, apenas a <strong>criação de novos Grupos Privados</strong> funciona como nossa monetização inicial:',
+    grp_badge: 'Campanha Inicial Gratuita & Sem Anúncios',
+    grp_title: '2. Grupos Privados Pós-Quânticos (Até 50 Pessoas Grátis)',
+    grp_desc: 'Nesta campanha inicial, liberamos gratuitamente a criação de grupos privados pós-quânticos para toda a comunidade:',
     grp_t1_pill: '100% GRÁTIS',
     grp_t1_text: '<strong>Conversas 1-a-1, Chamadas de Voz e Entrar em Grupos:</strong> participar de qualquer grupo a convite é totalmente gratuito para todos os membros.',
-    grp_t2_pill: 'US$ 10 ÚNICO',
-    grp_t2_text: '<strong>Passe Criador de Grupos (FounderPass):</strong> uma contribuição única de US$ 10 desbloqueia a criação de até <strong>10 grupos privados permanentes</strong> (até 64 membros cada, com Burn remoto).',
-    grp_t3_pill: 'ALTERNATIVA P2P',
-    grp_t3_text: '<strong>1 Nó Ativo = 1 Grupo Grátis:</strong> prefere contribuir com infraestrutura? Hospede 1 Nó Relay gratuito no Android ou Docker e libere 1 grupo enquanto o nó estiver ativo.',
+    grp_t2_pill: '1 GRUPO GRÁTIS',
+    grp_t2_text: '<strong>Campanha Inicial (Até 50 Pessoas):</strong> qualquer usuário pode criar gratuitamente <strong>1 grupo privado pós-quântico de até 50 pessoas</strong> (com Burn remoto e menções).',
+    grp_t3_pill: 'APOIE A REDE',
+    grp_t3_text: '<strong>Ajude a Manter os Servidores:</strong> gostou do app? Apoie com uma doação voluntária ou hospede 1 Nó Relay gratuito no Android ou Docker para fortalecer a malha.',
     grp_cta: 'Baixar Grátis e Conhecer os Grupos',
 
     faq_tag: 'Dúvidas Frequentes',
     faq_title: 'Perguntas simples, respostas transparentes',
     faq_q1: 'O aplicativo é realmente gratuito? Como vocês se mantêm sem vender anúncios?',
-    faq_a1: 'Sim, o OnionTalk é <strong>100% gratuito na Google Play Store</strong> e não exibe nenhum anúncio. Como nossa arquitetura é P2P (os próprios celulares se conectam diretamente entre si), não temos o custo milionário de manter data centers gigantes para guardar bilhões de fotos e vídeos dos usuários.<br /><br /><strong>No momento, dependemos de doações voluntárias da comunidade</strong> para financiar a evolução do projeto, e utilizamos a <strong>criação de Grupos Privados como nossa forma de monetização inicial</strong>: conversar no 1-a-1, fazer ligações de voz e participar de grupos por convite é totalmente grátis; apenas quem deseja criar novos grupos contribui com um apoio único (US$ 10 libera 10 grupos permanentes, ou você pode liberar 1 grupo gratuitamente mantendo um nó da rede ativo).',
+    faq_a1: 'Sim, o OnionTalk é <strong>100% gratuito na Google Play Store e via APK Direto</strong>, sem exibir nenhum anúncio. Nesta campanha inicial, conversar no 1-a-1, fazer ligações de voz, participar de grupos e <strong>criar 1 grupo privado de até 50 pessoas é totalmente gratuito</strong>.<br /><br /><strong>Contamos com doações voluntárias da comunidade</strong> (em Configurações → Apoiar) e operadores voluntários de nós Relay para ajudar a manter os servidores ativos e independentes.',
     faq_q2: 'Como eu adiciono meus amigos se o OnionTalk não usa número de telefone (+55)?',
     faq_a2: 'É tão simples quanto escanear um PIX: ao abrir o aplicativo pela primeira vez, você recebe seu <strong>QR Code e seu Código de Contato P2P</strong> em 5 segundos. Basta mostrar o QR Code ou enviar seu convite para a pessoa te adicionar — sem nunca expor seu número pessoal.',
     faq_q3: 'O que acontece se a outra pessoa estiver sem internet quando eu mandar mensagem?',
@@ -295,10 +295,10 @@ const I18N = {
     check_3: 'Password Messages + 15s Auto-Lock',
     check_4: '100% Black Anti-Screenshot & Dual Burn',
     cta_playstore: 'Get it on Google Play',
-    cta_apk: 'Direct APK Download',
+    cta_apk: 'Direct APK Download (v1.7.1)',
     cta_watch_video: 'Watch Video (1m20s)',
     cta_support_hero: 'Support Project',
-    hero_trust: '<span><strong>Zero Ads</strong> • Currently sustained by voluntary community donations and private groups</span>',
+    hero_trust: '<span><strong>Zero Ads</strong> • 1 Free Group (up to 50 people) • Sustained by voluntary donations</span>',
 
     sim_contact_name: 'Marina (Partner)',
     sim_contact_status: '● Direct P2P Connected • No Server',
@@ -388,7 +388,7 @@ const I18N = {
     s3_text: 'Ever joined a group chat and immediately started getting spam calls because your phone number became visible to dozens of strangers? Not anymore.',
     s3_b1: '<strong>OnionVoice (Free P2P Calls):</strong> Direct end-to-end voice calls without passing through telecom switches.',
     s3_b2: '<strong>Joining Groups is 100% Free:</strong> Join any group via invite without anyone ever seeing your phone number or IP address.',
-    s3_b3: '<strong>Sustainable Group Creation:</strong> Creating new private groups is our initial monetization model ($10 unlocks 10 permanent groups, or run 1 active Relay node for 1 free group).',
+    s3_b3: '<strong>Initial Campaign — 1 Free Group (up to 50 people):</strong> Every user can create 1 free post-quantum private group of up to 50 members.',
     s3_cta: 'Create My P2P Identity Now',
     s3_badge: 'NO SIM LEAK',
     s3_callout: 'Inside OnionTalk groups, no member can ever discover your SIM card or mobile carrier.',
@@ -487,7 +487,7 @@ const I18N = {
 
     sus_tag: 'Transparency & Independence',
     sus_title: 'Zero ads. Zero data selling. How do we sustain OnionTalk?',
-    sus_desc: 'Unlike Big Tech, you are never the product. Right now, OnionTalk relies on <strong>voluntary community donations</strong> and uses <strong>Private Group creation as our initial monetization model</strong>.',
+    sus_desc: 'Unlike Big Tech, you are never the product. OnionTalk is free and relies on <strong>voluntary community donations</strong> to help keep our servers and relays online.',
     don_badge: 'Community-Supported Right Now',
     don_title: '1. Voluntary Donations Keep the Network Independent',
     don_desc: 'Because our architecture is P2P (direct phone to phone), we don’t carry multi-million-dollar cloud bills spying on users. Today we rely directly on donations from people who value true privacy to keep building:',
@@ -497,21 +497,21 @@ const I18N = {
     don_other_desc: ' Message our Admin directly inside the app or on Instagram ',
     btn_copy_admin: 'Copy Admin ID for the App',
 
-    grp_badge: 'Fair Initial Monetization & Ad-Free',
-    grp_title: '2. Private Groups as Initial Monetization',
-    grp_desc: 'To guarantee that 1-on-1 chats and voice calls remain free forever without ads or tracking, only <strong>creating new Private Groups</strong> serves as our initial monetization:',
+    grp_badge: 'Free Initial Campaign & Ad-Free',
+    grp_title: '2. Post-Quantum Private Groups (Up to 50 People Free)',
+    grp_desc: 'During this initial campaign, creating post-quantum encrypted groups is unlocked for free for everyone:',
     grp_t1_pill: '100% FREE',
     grp_t1_text: '<strong>1-on-1 Chats, Voice Calls & Joining Groups:</strong> joining any group via invite is completely free for every participant.',
-    grp_t2_pill: '$10 ONE-TIME',
-    grp_t2_text: '<strong>Group Creator Pass (FounderPass):</strong> a one-time $10 USD contribution unlocks creation of up to <strong>10 permanent private groups</strong> (up to 64 members each, with remote Burn).',
-    grp_t3_pill: 'P2P ALTERNATIVE',
-    grp_t3_text: '<strong>1 Active Node = 1 Free Group:</strong> prefer contributing bandwidth? Run 1 free Relay Node on Android or Docker to unlock 1 group while active.',
+    grp_t2_pill: '1 FREE GROUP',
+    grp_t2_text: '<strong>Initial Campaign (Up to 50 People):</strong> every user can create <strong>1 private post-quantum group of up to 50 members</strong> for free (with remote Burn & mentions).',
+    grp_t3_pill: 'SUPPORT SERVERS',
+    grp_t3_text: '<strong>Help Keep Servers Running:</strong> enjoy OnionTalk? Support us with a voluntary donation or run 1 free Relay Node on Android or Docker to strengthen the mesh.',
     grp_cta: 'Download Free & Explore Groups',
 
     faq_tag: 'Frequently Asked Questions',
     faq_title: 'Simple questions, transparent answers',
     faq_q1: 'Is the app really free? How do you sustain yourselves without selling ads?',
-    faq_a1: 'Yes — OnionTalk is <strong>100% free on the Google Play Store</strong> and displays zero ads. Because our architecture is P2P (phones connect directly to each other), we don’t have the multi-million-dollar cost of running giant data centers to store billions of user photos and videos.<br /><br /><strong>Right now, we depend on voluntary community donations</strong> to fund development, and we use <strong>Private Group creation as our initial form of monetization</strong>: 1-on-1 chats, voice calls, and joining groups via invite are completely free; only users who want to create new private groups make a one-time $10 contribution for 10 permanent groups (or unlock 1 group for free by hosting an active network relay node).',
+    faq_a1: 'Yes — OnionTalk is <strong>100% free on Google Play and via Direct APK</strong> with zero ads. In this initial campaign, 1-on-1 chats, voice calls, joining groups, and <strong>creating 1 private group of up to 50 people are completely free</strong>.<br /><br /><strong>We rely on voluntary community donations</strong> and volunteer Relay Node operators to help keep the servers online and independent.',
     faq_q2: 'How do I add friends if OnionTalk doesn’t use phone numbers?',
     faq_a2: 'It’s as easy as scanning a QR code: the first time you open the app, your <strong>QR Code and P2P Contact ID</strong> are generated offline in 5 seconds. Just show your QR Code or share your invite code — without ever revealing your personal phone number.',
     faq_q3: 'What happens if my friend is offline when I send a message?',
@@ -552,10 +552,10 @@ const I18N = {
     check_3: 'Mensajes con Contraseña + Auto-Lock 15s',
     check_4: 'Captura 100% Negra y Botón Burn en Ambos',
     cta_playstore: 'Descargar en Google Play',
-    cta_apk: 'Descargar APK Directo',
+    cta_apk: 'Descargar APK Directo (v1.7.1)',
     cta_watch_video: 'Ver Video (1m20s)',
     cta_support_hero: 'Apoyar Proyecto',
-    hero_trust: '<span><strong>Cero Anuncios</strong> • Hoy sostenido por donaciones voluntarias y creación de grupos privados</span>',
+    hero_trust: '<span><strong>Cero Anuncios</strong> • 1 Grupo Gratis (hasta 50 personas) • Sostenido por donaciones voluntarias</span>',
 
     sim_contact_name: 'Marina (Socia)',
     sim_contact_status: '● Conectado Directo P2P • Sin Servidor',
@@ -645,7 +645,7 @@ const I18N = {
     s3_text: '¿Entraste alguna vez a un grupo y empezaste a recibir spam porque tu número quedó visible para decenas de extraños? Aquí tu identidad está blindada.',
     s3_b1: '<strong>OnionVoice (Llamadas P2P Gratuitas):</strong> Llamadas de audio directas de extremo a extremo sin pasar por centrales telefónicas.',
     s3_b2: '<strong>Unirse a Grupos es 100% Gratis:</strong> Participa por invitación en cualquier grupo sin que nadie vea tu teléfono personal ni tu IP.',
-    s3_b3: '<strong>Creación de Grupos Sostenible:</strong> Crear nuevos grupos privados es nuestra forma de monetización inicial (US$ 10 habilita 10 grupos permanentes, o 1 nodo activo habilita 1 grupo).',
+    s3_b3: '<strong>Campaña Inicial — 1 Grupo Gratis (hasta 50 personas):</strong> Todo usuario puede crear gratis 1 grupo privado post-cuántico de hasta 50 miembros.',
     s3_cta: 'Crear Mi Identidad P2P Ahora',
     s3_badge: 'SIN NÚMERO',
     s3_callout: 'En los grupos de OnionTalk, ningún participante puede descubrir tu tarjeta SIM ni tu operadora.',
@@ -744,7 +744,7 @@ const I18N = {
 
     sus_tag: 'Transparencia e Independencia',
     sus_title: 'Cero anuncios. Cero venta de datos. ¿Cómo nos mantenemos?',
-    sus_desc: 'A diferencia de las Big Tech, tú nunca eres el producto. En este momento, OnionTalk depende de <strong>donaciones voluntarias de la comunidad</strong> y utiliza la <strong>creación de Grupos Privados como forma de monetización inicial</strong>.',
+    sus_desc: 'A diferencia de las Big Tech, tú nunca eres el producto. OnionTalk es gratuito y depende de <strong>donaciones voluntarias de la comunidad</strong> para ayudar a mantener los servidores y relays en línea.',
     don_badge: 'Mantenido por la Comunidad Actualmente',
     don_title: '1. Donaciones Voluntarias para Mantener la Red Libre',
     don_desc: 'Como nuestra arquitectura es P2P (celular directo a celular), no tenemos costos millonarios de servidores espiando usuarios. Hoy dependemos directamente del apoyo de quienes valoran la privacidad real:',
@@ -754,21 +754,21 @@ const I18N = {
     don_other_desc: ' Escribe a nuestro Admin directamente en la app o en Instagram ',
     btn_copy_admin: 'Copiar ID del Admin en la App',
 
-    grp_badge: 'Monetización Inicial Justa y Sin Anuncios',
-    grp_title: '2. Grupos Privados como Forma de Monetización Inicial',
-    grp_desc: 'Para garantizar que el chat individual y las llamadas nunca tengan publicidad ni rastreo, únicamente la <strong>creación de nuevos Grupos Privados</strong> funciona como nuestra monetización inicial:',
+    grp_badge: 'Campaña Inicial Gratuita y Sin Anuncios',
+    grp_title: '2. Grupos Privados Post-Cuánticos (Hasta 50 Personas Gratis)',
+    grp_desc: 'En esta campaña inicial, habilitamos gratis la creación de grupos privados post-cuánticos para toda la comunidad:',
     grp_t1_pill: '100% GRATIS',
     grp_t1_text: '<strong>Chats 1-a-1, Llamadas de Voz y Entrar en Grupos:</strong> participar en cualquier grupo por invitación es totalmente gratuito para todos los miembros.',
-    grp_t2_pill: 'US$ 10 ÚNICO',
-    grp_t2_text: '<strong>Pase Creador de Grupos (FounderPass):</strong> un aporte único de US$ 10 habilita la creación de hasta <strong>10 grupos privados permanentes</strong> (hasta 64 miembros cada uno, con Burn remoto).',
-    grp_t3_pill: 'ALTERNATIVA P2P',
-    grp_t3_text: '<strong>1 Nodo Activo = 1 Grupo Gratis:</strong> ¿prefieres aportar infraestructura? Hospeda 1 Nodo Relay gratuito en Android o Docker y habilita 1 grupo mientras esté activo.',
+    grp_t2_pill: '1 GRUPO GRATIS',
+    grp_t2_text: '<strong>Campaña Inicial (Hasta 50 Personas):</strong> cualquier usuario puede crear gratis <strong>1 grupo privado post-cuántico de hasta 50 personas</strong> (con Burn remoto y menciones).',
+    grp_t3_pill: 'APOYA LA RED',
+    grp_t3_text: '<strong>Ayuda a Mantener los Servidores:</strong> ¿te gusta OnionTalk? Apoya con una donación voluntaria u hospeda 1 Nodo Relay gratuito en Android o Docker para fortalecer la malla.',
     grp_cta: 'Descargar Gratis y Conocer los Grupos',
 
     faq_tag: 'Preguntas Frecuentes',
     faq_title: 'Preguntas simples, respuestas transparentes',
     faq_q1: '¿La aplicación es realmente gratuita? ¿Cómo se mantienen sin vender anuncios?',
-    faq_a1: 'Sí, OnionTalk es <strong>100% gratuito en Google Play Store</strong> y no muestra ningún anuncio. Como nuestra arquitectura es P2P (los propios celulares se conectan directamente entre sí), no tenemos el costo millonario de mantener centros de datos gigantes para guardar miles de millones de fotos y videos de los usuarios.<br /><br /><strong>En este momento dependemos de donaciones voluntarias de la comunidad</strong> para financiar la evolución del proyecto, y utilizamos la <strong>creación de Grupos Privados como nuestra forma de monetización inicial</strong>: chatear 1-a-1, hacer llamadas de voz y participar en grupos por invitación es totalmente gratis; solo quien desea crear nuevos grupos realiza un aporte único (US$ 10 habilita 10 grupos permanentes, o puedes habilitar 1 grupo gratis manteniendo un nodo activo en la red).',
+    faq_a1: 'Sí, OnionTalk es <strong>100% gratuito en Google Play Store y vía APK Directo</strong>, sin anuncios. En esta campaña inicial, chatear 1-a-1, hacer llamadas de voz, unirse a grupos y <strong>crear 1 grupo privado de hasta 50 personas es totalmente gratis</strong>.<br /><br /><strong>Contamos con donaciones voluntarias de la comunidad</strong> y operadores voluntarios de nodos Relay para ayudar a mantener los servidores activos e independientes.',
     faq_q2: '¿Cómo agrego a mis amigos si OnionTalk no usa número de teléfono?',
     faq_a2: 'Es tan fácil como escanear un código QR: al abrir la app por primera vez, recibes tu <strong>Código QR e ID de Contacto P2P</strong> en 5 segundos. Solo muestra el QR o envía tu invitación — sin exponer jamás tu número personal.',
     faq_q3: '¿Qué pasa si la otra persona no tiene internet cuando le envío un mensaje?',
@@ -809,10 +809,10 @@ const I18N = {
     check_3: 'Пароль на сообщения + Автоблок за 15 сек',
     check_4: 'Чёрный скриншот и кнопка Burn у обоих',
     cta_playstore: 'Скачать в Google Play',
-    cta_apk: 'Скачать APK напрямую',
+    cta_apk: 'Скачать APK напрямую (v1.7.1)',
     cta_watch_video: 'Смотреть видео (1м20с)',
     cta_support_hero: 'Поддержать проект',
-    hero_trust: '<span><strong>Ноль рекламы</strong> • Сейчас проект живёт за счёт пожертвований сообщества и создания приватных групп</span>',
+    hero_trust: '<span><strong>Ноль рекламы</strong> • 1 группа бесплатно (до 50 чел.) • Живёт благодаря добровольным донатам</span>',
 
     sim_contact_name: 'Марина (Партнёр)',
     sim_contact_status: '● Прямое P2P-соединение • Без сервера',
@@ -902,7 +902,7 @@ const I18N = {
     s3_text: 'Вступали в общий чат и тут же начинали получать спам, потому что ваш номер увидели десятки чужих людей? В OnionTalk это исключено.',
     s3_b1: '<strong>OnionVoice (Бесплатные P2P-звонки):</strong> Прямые аудиозвонки со сквозным шифрованием без телефонных АТС.',
     s3_b2: '<strong>Вход в группы 100% бесплатный:</strong> Присоединяйтесь по приглашению в любые группы, не раскрывая телефон и IP-адрес.',
-    s3_b3: '<strong>Честная поддержка через создание групп:</strong> Создание новых групп — наша начальная монетизация ($10 открывает 10 постоянных групп, либо 1 активный узел даёт 1 группу).',
+    s3_b3: '<strong>Стартовая кампания — 1 группа бесплатно (до 50 чел.):</strong> Каждый пользователь может бесплатно создать 1 постквантовую группу до 50 участников.',
     s3_cta: 'Создать P2P-профиль сейчас',
     s3_badge: 'БЕЗ SIM',
     s3_callout: 'В группах OnionTalk ни один участник не узнает вашу SIM-карту или оператора.',
@@ -1001,7 +1001,7 @@ const I18N = {
 
     sus_tag: 'Прозрачность и независимость',
     sus_title: 'Ноль рекламы. Ноль продажи данных. Как мы существуем?',
-    sus_desc: 'В отличие от техногигантов, вы никогда не являетесь товаром. Сейчас OnionTalk развивается за счёт <strong>добровольных пожертвований сообщества</strong> и использует <strong>создание приватных групп как начальную монетизацию</strong>.',
+    sus_desc: 'В отличие от техногигантов, вы никогда не являетесь товаром. OnionTalk бесплатен и развивается за счёт <strong>добровольных пожертвований сообщества</strong> для поддержки серверов и узлов сети.',
     don_badge: 'Сейчас проект живёт благодаря донатам',
     don_title: '1. Добровольные пожертвования сохраняют сеть свободной',
     don_desc: 'Поскольку наша архитектура P2P (телефон напрямую к телефону), у нас нет многомиллионных расходов на дата-центры слежки. Сегодня мы напрямую опираемся на поддержку пользователей, ценящих приватность:',
@@ -1011,21 +1011,21 @@ const I18N = {
     don_other_desc: ' Напишите нашему администратору прямо в приложении или в Instagram ',
     btn_copy_admin: 'Скопировать ID админа для приложения',
 
-    grp_badge: 'Честная начальная монетизация без рекламы',
-    grp_title: '2. Приватные группы как форма начальной монетизации',
-    grp_desc: 'Чтобы личные чаты и звонки навсегда оставались бесплатными и без рекламы, только <strong>создание новых приватных групп</strong> служит нашей начальной монетизацией:',
+    grp_badge: 'Бесплатная стартовая кампания без рекламы',
+    grp_title: '2. Постквантовые приватные группы (до 50 человек бесплатно)',
+    grp_desc: 'В рамках стартовой кампании создание постквантовых зашифрованных групп открыто бесплатно для всех:',
     grp_t1_pill: '100% БЕСПЛАТНО',
     grp_t1_text: '<strong>Личные чаты 1-на-1, звонки и вход в группы:</strong> участие в любых группах по приглашению полностью бесплатно для всех участников.',
-    grp_t2_pill: '$10 РАЗОВО',
-    grp_t2_text: '<strong>Пропуск создателя групп (FounderPass):</strong> разовый взнос $10 USD открывает создание до <strong>10 постоянных приватных групп</strong> (до 64 участников, с функцией общего Burn).',
-    grp_t3_pill: 'P2P АЛЬТЕРНАТИВА',
-    grp_t3_text: '<strong>1 Активный узел = 1 Группа бесплатно:</strong> хотите помочь инфраструктурой? Запустите 1 бесплатный Relay-узел на Android или в Docker и получите 1 группу.',
+    grp_t2_pill: '1 ГРУППА БЕСПЛАТНО',
+    grp_t2_text: '<strong>Стартовая кампания (до 50 участников):</strong> каждый пользователь может бесплатно создать <strong>1 приватную постквантовую группу до 50 человек</strong> (с общим Burn и упоминаниями).',
+    grp_t3_pill: 'ПОДДЕРЖКА СЕРВЕРОВ',
+    grp_t3_text: '<strong>Помогите поддерживать серверы:</strong> нравится OnionTalk? Поддержите проект добровольным донатом или запустите 1 бесплатный Relay-узел на Android или в Docker.',
     grp_cta: 'Скачать бесплатно и открыть группы',
 
     faq_tag: 'Частые вопросы',
     faq_title: 'Простые вопросы, честные ответы',
     faq_q1: 'Приложение действительно бесплатное? За счёт чего вы живёте без рекламы?',
-    faq_a1: 'Да, OnionTalk <strong>на 100% бесплатен в Google Play Store</strong> и не показывает никакой рекламы. Поскольку наша архитектура P2P (смартфоны соединяются напрямую друг с другом), у нас нет миллионных затрат на гигантские дата-центры для хранения миллиардов чужих фото и видео.<br /><br /><strong>В данный момент мы зависим от добровольных пожертвований сообщества</strong> для развития проекта, а <strong>создание приватных групп является нашей начальной формой монетизации</strong>: личные чаты 1-на-1, голосовые звонки и вступление в группы по приглашению полностью бесплатны; только создание новых групп требует разовой поддержки ($10 за 10 постоянных групп, либо 1 группа бесплатно при запуске сетевого узла).',
+    faq_a1: 'Да, OnionTalk <strong>на 100% бесплатен в Google Play Store и в виде прямого APK</strong> и не показывает рекламы. В рамках стартовой кампании личные чаты, звонки, участие в группах и <strong>создание 1 приватной группы до 50 человек полностью бесплатны</strong>.<br /><br /><strong>Мы опираемся на добровольные пожертвования сообщества</strong> и операторов узлов Relay для поддержки серверов.',
     faq_q2: 'Как добавлять друзей, если OnionTalk не использует номер телефона?',
     faq_a2: 'Так же просто, как отсканировать QR-код: при первом запуске приложение за 5 секунд создаёт ваш <strong>QR-код и P2P ID контакта</strong>. Покажите QR-код другу или отправьте приглашение — не раскрывая личный номер.',
     faq_q3: 'Что будет, если у собеседника выключен интернет в момент отправки?',
@@ -1066,10 +1066,24 @@ function renderCell(cellArr) {
   `;
 }
 
+function setSafeStaticMarkup(el, markup) {
+  if (!el) return;
+  const parsed = new DOMParser().parseFromString(String(markup || ''), 'text/html');
+  parsed.body.querySelectorAll('script,iframe,object,embed').forEach(n => n.remove());
+  parsed.body.querySelectorAll('*').forEach(node => {
+    Array.from(node.attributes).forEach(attr => {
+      if (/^on/i.test(attr.name) || (/^(href|src)$/i.test(attr.name) && /^\s*javascript:/i.test(attr.value))) {
+        node.removeAttribute(attr.name);
+      }
+    });
+  });
+  el.replaceChildren(...parsed.body.childNodes);
+}
+
 function renderComparisonTable(dict) {
   const tbody = document.getElementById('comparison-tbody');
   if (!tbody || !dict.cmp_rows) return;
-  tbody.innerHTML = dict.cmp_rows.map(row => `
+  const rowsMarkup = dict.cmp_rows.map(row => `
     <tr>
       <td class="col-criteria">
         <div class="criteria-title">${row.title}</div>
@@ -1082,6 +1096,11 @@ function renderComparisonTable(dict) {
       <td>${renderCell(row.sg)}</td>
     </tr>
   `).join('');
+  const parsed = new DOMParser().parseFromString(`<table><tbody>${rowsMarkup}</tbody></table>`, 'text/html');
+  const parsedBody = parsed.querySelector('tbody');
+  if (parsedBody) {
+    tbody.replaceChildren(...parsedBody.childNodes);
+  }
 }
 
 function selectCharge(idx) {
@@ -1119,10 +1138,10 @@ function triggerSimMode(mode) {
     overlay.classList.remove('visible');
     unlockedState = !unlockedState;
     if (unlockedState) {
-      lockedText.innerHTML = dict.sim_unlocked_html;
+      setSafeStaticMarkup(lockedText, dict.sim_unlocked_html);
       toastText.textContent = dict.sim_toast_pw_open;
     } else {
-      lockedText.innerHTML = `••••••••••••••••••••••<br /><em>${dict.sim_locked_hint}</em>`;
+      setSafeStaticMarkup(lockedText, `••••••••••••••••••••••<br /><em>${dict.sim_locked_hint}</em>`);
       toastText.textContent = dict.sim_toast_pw_closed;
     }
   } else if (mode === 'antiprint') {
@@ -1173,7 +1192,7 @@ function setLang(lang) {
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (dict[key] !== undefined) {
-      el.innerHTML = dict[key];
+      setSafeStaticMarkup(el, dict[key]);
     }
   });
 
@@ -1188,9 +1207,12 @@ function setLang(lang) {
 
   const lockedText = document.getElementById('sim-locked-text');
   if (lockedText) {
-    lockedText.innerHTML = unlockedState
-      ? dict.sim_unlocked_html
-      : `••••••••••••••••••••••<br /><em>${dict.sim_locked_hint}</em>`;
+    setSafeStaticMarkup(
+      lockedText,
+      unlockedState
+        ? dict.sim_unlocked_html
+        : `••••••••••••••••••••••<br /><em>${dict.sim_locked_hint}</em>`
+    );
   }
   if (currentSimMode === 'antiprint') {
     document.getElementById('sim-overlay-title').textContent = dict.sim_ov_print_title;

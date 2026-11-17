@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "org.oniontalk.messenger",
+      "sha256_cert_fingerprints": [
+        "49:70:07:66:24:3C:18:1D:32:72:0B:9B:61:44:2E:0E:B2:E3:EC:E8:80:4F:11:37:52:40:98:C5:A4:E3:E8:AE",
+        "8C:C9:FC:50:CC:2B:CD:4B:5C:D9:BE:00:1C:24:85:0F:DA:1B:03:2E:C7:27:8C:07:37:FD:27:29:F5:33:1A:62"
+      ]
+    }
+  }
+]
