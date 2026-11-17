@@ -139,10 +139,12 @@
         copyBtn.style.display = "block";
 
         var isAndroid = /Android/i.test(navigator.userAgent || "");
+        // Single-# Chrome Android intent:// URI (100% local OS IPC handoff — zero HTTP/server transmission!)
         var deepUri = isAndroid
-          ? "intent://add#" + rawHash + "#Intent;scheme=oniontalk;package=org.oniontalk.messenger;S.browser_fallback_url=" + encodeURIComponent(playUrl) + ";end"
-          : "oniontalk://add#" + rawHash;
+          ? "intent://add?id=" + rawHash + "#Intent;scheme=oniontalk;package=org.oniontalk.messenger;S.browser_fallback_url=" + encodeURIComponent(playUrl) + ";end"
+          : "oniontalk://add?id=" + rawHash;
         openBtn.setAttribute("href", deepUri);
+        openBtn.textContent = "Adicionar Contato no OnionTalk";
 
         copyBtn.addEventListener("click", function () {
           if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -152,11 +154,11 @@
           }
         });
 
-        // Auto-handoff to OnionTalk on Android
+        // Auto-open OnionTalk's Add Contact modal immediately on Android
         if (isAndroid) {
           setTimeout(function () {
-            window.location.replace("oniontalk://add#" + rawHash);
-          }, 180);
+            window.location.href = deepUri;
+          }, 120);
         }
       }
     })();
