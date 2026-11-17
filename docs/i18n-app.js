@@ -161,9 +161,9 @@ const I18N = {
     mg_10_title: '7. Dados do Grupo',
     mg_10_desc: 'Painel unificado Onion Mesh com regras do Admin, ações rápidas, Queimar e gestão de membros.',
 
-    video_badge: 'Vídeo Oficial • 1 Minuto e 20 Segundos',
+    video_badge: 'Vídeo Oficial • 1 Minuto e 30 Segundos',
     video_title: 'Veja o OnionTalk funcionando na prática',
-    video_desc: 'Assista à demonstração completa da nossa interface limpa, chamadas de voz P2P, trancamento por senha e destruição sincronizada de mensagens.',
+    video_desc: 'Assista à demonstração completa da nova interface Onion Mesh v1.7.4: áudio HD com escuta única (1x), mensagens seladas com senha, chamadas pós-quânticas, grupo grátis até 50 pessoas e destruição sincronizada.',
 
     cmp_tag: 'Matriz Comparativa de Arquitetura & Privacidade',
     cmp_title: 'Por que o OnionTalk entrega mais qualidade e segurança?',
@@ -443,9 +443,9 @@ const I18N = {
     mg_10_title: '7. Unified Group Sheet',
     mg_10_desc: 'Standardized Onion Mesh group sheet with Admin rules, quick actions, Burn, and member controls.',
 
-    video_badge: 'Official Video • 1 Minute 20 Seconds',
+    video_badge: 'Official Video • 1 Minute 30 Seconds',
     video_title: 'Watch OnionTalk in action',
-    video_desc: 'See a complete walkthrough of our clean interface, P2P voice calls, per-message password lock, and synchronized chat destruction.',
+    video_desc: 'See a complete walkthrough of the new Onion Mesh v1.7.4 interface: listen-once (1x) HD audio, password-sealed messages, post-quantum calls, free 50-member group, and synchronized burn.',
 
     cmp_tag: 'Architecture & Privacy Comparison Matrix',
     cmp_title: 'Why does OnionTalk deliver higher quality and security?',
@@ -725,9 +725,9 @@ const I18N = {
     mg_10_title: '7. Datos del Grupo',
     mg_10_desc: 'Panel unificado Onion Mesh con reglas del Admin, acciones rápidas, Quemar y gestión de miembros.',
 
-    video_badge: 'Video Oficial • 1 Minuto y 20 Segundos',
+    video_badge: 'Video Oficial • 1 Minuto y 30 Segundos',
     video_title: 'Mira OnionTalk funcionando en la práctica',
-    video_desc: 'Observa la demostración completa de nuestra interfaz limpia, llamadas P2P, mensajes con contraseña y destrucción sincronizada.',
+    video_desc: 'Observa la demostración completa de la nueva interfaz Onion Mesh v1.7.4: audio HD de escucha única (1x), mensajes sellados con contraseña, llamadas post-cuánticas, grupo gratis de 50 personas y destrucción sincronizada.',
 
     cmp_tag: 'Matriz Comparativa de Arquitectura y Privacidad',
     cmp_title: '¿Por qué OnionTalk ofrece mayor calidad y seguridad?',
@@ -1007,9 +1007,9 @@ const I18N = {
     mg_10_title: '7. Данные группы',
     mg_10_desc: 'Единая панель Onion Mesh с правилами админа, быстрыми действиями, Burn и участниками.',
 
-    video_badge: 'Официальное видео • 1 минута 20 секунд',
+    video_badge: 'Официальное видео • 1 минута 30 секунд',
     video_title: 'Посмотрите, как OnionTalk работает вживую',
-    video_desc: 'Полная демонстрация удобного интерфейса, P2P-звонков, паролей на сообщения и синхронного удаления переписки.',
+    video_desc: 'Полная демонстрация нового интерфейса Onion Mesh v1.7.4: HD-аудио с однократным прослушиванием (1x), запечатанные паролем сообщения, PQC-звонки, бесплатная группа до 50 человек и синхронное удаление.',
 
     cmp_tag: 'Сравнительная матрица архитектуры и приватности',
     cmp_title: 'Почему OnionTalk обеспечивает более высокое качество и безопасность?',
