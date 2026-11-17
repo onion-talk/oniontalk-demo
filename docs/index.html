@@ -863,82 +863,246 @@
       text-transform: uppercase;
     }
 
-    /* ONION MESH v1.7.4 INTERFACE SHOWCASE GALLERY */
-    .mesh-gallery-section { padding: 12px 0 80px; }
+    /* ONION MESH v1.7.4 INTERFACE SHOWCASE CAROUSEL */
+    .mesh-gallery-section { padding: 12px 0 84px; }
     .mesh-gallery-shell {
+      position: relative;
       background: linear-gradient(155deg, #070D14 0%, #0B1724 55%, #0D1F2A 100%);
       border-radius: 32px;
-      padding: 48px 40px;
-      border: 1px solid rgba(56, 189, 248, 0.18);
+      padding: 48px 40px 40px;
+      border: 1px solid rgba(56, 189, 248, 0.20);
       box-shadow: var(--shadow-elevated);
       color: #FFFFFF;
+      overflow: hidden;
+    }
+    .mesh-gallery-top {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
     }
     .mesh-gallery-head {
-      text-align: center;
-      max-width: 760px;
-      margin: 0 auto 36px;
+      text-align: left;
+      max-width: 680px;
+      margin: 0;
     }
-    .mesh-gallery-head .section-title { color: #FFFFFF; margin-bottom: 10px; }
-    .mesh-gallery-head .section-desc { color: #94A3B8; margin: 0 auto; }
-    .mesh-shots-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 18px;
+    .mesh-gallery-head .section-title {
+      color: #FFFFFF;
+      margin-bottom: 10px;
+      letter-spacing: -0.025em;
     }
-    @media (max-width: 1120px) {
-      .mesh-shots-grid { grid-template-columns: repeat(3, 1fr); }
+    .mesh-gallery-head .section-desc {
+      color: #CBD5E1;
+      margin: 0;
+      max-width: 62ch;
+      font-size: 16px;
+      line-height: 1.55;
     }
-    @media (max-width: 680px) {
-      .mesh-gallery-shell { padding: 32px 18px; border-radius: 24px; }
-      .mesh-shots-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .mesh-carousel-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    .mesh-carousel-counter {
+      font-variant-numeric: tabular-nums;
+      font-size: 14px;
+      font-weight: 700;
+      color: #34D399;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.32);
+      padding: 8px 14px;
+      border-radius: 999px;
+      letter-spacing: 0.04em;
+    }
+    .mesh-nav-btn {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 1px solid rgba(148, 163, 184, 0.28);
+      background: rgba(15, 23, 42, 0.92);
+      color: #F8FAFC;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), border-color 160ms ease, background-color 160ms ease;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .mesh-nav-btn:hover:not(:disabled) {
+        border-color: #10B981;
+        background: rgba(16, 185, 129, 0.18);
+        color: #FFFFFF;
+      }
+    }
+    .mesh-nav-btn:active:not(:disabled) {
+      transform: scale(0.95);
+    }
+    .mesh-nav-btn:disabled {
+      opacity: 0.38;
+      cursor: default;
+    }
+    .mesh-nav-btn:focus-visible,
+    .mesh-shot-card:focus-visible,
+    .mesh-dot:focus-visible {
+      outline: 2px solid #34D399;
+      outline-offset: 3px;
+    }
+    .mesh-carousel-viewport {
+      position: relative;
+      margin: 0 -12px;
+      padding: 4px 12px;
+    }
+    .mesh-shots-track {
+      position: relative;
+      display: flex;
+      gap: 22px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding: 8px 4px 18px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      cursor: grab;
+      user-select: none;
+    }
+    .mesh-shots-track::-webkit-scrollbar { display: none; }
+    .mesh-shots-track.dragging {
+      scroll-snap-type: none;
+      scroll-behavior: auto;
+      cursor: grabbing;
     }
     .mesh-shot-card {
-      background: rgba(15, 25, 38, 0.88);
-      border: 1px solid rgba(148, 163, 184, 0.18);
-      border-radius: 20px;
+      flex: 0 0 326px;
+      scroll-snap-align: start;
+      background: rgba(13, 22, 35, 0.94);
+      border: 1px solid rgba(148, 163, 184, 0.20);
+      border-radius: 26px;
       overflow: hidden;
       cursor: pointer;
-      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+      transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1), border-color 220ms ease, box-shadow 220ms ease;
       display: flex;
       flex-direction: column;
+      text-align: left;
     }
-    .mesh-shot-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(56, 189, 248, 0.55);
-      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.45);
+    .mesh-shot-card.is-active {
+      border-color: rgba(16, 185, 129, 0.55);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.48);
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .mesh-shot-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(52, 211, 153, 0.68);
+        box-shadow: 0 22px 46px rgba(0, 0, 0, 0.52);
+      }
+    }
+    .mesh-shot-card:active {
+      transform: scale(0.985);
+    }
+    .mesh-shot-frame {
+      position: relative;
+      padding: 14px 14px 0;
+      background: radial-gradient(circle at 50% 15%, rgba(16, 185, 129, 0.10), rgba(6, 11, 18, 0.96) 72%);
+      display: flex;
+      justify-content: center;
     }
     .mesh-shot-card img {
       width: 100%;
+      max-width: 286px;
       aspect-ratio: 9 / 19.5;
-      object-fit: cover;
-      object-position: top center;
+      object-fit: contain;
       display: block;
-      background: #060B11;
+      border-radius: 22px 22px 0 0;
+      border: 2px solid rgba(148, 163, 184, 0.22);
+      border-bottom: none;
+      background: #050A12;
+      pointer-events: none;
+    }
+    .mesh-shot-zoom-pill {
+      position: absolute;
+      top: 24px;
+      right: 26px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(7, 13, 24, 0.82);
+      border: 1px solid rgba(148, 163, 184, 0.30);
+      color: #E2E8F0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(6px);
+      transition: background-color 160ms ease, border-color 160ms ease, transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .mesh-shot-card:hover .mesh-shot-zoom-pill {
+        background: #10B981;
+        border-color: #10B981;
+        color: #04130D;
+        transform: scale(1.06);
+      }
     }
     .mesh-shot-meta {
-      padding: 12px 13px 14px;
-      border-top: 1px solid rgba(148, 163, 184, 0.12);
+      padding: 18px 20px 20px;
+      border-top: 1px solid rgba(148, 163, 184, 0.14);
+      background: rgba(10, 18, 30, 0.98);
+      flex: 1;
     }
     .mesh-shot-meta strong {
       display: block;
-      font-size: 13px;
+      font-size: 16px;
       font-weight: 800;
-      color: #F8FAFC;
-      margin-bottom: 4px;
+      color: #FFFFFF;
+      margin-bottom: 6px;
       line-height: 1.3;
+      letter-spacing: -0.01em;
     }
     .mesh-shot-meta span {
       display: block;
-      font-size: 11.8px;
-      color: #94A3B8;
-      line-height: 1.38;
+      font-size: 14px;
+      color: #CBD5E1;
+      line-height: 1.48;
+    }
+    .mesh-carousel-footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+    .mesh-dot {
+      height: 10px;
+      width: 10px;
+      padding: 0;
+      border-radius: 999px;
+      border: none;
+      background: rgba(148, 163, 184, 0.32);
+      cursor: pointer;
+      transition: transform 180ms cubic-bezier(0.23, 1, 0.32, 1), background-color 180ms ease, width 180ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .mesh-dot.active {
+      width: 30px;
+      background: #10B981;
+    }
+    @media (max-width: 760px) {
+      .mesh-gallery-shell { padding: 30px 18px 28px; border-radius: 24px; }
+      .mesh-gallery-top { align-items: flex-start; margin-bottom: 20px; }
+      .mesh-shot-card { flex: 0 0 min(82vw, 316px); scroll-snap-align: center; }
+      .mesh-shots-track { gap: 16px; padding-left: 4px; padding-right: 4px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .mesh-shots-track { scroll-behavior: auto; }
+      .mesh-shot-card, .mesh-nav-btn, .mesh-dot { transition: opacity 150ms ease; }
     }
     .mesh-lightbox {
       position: fixed;
       inset: 0;
       z-index: 9999;
-      background: rgba(4, 9, 15, 0.92);
-      backdrop-filter: blur(8px);
+      background: rgba(4, 9, 15, 0.94);
+      backdrop-filter: blur(10px);
       display: none;
       align-items: center;
       justify-content: center;
@@ -947,39 +1111,81 @@
     .mesh-lightbox.open { display: flex; }
     .mesh-lightbox-inner {
       position: relative;
-      max-width: 420px;
+      max-width: 520px;
       width: 100%;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .mesh-lightbox-stage {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      width: 100%;
     }
     .mesh-lightbox-inner img {
-      max-height: 82vh;
+      max-height: 78vh;
       width: auto;
-      max-width: 100%;
+      max-width: min(390px, 76vw);
       margin: 0 auto;
       border-radius: 24px;
-      border: 2px solid rgba(56, 189, 248, 0.35);
-      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.75);
+      border: 2px solid rgba(52, 211, 153, 0.45);
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.80);
+      background: #050912;
     }
+    .mesh-lightbox-arrow {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      background: rgba(15, 23, 42, 0.92);
+      color: #FFFFFF;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), border-color 160ms ease, background-color 160ms ease;
+    }
+    .mesh-lightbox-arrow:hover {
+      border-color: #10B981;
+      background: rgba(16, 185, 129, 0.22);
+    }
+    .mesh-lightbox-arrow:active { transform: scale(0.94); }
     .mesh-lightbox-caption {
-      margin-top: 12px;
-      color: #E2E8F0;
+      margin-top: 14px;
+      color: #FFFFFF;
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .mesh-lightbox-sub {
+      margin-top: 4px;
+      color: #CBD5E1;
       font-size: 14px;
-      font-weight: 600;
+      max-width: 46ch;
+      line-height: 1.45;
     }
     .mesh-lightbox-close {
       position: absolute;
       top: -12px;
-      right: -12px;
-      width: 38px;
-      height: 38px;
+      right: 8px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
-      border: 1px solid rgba(255, 255, 255, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.28);
       background: #0F172A;
       color: #FFFFFF;
-      font-size: 20px;
+      font-size: 22px;
       font-weight: 800;
       cursor: pointer;
+      z-index: 2;
+      transition: transform 150ms cubic-bezier(0.23, 1, 0.32, 1), border-color 150ms ease;
     }
+    .mesh-lightbox-close:hover { border-color: #10B981; }
+    .mesh-lightbox-close:active { transform: scale(0.94); }
 
     /* VIDEO SECTION */
     .video-section { padding: 12px 0 84px; }
@@ -1887,109 +2093,195 @@
     </div>
   </section>
 
-  <!-- NEW ONION MESH v1.7.4 INTERFACE GALLERY -->
+  <!-- NEW ONION MESH v1.7.4 INTERFACE CAROUSEL -->
   <section class="mesh-gallery-section" id="galeria-onionmesh">
     <div class="container">
       <div class="mesh-gallery-shell">
-        <div class="mesh-gallery-head">
-          <span class="badge-live" style="margin-bottom:14px;" data-i18n="mg_badge">Nova Interface Onion Mesh • v1.7.4</span>
-          <h2 class="section-title" data-i18n="mg_title">Conheça por dentro o novo visual do OnionTalk</h2>
-          <p class="section-desc" data-i18n="mg_desc">
-            Toque em qualquer captura real para ampliar: áudios HD 48 kHz de escuta única (1x), mensagens seladas com senha, grupos privados de até 50 pessoas e temas Onion Mesh.
-          </p>
+        <div class="mesh-gallery-top">
+          <div class="mesh-gallery-head">
+            <span class="badge-live" style="margin-bottom:14px;" data-i18n="mg_badge">Nova Interface Onion Mesh • v1.7.4</span>
+            <h2 class="section-title" data-i18n="mg_title">Conheça por dentro o novo visual do OnionTalk</h2>
+            <p class="section-desc" data-i18n="mg_desc">
+              Deslize pelo carrossel ou toque em qualquer tela para ampliar: áudios HD 48 kHz de escuta única (1x), mensagens seladas com senha, grupos privados de até 50 pessoas e temas Onion Mesh.
+            </p>
+          </div>
+
+          <div class="mesh-carousel-controls" aria-label="Controles do carrossel de telas">
+            <span class="mesh-carousel-counter" id="mesh-carousel-counter" aria-live="polite">01 / 10</span>
+            <button type="button" class="mesh-nav-btn" id="mesh-prev-btn" onclick="stepMeshCarousel(-1)" aria-label="Tela anterior">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button type="button" class="mesh-nav-btn" id="mesh-next-btn" onclick="stepMeshCarousel(1)" aria-label="Próxima tela">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
         </div>
 
-        <div class="mesh-shots-grid">
-          <div class="mesh-shot-card" onclick="openMeshShot('screenshots/v174-01-cofre-login.png', 'mg_1_title')">
-            <img src="screenshots/v174-01-cofre-login.png" alt="Cofre Login Onion Mesh" loading="lazy" />
-            <div class="mesh-shot-meta">
-              <strong data-i18n="mg_1_title">1. Cofre &amp; Biometria</strong>
-              <span data-i18n="mg_1_desc">Acesso blindado por senha ou digital (PT/EN/ES/RU) com proteção anti-coação.</span>
-            </div>
-          </div>
+        <div class="mesh-carousel-viewport">
+          <div class="mesh-shots-track" id="mesh-shots-track" role="region" aria-label="Carrossel de telas do OnionTalk">
+            <article class="mesh-shot-card is-active" tabindex="0" data-shot-idx="0" data-shot-src="screenshots/v174-01-cofre-login.png" data-shot-title="mg_1_title" data-shot-desc="mg_1_desc" onclick="handleMeshCardClick(event, 0)" onkeydown="handleMeshCardKey(event, 0)">
+              <div class="mesh-shot-frame">
+                <img src="screenshots/v174-01-cofre-login.png" alt="Cofre Login Onion Mesh" loading="lazy" />
+                <span class="mesh-shot-zoom-pill" aria-hidden="true">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+                </span>
+              </div>
+              <div class="mesh-shot-meta">
+                <strong data-i18n="mg_1_title">1. Cofre &amp; Biometria</strong>
+                <span data-i18n="mg_1_desc">Acesso blindado por senha ou digital (PT/EN/ES/RU) com proteção anti-coação.</span>
+              </div>
+            </article>
 
-          <div class="mesh-shot-card" onclick="openMeshShot('screenshots/v174-02-lista-conversas.png', 'mg_2_title')">
-            <img src="screenshots/v174-02-lista-conversas.png" alt="Lista de Conversas Onion Mesh" loading="lazy" />
-            <div class="mesh-shot-meta">
-              <strong data-i18n="mg_2_title">2. Conversas Limpas</strong>
-              <span data-i18n="mg_2_desc">Status Tor em tempo real, indicador de criptografia e atalhos rápidos de QR e contato.</span>
-            </div>
-          </div>
+            <article class="mesh-shot-card" tabindex="0" data-shot-idx="1" data-shot-src="screenshots/v174-02-lista-conversas.png" data-shot-title="mg_2_title" data-shot-desc="mg_2_desc" onclick="handleMeshCardClick(event, 1)" onkeydown="handleMeshCardKey(event, 1)">
+              <div class="mesh-shot-frame">
+                <img src="screenshots/v174-02-lista-conversas.png" alt="Lista de Conversas Onion Mesh" loading="lazy" />
+                <span class="mesh-shot-zoom-pill" aria-hidden="true">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+                </span>
+              </div>
+              <div class="mesh-shot-meta">
+                <strong data-i18n="mg_2_title">2. Conversas Limpas</strong>
+                <span data-i18n="mg_2_desc">Status Tor em tempo real, indicador de criptografia e atalhos rápidos de QR e contato.</span>
+              </div>
+            </article>
 
-          <div class="mesh-shot-card" onclick="openMeshShot('screenshots/v174-03-chat-audio-hd-1x.png', 'mg_3_title')">
-            <img src="screenshots/v174-03-chat-audio-hd-1x.png" alt="Áudio HD e Escuta Única 1x" loading="lazy" />
-            <div class="mesh-shot-meta">
-              <strong data-i18n="mg_3_title">3. Áudio HD &amp; 1x Única</strong>
-              <span data-i18n="mg_3_desc">Voz cristalina AAC 48 kHz sem metadados com opção temporária de escuta única (1x).</span>
-            </div>
-          </div>
+            <article class="mesh-shot-card" tabindex="0" data-shot-idx="2" data-shot-src="screenshots/v174-03-chat-audio-hd-1x.png" data-shot-title="mg_3_title" data-shot-desc="mg_3_desc" onclick="handleMeshCardClick(event, 2)" onkeydown="handleMeshCardKey(event, 2)">
+              <div class="mesh-shot-frame">
+                <img src="screenshots/v174-03-chat-audio-hd-1x.png" alt="Áudio HD e Escuta Única 1x" loading="lazy" />
+                <span class="mesh-shot-zoom-pill" aria-hidden="true">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+                </span>
+              </div>
+              <div class="mesh-shot-meta">
+                <strong data-i18n="mg_3_title">3. Áudio HD &amp; 1x Única</strong>
+                <span data-i18n="mg_3_desc">Voz cristalina AAC 48 kHz sem metadados com opção temporária de escuta única (1x).</span>
+              </div>
+            </article>
 
-          <div class="mesh-shot-card" onclick="openMeshShot('screenshots/v174-04-mensagem-selada-senha.png', 'mg_4_title')">
-            <img src="screenshots/v174-04-mensagem-selada-senha.png" alt="Mensagem Selada com Senha" loading="lazy" />
-            <div class="mesh-shot-meta">
-              <strong data-i18n="mg_4_title">4. Mensagem Selada</strong>
-              <span data-i18n="mg_4_desc">Senha exclusiva por mensagem com tempo visível configurável (10s até trancar) e autodestruição.</span>
-            </div>
-          </div>
+            <article class="mesh-shot-card" tabindex="0" data-shot-idx="3" data-shot-src="screenshots/v174-04-mensagem-selada-senha.png" data-shot-title="mg_4_title" data-shot-desc="mg_4_desc" onclick="handleMeshCardClick(event, 3)" onkeydown="handleMeshCardKey(event, 3)">
+              <div class="mesh-shot-frame">
+                <img src="screenshots/v174-04-mensagem-selada-senha.png" alt="Mensagem Selada com Senha" loading="lazy" />
+                <span class="mesh-shot-zoom-pill" aria-hidden="true">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+                </span>
+              </div>
+              <div class="mesh-shot-meta">
+                <strong data-i18n="mg_4_title">4. Mensagem Selada</strong>
+                <span data-i18n="mg_4_desc">Senha exclusiva por mensagem com tempo visível configurável (10s até trancar) e autodestruição.</span>
+              </div>
+            </article>
 
-          <div class="mesh-shot-card" onclick="openMeshShot('screenshots/v174-05-grupo-pqc-figurinhas.png', 'mg_5_title')">
-            <img src="screenshots/v174-05-grupo-pqc-figurinhas.png" alt="Grupo PQC e Figurinhas Zero-Rastro" loading="lazy" />
-            <div class="mesh-shot-meta">
-              <strong data-i18n="mg_5_title">5. Grupos &amp; Figurinhas</strong>
-              <span data-i18n="mg_5_desc">Salas pós-quânticas ML-KEM-768 com painel acoplado de figurinhas 512×512 sem EXIF/GPS.</span>
-            </div>
-          </div>
+            <article class="mesh-shot-card" tabindex="0" data-shot-idx="4" data-shot-src="screenshots/v174-05-grupo-pqc-figurinhas.png" data-shot-title="mg_5_title" data-shot-desc="mg_5_desc" onclick="handleMeshCardClick(event, 4)" onkeydown="handleMeshCardKey(event, 4)">
+              <div class="mesh-shot-frame">
+                <img src="screenshots/v174-05-grupo-pqc-figurinhas.png" alt="Grupo PQC e Figurinhas Zero-Rastro" loading="lazy" />
+                <span class="mesh-shot-zoom-pill" aria-hidden="true">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+                </span>
+              </div>
+              <div class="mesh-shot-meta">
+                <strong data-i18n="mg_5_title">5. Grupos &amp; Figurinhas</strong>
+                <span data-i18n="mg_5_desc">Salas pós-quânticas ML-KEM-768 com painel acoplado de figurinhas 512×512 sem EXIF/GPS.</span>
+              </div>
+            </article>
 
-          <div class="mesh-shot-card" onclick="openMeshShot('screenshots/v174-09-aba-grupos-50-pessoas.png', 'mg_9_title')">
-            <img src="screenshots/v174-09-aba-grupos-50-pessoas.png" alt="Aba Grupos até 50 Pessoas" loading="lazy" />
-            <div class="mesh-shot-meta">
-              <strong data-i18n="mg_9_title">6. 1 Grupo Grátis (50 Pessoas)</strong>
-              <span data-i18n="mg_9_desc">Crie gratuitamente seu grupo privado de até 50 pessoas e apoie os servidores se desejar.</span>
-            </div>
-          </div>
+            <article class="mesh-shot-card" tabindex="0" data-shot-idx="5" data-shot-src="screenshots/v174-09-aba-grupos-50-pessoas.png" data-shot-title="mg_9_title" data-shot-desc="mg_9_desc" onclick="handleMeshCardClick(event, 5)" onkeydown="handleMeshCardKey(event, 5)">
+              <div class="mesh-shot-frame">
+                <img src="screenshots/v174-09-aba-grupos-50-pessoas.png" alt="Aba Grupos até 50 Pessoas" loading="lazy" />
+                <span class="mesh-shot-zoom-pill" aria-hidden="true">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+                </span>
+              </div>
+              <div class="mesh-shot-meta">
+                <strong data-i18n="mg_9_title">6. 1 Grupo Grátis (50 Pessoas)</strong>
+                <span data-i18n="mg_9_desc">Crie gratuitamente seu grupo privado de até 50 pessoas e apoie os servidores se desejar.</span>
+              </div>
+            </article>
 
-          <div class="mesh-shot-card" onclick="openMeshShot('screenshots/v174-10-dados-grupo-onionmesh.png', 'mg_10_title')">
-            <img src="screenshots/v174-10-dados-grupo-onionmesh.png" alt="Dados do Grupo Onion Mesh" loading="lazy" />
-            <div class="mesh-shot-meta">
-              <strong data-i18n="mg_10_title">7. Dados do Grupo</strong>
-              <span data-i18n="mg_10_desc">Painel unificado Onion Mesh com regras do Admin, ações rápidas, Queimar e gestão de membros.</span>
-            </div>
-          </div>
+            <article class="mesh-shot-card" tabindex="0" data-shot-idx="6" data-shot-src="screenshots/v174-10-dados-grupo-onionmesh.png" data-shot-title="mg_10_title" data-shot-desc="mg_10_desc" onclick="handleMeshCardClick(event, 6)" onkeydown="handleMeshCardKey(event, 6)">
+              <div class="mesh-shot-frame">
+                <img src="screenshots/v174-10-dados-grupo-onionmesh.png" alt="Dados do Grupo Onion Mesh" loading="lazy" />
+                <span class="mesh-shot-zoom-pill" aria-hidden="true">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+                </span>
+              </div>
+              <div class="mesh-shot-meta">
+                <strong data-i18n="mg_10_title">7. Dados do Grupo</strong>
+                <span data-i18n="mg_10_desc">Painel unificado Onion Mesh com regras do Admin, ações rápidas, Queimar e gestão de membros.</span>
+              </div>
+            </article>
 
-          <div class="mesh-shot-card" onclick="openMeshShot('screenshots/v174-06-configuracoes-subcategorias.png', 'mg_6_title')">
-            <img src="screenshots/v174-06-configuracoes-subcategorias.png" alt="Configurações em Subcategorias" loading="lazy" />
-            <div class="mesh-shot-meta">
-              <strong data-i18n="mg_6_title">8. Menu Organizado</strong>
-              <span data-i18n="mg_6_desc">Configurações divididas em subcategorias claras para Conta, Segurança, Rede Tor e Relay.</span>
-            </div>
-          </div>
+            <article class="mesh-shot-card" tabindex="0" data-shot-idx="7" data-shot-src="screenshots/v174-06-configuracoes-subcategorias.png" data-shot-title="mg_6_title" data-shot-desc="mg_6_desc" onclick="handleMeshCardClick(event, 7)" onkeydown="handleMeshCardKey(event, 7)">
+              <div class="mesh-shot-frame">
+                <img src="screenshots/v174-06-configuracoes-subcategorias.png" alt="Configurações em Subcategorias" loading="lazy" />
+                <span class="mesh-shot-zoom-pill" aria-hidden="true">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+                </span>
+              </div>
+              <div class="mesh-shot-meta">
+                <strong data-i18n="mg_6_title">8. Menu Organizado</strong>
+                <span data-i18n="mg_6_desc">Configurações divididas em subcategorias claras para Conta, Segurança, Rede Tor e Relay.</span>
+              </div>
+            </article>
 
-          <div class="mesh-shot-card" onclick="openMeshShot('screenshots/v174-07-temas-onionmesh.png', 'mg_7_title')">
-            <img src="screenshots/v174-07-temas-onionmesh.png" alt="Temas Personalizados Onion Mesh" loading="lazy" />
-            <div class="mesh-shot-meta">
-              <strong data-i18n="mg_7_title">9. Temas Onion Mesh</strong>
-              <span data-i18n="mg_7_desc">6 acabamentos exclusivos gerados localmente: Onion Mesh, Cofre Cobalto, Escudo PQC e Stealth OLED.</span>
-            </div>
-          </div>
+            <article class="mesh-shot-card" tabindex="0" data-shot-idx="8" data-shot-src="screenshots/v174-07-temas-onionmesh.png" data-shot-title="mg_7_title" data-shot-desc="mg_7_desc" onclick="handleMeshCardClick(event, 8)" onkeydown="handleMeshCardKey(event, 8)">
+              <div class="mesh-shot-frame">
+                <img src="screenshots/v174-07-temas-onionmesh.png" alt="Temas Personalizados Onion Mesh" loading="lazy" />
+                <span class="mesh-shot-zoom-pill" aria-hidden="true">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+                </span>
+              </div>
+              <div class="mesh-shot-meta">
+                <strong data-i18n="mg_7_title">9. Temas Onion Mesh</strong>
+                <span data-i18n="mg_7_desc">6 acabamentos exclusivos gerados localmente: Onion Mesh, Cofre Cobalto, Escudo PQC e Stealth OLED.</span>
+              </div>
+            </article>
 
-          <div class="mesh-shot-card" onclick="openMeshShot('screenshots/v174-08-identidade-qr-convite.png', 'mg_8_title')">
-            <img src="screenshots/v174-08-identidade-qr-convite.png" alt="Identidade QR e Convite Zero-Rastro" loading="lazy" />
-            <div class="mesh-shot-meta">
-              <strong data-i18n="mg_8_title">10. QR &amp; Convite Direto</strong>
-              <span data-i18n="mg_8_desc">Compartilhe seu QR Code ou link direto que abre em Novo Contato sem vazar metadados.</span>
-            </div>
+            <article class="mesh-shot-card" tabindex="0" data-shot-idx="9" data-shot-src="screenshots/v174-08-identidade-qr-convite.png" data-shot-title="mg_8_title" data-shot-desc="mg_8_desc" onclick="handleMeshCardClick(event, 9)" onkeydown="handleMeshCardKey(event, 9)">
+              <div class="mesh-shot-frame">
+                <img src="screenshots/v174-08-identidade-qr-convite.png" alt="Identidade QR e Convite Zero-Rastro" loading="lazy" />
+                <span class="mesh-shot-zoom-pill" aria-hidden="true">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+                </span>
+              </div>
+              <div class="mesh-shot-meta">
+                <strong data-i18n="mg_8_title">10. QR &amp; Convite Direto</strong>
+                <span data-i18n="mg_8_desc">Compartilhe seu QR Code ou link direto que abre em Novo Contato sem vazar metadados.</span>
+              </div>
+            </article>
           </div>
+        </div>
+
+        <div class="mesh-carousel-footer" id="mesh-carousel-dots" role="tablist" aria-label="Navegação rápida das telas">
+          <button type="button" class="mesh-dot active" onclick="scrollToMeshCard(0)" aria-label="Tela 1"></button>
+          <button type="button" class="mesh-dot" onclick="scrollToMeshCard(1)" aria-label="Tela 2"></button>
+          <button type="button" class="mesh-dot" onclick="scrollToMeshCard(2)" aria-label="Tela 3"></button>
+          <button type="button" class="mesh-dot" onclick="scrollToMeshCard(3)" aria-label="Tela 4"></button>
+          <button type="button" class="mesh-dot" onclick="scrollToMeshCard(4)" aria-label="Tela 5"></button>
+          <button type="button" class="mesh-dot" onclick="scrollToMeshCard(5)" aria-label="Tela 6"></button>
+          <button type="button" class="mesh-dot" onclick="scrollToMeshCard(6)" aria-label="Tela 7"></button>
+          <button type="button" class="mesh-dot" onclick="scrollToMeshCard(7)" aria-label="Tela 8"></button>
+          <button type="button" class="mesh-dot" onclick="scrollToMeshCard(8)" aria-label="Tela 9"></button>
+          <button type="button" class="mesh-dot" onclick="scrollToMeshCard(9)" aria-label="Tela 10"></button>
         </div>
       </div>
     </div>
   </section>
 
   <!-- LIGHTBOX MODAL FOR NEW TEMPLATE SCREENSHOTS -->
-  <div class="mesh-lightbox" id="mesh-lightbox" onclick="closeMeshShot(event)">
+  <div class="mesh-lightbox" id="mesh-lightbox" role="dialog" aria-modal="true" aria-labelledby="mesh-lightbox-caption" onclick="closeMeshShot(event)">
     <div class="mesh-lightbox-inner">
       <button type="button" class="mesh-lightbox-close" onclick="closeMeshShot(event)" aria-label="Fechar">×</button>
-      <img id="mesh-lightbox-img" src="screenshots/v174-01-cofre-login.png" alt="OnionTalk Screen Preview" />
+      <div class="mesh-lightbox-stage">
+        <button type="button" class="mesh-lightbox-arrow" onclick="stepMeshLightbox(event, -1)" aria-label="Tela anterior">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <img id="mesh-lightbox-img" src="screenshots/v174-01-cofre-login.png" alt="OnionTalk Screen Preview" />
+        <button type="button" class="mesh-lightbox-arrow" onclick="stepMeshLightbox(event, 1)" aria-label="Próxima tela">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
       <div class="mesh-lightbox-caption" id="mesh-lightbox-caption"></div>
+      <div class="mesh-lightbox-sub" id="mesh-lightbox-sub"></div>
     </div>
   </div>
 

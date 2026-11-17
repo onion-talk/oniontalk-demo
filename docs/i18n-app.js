@@ -139,7 +139,7 @@ const I18N = {
 
     mg_badge: 'Nova Interface Onion Mesh • v1.7.4',
     mg_title: 'Conheça por dentro o novo visual do OnionTalk',
-    mg_desc: 'Toque em qualquer captura real para ampliar: áudios HD 48 kHz de escuta única (1x), mensagens seladas com senha, grupos privados de até 50 pessoas e temas Onion Mesh.',
+    mg_desc: 'Deslize pelo carrossel ou toque em qualquer tela para ampliar: áudios HD 48 kHz de escuta única (1x), mensagens seladas com senha, grupos privados de até 50 pessoas e temas Onion Mesh.',
     mg_1_title: '1. Cofre & Biometria',
     mg_1_desc: 'Acesso blindado por senha ou digital (PT/EN/ES/RU) com proteção anti-coação.',
     mg_2_title: '2. Conversas Limpas',
@@ -421,7 +421,7 @@ const I18N = {
 
     mg_badge: 'New Onion Mesh Interface • v1.7.4',
     mg_title: 'Explore OnionTalk’s new interface inside out',
-    mg_desc: 'Tap any live screenshot to zoom in: 48 kHz HD listen-once (1x) voice notes, password-sealed messages, free 50-member private groups, and Onion Mesh themes.',
+    mg_desc: 'Swipe through the carousel or tap any screen to zoom in: 48 kHz HD listen-once (1x) voice notes, password-sealed messages, free 50-member private groups, and Onion Mesh themes.',
     mg_1_title: '1. Vault & Biometrics',
     mg_1_desc: 'Password or fingerprint unlock (PT/EN/ES/RU) with anti-coercion attempt protection.',
     mg_2_title: '2. Clean Chat List',
@@ -703,7 +703,7 @@ const I18N = {
 
     mg_badge: 'Nueva Interfaz Onion Mesh • v1.7.4',
     mg_title: 'Conoce por dentro el nuevo diseño de OnionTalk',
-    mg_desc: 'Toca cualquier captura real para ampliar: audios HD 48 kHz de escucha única (1x), mensajes sellados con contraseña, grupos privados de hasta 50 personas y temas Onion Mesh.',
+    mg_desc: 'Desliza por el carrusel o toca cualquier pantalla para ampliar: audios HD 48 kHz de escucha única (1x), mensajes sellados con contraseña, grupos privados de hasta 50 personas y temas Onion Mesh.',
     mg_1_title: '1. Bóveda y Biometría',
     mg_1_desc: 'Acceso blindado por contraseña o huella (PT/EN/ES/RU) con protección anticoacción.',
     mg_2_title: '2. Conversaciones Limpias',
@@ -985,7 +985,7 @@ const I18N = {
 
     mg_badge: 'Новый интерфейс Onion Mesh • v1.7.4',
     mg_title: 'Посмотрите на обновлённый дизайн OnionTalk изнутри',
-    mg_desc: 'Нажмите на любой реальный скриншот для увеличения: HD-аудио 48 кГц с одноразовым прослушиванием (1x), сообщения под паролем, бесплатные группы до 50 человек и темы Onion Mesh.',
+    mg_desc: 'Листайте карусель или нажмите на любой экран для увеличения: HD-аудио 48 кГц с одноразовым прослушиванием (1x), сообщения под паролем, бесплатные группы до 50 человек и темы Onion Mesh.',
     mg_1_title: '1. Сейф и биометрия',
     mg_1_desc: 'Вход по паролю или отпечатку (PT/EN/ES/RU) с защитой от принуждения.',
     mg_2_title: '2. Чистый список чатов',
@@ -1328,25 +1328,183 @@ function setLang(lang) {
   try { localStorage.setItem('oniontalk_site_lang', currentLang); } catch (_) {}
 }
 
-function openMeshShot(src, captionKey) {
+const MESH_SHOTS = [
+  { src: 'screenshots/v174-01-cofre-login.png', titleKey: 'mg_1_title', descKey: 'mg_1_desc' },
+  { src: 'screenshots/v174-02-lista-conversas.png', titleKey: 'mg_2_title', descKey: 'mg_2_desc' },
+  { src: 'screenshots/v174-03-chat-audio-hd-1x.png', titleKey: 'mg_3_title', descKey: 'mg_3_desc' },
+  { src: 'screenshots/v174-04-mensagem-selada-senha.png', titleKey: 'mg_4_title', descKey: 'mg_4_desc' },
+  { src: 'screenshots/v174-05-grupo-pqc-figurinhas.png', titleKey: 'mg_5_title', descKey: 'mg_5_desc' },
+  { src: 'screenshots/v174-09-aba-grupos-50-pessoas.png', titleKey: 'mg_9_title', descKey: 'mg_9_desc' },
+  { src: 'screenshots/v174-10-dados-grupo-onionmesh.png', titleKey: 'mg_10_title', descKey: 'mg_10_desc' },
+  { src: 'screenshots/v174-06-configuracoes-subcategorias.png', titleKey: 'mg_6_title', descKey: 'mg_6_desc' },
+  { src: 'screenshots/v174-07-temas-onionmesh.png', titleKey: 'mg_7_title', descKey: 'mg_7_desc' },
+  { src: 'screenshots/v174-08-identidade-qr-convite.png', titleKey: 'mg_8_title', descKey: 'mg_8_desc' }
+];
+
+let activeMeshIdx = 0;
+let activeLightboxIdx = -1;
+let meshDragMoved = false;
+let meshProgrammaticUntil = 0;
+
+function updateMeshCarouselUI(idx) {
+  activeMeshIdx = Math.max(0, Math.min(MESH_SHOTS.length - 1, idx));
+  const counter = document.getElementById('mesh-carousel-counter');
+  if (counter) {
+    const cur = String(activeMeshIdx + 1).padStart(2, '0');
+    const tot = String(MESH_SHOTS.length).padStart(2, '0');
+    counter.textContent = cur + ' / ' + tot;
+  }
+  const cards = document.querySelectorAll('#mesh-shots-track .mesh-shot-card');
+  cards.forEach((c, i) => c.classList.toggle('is-active', i === activeMeshIdx));
+
+  const dots = document.querySelectorAll('#mesh-carousel-dots .mesh-dot');
+  dots.forEach((d, i) => d.classList.toggle('active', i === activeMeshIdx));
+
+  const prevBtn = document.getElementById('mesh-prev-btn');
+  const nextBtn = document.getElementById('mesh-next-btn');
+  if (prevBtn && nextBtn) {
+    prevBtn.disabled = activeMeshIdx <= 0;
+    nextBtn.disabled = activeMeshIdx >= MESH_SHOTS.length - 1;
+  }
+}
+
+function scrollToMeshCard(idx) {
+  const track = document.getElementById('mesh-shots-track');
+  const cards = document.querySelectorAll('#mesh-shots-track .mesh-shot-card');
+  const clamped = Math.max(0, Math.min(cards.length - 1, idx));
+  if (!track || !cards[clamped]) return;
+  const card = cards[clamped];
+  const targetLeft = Math.max(0, card.offsetLeft - 4);
+  meshProgrammaticUntil = performance.now() + 550;
+  updateMeshCarouselUI(clamped);
+  track.scrollTo({ left: targetLeft, behavior: 'smooth' });
+}
+
+function stepMeshCarousel(delta) {
+  scrollToMeshCard(activeMeshIdx + delta);
+}
+
+function renderLightboxItem(src, captionKey, descKey) {
   const modal = document.getElementById('mesh-lightbox');
   const img = document.getElementById('mesh-lightbox-img');
   const cap = document.getElementById('mesh-lightbox-caption');
+  const sub = document.getElementById('mesh-lightbox-sub');
   if (!modal || !img) return;
   img.src = src;
   const dict = I18N[currentLang] || I18N.pt;
   if (cap) cap.textContent = (captionKey && dict[captionKey]) ? dict[captionKey] : '';
+  if (sub) sub.textContent = (descKey && dict[descKey]) ? dict[descKey] : '';
   modal.classList.add('open');
 }
 
+function openMeshShot(src, captionKey) {
+  const foundIdx = MESH_SHOTS.findIndex(s => s.src === src);
+  if (foundIdx >= 0) {
+    activeLightboxIdx = foundIdx;
+    const item = MESH_SHOTS[foundIdx];
+    renderLightboxItem(item.src, item.titleKey, item.descKey);
+  } else {
+    activeLightboxIdx = -1;
+    renderLightboxItem(src, captionKey, '');
+  }
+}
+
+function handleMeshCardClick(ev, idx) {
+  if (meshDragMoved) {
+    ev.preventDefault();
+    return;
+  }
+  activeLightboxIdx = idx;
+  const item = MESH_SHOTS[idx];
+  if (item) renderLightboxItem(item.src, item.titleKey, item.descKey);
+}
+
+function handleMeshCardKey(ev, idx) {
+  if (ev.key === 'Enter' || ev.key === ' ') {
+    ev.preventDefault();
+    handleMeshCardClick(ev, idx);
+  }
+}
+
+function stepMeshLightbox(ev, delta) {
+  if (ev) ev.stopPropagation();
+  if (!MESH_SHOTS.length) return;
+  const base = activeLightboxIdx >= 0 ? activeLightboxIdx : activeMeshIdx;
+  activeLightboxIdx = (base + delta + MESH_SHOTS.length) % MESH_SHOTS.length;
+  const item = MESH_SHOTS[activeLightboxIdx];
+  renderLightboxItem(item.src, item.titleKey, item.descKey);
+  scrollToMeshCard(activeLightboxIdx);
+}
+
 function closeMeshShot(ev) {
-  if (ev && ev.target && ev.target.id === 'mesh-lightbox-img') return;
+  if (ev && ev.target && (ev.target.id === 'mesh-lightbox-img' || ev.target.closest('.mesh-lightbox-arrow'))) return;
   const modal = document.getElementById('mesh-lightbox');
   if (modal) modal.classList.remove('open');
 }
 
+function initMeshCarousel() {
+  const track = document.getElementById('mesh-shots-track');
+  if (!track) return;
+
+  let scrollTimer = null;
+  track.addEventListener('scroll', () => {
+    if (performance.now() < meshProgrammaticUntil) return;
+    if (scrollTimer) cancelAnimationFrame(scrollTimer);
+    scrollTimer = requestAnimationFrame(() => {
+      const cards = track.querySelectorAll('.mesh-shot-card');
+      let bestIdx = 0;
+      let bestDist = Infinity;
+      const trackStart = track.scrollLeft;
+      cards.forEach((c, i) => {
+        const dist = Math.abs((c.offsetLeft - 4) - trackStart);
+        if (dist < bestDist) {
+          bestDist = dist;
+          bestIdx = i;
+        }
+      });
+      updateMeshCarouselUI(bestIdx);
+    });
+  }, { passive: true });
+
+  // Pointer drag-to-scroll on desktop
+  let isDown = false;
+  let startX = 0;
+  let startScroll = 0;
+  track.addEventListener('mousedown', (e) => {
+    isDown = true;
+    meshDragMoved = false;
+    startX = e.pageX;
+    startScroll = track.scrollLeft;
+  });
+  window.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    const dx = e.pageX - startX;
+    if (Math.abs(dx) > 6) {
+      meshDragMoved = true;
+      track.classList.add('dragging');
+      track.scrollLeft = startScroll - dx;
+    }
+  });
+  window.addEventListener('mouseup', () => {
+    if (!isDown) return;
+    isDown = false;
+    track.classList.remove('dragging');
+    setTimeout(() => { meshDragMoved = false; }, 60);
+  });
+
+  updateMeshCarouselUI(0);
+}
+
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeMeshShot();
+  const modal = document.getElementById('mesh-lightbox');
+  const isOpen = modal && modal.classList.contains('open');
+  if (e.key === 'Escape' && isOpen) {
+    closeMeshShot();
+  } else if (e.key === 'ArrowLeft' && isOpen) {
+    stepMeshLightbox(null, -1);
+  } else if (e.key === 'ArrowRight' && isOpen) {
+    stepMeshLightbox(null, 1);
+  }
 });
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -1356,4 +1514,5 @@ document.addEventListener('DOMContentLoaded', () => {
   try { savedLang = localStorage.getItem('oniontalk_site_lang'); } catch (_) {}
   const initialLang = (urlLang && I18N[urlLang]) ? urlLang : ((savedLang && I18N[savedLang]) ? savedLang : 'pt');
   setLang(initialLang);
+  initMeshCarousel();
 });
