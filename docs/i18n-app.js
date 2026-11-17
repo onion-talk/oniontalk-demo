@@ -25,6 +25,7 @@ const I18N = {
     nav_how: 'Por que P2P?',
     nav_comics: 'Entenda em 10s',
     nav_features: 'Privacidade',
+    nav_screens: 'Telas',
     nav_compare: 'Comparativo',
     nav_support: 'Apoie / Doações',
     nav_faq: 'FAQ',
@@ -135,6 +136,30 @@ const I18N = {
     s3_cta: 'Criar Minha Identidade P2P Agora',
     s3_badge: 'SEM +55',
     s3_callout: 'Nos grupos do OnionTalk, nenhum participante tem acesso ao seu chip SIM ou operadora.',
+
+    mg_badge: 'Nova Interface Onion Mesh • v1.7.4',
+    mg_title: 'Conheça por dentro o novo visual do OnionTalk',
+    mg_desc: 'Toque em qualquer captura real para ampliar: áudios HD 48 kHz de escuta única (1x), mensagens seladas com senha, grupos privados de até 50 pessoas e temas Onion Mesh.',
+    mg_1_title: '1. Cofre & Biometria',
+    mg_1_desc: 'Acesso blindado por senha ou digital (PT/EN/ES/RU) com proteção anti-coação.',
+    mg_2_title: '2. Conversas Limpas',
+    mg_2_desc: 'Status Tor em tempo real, indicador de criptografia e atalhos rápidos de QR e contato.',
+    mg_3_title: '3. Áudio HD & 1x Única',
+    mg_3_desc: 'Voz cristalina AAC 48 kHz sem metadados com opção temporária de escuta única (1x).',
+    mg_4_title: '4. Mensagem Selada',
+    mg_4_desc: 'Senha exclusiva por mensagem com tempo visível configurável (10s até trancar) e autodestruição.',
+    mg_5_title: '5. Grupos & Figurinhas',
+    mg_5_desc: 'Salas pós-quânticas ML-KEM-768 com painel acoplado de figurinhas 512×512 sem EXIF/GPS.',
+    mg_6_title: '8. Menu Organizado',
+    mg_6_desc: 'Configurações divididas em subcategorias claras para Conta, Segurança, Rede Tor e Relay.',
+    mg_7_title: '9. Temas Onion Mesh',
+    mg_7_desc: '6 acabamentos exclusivos gerados localmente: Onion Mesh, Cofre Cobalto, Escudo PQC e Stealth OLED.',
+    mg_8_title: '10. QR & Convite Direto',
+    mg_8_desc: 'Compartilhe seu QR Code ou link direto que abre em Novo Contato sem vazar metadados.',
+    mg_9_title: '6. 1 Grupo Grátis (50 Pessoas)',
+    mg_9_desc: 'Crie gratuitamente seu grupo privado de até 50 pessoas e apoie os servidores se desejar.',
+    mg_10_title: '7. Dados do Grupo',
+    mg_10_desc: 'Painel unificado Onion Mesh com regras do Admin, ações rápidas, Queimar e gestão de membros.',
 
     video_badge: 'Vídeo Oficial • 1 Minuto e 20 Segundos',
     video_title: 'Veja o OnionTalk funcionando na prática',
@@ -282,6 +307,7 @@ const I18N = {
     nav_how: 'Why P2P?',
     nav_comics: 'Understand in 10s',
     nav_features: 'Privacy',
+    nav_screens: 'Screens',
     nav_compare: 'Comparison',
     nav_support: 'Donate / Support',
     nav_faq: 'FAQ',
@@ -392,6 +418,30 @@ const I18N = {
     s3_cta: 'Create My P2P Identity Now',
     s3_badge: 'NO SIM LEAK',
     s3_callout: 'Inside OnionTalk groups, no member can ever discover your SIM card or mobile carrier.',
+
+    mg_badge: 'New Onion Mesh Interface • v1.7.4',
+    mg_title: 'Explore OnionTalk’s new interface inside out',
+    mg_desc: 'Tap any live screenshot to zoom in: 48 kHz HD listen-once (1x) voice notes, password-sealed messages, free 50-member private groups, and Onion Mesh themes.',
+    mg_1_title: '1. Vault & Biometrics',
+    mg_1_desc: 'Password or fingerprint unlock (PT/EN/ES/RU) with anti-coercion attempt protection.',
+    mg_2_title: '2. Clean Chat List',
+    mg_2_desc: 'Live Tor connection badge, encryption locks, and one-tap QR and contact actions.',
+    mg_3_title: '3. HD Audio & 1x Listen-Once',
+    mg_3_desc: 'Crystal-clear zero-metadata 48 kHz AAC voice notes with self-destructing 1x mode.',
+    mg_4_title: '4. Password-Sealed Message',
+    mg_4_desc: 'Per-message password with configurable reveal window (10s to lock) and self-destruct timer.',
+    mg_5_title: '5. PQC Groups & Stickers',
+    mg_5_desc: 'Post-quantum ML-KEM-768 group chats with docked 512×512 zero-EXIF sticker panel.',
+    mg_6_title: '8. Structured Settings',
+    mg_6_desc: 'Clean subcategories for Identity, Appearance, Security, Tor Mesh, and Relay Node.',
+    mg_7_title: '9. Onion Mesh Themes',
+    mg_7_desc: '6 procedural dark themes rendered locally: Onion Mesh, Cobalt Vault, PQC Shield, and Stealth OLED.',
+    mg_8_title: '10. QR & Zero-Leak Invite',
+    mg_8_desc: 'Share your Ed25519 QR or fragment deep-link that opens straight into Add Contact.',
+    mg_9_title: '6. 1 Free Group (50 Members)',
+    mg_9_desc: 'Create 1 free post-quantum private group of up to 50 people and optionally support relays.',
+    mg_10_title: '7. Unified Group Sheet',
+    mg_10_desc: 'Standardized Onion Mesh group sheet with Admin rules, quick actions, Burn, and member controls.',
 
     video_badge: 'Official Video • 1 Minute 20 Seconds',
     video_title: 'Watch OnionTalk in action',
@@ -539,6 +589,7 @@ const I18N = {
     nav_how: '¿Por qué P2P?',
     nav_comics: 'Entiende en 10s',
     nav_features: 'Privacidad',
+    nav_screens: 'Pantallas',
     nav_compare: 'Comparativa',
     nav_support: 'Donaciones / Apoyo',
     nav_faq: 'FAQ',
@@ -649,6 +700,30 @@ const I18N = {
     s3_cta: 'Crear Mi Identidad P2P Ahora',
     s3_badge: 'SIN NÚMERO',
     s3_callout: 'En los grupos de OnionTalk, ningún participante puede descubrir tu tarjeta SIM ni tu operadora.',
+
+    mg_badge: 'Nueva Interfaz Onion Mesh • v1.7.4',
+    mg_title: 'Conoce por dentro el nuevo diseño de OnionTalk',
+    mg_desc: 'Toca cualquier captura real para ampliar: audios HD 48 kHz de escucha única (1x), mensajes sellados con contraseña, grupos privados de hasta 50 personas y temas Onion Mesh.',
+    mg_1_title: '1. Bóveda y Biometría',
+    mg_1_desc: 'Acceso blindado por contraseña o huella (PT/EN/ES/RU) con protección anticoacción.',
+    mg_2_title: '2. Conversaciones Limpias',
+    mg_2_desc: 'Estado Tor en tiempo real, candados de cifrado y accesos rápidos a QR y contacto.',
+    mg_3_title: '3. Audio HD y 1x Única',
+    mg_3_desc: 'Voz nítida AAC 48 kHz sin metadatos con modo temporal de escucha única (1x).',
+    mg_4_title: '4. Mensaje Sellado',
+    mg_4_desc: 'Contraseña exclusiva por mensaje con ventana visible configurable y autodestrucción.',
+    mg_5_title: '5. Grupos y Stickers',
+    mg_5_desc: 'Salas post-cuánticas ML-KEM-768 con panel acoplado de stickers 512×512 sin EXIF/GPS.',
+    mg_6_title: '8. Menú Organizado',
+    mg_6_desc: 'Ajustes divididos en subcategorías claras de Cuenta, Seguridad, Red Tor y Relay.',
+    mg_7_title: '9. Temas Onion Mesh',
+    mg_7_desc: '6 acabados exclusivos locales: Onion Mesh, Bóveda Cobalto, Escudo PQC y Stealth OLED.',
+    mg_8_title: '10. QR e Invitación Directa',
+    mg_8_desc: 'Comparte tu código QR o enlace directo que abre en Nuevo Contacto sin filtrar metadatos.',
+    mg_9_title: '6. 1 Grupo Gratis (50 Personas)',
+    mg_9_desc: 'Crea gratis tu grupo privado de hasta 50 personas y apoya los servidores si lo deseas.',
+    mg_10_title: '7. Datos del Grupo',
+    mg_10_desc: 'Panel unificado Onion Mesh con reglas del Admin, acciones rápidas, Quemar y gestión de miembros.',
 
     video_badge: 'Video Oficial • 1 Minuto y 20 Segundos',
     video_title: 'Mira OnionTalk funcionando en la práctica',
@@ -796,6 +871,7 @@ const I18N = {
     nav_how: 'Почему P2P?',
     nav_comics: 'Понятно за 10 сек',
     nav_features: 'Приватность',
+    nav_screens: 'Экраны',
     nav_compare: 'Сравнение',
     nav_support: 'Донаты / Поддержка',
     nav_faq: 'FAQ',
@@ -906,6 +982,30 @@ const I18N = {
     s3_cta: 'Создать P2P-профиль сейчас',
     s3_badge: 'БЕЗ SIM',
     s3_callout: 'В группах OnionTalk ни один участник не узнает вашу SIM-карту или оператора.',
+
+    mg_badge: 'Новый интерфейс Onion Mesh • v1.7.4',
+    mg_title: 'Посмотрите на обновлённый дизайн OnionTalk изнутри',
+    mg_desc: 'Нажмите на любой реальный скриншот для увеличения: HD-аудио 48 кГц с одноразовым прослушиванием (1x), сообщения под паролем, бесплатные группы до 50 человек и темы Onion Mesh.',
+    mg_1_title: '1. Сейф и биометрия',
+    mg_1_desc: 'Вход по паролю или отпечатку (PT/EN/ES/RU) с защитой от принуждения.',
+    mg_2_title: '2. Чистый список чатов',
+    mg_2_desc: 'Статус Tor в реальном времени, индикаторы шифрования и быстрые кнопки QR и контактов.',
+    mg_3_title: '3. HD-аудио и режим 1x',
+    mg_3_desc: 'Чистый голос AAC 48 кГц без метаданных с режимом одноразового прослушивания (1x).',
+    mg_4_title: '4. Запечатанное сообщение',
+    mg_4_desc: 'Отдельный пароль на сообщение с выбором времени показа (от 10с) и автоудалением.',
+    mg_5_title: '5. PQC-группы и стикеры',
+    mg_5_desc: 'Постквантовые группы ML-KEM-768 с панелью стикеров 512×512 без EXIF/GPS.',
+    mg_6_title: '8. Удобные настройки',
+    mg_6_desc: 'Чёткие разделы для профиля, внешнего вида, безопасности, сети Tor и узла Relay.',
+    mg_7_title: '9. Темы Onion Mesh',
+    mg_7_desc: '6 локальных тем оформления: Onion Mesh, Cobalt Vault, PQC Shield и Stealth OLED.',
+    mg_8_title: '10. QR и прямые ссылки',
+    mg_8_desc: 'Делитесь QR-кодом или ссылкой, сразу открывающей «Новый контакт» без утечки данных.',
+    mg_9_title: '6. 1 группа бесплатно (50 чел.)',
+    mg_9_desc: 'Бесплатно создайте приватную группу до 50 участников и поддержите узлы по желанию.',
+    mg_10_title: '7. Данные группы',
+    mg_10_desc: 'Единая панель Onion Mesh с правилами админа, быстрыми действиями, Burn и участниками.',
 
     video_badge: 'Официальное видео • 1 минута 20 секунд',
     video_title: 'Посмотрите, как OnionTalk работает вживую',
@@ -1227,6 +1327,27 @@ function setLang(lang) {
 
   try { localStorage.setItem('oniontalk_site_lang', currentLang); } catch (_) {}
 }
+
+function openMeshShot(src, captionKey) {
+  const modal = document.getElementById('mesh-lightbox');
+  const img = document.getElementById('mesh-lightbox-img');
+  const cap = document.getElementById('mesh-lightbox-caption');
+  if (!modal || !img) return;
+  img.src = src;
+  const dict = I18N[currentLang] || I18N.pt;
+  if (cap) cap.textContent = (captionKey && dict[captionKey]) ? dict[captionKey] : '';
+  modal.classList.add('open');
+}
+
+function closeMeshShot(ev) {
+  if (ev && ev.target && ev.target.id === 'mesh-lightbox-img') return;
+  const modal = document.getElementById('mesh-lightbox');
+  if (modal) modal.classList.remove('open');
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeMeshShot();
+});
 
 document.addEventListener('DOMContentLoaded', () => {
   const params = new URLSearchParams(window.location.search);
