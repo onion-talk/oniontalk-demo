@@ -39,7 +39,7 @@ const I18N = {
     check_3: 'Mensagens com Senha + Auto-Lock 15s',
     check_4: 'Print 100% Preto & Botão Burn nos 2',
     cta_playstore: 'Baixar na Google Play',
-    cta_apk: 'Baixar APK Direto (v1.7.4)',
+    cta_apk: 'Baixar APK Direto (v1.7.5)',
     cta_watch_video: 'Ver Vídeo (1m20s)',
     cta_support_hero: 'Apoiar Projeto',
     hero_trust: '<span><strong>Zero Anúncios</strong> • 1 Grupo Grátis (até 50 pessoas) • Mantido por doações voluntárias</span>',
@@ -137,7 +137,7 @@ const I18N = {
     s3_badge: 'SEM +55',
     s3_callout: 'Nos grupos do OnionTalk, nenhum participante tem acesso ao seu chip SIM ou operadora.',
 
-    mg_badge: 'Nova Interface Onion Mesh • v1.7.4',
+    mg_badge: 'Nova Interface Onion Mesh • v1.7.5',
     mg_title: 'Conheça por dentro o novo visual do OnionTalk',
     mg_desc: 'Deslize pelo carrossel ou toque em qualquer tela para ampliar: áudios HD 48 kHz de escuta única (1x), mensagens seladas com senha, grupos privados de até 50 pessoas e temas Onion Mesh.',
     mg_1_title: '1. Cofre & Biometria',
@@ -163,7 +163,7 @@ const I18N = {
 
     video_badge: 'Vídeo Oficial • 1 Minuto e 30 Segundos',
     video_title: 'Veja o OnionTalk funcionando na prática',
-    video_desc: 'Assista à demonstração completa da nova interface Onion Mesh v1.7.4: áudio HD com escuta única (1x), mensagens seladas com senha, chamadas pós-quânticas, grupo grátis até 50 pessoas e destruição sincronizada.',
+    video_desc: 'Assista à demonstração completa da nova interface Onion Mesh v1.7.5: áudio HD com escuta única (1x), mensagens seladas com senha, chamadas pós-quânticas, grupo grátis até 50 pessoas e destruição sincronizada.',
 
     cmp_tag: 'Matriz Comparativa de Arquitetura & Privacidade',
     cmp_title: 'Por que o OnionTalk entrega mais qualidade e segurança?',
@@ -321,7 +321,7 @@ const I18N = {
     check_3: 'Password Messages + 15s Auto-Lock',
     check_4: '100% Black Anti-Screenshot & Dual Burn',
     cta_playstore: 'Get it on Google Play',
-    cta_apk: 'Direct APK Download (v1.7.4)',
+    cta_apk: 'Direct APK Download (v1.7.5)',
     cta_watch_video: 'Watch Video (1m20s)',
     cta_support_hero: 'Support Project',
     hero_trust: '<span><strong>Zero Ads</strong> • 1 Free Group (up to 50 people) • Sustained by voluntary donations</span>',
@@ -419,7 +419,7 @@ const I18N = {
     s3_badge: 'NO SIM LEAK',
     s3_callout: 'Inside OnionTalk groups, no member can ever discover your SIM card or mobile carrier.',
 
-    mg_badge: 'New Onion Mesh Interface • v1.7.4',
+    mg_badge: 'New Onion Mesh Interface • v1.7.5',
     mg_title: 'Explore OnionTalk’s new interface inside out',
     mg_desc: 'Swipe through the carousel or tap any screen to zoom in: 48 kHz HD listen-once (1x) voice notes, password-sealed messages, free 50-member private groups, and Onion Mesh themes.',
     mg_1_title: '1. Vault & Biometrics',
@@ -445,7 +445,7 @@ const I18N = {
 
     video_badge: 'Official Video • 1 Minute 30 Seconds',
     video_title: 'Watch OnionTalk in action',
-    video_desc: 'See a complete walkthrough of the new Onion Mesh v1.7.4 interface: listen-once (1x) HD audio, password-sealed messages, post-quantum calls, free 50-member group, and synchronized burn.',
+    video_desc: 'See a complete walkthrough of the new Onion Mesh v1.7.5 interface: listen-once (1x) HD audio, password-sealed messages, post-quantum calls, free 50-member group, and synchronized burn.',
 
     cmp_tag: 'Architecture & Privacy Comparison Matrix',
     cmp_title: 'Why does OnionTalk deliver higher quality and security?',
@@ -603,7 +603,7 @@ const I18N = {
     check_3: 'Mensajes con Contraseña + Auto-Lock 15s',
     check_4: 'Captura 100% Negra y Botón Burn en Ambos',
     cta_playstore: 'Descargar en Google Play',
-    cta_apk: 'Descargar APK Directo (v1.7.4)',
+    cta_apk: 'Descargar APK Directo (v1.7.5)',
     cta_watch_video: 'Ver Video (1m20s)',
     cta_support_hero: 'Apoyar Proyecto',
     hero_trust: '<span><strong>Cero Anuncios</strong> • 1 Grupo Gratis (hasta 50 personas) • Sostenido por donaciones voluntarias</span>',
@@ -701,7 +701,7 @@ const I18N = {
     s3_badge: 'SIN NÚMERO',
     s3_callout: 'En los grupos de OnionTalk, ningún participante puede descubrir tu tarjeta SIM ni tu operadora.',
 
-    mg_badge: 'Nueva Interfaz Onion Mesh • v1.7.4',
+    mg_badge: 'Nueva Interfaz Onion Mesh • v1.7.5',
     mg_title: 'Conoce por dentro el nuevo diseño de OnionTalk',
     mg_desc: 'Desliza por el carrusel o toca cualquier pantalla para ampliar: audios HD 48 kHz de escucha única (1x), mensajes sellados con contraseña, grupos privados de hasta 50 personas y temas Onion Mesh.',
     mg_1_title: '1. Bóveda y Biometría',
@@ -727,7 +727,7 @@ const I18N = {
 
     video_badge: 'Video Oficial • 1 Minuto y 30 Segundos',
     video_title: 'Mira OnionTalk funcionando en la práctica',
-    video_desc: 'Observa la demostración completa de la nueva interfaz Onion Mesh v1.7.4: audio HD de escucha única (1x), mensajes sellados con contraseña, llamadas post-cuánticas, grupo gratis de 50 personas y destrucción sincronizada.',
+    video_desc: 'Observa la demostración completa de la nueva interfaz Onion Mesh v1.7.5: audio HD de escucha única (1x), mensajes sellados con contraseña, llamadas post-cuánticas, grupo gratis de 50 personas y destrucción sincronizada.',
 
     cmp_tag: 'Matriz Comparativa de Arquitectura y Privacidad',
     cmp_title: '¿Por qué OnionTalk ofrece mayor calidad y seguridad?',
@@ -885,7 +885,7 @@ const I18N = {
     check_3: 'Пароль на сообщения + Автоблок за 15 сек',
     check_4: 'Чёрный скриншот и кнопка Burn у обоих',
     cta_playstore: 'Скачать в Google Play',
-    cta_apk: 'Скачать APK напрямую (v1.7.4)',
+    cta_apk: 'Скачать APK напрямую (v1.7.5)',
     cta_watch_video: 'Смотреть видео (1м20с)',
     cta_support_hero: 'Поддержать проект',
     hero_trust: '<span><strong>Ноль рекламы</strong> • 1 группа бесплатно (до 50 чел.) • Живёт благодаря добровольным донатам</span>',
@@ -983,7 +983,7 @@ const I18N = {
     s3_badge: 'БЕЗ SIM',
     s3_callout: 'В группах OnionTalk ни один участник не узнает вашу SIM-карту или оператора.',
 
-    mg_badge: 'Новый интерфейс Onion Mesh • v1.7.4',
+    mg_badge: 'Новый интерфейс Onion Mesh • v1.7.5',
     mg_title: 'Посмотрите на обновлённый дизайн OnionTalk изнутри',
     mg_desc: 'Листайте карусель или нажмите на любой экран для увеличения: HD-аудио 48 кГц с одноразовым прослушиванием (1x), сообщения под паролем, бесплатные группы до 50 человек и темы Onion Mesh.',
     mg_1_title: '1. Сейф и биометрия',
@@ -1009,7 +1009,7 @@ const I18N = {
 
     video_badge: 'Официальное видео • 1 минута 30 секунд',
     video_title: 'Посмотрите, как OnionTalk работает вживую',
-    video_desc: 'Полная демонстрация нового интерфейса Onion Mesh v1.7.4: HD-аудио с однократным прослушиванием (1x), запечатанные паролем сообщения, PQC-звонки, бесплатная группа до 50 человек и синхронное удаление.',
+    video_desc: 'Полная демонстрация нового интерфейса Onion Mesh v1.7.5: HD-аудио с однократным прослушиванием (1x), запечатанные паролем сообщения, PQC-звонки, бесплатная группа до 50 человек и синхронное удаление.',
 
     cmp_tag: 'Сравнительная матрица архитектуры и приватности',
     cmp_title: 'Почему OnionTalk обеспечивает более высокое качество и безопасность?',
