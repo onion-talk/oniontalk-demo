@@ -1,14 +1,18 @@
 [
   {
     "relation": [
-      "delegate_permission/common.handle_all_urls"
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
     ],
     "target": {
       "namespace": "android_app",
       "package_name": "org.oniontalk.messenger",
       "sha256_cert_fingerprints": [
         "49:70:07:66:24:3C:18:1D:32:72:0B:9B:61:44:2E:0E:B2:E3:EC:E8:80:4F:11:37:52:40:98:C5:A4:E3:E8:AE",
-        "8C:C9:FC:50:CC:2B:CD:4B:5C:D9:BE:00:1C:24:85:0F:DA:1B:03:2E:C7:27:8C:07:37:FD:27:29:F5:33:1A:62"
+        "8C:C9:FC:50:CC:2B:CD:4B:5C:D9:BE:00:1C:24:85:0F:DA:1B:03:2E:C7:27:8C:07:37:FD:27:29:F5:33:1A:62",
+        "DA:AF:6D:5F:D5:9E:73:4E:49:C6:90:66:D4:DD:B3:30:A3:07:66:84:1E:1B:2F:E3:E9:E5:E1:02:95:9A:46:51",
+        "58:AE:0B:69:F9:4C:90:12:2D:B5:13:D5:D2:CB:0F:CE:D6:B3:86:86:45:B8:8B:7D:1F:B2:29:D3:15:FD:7F:AB",
+        "C4:9E:45:7C:1C:27:52:ED:1B:DC:7C:15:A4:81:32:0C:30:50:9F:89:13:88:AF:18:2F:4F:EC:80:7D:6D:C2:0A"
       ]
     }
   }
