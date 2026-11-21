@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Baixar OnionTalk Grátis — Google Play Store (Android)</title>
+  <meta name="description" content="Converse por código sem expor seu número (+55) no PIX. Print 100% preto e botão Burn que apaga a conversa nos 2 celulares. Grátis na Google Play." />
+  <meta property="og:title" content="OnionTalk — Chat Privado Sem Número (+55)" />
+  <meta property="og:description" content="Proteja seu número e CPF no PIX. Print 100% preto e botão Burn nos 2 celulares. Baixe grátis na Google Play." />
+  <meta property="og:image" content="https://oniontalk.co/icon-512.png" />
+  <meta property="og:url" content="https://oniontalk.co/baixar" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/png" href="/icon-512.png" />
+  <script>
+    (function () {
+      var playWebUrl = "https://play.google.com/store/apps/details?id=org.oniontalk.messenger&hl=pt_BR&gl=BR";
+      var androidIntentUrl = "intent://details?id=org.oniontalk.messenger#Intent;scheme=market;package=com.android.vending;S.browser_fallback_url=" + encodeURIComponent(playWebUrl) + ";end";
+      var ua = navigator.userAgent || "";
+      var isAndroid = /Android/i.test(ua);
+
+      window.openGooglePlay = function () {
+        if (isAndroid) {
+          window.location.href = androidIntentUrl;
+          setTimeout(function () {
+            window.location.href = playWebUrl;
+          }, 600);
+        } else {
+          window.location.href = playWebUrl;
+        }
+      };
+
+      // Disparo imediato ao abrir no Android (quebra o In-App Browser do Instagram direto para o app nativo da Google Play)
+      if (isAndroid) {
+        try {
+          window.location.replace(androidIntentUrl);
+        } catch (e) {
+          window.location.href = playWebUrl;
+        }
+        setTimeout(function () {
+          if (!document.hidden) {
+            window.location.replace(playWebUrl);
+          }
+        }, 900);
+      }
+    })();
+  </script>
+  <style>
+    :root {
+      --bg: #080b10;
+      --card: #111722;
+      --border: #1f2a3c;
+      --emerald: #10b981;
+      --emerald-hover: #059669;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: radial-gradient(circle at 50% 0%, #132338 0%, var(--bg) 70%);
+      color: var(--text);
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .card {
+      width: 100%;
+      max-width: 400px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 28px 22px;
+      text-align: center;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.55);
+    }
+    .app-icon {
+      width: 84px;
+      height: 84px;
+      border-radius: 20px;
+      margin: 0 auto 14px;
+      display: block;
+      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.25);
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(16, 185, 129, 0.14);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.2px;
+    }
+    h1 {
+      font-size: 24px;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.45;
+      margin-bottom: 18px;
+    }
+    .bullets {
+      text-align: left;
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 16px;
+      padding: 14px 16px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 13.5px;
+      line-height: 1.35;
+    }
+    .bullet-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .cta-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      background: var(--emerald);
+      color: #04130e;
+      font-size: 16px;
+      font-weight: 800;
+      text-decoration: none;
+      padding: 16px 20px;
+      border-radius: 16px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(16, 185, 129, 0.35);
+      transition: transform 0.12s ease, background 0.15s ease;
+    }
+    .cta-btn:active {
+      transform: scale(0.98);
+      background: var(--emerald-hover);
+    }
+    .status-note {
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <img src="/icon-512.png" alt="OnionTalk" class="app-icon" />
+    <div class="badge">✓ OFICIAL • GOOGLE PLAY STORE</div>
+    <h1>OnionTalk para Android</h1>
+    <p class="subtitle">Abrindo a Google Play Store automaticamente...</p>
+
+    <div class="bullets">
+      <div class="bullet-item">
+        <span>🔒</span>
+        <span><strong>Sem número (+55):</strong> ninguém descobre seu nome completo ou CPF simulando PIX.</span>
+      </div>
+      <div class="bullet-item">
+        <span>🛡️</span>
+        <span><strong>Print 100% preto:</strong> bloqueio nativo contra captura e gravação de tela.</span>
+      </div>
+      <div class="bullet-item">
+        <span>🔥</span>
+        <span><strong>Botão Burn:</strong> apaga a conversa nos 2 celulares ao mesmo tempo.</span>
+      </div>
+    </div>
+
+    <a
+      id="play-link"
+      class="cta-btn"
+      href="https://play.google.com/store/apps/details?id=org.oniontalk.messenger&hl=pt_BR&gl=BR"
+      onclick="openGooglePlay(); return false;"
+    >
+      📲 Instalar Grátis na Google Play
+    </a>
+
+    <p class="status-note">100% gratuito • Zero coleta de dados • Sem chip SIM</p>
+  </main>
+</body>
+</html>
