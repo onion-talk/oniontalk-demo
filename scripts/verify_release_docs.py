@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
 """
-Release docs gate (v2): the docs must never go stale or point at nothing.
+Release docs gate (v3): docs & landing pages must stay 100% dynamic and never go stale.
 
 Fails the build when:
   1. a README/HTML still links a versioned asset (`/releases/download/`) or shows an inline
-     `SHA-256: <hex>` (both go stale at the next release; use the stable
-     `/releases/latest/download/<fixed-name>` URLs and SHA256SUMS.txt instead);
+     `SHA-256: <hex>` (use `/releases/latest/download/<fixed-name>` and SHA256SUMS.txt);
   2. a stable download URL used in the docs does not exist in that repo's latest release;
   3. SHA256SUMS.txt of a release disagrees with the digests GitHub computed for its assets;
-  4. the Legal Disclaimers section / Clause 7 heading disappeared.
+  4. the Legal Disclaimers section / Clause 7 heading disappeared;
+  5. live web files (`index.html`, `privacy.html`, `i18n-app.js`, `PRIVACY_POLICY.md`) or the
+     live current-release banner of `README*.md` hardcode static release/build strings
+     (`v1.5+`, `versionCode = <N>`, `Build <N>`, `STRIX <N>/<N>`, `Docker_Hub-v...`) instead of
+     dynamic Shields.io release badges or live GitHub `/releases/latest` API hydration.
 """
-import hashlib
 import json
 import os
 import pathlib
@@ -21,11 +23,38 @@ import urllib.error
 import urllib.request
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-DOCS = ["README.md", "README.pt-BR.md", "profile/README.md", "index.html", "privacy.html", "docs/index.html", "docs/privacy.html"]
+DOCS = [
+    "README.md",
+    "README.pt-BR.md",
+    "profile/README.md",
+    "PRIVACY_POLICY.md",
+    "index.html",
+    "privacy.html",
+    "i18n-app.js",
+    "docs/index.html",
+    "docs/privacy.html",
+    "docs/i18n-app.js",
+]
 HTML = ["index.html", "privacy.html", "docs/index.html", "docs/privacy.html"]
+WEB_OR_POLICY = {
+    "PRIVACY_POLICY.md",
+    "index.html",
+    "privacy.html",
+    "i18n-app.js",
+    "docs/index.html",
+    "docs/privacy.html",
+    "docs/i18n-app.js",
+}
+README_FILES = {"README.md", "README.pt-BR.md", "profile/README.md"}
 CLAUSE_7 = "Disclaimers Legais, Isenção de Responsabilidade"
 STABLE = re.compile(r"https://github\.com/(onion-talk/[\w.-]+)/releases/latest/download/([\w.\-]+)")
 SHA_INLINE = re.compile(r"SHA-256:\s*`?[0-9a-fA-F]{64}")
+HIST_SPLIT = re.compile(r"^##\s+.*v1\.[0-6]\.|^###\s+📜", re.MULTILINE)
+STATIC_LIVE_VER = re.compile(r"\bv1\.[5-9]\.\d+\b|\bv[2-9]\.\d+\.\d+\b|versionCode\s*=\s*\d+|\bBuild\s+\d+\b")
+STATIC_TOP_README = re.compile(
+    r"\bv1\.[5-9]\.\d+\b|\bv[2-9]\.\d+\.\d+\b|versionCode\s*=\s*\d+|\bBuild\s+\d+\b|STRIX\s+\d+/\d+|Docker_Hub-v\d"
+)
+STATIC_MD_GLOBAL = re.compile(r"Docker_Hub-v\d|Terms of Use\s*\(`?v?\d+\.\d+")
 errors = []
 
 
@@ -48,7 +77,7 @@ def http(url, accept="application/vnd.github+json"):
             if e.code == 404:
                 return None
             last = e
-        except Exception as e:  # network flake: retry, then fail closed
+        except Exception as e:
             last = e
         time.sleep(2 * (attempt + 1))
     fail(f"could not reach {url}: {last}")
@@ -56,6 +85,7 @@ def http(url, accept="application/vnd.github+json"):
 
 
 def main():
+    sys.stdout.reconfigure(encoding="utf-8")
     files = {n: (ROOT / n).read_text(encoding="utf-8") for n in DOCS if (ROOT / n).exists()}
     if not files:
         fail("no README/HTML found")
@@ -67,7 +97,7 @@ def main():
         if n in files and CLAUSE_7 not in files[n]:
             fail(f"{n} missing Clause 7 Legal Disclaimers")
 
-    # 1. static links / hashes
+    # 1 + 5. static links, inline hashes & hardcoded release/build strings
     wanted = {}
     for n, txt in files.items():
         for i, line in enumerate(txt.splitlines(), 1):
@@ -75,6 +105,22 @@ def main():
                 fail(f"{n}:{i} versioned release link (use /releases/latest/download/<stable-name>)")
             if n.endswith(".md") and SHA_INLINE.search(line):
                 fail(f"{n}:{i} inline SHA-256 (link SHA256SUMS.txt instead)")
+            if n.endswith(".md"):
+                mg = STATIC_MD_GLOBAL.search(line)
+                if mg:
+                    fail(f"{n}:{i} static version badge/disclaimer '{mg.group(0)}' (use dynamic Shields.io badge)")
+            if n in WEB_OR_POLICY:
+                mv = STATIC_LIVE_VER.search(line)
+                if mv:
+                    fail(f"{n}:{i} hardcoded version/build '{mv.group(0)}' in live web/policy file (hydrate dynamically)")
+
+        if n in README_FILES:
+            top_part = HIST_SPLIT.split(txt, maxsplit=1)[0]
+            for i, line in enumerate(top_part.splitlines(), 1):
+                mt = STATIC_TOP_README.search(line)
+                if mt:
+                    fail(f"{n}:{i} hardcoded version/build '{mt.group(0)}' in live README banner (use Shields.io dynamic badge)")
+
         for repo, asset in STABLE.findall(txt):
             wanted.setdefault(repo, set()).add(asset)
 
@@ -109,7 +155,7 @@ def main():
     if errors:
         print(f"[SECOPS-DOCS-GATE] {len(errors)} problem(s)")
         return 1
-    print("[SECOPS-DOCS-GATE] PASS: links are stable and alive, checksums consistent, disclaimers intact.")
+    print("[SECOPS-DOCS-GATE] PASS: 0 static versions, links dynamic & alive, checksums consistent, disclaimers intact.")
     return 0
 
 

@@ -7,6 +7,12 @@
     <a href="https://play.google.com/store/apps/details?id=org.oniontalk.messenger">
       <img src="https://img.shields.io/badge/Google_Play-OnionTalk_–_Apps_no_Google_Play_(Open_Beta)-3DDC84?style=for-the-badge&logo=google-play&logoColor=black" alt="OnionTalk – Apps no Google Play" />
     </a>
+    <a href="https://github.com/onion-talk/oniontalk-demo/releases/latest/download/OnionTalk.apk">
+      <img src="https://img.shields.io/github/v/release/onion-talk/oniontalk-demo?label=Direct%20APK&color=00E5FF&style=for-the-badge&logo=android&logoColor=black" alt="Download the latest OnionTalk APK" />
+    </a>
+    <a href="https://github.com/onion-talk/oniontalk-relay/releases/latest/download/OnionTalk-RelayNode.apk">
+      <img src="https://img.shields.io/github/v/release/onion-talk/oniontalk-relay?label=Relay%20APK&color=00E676&style=for-the-badge&logo=torproject&logoColor=black" alt="Download the latest OnionTalk Relay Node APK" />
+    </a>
     <a href="https://hub.docker.com/r/eriktonon/oniontalk-web">
       <img src="https://img.shields.io/badge/Docker_Web_Client-eriktonon%2Foniontalk--web:latest-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker Hub OnionTalk Web Client & Relay" />
     </a>
@@ -31,20 +37,20 @@
 
 ---
 
-## 🚀 What's New in `v1.8.0` (`versionCode = 73` / Build 73) & Relay Node `v1.8.0` (`versionCode = 24`) — Zero-RTT Audio/Message Unlock Staging, UI-First Anti-Notification-Lag Ordering & Unified Group UX (`STRIX 40/40`)
+## 🚀 Latest Official Release & Sovereign Rust Relay Mesh — Post-Quantum `ENVELOPE_V3`, Zero-RTT Unlock Staging, Interactive HD Voice & Unified Group UX
 
-- **📦 Official Google Play Open Beta, Direct Signed APK Downloads & Web Container (`v1.8.0` — Build 73)**:
+- **📦 Official Google Play Open Beta, Direct Signed APK Downloads & Hardened Containers (Auto-Synced Latest Releases)**:
   - **▶️ Google Play Store (Official Open Beta)**: [**OnionTalk – Apps no Google Play**](https://play.google.com/store/apps/details?id=org.oniontalk.messenger)
   - **🌐 Official Website & Privacy Policy**: [**https://oniontalk.co/**](https://oniontalk.co/)
-  - **Main Messenger APK (`org.oniontalk.messenger` `v1.8.0` Build 73)**: [**Download `OnionTalk.apk` (latest)**](https://github.com/onion-talk/oniontalk-demo/releases/latest/download/OnionTalk.apk) ([`SHA256SUMS.txt`](https://github.com/onion-talk/oniontalk-demo/releases/latest/download/SHA256SUMS.txt))
-  - **Standalone Android Relay Node APK (`org.oniontalk.relaynode` `v1.8.0` Build 26)**: [**Download `OnionTalk-RelayNode.apk` (latest)**](https://github.com/onion-talk/oniontalk-relay/releases/latest/download/OnionTalk-RelayNode.apk) ([`SHA256SUMS.txt`](https://github.com/onion-talk/oniontalk-relay/releases/latest/download/SHA256SUMS.txt))
+  - **Main Messenger APK (`org.oniontalk.messenger`)**: [**Download `OnionTalk.apk` (latest)**](https://github.com/onion-talk/oniontalk-demo/releases/latest/download/OnionTalk.apk) ![Latest Messenger Release](https://img.shields.io/github/v/release/onion-talk/oniontalk-demo?style=flat-square&label=release&color=00E5FF) ([`SHA256SUMS.txt`](https://github.com/onion-talk/oniontalk-demo/releases/latest/download/SHA256SUMS.txt))
+  - **Standalone Android Relay Node APK (`org.oniontalk.relaynode`)**: [**Download `OnionTalk-RelayNode.apk` (latest)**](https://github.com/onion-talk/oniontalk-relay/releases/latest/download/OnionTalk-RelayNode.apk) ![Latest Relay Release](https://img.shields.io/github/v/release/onion-talk/oniontalk-relay?style=flat-square&label=release&color=00E676) ([`SHA256SUMS.txt`](https://github.com/onion-talk/oniontalk-relay/releases/latest/download/SHA256SUMS.txt))
   - **🐳 Desktop & Web Container + Embedded Tor v3 Relay (`Windows / Linux / macOS`)**: [**`eriktonon/oniontalk-web:latest`**](https://hub.docker.com/r/eriktonon/oniontalk-web) ![Docker tag](https://img.shields.io/docker/v/eriktonon/oniontalk-web?sort=semver&label=tag&style=flat-square) — Self-contained Rust Black-Box Web Messenger + active Tor v3 Hidden Service Relay listening on `127.0.0.1:8420`.
-  - **🦀 100% Rust Native Relay Container (`oniontalk-relay-rs v1.8.0`)**: [**`eriktonon/oniontalk:latest`**](https://hub.docker.com/r/eriktonon/oniontalk) — Zero-Python Tokio/Axum + Sharded `DashMap` relay node (`11.9 MiB` RAM, `-92%` footprint) with isochronous `/api/v1/voice/stream`.
+  - **🦀 100% Rust Native Relay Container (`oniontalk-relay-rs`)**: [**`eriktonon/oniontalk:latest`**](https://hub.docker.com/r/eriktonon/oniontalk) ![Docker tag](https://img.shields.io/docker/v/eriktonon/oniontalk?sort=semver&label=tag&style=flat-square) — Non-root `UID 10014:10014` (`--cap-drop=ALL`, `tini`, `IntroDoS`) Tokio/Axum + Sharded `DashMap` relay node (`~12 MiB` RAM) with isochronous `/api/v1/voice/stream`.
 
-| **1. OnionVoice V1 PQC Call (`v1.8.0`)** | **2. Sovereign PQC Groups (1 Free up to 50)** | **3. 100% Rust Relay Node & 35-Node Mesh** |
+| **1. OnionVoice PQC Call** | **2. Sovereign PQC Groups (1 Free up to 50)** | **3. 100% Rust Relay Node & Global Mesh** |
 | :---: | :---: | :---: |
-| <img src="./screenshots/20-onionvoice-pqc-call-v157.png" width="260" alt="OnionVoice V1 PQC Voice Call" /> | <img src="./screenshots/21-pqc-groups-founder-v157.png" width="260" alt="Sovereign PQC Groups" /> | <img src="./screenshots/18-relay-node-android-v101.png" width="260" alt="OnionTalk Relay Rust Engine" /> |
-| *Sub-500ms (481ms) Hi-Fi PQC voice calls over Tor v3 with hardware Proximity Sensor screen-off (`PROXIMITY_SCREEN_OFF_WAKE_LOCK`) & 4-Emoji SAS.* | *1 Free Post-Quantum Group up to 50 members (`ML-KEM-768`), Zero-Leak Invite Deep-Links (`#fragment`) & unified Onion Mesh group sheet.* | *`oniontalk-relay-rs v1.8.0` (`11.9 MiB` RAM, 0% Python) synchronized across 35 global `.onion` v3 nodes (`v=32`).* |
+| <img src="./screenshots/20-onionvoice-pqc-call-v157.png" width="260" alt="OnionVoice PQC Voice Call" /> | <img src="./screenshots/21-pqc-groups-founder-v157.png" width="260" alt="Sovereign PQC Groups" /> | <img src="./screenshots/18-relay-node-android-v101.png" width="260" alt="OnionTalk Relay Rust Engine" /> |
+| *Sub-500ms Hi-Fi PQC voice calls over Tor v3 with hardware Proximity Sensor screen-off (`PROXIMITY_SCREEN_OFF_WAKE_LOCK`) & 4-Emoji SAS.* | *1 Free Post-Quantum Group up to 50 members (`ML-KEM-768`), Zero-Leak Invite Deep-Links (`#fragment`) & unified Onion Mesh group sheet.* | *`oniontalk-relay-rs` (`~12 MiB` RAM, 0% Python, `UID 10014` non-root) synchronized across global `.onion` v3 nodes.* |
 
 ### 🐳 Run OnionTalk Web Client + Embedded Tor v3 Relay on Desktop (`Windows / Linux / macOS`)
 
@@ -75,7 +81,7 @@ Or use [`docker-compose.web.yml`](./docker-compose.web.yml) (`docker compose -f 
 > @bbac48f99ed4536ce9134df16cc49dbed2d9109ed351710d181d86c28f34efd9:onion4zr3bsdeaelksemwokl5qmxd5o7jyblf46vc2mfl6cozgw77tqd.onion
 > ```
 > 📸 **Instagram Oficial:** [https://www.instagram.com/oniontalk.app/](https://www.instagram.com/oniontalk.app/) (`@oniontalk.app`)
-- **🛡️ Key Cryptographic, Voice, Zero-Media-Egress & P2P Mesh Breakthroughs in `v1.8.0` (`Build 73` & Rust Relay `v1.8.0` • `STRIX 40/40`)**:
+- **🛡️ Core Cryptographic, Voice, Zero-Media-Egress & P2P Mesh Architecture (`ENVELOPE_V3` • Hybrid PQC • Zero-Leak CI Verified)**:
   1. **100% Unified Sovereign Namespace (`org.oniontalk.messenger` / `OnionTalk`) & Zero-Media-Egress Sandbox**: Eliminated legacy package identifiers across all 41 Kotlin modules (`Theme.OnionTalk` / `OnionTalkTheme`). Enforced a strict **Zero-Media-Egress Sandbox**: zero gallery/storage permissions (`READ_MEDIA_*` absent), in-RAM CameraX HD capture (`showInAppHdCameraDialog`) with external system camera fallback removed, ephemeral video playback with `.nomedia` and no save-to-gallery button, and media extension blocking in `exportAttachmentToDownloads`.
   2. **100% Mandatory `FLAG_SECURE` + Selective QR Code Exception & Hardware Proximity Call Sensor**: `FLAG_SECURE` is unconditionally enforced across the entire app (cannot be disabled in Settings) and selectively lifted only while viewing the QR Code contact dialog. Active PQC voice calls acquire Android's `PROXIMITY_SCREEN_OFF_WAKE_LOCK` (`OnionTalk:ProximityCallWakeLock`) to automatically turn off the screen when held to the ear.
   3. **Sovereign Post-Quantum Encrypted Groups (`PQC Groups`) & Anti-Spam Proof-of-Community**: End-to-end encrypted multi-party group chats over Tor v3 with zero central member servers. Group creation unlocks automatically via organic local proof-of-community (`3+ mutual contacts` + `5+ days of vault maturity`, evaluated 100% locally) or immediately via an offline `Ed25519`-signed **`FounderPass`** certificate granted to community Relay Node Operators (`2+ hours active uptime`) or voluntary crypto supporters.
@@ -337,7 +343,7 @@ Distributed under the [MIT License](./LICENSE).
 
 ---
 
-## ⚠️ Legal Disclaimers, Limitation of Liability & Sovereign Terms of Use (`v1.5.0`)
+## ⚠️ Legal Disclaimers, Limitation of Liability & Sovereign Terms of Use
 
 1. **"AS IS" Open-Source Provision & Cryptographic Research Purpose**: OnionTalk (`org.oniontalk.messenger`), OnionTalk Relay Node (`org.oniontalk.relaynode`), and the Desktop/Web Container (`oniontalk-web`) are distributed strictly **"AS IS"**, without warranties of any kind under the MIT License, as cryptographic engineering and digital privacy technology (`Privacy by Design`).
 2. **Irreversible Zero-Knowledge Custody (No Password Recovery)**: Because OnionTalk operates without central servers, user accounts, emails, or phone numbers, **the developers cannot recover forgotten vault passwords, restore lost private keys, or reverse the 5-Strike Anti-Coercion Wipe (`DoD 5220.22-M`) or Synchronized Bilateral Burn (`🔥`)**. Users are solely responsible for safeguarding their local credentials and backups.
