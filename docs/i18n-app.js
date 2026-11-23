@@ -176,7 +176,7 @@ const I18N = {
     cmp_sub_wa: 'Nuvem Meta (+55)',
     cmp_sub_tg: 'Nuvem Central (+55)',
     cmp_sub_sg: 'Servidor Central (+55)',
-    cmp_footnote: 'Dados auditáveis em código aberto (MIT) • Sem coleta de metadados, agenda de contatos ou localização GPS.',
+    cmp_footnote: 'Protocolo e Relay auditáveis em código aberto (MIT) • Código-fonte dos apps clientes fechado temporariamente • Sem coleta de metadados, agenda ou GPS.',
     cmp_footer_cta: 'Migrar para o OnionTalk P2P →',
     cmp_rows: [
       {
@@ -458,7 +458,7 @@ const I18N = {
     cmp_sub_wa: 'Meta Cloud (SIM)',
     cmp_sub_tg: 'Central Cloud (SIM)',
     cmp_sub_sg: 'Central Server (SIM)',
-    cmp_footnote: 'Open-source auditable protocol (MIT) • Zero collection of metadata, address books, or GPS location.',
+    cmp_footnote: 'Open-source auditable protocol & relay (MIT) • Client apps source code temporarily restricted • Zero collection of metadata, address books, or GPS.',
     cmp_footer_cta: 'Switch to OnionTalk P2P →',
     cmp_rows: [
       {
@@ -740,7 +740,7 @@ const I18N = {
     cmp_sub_wa: 'Nube Meta (SIM)',
     cmp_sub_tg: 'Nube Central (SIM)',
     cmp_sub_sg: 'Servidor Central (SIM)',
-    cmp_footnote: 'Protocolo auditable de código abierto (MIT) • Cero recolección de metadatos, agenda de contactos o ubicación GPS.',
+    cmp_footnote: 'Protocolo y Relay auditables de código abierto (MIT) • Código fuente de las apps cliente cerrado temporalmente • Cero metadatos o GPS.',
     cmp_footer_cta: 'Migrar a OnionTalk P2P →',
     cmp_rows: [
       {
@@ -1022,7 +1022,7 @@ const I18N = {
     cmp_sub_wa: 'Облако Meta (SIM)',
     cmp_sub_tg: 'Центр. облако (SIM)',
     cmp_sub_sg: 'Центр. сервер (SIM)',
-    cmp_footnote: 'Открытый проверяемый протокол (MIT) • Нулевой сбор метаданных, адресной книги и GPS-геолокации.',
+    cmp_footnote: 'Открытый проверяемый протокол и Relay (MIT) • Исходный код клиентских приложений временно закрыт • Нулевой сбор метаданных и GPS.',
     cmp_footer_cta: 'Перейти на OnionTalk P2P →',
     cmp_rows: [
       {
