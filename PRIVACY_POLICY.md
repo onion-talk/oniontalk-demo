@@ -1,8 +1,8 @@
 # Política de Privacidade & Disclaimers Legais / Privacy Policy & Legal Disclaimers — OnionTalk (`org.oniontalk.messenger`)
 
-**Escopo / Scope:** Aplicável continuamente à versão oficial vigente publicada na Google Play Store e no GitHub Releases (`org.oniontalk.messenger`, `org.oniontalk.relaynode` e `eriktonon/oniontalk-web:latest`).
+**Escopo / Scope:** Aplicável continuamente à versão oficial vigente publicada na Google Play Store e no GitHub Releases (`org.oniontalk.messenger`, `org.oniontalk.relaynode` e `onion-talk-web`).
 
-O **OnionTalk: Private Tor Chat** (`org.oniontalk.messenger`), o aplicativo secundário **OnionTalk Relay Node** (`org.oniontalk.relaynode`) e o cliente Desktop/Web **OnionTalk Web** (`eriktonon/oniontalk-web:latest`) compõem um ecossistema de comunicação criptografada ponta-a-ponta (E2EE) construído sob os princípios de **Zero-Knowledge (Conhecimento Zero)**, **Criptografia Pós-Quântica (PQC)**, **Soberania Digital** e **Privacidade por Design**.
+O **OnionTalk: Private Tor Chat** (`org.oniontalk.messenger`), o aplicativo secundário **OnionTalk Relay Node** (`org.oniontalk.relaynode`) e o cliente Desktop/Web **OnionTalk Web** (`onion-talk-web`) compõem um ecossistema de comunicação criptografada ponta-a-ponta (E2EE) construído sob os princípios de **Zero-Knowledge (Conhecimento Zero)**, **Criptografia Pós-Quântica (PQC)**, **Soberania Digital** e **Privacidade por Design**.
 
 ---
 
@@ -44,8 +44,7 @@ O OnionTalk é destinado ao público adulto (**18 anos ou mais**) interessado em
 4. **Apoio Voluntário Sem Contrapartida Comercial:** Doações em criptoativos (`BTC`, `ETH`, `SOL`) são contribuições voluntárias para manutenção da pesquisa e infraestrutura open-source, não configurando contratação de serviço ou SLA.
 
 ### 7. Contato & Canais Oficiais
-- **Contato do Administrador pelo App:** `@bbac48f99ed4536ce9134df16cc49dbed2d9109ed351710d181d86c28f34efd9:onion4zr3bsdeaelksemwokl5qmxd5o7jyblf46vc2mfl6cozgw77tqd.onion`
-- **Website Oficial:** [https://oniontalk.co/](https://oniontalk.co/)
+- **Website Oficial & Política de Privacidade:** [https://oniontalk.co/privacy.html](https://oniontalk.co/privacy.html)
 - **Organização Oficial GitHub:** [https://github.com/onion-talk](https://github.com/onion-talk)
 - **Instagram Oficial:** [https://www.instagram.com/oniontalk.app/](https://www.instagram.com/oniontalk.app/) (`@oniontalk.app`)
 - **E-mail de Segurança & Privacidade:** `security@oniontalk.org`

@@ -3,9 +3,14 @@ stages:
 
 strix_zero_leak_gate:
   stage: security_test
-  image: python:3.12-slim
+  image:
+    name: python:3.12-slim
+    pull_policy: [if-not-present, always]
+  before_script:
+    - command -v git >/dev/null 2>&1 || (apt-get update && apt-get install -y --no-install-recommends git ca-certificates && rm -rf /var/lib/apt/lists/*)
   script:
     - python3 scripts/zero_leak_scanner.py
+    - python3 scripts/verify_release_docs.py
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
     - if: $CI_COMMIT_BRANCH == "main"

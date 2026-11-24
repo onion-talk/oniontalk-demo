@@ -96,6 +96,12 @@ def main():
     for n in HTML:
         if n in files and CLAUSE_7 not in files[n]:
             fail(f"{n} missing Clause 7 Legal Disclaimers")
+    for pn in ("privacy.html", "docs/privacy.html"):
+        if pn in files:
+            if re.search(r"\.apk\b", files[pn], re.IGNORECASE):
+                fail(f"{pn} must not contain direct .apk download links (Google Play Privacy Policy compliance)")
+            if "<h1>Política de Privacidade / Privacy Policy" not in files[pn]:
+                fail(f"{pn} must be a dedicated Privacy Policy page starting with <h1>Política de Privacidade / Privacy Policy")
 
     # 1 + 5. static links, inline hashes & hardcoded release/build strings
     wanted = {}
