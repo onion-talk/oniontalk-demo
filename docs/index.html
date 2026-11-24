@@ -2516,6 +2516,44 @@
     </div>
   </section>
 
+  <!-- ONIONOS OPEN-SOURCE WORKSTATION SECTION -->
+  <section style="padding: 68px 0; background: #0B141A; color: #F8FAFC; border-top: 1px solid rgba(16, 185, 129, 0.18); border-bottom: 1px solid rgba(16, 185, 129, 0.18);" id="onion-os">
+    <div class="container">
+      <div class="split-row" style="background: #111B24; border: 1px solid rgba(16, 185, 129, 0.24); border-radius: 28px;">
+        <div class="split-copy">
+          <span class="section-tag" style="background: rgba(16, 185, 129, 0.15); color: #34D399; border: 1px solid rgba(16, 185, 129, 0.35);">100% Open-Source · MIT License</span>
+          <h2 class="section-title" style="color: #FFFFFF; margin-top: 10px;">OnionOS — Workstation Linux Amnésica com OnionTalk Integrado</h2>
+          <p style="color: #CBD5E1; font-size: 16px; line-height: 1.7; margin-top: 12px;">
+            Ambiente completo de privacidade e pesquisa defensiva em um único container imutável (<code>127.0.0.1:8430</code>, menos de 95 MiB de RAM em repouso). Já traz a versão mais recente do <strong>OnionTalk Web</strong>, <strong>Relay Federado sob demanda</strong>, <strong>Tor Browser isolado</strong>, cofre pós-quântico <code>OTPQCV2</code> (<code>ML-KEM-768 + Argon2id</code>), limpador anti-forense de metadados e bloqueio Netfilter em 3 UIDs. Aberto para uso, auditoria e contribuições da comunidade.
+          </p>
+          <div class="tech-spec-box" style="margin-top: 16px; background: #070D12; border: 1px solid rgba(255,255,255,0.08);">
+            git clone https://github.com/onion-talk/onion-os.git &amp;&amp; cd onion-os &amp;&amp; docker compose up -d
+          </div>
+          <div style="margin-top: 22px; display: flex; gap: 12px; flex-wrap: wrap;">
+            <a href="https://github.com/onion-talk/onion-os" target="_blank" rel="noopener" class="btn-pill btn-primary">
+              Código-Fonte &amp; Contribuir no GitHub
+            </a>
+            <a href="https://hub.docker.com/r/eriktonon/onion-os" target="_blank" rel="noopener" class="btn-pill btn-dark" style="border: 1px solid rgba(255,255,255,0.16);">
+              Imagem Oficial no Docker Hub
+            </a>
+          </div>
+        </div>
+        <div class="split-visual" style="display: flex; flex-direction: column; gap: 12px; justify-content: center;">
+          <div style="background: #070D12; border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 18px; padding: 20px;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: #34D399; margin-bottom: 10px;">onion@sovereign:~$ onion-os --self-test</div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: #E2E8F0; line-height: 1.75;">
+              • Isolamento Kernel: 3 UIDs (10016 Tor · 10015 Sandbox · 10014 Onion)<br />
+              • Firewall Fail-Closed: Egress bloqueado fora do daemon Tor PoW<br />
+              • 11 Apps Integrados: OnionTalk PQC, Relay, OnionShare, TOTP 2FA, OSINT<br />
+              • Amnésia Real: /home/onion em RAM tmpfs + Panic Burn &lt; 50 ms<br />
+              • Desenvolvimento Aberto: Rust + Axum + Debian Bookworm (MIT)
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FAQ SECTION -->
   <section class="faq-section" id="faq">
     <div class="container">
